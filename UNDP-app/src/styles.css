@@ -1,0 +1,51 @@
+/* You can add global styles to this file, and also import other style files */
+
+.table-header-bc {
+    background-color: #4272d7;
+}
+
+.table-header-fc {
+    color: white !important;
+}
+
+.btn-link {
+    cursor: pointer;
+}
+
+body::-webkit-scrollbar {
+    width: 10px;
+    /* width of the entire scrollbar */
+}
+
+body::-webkit-scrollbar-track {
+    background: rgb(223, 222, 221);
+    /* color of the tracking area */
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: rgb(151, 151, 255);
+    /* color of the scroll thumb */
+    border-radius: 20px;
+    /* roundness of the scroll thumb */
+    /* border: 3px solid orange; */
+    /* creates padding around scroll thumb */
+}
+
+.menu-sidebar2::-webkit-scrollbar {
+    width: 10px;
+    /* width of the entire scrollbar */
+}
+
+.menu-sidebar2::-webkit-scrollbar-track {
+    background: rgb(223, 222, 221);
+    /* color of the tracking area */
+}
+
+.menu-sidebar2::-webkit-scrollbar-thumb {
+    background-color: rgb(151, 151, 255);
+    /* color of the scroll thumb */
+    border-radius: 20px;
+    /* roundness of the scroll thumb */
+    /* border: 3px solid orange; */
+    /* creates padding around scroll thumb */
+}

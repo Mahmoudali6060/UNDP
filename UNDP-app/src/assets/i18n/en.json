@@ -1,0 +1,78 @@
+{
+    "General": {
+        "English": "English",
+        "Arabic": "اللغة العربية",
+        "Save": "Save",
+        "Cancel": "Cancel",
+        "AddNewRecord": "Add new record",
+        "All": "All",
+        "Of": "Of",
+        "Records": "Records",
+        "Displaying": "Displaying",
+        "First": "First",
+        "Previous": "Previous",
+        "Next": "Next",
+        "Last": "Last",
+        "Language": "Language",
+        "ChangeLanguage": "Change language",
+        "Add": "Add",
+        "Edit": "Edit",
+        "List": "List",
+        "Mobile": "Mobile",
+        "Address": "Address",
+        "Notes": "Notes",
+        "Name": "Name",
+        "Export": "Export",
+        "Date": "Date",
+        "Price": "Price",
+        "Debit": "Debit",
+        "Credit": "Credit",
+        "Total": "Total",
+        "Number": "Number",
+        "Clients": "Clients",
+        "Error": "Error"
+    },
+    "ConfirmaionDialog": {
+        "Title": "Confirmaion Dialog",
+        "Description": "Do you really want to delete this record ?"
+    },
+    "Message": {
+        "DeletedSuccessfully": "this record has been deleted successfully"
+    },
+    "Authentication": {
+        "FirstName": "First Name",
+        "LastName": "Last Name",
+        "EmailAddress": "Email Address",
+        "Password": "Password",
+        "RememberMe": "Remember Me",
+        "ForgottenPassword": "Forgotten Password",
+        "DoNotYouHaveAccount": "Don't you have account?",
+        "DoYouHaveAccount": "Don you have account?",
+        "SignUpHere": "Sign up here",
+        "LogIn": "Log in",
+        "Username": "Username",
+        "LoginHere": "Login here",
+        "SignIn": "Sign in",
+        "DefaultLanguage": "Default Langague"
+    },
+    "SideMenu": {
+        "Dashboard": "Dashboard",
+        "UserManagement": "User Management",
+        "UserForm": "User Form",
+        "UserList": "User List"
+    },
+    "Errors": {
+        "InvalidUsernameOrPassword": "Invalid Username or Password"
+    },
+    "User": {
+        "Name": "Name",
+        "FirstName": "First Name",
+        "LastName": "Last Name",
+        "Email": "Email",
+        "UserName": "Username",
+        "Password": "Password",
+        "Role": "Role",
+        "DefaultLanguage": "Default Langague",
+        "Image": "Image"
+    }
+}

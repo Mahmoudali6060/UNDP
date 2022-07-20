@@ -1,0 +1,86 @@
+<div class="page-content--bge5">
+
+    <div class="container">
+
+        <app-change-langague></app-change-langague>
+        <div class="login-wrap">
+            <div class="login-content">
+                <div class="login-logo">
+                    <a href="#">
+                        <img src="/assets/images/icon/logo.png" alt="CoolAdmin">
+                    </a>
+
+                </div>
+                <div class="login-form">
+
+                    <form #registerForm="ngForm" (ngSubmit)="register(registerForm)">
+                        <div class="row">
+                            <div class="col-lg-6 form-group">
+                                <label translate>Authentication.FirstName</label>
+                                <input class="au-input au-input--full" ngModel type="text" name="firstName" placeholder="{{'Authentication.FirstName'|translate}}">
+                            </div>
+                            <div class="col-lg-6 form-group">
+                                <label translate>Authentication.LastName</label>
+                                <input class="au-input au-input--full" ngModel type="text" name="lastName" placeholder="{{'Authentication.LastName'|translate}}">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label translate>Authentication.EmailAddress</label>
+                            <input class="au-input au-input--full" ngModel type="email" name="email" placeholder="{{'Authentication.EmailAddress'|translate}}">
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-6 form-group">
+                                <label translate>Authentication.Username</label>
+                                <input class="au-input au-input--full" ngModel type="text" name="username" placeholder="{{'Authentication.Username'|translate}}">
+                            </div>
+
+                            <div class="col-lg-6 form-group">
+                                <label translate>Authentication.Password</label>
+                                <input class="au-input au-input--full" ngModel type="password" name="password" placeholder="{{'Authentication.Password'|translate}}">
+                            </div>
+                        </div>
+
+                        <div class="login-checkbox">
+                            <label> <input type="checkbox" name="remember">{{'Authentication.RememberMe'
+                                |translate}}</label>
+                            <!-- <label><a href="#">Forgotten Password?</a> </label> -->
+                        </div>
+                        <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit" translate>Authentication.SignIn</button>
+                        <!-- <div class="social-login-content">
+                            <div class="social-button">
+                                <button class="au-btn au-btn--block au-btn--blue m-b-20">sign in with facebook</button>
+                                <button class="au-btn au-btn--block au-btn--blue2">sign in with twitter</button>
+                            </div>
+                        </div> -->
+                    </form>
+                    <div class="register-link">
+                        <p>
+                            <span translate>Authentication.DoYouHaveAccount</span>
+                            <a [routerLink]="['/login']" translate>Authentication.LoginHere</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 
+<div class=" form-group">
+  <label>First Name</label>
+  <input class="au-input au-input--full" ngModel type="text" name="FirstName" placeholder="First Name">
+</div>
+<div class="form-group">
+  <label>Email Address</label>
+  <input class="au-input au-input--full" ngModel type="text" name="LastName" placeholder="Last Name">
+</div>
+<div class="form-group">
+  <label>Email Address</label>
+  <input class="au-input au-input--full" ngModel type="email" name="Email" placeholder="Email">
+</div>
+<div class="form-group">
+  <label>Password</label>
+  <input class="au-input au-input--full" ngModel type="password" name="Password" placeholder="Password">
+</div> -->

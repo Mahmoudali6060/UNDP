@@ -1,0 +1,117 @@
+﻿using Account.DataAccessLayer;
+using Account.Entities;
+using Account.RepositoryLayer;
+using Accout.DataServiceLayer;
+using Data.Constants;
+using Data.Entities.Shared;
+using Data.Entities.UserManagement;
+using Infrastructure.Contracts;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
+using Setting.DataServiceLayer;
+using Shared.Entities;
+using Shared.Entities.Shared;
+using System;
+using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
+using System.IO;
+using System.Linq;
+using System.Security.Claims;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Account.DataServiceLayer
+{
+    public class AccountDSL : IAccountDSL
+    {
+        IAccountDAL _accountDAL;
+        ISettingDSL _settingDSL;
+        IUserProfileDSL _userProfileDSL;
+        ApplicationSettings _appSettings;
+        public AccountDSL(IAccountDAL accountDAL, ISettingDSL settingDSL, IOptions<ApplicationSettings> appSettings, IUserProfileDSL userProfileDSL, ILoggerManager logger)
+        {
+            _accountDAL = accountDAL;
+            _settingDSL = settingDSL;
+            _appSettings = appSettings.Value;
+            _userProfileDSL = userProfileDSL;
+        }
+
+        public async Task<UserProfileDTO> Register(RegisterRequestViewModel model)
+        {
+            UserProfileDTO userDto = UserMapper.MapRegisterRequestViewModel(model);
+            var result = await _userProfileDSL.Add(userDto);
+            if (result > 0)
+            {
+                userDto.Id = result;
+                userDto.Token = AddToken();//Generate Token for this user
+                return userDto;
+            }
+
+            return null;
+        }
+
+        public async Task<UserProfileDTO> Login(LoginModel loginModel)
+        {
+            var result = await _accountDAL.IsValidUser(loginModel);//Check Email-UserName-Phone Number 
+            if (result.Succeeded)
+            {
+                var appUser = await _accountDAL.GetUserByUsername(loginModel);
+                var userProfile = await _userProfileDSL.GetUserProfileByAppUserId(appUser.Id);
+                if (userProfile == null)
+                    throw new Exception("Errors.InvalidUsernameOrPassword");
+                UserProfileDTO userDto = UserMapper.MapAppUser(appUser, userProfile);
+
+                var role = await _accountDAL.GetRolesAsync(appUser);
+                userDto.Token = AddToken(appUser, role);
+
+                return userDto;
+            }
+            throw new Exception("Errors.InvalidUsernameOrPassword");
+        }
+
+        private string AddToken(AppUser appUser, IList<string> role)
+        {
+            IdentityOptions _options = new IdentityOptions();
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(new Claim[]
+                {
+                            new Claim("UserID",appUser.Id.ToString()),
+                            new Claim(_options.ClaimsIdentity.RoleClaimType,role.FirstOrDefault())
+                }),
+                Expires = DateTime.UtcNow.AddDays(1),
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes("1234567890123456")), SecurityAlgorithms.HmacSha256Signature)
+            };
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var securityToken = tokenHandler.CreateToken(tokenDescriptor);
+            return tokenHandler.WriteToken(securityToken);
+        }
+
+        private bool IsValidClient()
+        {
+            string curFile = @"C:\users\doc.txt";
+            List<Settings> settings = _settingDSL.GetSettings();
+            if (File.Exists(curFile) && settings[0].ExpiryDate.Date > DateTime.Now.Date)
+            {
+                return true;
+            }
+            throw new Exception("Error.NotAccessed");
+        }
+
+        public string AddToken()
+        {
+            var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"));
+            var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
+            var tokeOptions = new JwtSecurityToken(
+                issuer: "http://localhost:54095",
+                audience: "http://localhost:54095",
+                claims: new List<Claim>(),
+                expires: DateTime.Now.AddMinutes(5),
+                signingCredentials: signinCredentials
+            );
+
+            return new JwtSecurityTokenHandler().WriteToken(tokeOptions);
+        }
+    }
+}

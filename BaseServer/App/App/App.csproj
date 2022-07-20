@@ -1,0 +1,71 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Reports\TestReport.repx" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="9.0.0" />
+    <PackageReference Include="FastReport.OpenSource.Export.PdfSimple" Version="2020.1.25" />
+    <PackageReference Include="FastReport.OpenSource.Web" Version="2020.1.25" />
+    <PackageReference Include="IdentityServer4" Version="3.1.0" />
+    <PackageReference Include="IdentityServer4.AspNetIdentity" Version="3.1.0" />
+    <PackageReference Include="IdentityServer4.EntityFramework" Version="3.1.0" />
+    <PackageReference Include="JWT" Version="5.3.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.1" />
+    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="5.6.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Web.Administration" Version="11.1.0" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="5.6.0" />
+    <PackageReference Include="System.Net.Http" Version="4.3.4" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Folder Include="Controllers\Accounting\" />
+    <Folder Include="Controllers\Clients\" />
+    <Folder Include="Controllers\HR\" />
+    <Folder Include="Controllers\Settings\" />
+    <Folder Include="Controllers\Suppliers\" />
+    <Folder Include="Reports\" />
+    <Folder Include="wwwroot\Images\Users\" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Accounting\Accounting\Accounting.csproj" />
+    <ProjectReference Include="..\..\Account\Account\Account.csproj" />
+    <ProjectReference Include="..\..\Clients\Clients\Clients.csproj" />
+    <ProjectReference Include="..\..\Data\Data\Data.csproj" />
+    <ProjectReference Include="..\..\HR\HR\HR.csproj" />
+    <ProjectReference Include="..\..\Setting\Setting\Setting.csproj" />
+    <ProjectReference Include="..\..\Shared\Shared\Shared.csproj" />
+    <ProjectReference Include="..\..\Supplier\Supplier\Supplier.csproj" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Compile Update="Reports\TestReport.cs">
+      <DependentUpon>TestReport.repx</DependentUpon>
+    </Compile>
+    <Compile Update="Reports\TestReport.Designer.cs">
+      <DependentUpon>TestReport.repx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+</Project>
