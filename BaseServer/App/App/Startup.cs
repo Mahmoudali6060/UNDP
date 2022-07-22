@@ -87,9 +87,9 @@ namespace App
             services.AddControllers(options => options.EnableEndpointRouting = false);
            
             //>>>Add JWT Authentication And DbContext
-            services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")), ServiceLifetime.Transient);
+            services.AddDbContext<UNDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")), ServiceLifetime.Transient);
             services.AddIdentity<AppUser, AppRole>()
-              .AddEntityFrameworkStores<AppDbContext>()
+              .AddEntityFrameworkStores<UNDbContext>()
               .AddDefaultTokenProviders();
 
             services.AddIdentityServer().AddDeveloperSigningCredential()

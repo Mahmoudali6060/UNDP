@@ -19,9 +19,9 @@ namespace Setting.DataAccessLayer
 {
     public class SettingDAL : ISettingDAL
     {
-        private AppDbContext _context;
+        private UNDbContext _context;
         private DbSet<Settings> _entity;
-        public SettingDAL(AppDbContext context)
+        public SettingDAL(UNDbContext context)
         {
             _context = context;
             _entity = _context.Set<Settings>();

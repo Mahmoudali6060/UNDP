@@ -21,9 +21,9 @@ namespace Account.DataAccessLayer
     {
         private readonly SignInManager<AppUser> _signInManager;
         private readonly UserManager<AppUser> _userManager;
-        private readonly AppDbContext _appDbContext;
+        private readonly UNDbContext _appDbContext;
 
-        public AccountDAL(SignInManager<AppUser> signInManager, UserManager<AppUser> userManager, AppDbContext appDbContext)
+        public AccountDAL(SignInManager<AppUser> signInManager, UserManager<AppUser> userManager, UNDbContext appDbContext)
         {
             _signInManager = signInManager;
             _userManager = userManager;

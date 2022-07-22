@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using Shared.Entities.Shared;
-using Data.Backup;
+//using Data.Backup;
 using Database.Backup.DTOs;
 
 namespace App.Controllers.Authentication
@@ -12,14 +12,14 @@ namespace App.Controllers.Authentication
     public class DatabaseController : ControllerBase
     {
 
-        IDatabaseBackupDSL _databaseDSL;
+       // IDatabaseBackupDSL _databaseDSL;
 
-        public DatabaseController(IDatabaseBackupDSL databaseDSL)
-        {
-            _databaseDSL = databaseDSL;
-        }
+        //public DatabaseController(IDatabaseBackupDSL databaseDSL)
+        //{
+        //    _databaseDSL = databaseDSL;
+        //}
 
-        [HttpPost, Route("BackupDatabase")]
-        public IActionResult BackupDatabase(DatabaseEntity model) => Ok(_databaseDSL.BackupDatabase(model));
+        //[HttpPost, Route("BackupDatabase")]
+        //public IActionResult BackupDatabase(DatabaseEntity model) => Ok(_databaseDSL.BackupDatabase(model));
     }
 }

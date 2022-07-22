@@ -3,7 +3,7 @@ using Account.DataServiceLayer;
 using Accout.DataServiceLayer;
 using Accouting.Shared.DataAccessLayer;
 using Accouting.Shared.DataServiceLayer;
-using Data.Backup;
+//using Data.Backup;
 using Infrastructure.Contracts;
 using Infrastructure.Handlers;
 using Microsoft.Extensions.DependencyInjection;
@@ -25,7 +25,7 @@ namespace App.Helper
             services.AddTransient<ISettingDAL, SettingDAL>();
 
 
-            services.AddTransient<IDatabaseBackupDSL, DatabaseBackupDSL>();
+            //services.AddTransient<IDatabaseBackupDSL, DatabaseBackupDSL>();
 
             services.AddTransient<ILoggerManager, LoggerManager>();
 

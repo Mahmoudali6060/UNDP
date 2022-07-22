@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Data.Migrations
 {
-    [DbContext(typeof(AppDbContext))]
+    [DbContext(typeof(UNDbContext))]
     [Migration("20211204221209_addExtraColToAppUser")]
     partial class addExtraColToAppUser
     {

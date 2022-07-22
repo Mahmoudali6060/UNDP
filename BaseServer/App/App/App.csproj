@@ -44,6 +44,7 @@
     <Folder Include="Controllers\Suppliers\" />
     <Folder Include="Reports\" />
     <Folder Include="wwwroot\Images\Users\" />
+    <Folder Include="wwwroot\Images\Users\" />
   </ItemGroup>
 
 

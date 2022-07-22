@@ -8,9 +8,9 @@ using Data.Entities.UserManagement;
 
 namespace Data.Contexts
 {
-    public class AppDbContext : IdentityDbContext<AppUser, AppRole, string>
+    public class UNDbContext : IdentityDbContext<AppUser, AppRole, string>
     {
-        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
+        public UNDbContext(DbContextOptions<UNDbContext> options) : base(options)
         {
 
         }

@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Data.Migrations
 {
-    [DbContext(typeof(AppDbContext))]
+    [DbContext(typeof(UNDbContext))]
     [Migration("20210320094937_Add_Company_Table")]
     partial class Add_Company_Table
     {

@@ -15,8 +15,8 @@ namespace Account.DataAccessLayer
 {
     public class UserProfileDAL : IUserProfileDAL
     {
-        private readonly AppDbContext _appDbContext;
-        public UserProfileDAL(AppDbContext appDbContext)
+        private readonly UNDbContext _appDbContext;
+        public UserProfileDAL(UNDbContext appDbContext)
         {
             _appDbContext = appDbContext;
         }

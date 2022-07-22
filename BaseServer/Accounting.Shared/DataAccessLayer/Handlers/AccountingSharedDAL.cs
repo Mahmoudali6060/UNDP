@@ -12,9 +12,9 @@ namespace Accouting.Shared.DataAccessLayer
 {
     public class AccountingSharedDAL : IAccountingSharedDAL
     {
-        private AppDbContext _context;
+        private UNDbContext _context;
 
-        public AccountingSharedDAL(AppDbContext context)
+        public AccountingSharedDAL(UNDbContext context)
         {
             this._context = context;
         }
