@@ -28,9 +28,11 @@ export class LoginComponent {
     let credentials = JSON.stringify(form.value);
     this.authService.login(credentials).subscribe((response: any) => {
       if (response) {
-        this.localStorageService.setItem(LocalStorageItems.token, response.Token);
+        this.localStorageService.setItem(LocalStorageItems.token, response.token);
+        this.localStorageService.setItem(LocalStorageItems.email, response.email);
         this.localStorageService.setItem(LocalStorageItems.userProfile, response);
         this.helperService.useLanguage(response.DefaultLanguage);
+        console.log("LocalStorageItems",LocalStorageItems)
         this.invalidLogin = false;
         this.router.navigate(["/dashboard"]);
       }

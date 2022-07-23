@@ -7,6 +7,8 @@ using Data.Entities.Shared;
 using Data.Entities.UserManagement;
 using Infrastructure.Contracts;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Setting.DataServiceLayer;
@@ -64,6 +66,7 @@ namespace Account.DataServiceLayer
 
                 var role = await _accountDAL.GetRolesAsync(appUser);
                 userDto.Token = AddToken(appUser, role);
+                userDto.Email = appUser.Email;
 
                 return userDto;
             }
@@ -113,5 +116,45 @@ namespace Account.DataServiceLayer
 
             return new JwtSecurityTokenHandler().WriteToken(tokeOptions);
         }
+
+        public async Task<bool> ForgotPassword([FromBody] ForgotPasswordDTO forgotPasswordModel)
+        {
+            var user = await  _accountDAL.FindByEmailAsync(forgotPasswordModel.Email);
+            if (user == null)
+                throw new Exception("Errors Invalid Email");
+
+               //return false;//BadRequest("Invalid Request");
+
+            var token =await _accountDAL.GeneratePasswordResetTokenAsync(user);
+            var param = new Dictionary<string, string>
+             {
+                 {"token", token },
+                 {"email", forgotPasswordModel.Email }
+             };
+
+            var callback = QueryHelpers.AddQueryString(forgotPasswordModel.ClientURI, param);
+            var hash = callback.Split("#");
+            var query = hash[0];
+            string replace = query.Replace("/?", "/#/Resetpassword?");
+          //  var message = new MessageDTO(new string[] { user.Email }, "UN.", $"Dear {user.UserName}\r\n Please follow link to reset your password {replace}");
+           // _emailSender.SendEmail(message);
+            return true;
+        }
+
+        public async Task<bool> ResetPassword([FromBody] ResetPasswordDTO resetPasswordDto)
+        {
+            var user = await _accountDAL.FindByEmailAsync(resetPasswordDto.Email);
+
+            var resetPassResult = await _accountDAL.ResetPasswordAsync(user, resetPasswordDto.Token, resetPasswordDto.Password);
+            if (!resetPassResult.Succeeded)
+            {
+                var errors = resetPassResult.Errors.Select(e => e.Description);
+
+                throw new Exception("Errors Invalid Data");
+            }
+            return true;
+
+        }
+
     }
 }

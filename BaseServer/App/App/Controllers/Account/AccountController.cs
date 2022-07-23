@@ -36,5 +36,11 @@ namespace App.Controllers.Account
         [HttpPost]
         [HttpPost, Route("Register")]
         public async Task<IActionResult> Register([FromBody] RegisterRequestViewModel model) => Ok(await _accountDSL.Register(model));
+        [HttpPost]
+        [HttpPost, Route("ForgotPassword")]
+        public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordDTO model) => Ok(await _accountDSL.ForgotPassword(model));
+        [HttpPost]
+        [HttpPost, Route("ResetPassword")]
+        public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordDTO model) => Ok(await _accountDSL.ResetPassword(model));
     }
 }

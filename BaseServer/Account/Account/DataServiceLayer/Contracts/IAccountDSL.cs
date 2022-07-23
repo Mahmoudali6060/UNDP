@@ -1,5 +1,6 @@
 ﻿using Account.Entities;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Shared.Entities;
 using Shared.Entities.Shared;
 using System;
@@ -13,5 +14,8 @@ namespace Account.DataServiceLayer
     {
         Task<UserProfileDTO> Register(RegisterRequestViewModel model);
         Task<UserProfileDTO> Login(LoginModel user);
+        Task<bool> ForgotPassword([FromBody] ForgotPasswordDTO forgotPasswordModel);
+        Task<bool> ResetPassword([FromBody] ResetPasswordDTO resetPasswordDto);
+
     }
 }

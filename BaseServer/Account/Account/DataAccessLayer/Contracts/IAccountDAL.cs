@@ -17,5 +17,9 @@ namespace Account.DataAccessLayer
         Task<IdentityResult> AddToRoleAsync(AppUser user, string role);
         Task<IList<string>> GetRolesAsync(AppUser user);
         Task<bool> DeleteUser(string userId);
+        Task<AppUser> FindByEmailAsync(string email);
+        Task<string> GeneratePasswordResetTokenAsync(AppUser appUser);
+        Task<IdentityResult> ResetPasswordAsync(AppUser appUser,string token, string password);
+
     }
 }

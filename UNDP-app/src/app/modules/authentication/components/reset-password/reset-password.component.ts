@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { LocalStorageItems } from 'src/app/shared/constants/local-storage-items';
+import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 import { ResetPasswordDTO } from '../../models/reset-password-dto';
 import { AuthService } from '../../services/auth.service';
 import { PasswordConfirmationValidatorService } from '../Customvalidators/password-confirmation-validator.service';
@@ -16,28 +18,31 @@ export class ResetPasswordComponent implements OnInit {
   showSuccess: boolean;
   showError: boolean;
   errorMessage: string;
-  private token: string;
-  private email: string;
-  fieldOldTextType: boolean;
+  token: string;
+  email: string;
+  oldfieldTextType: boolean;
   fieldTextType: boolean;
   repeatFieldTextType: boolean;
   constructor(fb: FormBuilder, private _authService: AuthService, private _passConfValidator: PasswordConfirmationValidatorService,
-    private _route: ActivatedRoute) { }
+    private localStorageService: LocalStorageService,
+    private _route: ActivatedRoute,) { }
 
   ngOnInit(): void {
     this.resetPasswordForm = new FormGroup({
-      oldpassword: new FormControl('', [Validators.required]),
+      //oldPassword: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required]),
-      confirm: new FormControl('')
+      confirm: new FormControl('', [Validators.required])
     });
 
     this.resetPasswordForm.get('confirm')?.setValidators([Validators.required,
       this._passConfValidator.validateConfirmPassword(this.resetPasswordForm.value.get('password'))]);
-      this.token = this._route.snapshot.queryParams['token'];
-      this.email = this._route.snapshot.queryParams['email'];
+      this.token =  this.localStorageService.getItem(LocalStorageItems.token)
+      this.email = this.localStorageService.getItem(LocalStorageItems.email)
+      // this.token = this._route.snapshot.queryParams['token'];
+      // this.email = this._route.snapshot.queryParams['email'];
   }
   toggleOldFieldTextType() {
-    this.fieldOldTextType = !this.fieldOldTextType;
+    this.oldfieldTextType = !this.oldfieldTextType;
   }
   toggleFieldTextType() {
     this.fieldTextType = !this.fieldTextType;
@@ -58,17 +63,16 @@ export class ResetPasswordComponent implements OnInit {
 
     const resetPass = { ...resetPasswordFormValue };
     const resetPassDto: ResetPasswordDTO = {
-      oldpassword:resetPass.oldpassword,
+     // oldPassword:resetPass.oldPassword,
       password: resetPass.password,
       confirmPassword: resetPass.confirm,
       token: this.token,
       email: this.email
     }
 
-    this._authService.resetPassword('api/Authenticate/ResetPassword', resetPassDto)
+    this._authService.resetPassword('Account/ResetPassword', resetPassDto)
       .subscribe(_ => {
         this.showSuccess = true;
-        console.log("token", resetPassDto)
       },
         error => {
           this.showError = true;

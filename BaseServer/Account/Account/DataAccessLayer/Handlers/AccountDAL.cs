@@ -71,6 +71,25 @@ namespace Account.DataAccessLayer
             await _userManager.DeleteAsync(appUser);
             return true;
         }
+
+        public async Task<AppUser> FindByEmailAsync(string email)
+        {
+           var user = await _userManager.FindByEmailAsync(email);
+            return user;
+        }
+
+        public async Task<string> GeneratePasswordResetTokenAsync(AppUser appUser)
+        {
+            var user = await _userManager.FindByEmailAsync(appUser.Email);
+            var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+            return token;
+        }
+
+        public async Task<IdentityResult> ResetPasswordAsync(AppUser appUser,string token , string password)
+        {
+            var resetPassResult = await _userManager.ResetPasswordAsync(appUser, token, password);
+            return resetPassResult;
+        }
     }
 }
 

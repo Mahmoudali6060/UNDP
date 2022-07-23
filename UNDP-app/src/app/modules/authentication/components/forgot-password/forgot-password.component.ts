@@ -41,7 +41,7 @@ export class ForgotPasswordComponent implements OnInit {
     }
     console.log("clientURI",forgotPassDto.clientURI)
    // console.log("forgotPassDto",forgotPassDto)
-    this._authService.forgotPassword('api/Authenticate/ForgotPassword', forgotPassDto)
+    this._authService.forgotPassword('Account/ForgotPassword', forgotPassDto)
     .subscribe(_ => {
       this.showSuccess = true;
       this.successMessage = 'The link has been sent, please check your email to reset your password.'
