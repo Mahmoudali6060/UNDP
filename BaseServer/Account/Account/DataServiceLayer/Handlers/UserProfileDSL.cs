@@ -54,18 +54,15 @@ namespace Accout.DataServiceLayer
             if (createUserResult.Succeeded)
             {
                 entity.AppUserId = appUser.Id;
-                if (!string.IsNullOrEmpty(entity.ImageBase64))
-                    entity.ImageUrl = entity.UserName + "_" + DateTime.Now.ToString("yyyy_MM_dd_HH_ss") + ".jpg";
-                var addUserProfileResult = await _userProfileDAL.Add(_mapper.Map<UserProfile>(entity));
-                if (!string.IsNullOrEmpty(entity.ImageBase64))
-                    _fileManager.UploadImageBase64("wwwroot/Images/Users/" + entity.ImageUrl, entity.ImageBase64);
-                return addUserProfileResult;
+                UploadImage(entity);
+                return await _userProfileDAL.Add(_mapper.Map<UserProfile>(entity));
             }
             throw new Exception(createUserResult.Errors.ToList()[0].Description);
         }
 
         public async Task<long> Update(UserProfileDTO entity)
         {
+            UploadImage(entity);
             return await _userProfileDAL.Update(_mapper.Map<UserProfile>(entity));
         }
 
@@ -82,5 +79,13 @@ namespace Accout.DataServiceLayer
         {
             return await _userProfileDAL.GetUserProfileByAppUserId(appUserId);
         }
+
+        #region Helper Methods
+        private bool UploadImage(UserProfileDTO entity)
+        {
+            entity.ImageUrl = string.IsNullOrWhiteSpace(entity.ImageBase64) ? null : entity.UserName + "_" + DateTime.Now.ToString("yyyy_MM_dd_HH_ss") + ".jpg";
+            return _fileManager.UploadImageBase64("wwwroot/Images/Users/" + entity.ImageUrl, entity.ImageBase64);
+        }
+        #endregion
     }
 }
