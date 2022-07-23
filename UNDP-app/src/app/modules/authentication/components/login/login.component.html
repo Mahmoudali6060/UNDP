@@ -21,7 +21,8 @@
                         <div class="login-checkbox">
                             <label> <input type="checkbox" name="remember">{{'Authentication.RememberMe' |translate}}
                             </label>
-                            <label><a href="#">Forgotten Password?</a></label>
+                            <label> <a [routerLink]="['/resetPassword']" >change Password?</a></label><br>
+                             <label> <a [routerLink]="['/forgotpassword']" >Forgotten Password?</a></label>
                         </div>
                         <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit" translate>Authentication.LogIn</button>
                         <!-- <div class="social-login-content">

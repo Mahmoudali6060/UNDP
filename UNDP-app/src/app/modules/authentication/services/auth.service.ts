@@ -8,6 +8,8 @@ import { LocalStorageService } from '../../../shared/services/local-storage.serv
 import { LocalStorageItems } from '../../../shared/constants/local-storage-items';
 import { UserProfileDTO } from '../../user/models/user-profile.dto';
 import { Observable } from 'rxjs';
+import { ResetPasswordDTO } from '../models/reset-password-dto';
+import { ForgotPassword } from '../models/forgot-password';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -29,7 +31,9 @@ export class AuthService {
       return false;
     }
   }
-
+  private createCompleteRoute = ( envAddress: string) => {
+    return `${envAddress}`;
+  }
   login(model: any): Observable<UserProfileDTO> {
     return this._httpHelperService.post("Account/Login", model) as Observable<UserProfileDTO>;
   }
@@ -37,7 +41,12 @@ export class AuthService {
   register(model: any) {
     return this._httpHelperService.post("Account/Register", model);
   }
-
+  public resetPassword = (route: string, body: ResetPasswordDTO) => {
+    return this._httpHelperService.post(this.createCompleteRoute(route), body);
+  }
+  public forgotPassword = (route: string, body: ForgotPassword) => {
+    return this._httpHelperService.post(this.createCompleteRoute(route), body);
+  }
   logOut() {
     this.localStorageService.clear();
     this.router.navigateByUrl('/');
