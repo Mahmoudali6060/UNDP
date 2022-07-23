@@ -49,14 +49,10 @@
 
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Accounting\Accounting\Accounting.csproj" />
     <ProjectReference Include="..\..\Account\Account\Account.csproj" />
-    <ProjectReference Include="..\..\Clients\Clients\Clients.csproj" />
     <ProjectReference Include="..\..\Data\Data\Data.csproj" />
-    <ProjectReference Include="..\..\HR\HR\HR.csproj" />
     <ProjectReference Include="..\..\Setting\Setting\Setting.csproj" />
     <ProjectReference Include="..\..\Shared\Shared\Shared.csproj" />
-    <ProjectReference Include="..\..\Supplier\Supplier\Supplier.csproj" />
   </ItemGroup>
 
 

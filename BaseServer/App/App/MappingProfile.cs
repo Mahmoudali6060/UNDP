@@ -1,5 +1,4 @@
 ﻿using Account.Entities;
-using Accouting.Shared.Entities;
 using AutoMapper;
 using Data.Entities;
 using Data.Entities.Shared;
@@ -16,8 +15,6 @@ namespace App
         public MappingProfile()
         {
 
-            CreateMap<Category, CategoryDTO>();
-            CreateMap<CategoryDTO, Category>();
             CreateMap<Company, CompanyDTO>();
             CreateMap<CompanyDTO, Company>();
 

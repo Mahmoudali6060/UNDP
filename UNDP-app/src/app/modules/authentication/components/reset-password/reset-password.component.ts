@@ -34,8 +34,8 @@ export class ResetPasswordComponent implements OnInit {
       confirm: new FormControl('', [Validators.required])
     });
 
-    this.resetPasswordForm.get('confirm')?.setValidators([Validators.required,
-      this._passConfValidator.validateConfirmPassword(this.resetPasswordForm.value.get('password'))]);
+    // this.resetPasswordForm.get('confirm')?.setValidators([Validators.required,
+    //   this._passConfValidator.validateConfirmPassword(this.resetPasswordForm.value.get('password'))]);
       this.token =  this.localStorageService.getItem(LocalStorageItems.token)
       this.email = this.localStorageService.getItem(LocalStorageItems.email)
       // this.token = this._route.snapshot.queryParams['token'];
