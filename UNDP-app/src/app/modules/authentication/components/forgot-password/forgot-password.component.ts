@@ -32,7 +32,7 @@ export class ForgotPasswordComponent implements OnInit {
   public forgotPassword = (forgotPasswordFormValue: any) => {
     this.showError = this.showSuccess = false;
     const forgotPass = { ...forgotPasswordFormValue };
-    var strUrl = `${environment.urlAddress4200}` + "Resetpassword?"
+    var strUrl = `${environment.urlAddress4200}` + "resetpassword?"
     const forgotPassDto: ForgotPassword = {
       email: forgotPass.email,
      // clientURI: 'http://localhost:4200/#/Resetpassword'

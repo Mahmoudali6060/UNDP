@@ -1,4 +1,5 @@
 ﻿using Account.DataAccessLayer;
+using Account.DataServiceLayer.Contracts;
 using Account.Entities;
 using Account.RepositoryLayer;
 using Accout.DataServiceLayer;
@@ -31,12 +32,15 @@ namespace Account.DataServiceLayer
         ISettingDSL _settingDSL;
         IUserProfileDSL _userProfileDSL;
         ApplicationSettings _appSettings;
-        public AccountDSL(IAccountDAL accountDAL, ISettingDSL settingDSL, IOptions<ApplicationSettings> appSettings, IUserProfileDSL userProfileDSL, ILoggerManager logger)
+        private readonly IEmailSender _emailSender;
+
+        public AccountDSL(IAccountDAL accountDAL, ISettingDSL settingDSL, IOptions<ApplicationSettings> appSettings, IUserProfileDSL userProfileDSL, ILoggerManager logger, IEmailSender emailSender)
         {
             _accountDAL = accountDAL;
             _settingDSL = settingDSL;
             _appSettings = appSettings.Value;
             _userProfileDSL = userProfileDSL;
+            _emailSender = emailSender;
         }
 
         public async Task<UserProfileDTO> Register(RegisterRequestViewModel model)
@@ -135,15 +139,16 @@ namespace Account.DataServiceLayer
             var callback = QueryHelpers.AddQueryString(forgotPasswordModel.ClientURI, param);
             var hash = callback.Split("#");
             var query = hash[0];
-            string replace = query.Replace("/?", "/#/Resetpassword?");
-          //  var message = new MessageDTO(new string[] { user.Email }, "UN.", $"Dear {user.UserName}\r\n Please follow link to reset your password {replace}");
-           // _emailSender.SendEmail(message);
+            string replace = query.Replace("/?", "/resetPassword?");
+            var message = new MessageDTO(new string[] { user.Email }, "UN.", $"Dear {user.UserName}\r\n Please follow link to reset your password {replace}");
+            _emailSender.SendEmail(message);
             return true;
         }
 
         public async Task<bool> ResetPassword([FromBody] ResetPasswordDTO resetPasswordDto)
         {
             var user = await _accountDAL.FindByEmailAsync(resetPasswordDto.Email);
+            resetPasswordDto.Token = await _accountDAL.GeneratePasswordResetTokenAsync(user);
 
             var resetPassResult = await _accountDAL.ResetPasswordAsync(user, resetPasswordDto.Token, resetPasswordDto.Password);
             if (!resetPassResult.Succeeded)

@@ -32,6 +32,9 @@ using NLog;
 using Infrastructure.ExceptionHandling;
 using Infrastructure.ExceptionHandling.ExceptionMiddlewareExtensions;
 using Data.Entities.UserManagement;
+using Account.Entities;
+using Account.DataServiceLayer.Contracts;
+using Account.DataServiceLayer.Handlers;
 
 namespace App
 {
@@ -55,16 +58,21 @@ namespace App
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
+            var emailConfig = Configuration
+               .GetSection("EmailConfiguration")
+               .Get<EmailConfigurationDTO>();
+            services.AddSingleton(emailConfig);
+            services.AddTransient<IEmailSender, EmailSender>();
 
             ///>>>Allow Pascal Case
-         //   services.AddMvc(setupAction =>
-         //   {
-         //       setupAction.EnableEndpointRouting = false;
-         //   }).AddJsonOptions(jsonOptions =>
-         //   {
-         //       jsonOptions.JsonSerializerOptions.PropertyNamingPolicy = null;
-         //   })
-         //.SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+            //   services.AddMvc(setupAction =>
+            //   {
+            //       setupAction.EnableEndpointRouting = false;
+            //   }).AddJsonOptions(jsonOptions =>
+            //   {
+            //       jsonOptions.JsonSerializerOptions.PropertyNamingPolicy = null;
+            //   })
+            //.SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
             //>>>END Pascal Case
 
             //services.AddMvc().AddJsonOptions(options =>
@@ -85,7 +93,7 @@ namespace App
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
             services.AddControllers(options => options.EnableEndpointRouting = false);
-           
+
             //>>>Add JWT Authentication And DbContext
             services.AddDbContext<UNDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")), ServiceLifetime.Transient);
             services.AddIdentity<AppUser, AppRole>()
@@ -111,7 +119,8 @@ namespace App
                 x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
                 x.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-            }).AddJwtBearer(x => {
+            }).AddJwtBearer(x =>
+            {
                 x.RequireHttpsMetadata = false;
                 x.SaveToken = false;
                 x.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
