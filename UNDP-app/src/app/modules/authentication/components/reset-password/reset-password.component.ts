@@ -36,10 +36,14 @@ export class ResetPasswordComponent implements OnInit {
 
     // this.resetPasswordForm.get('confirm')?.setValidators([Validators.required,
     //   this._passConfValidator.validateConfirmPassword(this.resetPasswordForm.value.get('password'))]);
+
       this.token =  this.localStorageService.getItem(LocalStorageItems.token)
       this.email = this.localStorageService.getItem(LocalStorageItems.email)
-      // this.token = this._route.snapshot.queryParams['token'];
-      // this.email = this._route.snapshot.queryParams['email'];
+      if(this.token === null && this.email === null){
+      this.token = this._route.snapshot.queryParams['token'];
+      this.email = this._route.snapshot.queryParams['email'];
+      }
+
   }
   toggleOldFieldTextType() {
     this.oldfieldTextType = !this.oldfieldTextType;

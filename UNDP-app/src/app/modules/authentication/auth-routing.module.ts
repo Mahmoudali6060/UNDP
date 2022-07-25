@@ -9,7 +9,7 @@ const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'dashboard/resetPassword', component: ResetPasswordComponent },
+  { path: 'resetPassword', component: ResetPasswordComponent },
   { path: 'forgotpassword', component: ForgotPasswordComponent },
  
 ];
