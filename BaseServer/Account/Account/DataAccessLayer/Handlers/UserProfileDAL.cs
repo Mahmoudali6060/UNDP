@@ -43,7 +43,8 @@ namespace Account.DataAccessLayer
 
         public async Task<UserProfile> GetById(long id)
         {
-            return await _appDbContext.UserProfiles.SingleOrDefaultAsync(x => x.Id == id);
+            var UserProfile = _appDbContext.UserProfiles.Include(x => x.AppUser).SingleOrDefaultAsync(x => x.Id == id);
+            return await UserProfile;
         }
 
 

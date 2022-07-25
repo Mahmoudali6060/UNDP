@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-md-12">
         <!-- DATA TABLE -->
-        <h3 class="title-5 m-b-35">Users</h3>
+        <h3 class="title-5 m-b-35">{{'User.Users' |translate}}</h3>
         <div class="table-data__tool">
             <div class="table-data__tool-left">
                 <div class="rs-select2--light rs-select2--md">
@@ -36,9 +36,9 @@
             </div>
             <div class="table-data__tool-right">
                 <button [routerLink]="['/user/user-form']" class="au-btn au-btn-icon au-btn--green au-btn--small">
-                    <i class="zmdi zmdi-plus"></i>add item
+                    <i class="zmdi zmdi-plus"></i>{{'User.addUser' |translate}}
                 </button>
-                <div class="rs-select2--dark rs-select2--sm rs-select2--dark2">
+                <!-- <div class="rs-select2--dark rs-select2--sm rs-select2--dark2">
                     <select class="js-select2 select2-hidden-accessible" name="type" tabindex="-1" aria-hidden="true">
                         <option selected="selected">Export</option>
                         <option value="">Option 1</option>
@@ -50,7 +50,7 @@
                                     title="Export">Export</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span>
                     </span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
                     <div class="dropDownSelect2"></div>
-                </div>
+                </div> -->
             </div>
         </div>
         <div class="table-responsive table-responsive-data2">
@@ -58,10 +58,10 @@
                 <thead class="table-header-bc">
                     <tr>
                         <th class="table-header-fc">
-                            <label class="au-checkbox">
+                            <!-- <label class="au-checkbox">
                                 <input type="checkbox">
                                 <span class="au-checkmark"></span>
-                            </label>
+                            </label> -->
                         </th>
                         <th class="table-header-fc">{{'User.Name' |translate}}</th>
                         <th class="table-header-fc">{{'User.Email' |translate}}</th>
@@ -73,10 +73,10 @@
                 <tbody>
                     <tr class="tr-shadow" *ngFor="let item of userList">
                         <td>
-                            <label class="au-checkbox">
+                            <!-- <label class="au-checkbox">
                                 <input type="checkbox">
                                 <span class="au-checkmark"></span>
-                            </label>
+                            </label> -->
                         </td>
                         <td>{{item.firstName}} {{item.lastName}}</td>
                         <td>
@@ -93,7 +93,7 @@
                                 <!-- <button class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="Send">
                                     <i class="zmdi zmdi-mail-send"></i>
                                 </button> -->
-                                <button class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit" [routerLink]="['/user/user-form/'+item.id]">
+                                <button class="item ml-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit" [routerLink]="['/user/user-form/'+item.id]">
                                     <i class="zmdi zmdi-edit"></i>
                                 </button>
                                 <button class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" (click)="openConfirmationDialog(item)">
