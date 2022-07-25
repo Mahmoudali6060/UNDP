@@ -1,13 +1,6 @@
-﻿using Account.DataAccessLayer;
-using Account.Entities;
-using Account.Helper;
+﻿using Account.Entities;
 using Data.Constants;
-using Data.Entities.Shared;
 using Data.Entities.UserManagement;
-using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Account.RepositoryLayer
 {

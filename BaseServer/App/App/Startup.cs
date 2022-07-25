@@ -1,9 +1,6 @@
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using AutoMapper;
 //using Case.DataAccessLayer;
 //using Case.DataServiceLayer;
@@ -17,19 +14,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-using Newtonsoft.Json;
 using Data.Contexts;
 using Microsoft.EntityFrameworkCore;
-using Data.Entities;
 using Microsoft.AspNetCore.Identity;
-using Account.DataServiceLayer;
-using Account.DataAccessLayer;
 using App.Helper;
-using Data.Entities.Shared;
-using Newtonsoft.Json.Serialization;
 using Microsoft.Extensions.FileProviders;
 using NLog;
-using Infrastructure.ExceptionHandling;
 using Infrastructure.ExceptionHandling.ExceptionMiddlewareExtensions;
 using Data.Entities.UserManagement;
 using Account.Entities;
@@ -62,7 +52,6 @@ namespace App
                .GetSection("EmailConfiguration")
                .Get<EmailConfigurationDTO>();
             services.AddSingleton(emailConfig);
-            services.AddTransient<IEmailSender, EmailSender>();
 
             ///>>>Allow Pascal Case
             //   services.AddMvc(setupAction =>

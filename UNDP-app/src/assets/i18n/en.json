@@ -73,7 +73,8 @@
         "UserList": "User List"
     },
     "Errors": {
-        "InvalidUsernameOrPassword": "Invalid Username or Password"
+        "InvalidUsernameOrPassword": "Invalid Username or Password",
+        "InvalidEmail":"Invalid Email"
     },
     "User": {
         "Users":"Users",

@@ -31,6 +31,9 @@ namespace App.Helper
             services.AddTransient<IUserProfileDAL, UserProfileDAL>();
             services.AddTransient<IUserProfileDSL, UserProfileDSL>();
 
+            services.AddTransient<IEmailSender, EmailSender>();
+
+
         }
     }
 }

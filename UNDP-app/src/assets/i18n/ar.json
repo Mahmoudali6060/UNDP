@@ -82,7 +82,8 @@
         "UserList": "قائمة المستخدمين"
     },
     "Errors": {
-        "InvalidUsernameOrPassword": "من فضلك تأكد من اسم المستخدم او كلمة المرور"
+        "InvalidUsernameOrPassword": "من فضلك تأكد من اسم المستخدم او كلمة المرور",
+        "InvalidEmail":"من فضلك ادخل بريد الكتروني صحيح"
     },
     "User": {
         "Users":"المستخدمين",
