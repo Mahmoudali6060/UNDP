@@ -1,12 +1,14 @@
-﻿using System;
+﻿using Data.Entities.Shared;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Data.Entities.Request
+namespace Data.Entities.CarRequest
 {
-    public class Request
+    public class CarRequest : BaseEntity
     {
         public string RegistrarName { get; set; }
+
         public string RegistrarEmail { get; set; }
         public DateTime DateFrom { get; set; }
         public DateTime DateTo { get; set; }

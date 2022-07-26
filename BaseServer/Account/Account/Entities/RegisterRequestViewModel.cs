@@ -14,7 +14,7 @@ namespace Account.Entities
         public string LastName { get; set; }
 
         //[Required]
-        [EmailAddress]
+        [EmailAddress(ErrorMessage ="Invlid Email Address")]
         [Display(Name = "Email")]
         public string Email { get; set; }
 

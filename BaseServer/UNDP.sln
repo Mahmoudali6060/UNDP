@@ -23,13 +23,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Account", "Account", "{1878
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Account", "Account\Account\Account.csproj", "{E9618EC8-E66C-440A-A948-D64B6DC86D3D}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Report", "Report", "{D2B4F7DC-0E26-46B2-84CA-5D831F0C67F9}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FleetManagement", "FleetManagement", "{D2B4F7DC-0E26-46B2-84CA-5D831F0C67F9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Setting", "Setting", "{D104775B-0101-4585-B950-33D7D8FB9019}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Setting", "Setting\Setting\Setting.csproj", "{358D822B-1E21-4361-B4FC-8A524CC3D587}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{6C49FDA4-A849-4873-9F74-7146A4B1347F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FleetManagement", "CarRequest\FleetManagement.csproj", "{C7A8F53F-7959-4425-B985-19D09C5C346D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,6 +71,10 @@ Global
 		{6C49FDA4-A849-4873-9F74-7146A4B1347F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6C49FDA4-A849-4873-9F74-7146A4B1347F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6C49FDA4-A849-4873-9F74-7146A4B1347F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7A8F53F-7959-4425-B985-19D09C5C346D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7A8F53F-7959-4425-B985-19D09C5C346D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7A8F53F-7959-4425-B985-19D09C5C346D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7A8F53F-7959-4425-B985-19D09C5C346D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -82,6 +88,7 @@ Global
 		{E9618EC8-E66C-440A-A948-D64B6DC86D3D} = {1878A1BB-AC80-45BB-8F5D-1D203FF48DE8}
 		{358D822B-1E21-4361-B4FC-8A524CC3D587} = {D104775B-0101-4585-B950-33D7D8FB9019}
 		{6C49FDA4-A849-4873-9F74-7146A4B1347F} = {54D5F7DF-887F-40DC-9081-B05CC64FADDC}
+		{C7A8F53F-7959-4425-B985-19D09C5C346D} = {D2B4F7DC-0E26-46B2-84CA-5D831F0C67F9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {57820604-E245-4A2E-BBA2-4924B163A131}

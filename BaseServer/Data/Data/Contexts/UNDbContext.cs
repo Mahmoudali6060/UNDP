@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Linq;
 using Data.Entities.Shared;
 using Data.Entities.UserManagement;
+using Data.Entities.CarRequest;
 
 namespace Data.Contexts
 {
@@ -20,6 +21,7 @@ namespace Data.Contexts
         public DbSet<AccountTree> AccountTrees { get; set; }
         public DbSet<Settings> Settings { get; set; }
         public DbSet<UserProfile> UserProfiles { get; set; }
+        public DbSet<CarRequest> CarRequests { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

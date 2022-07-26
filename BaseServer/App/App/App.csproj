@@ -6,6 +6,29 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Controllers\Accounting\**" />
+    <Compile Remove="Controllers\Clients\**" />
+    <Compile Remove="Controllers\HR\**" />
+    <Compile Remove="Controllers\Settings\**" />
+    <Compile Remove="Controllers\Suppliers\**" />
+    <Content Remove="Controllers\Accounting\**" />
+    <Content Remove="Controllers\Clients\**" />
+    <Content Remove="Controllers\HR\**" />
+    <Content Remove="Controllers\Settings\**" />
+    <Content Remove="Controllers\Suppliers\**" />
+    <EmbeddedResource Remove="Controllers\Accounting\**" />
+    <EmbeddedResource Remove="Controllers\Clients\**" />
+    <EmbeddedResource Remove="Controllers\HR\**" />
+    <EmbeddedResource Remove="Controllers\Settings\**" />
+    <EmbeddedResource Remove="Controllers\Suppliers\**" />
+    <None Remove="Controllers\Accounting\**" />
+    <None Remove="Controllers\Clients\**" />
+    <None Remove="Controllers\HR\**" />
+    <None Remove="Controllers\Settings\**" />
+    <None Remove="Controllers\Suppliers\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Reports\TestReport.repx" />
   </ItemGroup>
 
@@ -38,11 +61,6 @@
 
 
   <ItemGroup>
-    <Folder Include="Controllers\Accounting\" />
-    <Folder Include="Controllers\Clients\" />
-    <Folder Include="Controllers\HR\" />
-    <Folder Include="Controllers\Settings\" />
-    <Folder Include="Controllers\Suppliers\" />
     <Folder Include="Reports\" />
     <Folder Include="wwwroot\Images\Users\" />
   </ItemGroup>
@@ -50,6 +68,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Account\Account\Account.csproj" />
+    <ProjectReference Include="..\..\CarRequest\FleetManagement.csproj" />
     <ProjectReference Include="..\..\Data\Data\Data.csproj" />
     <ProjectReference Include="..\..\Setting\Setting\Setting.csproj" />
     <ProjectReference Include="..\..\Shared\Shared\Shared.csproj" />
