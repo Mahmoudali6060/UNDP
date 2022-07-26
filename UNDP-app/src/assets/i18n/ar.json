@@ -52,6 +52,7 @@
         "EmailAddress": "البريد الالكتروني",
         "Password": "كلمة المرور",
         "RememberMe": "تذكرني",
+        "ForgottenPassword":"نسيت كلمة المرور؟",
         "DoYouHaveAccount": " لديك حساب؟",
         "DoNotYouHaveAccount": "ليس لديك حساب ؟ ",
         "SignUpHere": "أنشأ حساب هنا",
@@ -60,7 +61,19 @@
         "Username": "اسم المستخدم",
         "LoginHere": "سجل دخول هنا",
         "SignIn": "إنشاء حساب",
-        "DefaultLanguage": "اللغة الاساسية"
+        "DefaultLanguage": "اللغة الاساسية",
+        "ChangePassword":"تغيير كلمة المرور",
+        "NewPassword":"كلمة المرور الجديدة",
+        "YourpasswordhasbeenchangedPlease":"تم تغيير كلمة المرو من فضلك",
+        "clickheretologin":"إضغط هنا لتسجيل الدخول",
+        "NewPasswordisrequired":"كلمة المرور الجديدة مطلوبة",
+        "ConfirmPassword":"تأكيد كلمة المرور",
+        "Confirmationisrequired":"التأكيد مطلوب",
+        "Passwordsmustmatch":"يجب أن تتطابق كلمات المرور",
+        "SaveChanges":"حفظ التغيرات",
+        "ForgotPassword":"نسيت كلمة المرور",
+        "Emailisrequired":"البريد الالكتروني مطلوب"
+        
     },
     "SideMenu": {
         "Dashboard": "لوحة التحكم",
@@ -69,6 +82,25 @@
         "UserList": "قائمة المستخدمين"
     },
     "Errors": {
-        "InvalidUsernameOrPassword": "من فضلك تأكد من اسم المستخدم او كلمة المرور"
+        "InvalidUsernameOrPassword": "من فضلك تأكد من اسم المستخدم او كلمة المرور",
+        "InvalidEmail":"من فضلك ادخل بريد الكتروني صحيح"
+    },
+    "User": {
+        "Users":"المستخدمين",
+        "Name": "الإسم",
+        "FirstName": "الإسم الأول",
+        "LastName": "الاسم الأخير",
+        "Email": "الإيميل",
+        "UserName": "إسم المستخدم",
+        "Password": "كلمة المرور",
+        "Role": "فئة الصلاحية",
+        "DefaultLanguage": "اللغة الاساسية",
+        "Image": "الصورة",
+        "addUser":"إضافة مستخدم",
+        "UploadImage":"تحميل صورة",
+        "Admin":"Admin",
+        "Consumer":"Consumer",
+        "SaveChanges":"حفظ التغيرات",
+        "Cancel":"الغاء"
     }
 }

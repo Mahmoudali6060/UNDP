@@ -48,6 +48,7 @@ export class UserFormComponent {
 			})
 		}
 		else {
+			this.userProfileDTO.password = "P@ssw0rd"
 			this.userProfileService.add(this.userProfileDTO).subscribe(res => {
 				this.toasterService.success("success");
 				this.cancel();

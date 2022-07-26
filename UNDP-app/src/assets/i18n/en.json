@@ -45,7 +45,7 @@
         "EmailAddress": "Email Address",
         "Password": "Password",
         "RememberMe": "Remember Me",
-        "ForgottenPassword": "Forgotten Password",
+        "ForgottenPassword": "Forgotten Password?",
         "DoNotYouHaveAccount": "Don't you have account?",
         "DoYouHaveAccount": "Don you have account?",
         "SignUpHere": "Sign up here",
@@ -53,7 +53,18 @@
         "Username": "Username",
         "LoginHere": "Login here",
         "SignIn": "Sign in",
-        "DefaultLanguage": "Default Langague"
+        "DefaultLanguage": "Default Langague",
+        "ChangePassword":"Change Password",
+        "NewPassword":"New Password",
+        "YourpasswordhasbeenchangedPlease":"Your password has been changed. Please",
+        "clickheretologin":"clickheretologin",
+        "NewPasswordisrequired":"NewPasswordisrequired",
+        "ConfirmPassword":"Confirm Password",
+        "Confirmationisrequired":"Confirmation is required",
+        "Passwordsmustmatch":"Passwordsmustmatch",
+        "SaveChanges":"Save Changes",
+        "ForgotPassword":"ForgotPassword",
+        "Emailisrequired":"Email is required"
     },
     "SideMenu": {
         "Dashboard": "Dashboard",
@@ -62,9 +73,11 @@
         "UserList": "User List"
     },
     "Errors": {
-        "InvalidUsernameOrPassword": "Invalid Username or Password"
+        "InvalidUsernameOrPassword": "Invalid Username or Password",
+        "InvalidEmail":"Invalid Email"
     },
     "User": {
+        "Users":"Users",
         "Name": "Name",
         "FirstName": "First Name",
         "LastName": "Last Name",
@@ -73,6 +86,12 @@
         "Password": "Password",
         "Role": "Role",
         "DefaultLanguage": "Default Langague",
-        "Image": "Image"
+        "Image": "Image",
+        "addUser":"Add User",
+        "UploadImage":"Upload Image",
+        "Admin":"Admin",
+        "Consumer":"Consumer",
+        "SaveChanges":"Save Changes",
+        "Cancel":"Cancel"
     }
 }

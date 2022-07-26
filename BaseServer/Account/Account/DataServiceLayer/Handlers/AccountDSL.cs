@@ -125,9 +125,7 @@ namespace Account.DataServiceLayer
         {
             var user = await  _accountDAL.FindByEmailAsync(forgotPasswordModel.Email);
             if (user == null)
-                throw new Exception("Errors Invalid Email");
-
-               //return false;//BadRequest("Invalid Request");
+                throw new Exception("Errors.InvalidEmail");
 
             var token =await _accountDAL.GeneratePasswordResetTokenAsync(user);
             var param = new Dictionary<string, string>

@@ -42,6 +42,9 @@ namespace App.Helper
             services.AddTransient<ICarRequestDSL, CarRequestDSL>();
             #endregion
 
+            services.AddTransient<IEmailSender, EmailSender>();
+
+
         }
     }
 }
