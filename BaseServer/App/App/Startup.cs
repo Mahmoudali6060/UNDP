@@ -53,16 +53,7 @@ namespace App
                .Get<EmailConfigurationDTO>();
             services.AddSingleton(emailConfig);
 
-            ///>>>Allow Pascal Case
-            //   services.AddMvc(setupAction =>
-            //   {
-            //       setupAction.EnableEndpointRouting = false;
-            //   }).AddJsonOptions(jsonOptions =>
-            //   {
-            //       jsonOptions.JsonSerializerOptions.PropertyNamingPolicy = null;
-            //   })
-            //.SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
-            //>>>END Pascal Case
+           
 
             //services.AddMvc().AddJsonOptions(options =>
             //{
