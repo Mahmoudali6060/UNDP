@@ -35,6 +35,8 @@ namespace App.Helper
             services.AddTransient<IUserProfileDAL, UserProfileDAL>();
             services.AddTransient<IUserProfileDSL, UserProfileDSL>();
 
+            services.AddTransient<IEmailSender, EmailSender>();
+
             #endregion
 
             #region Fleet Management
@@ -42,7 +44,6 @@ namespace App.Helper
             services.AddTransient<ICarRequestDSL, CarRequestDSL>();
             #endregion
 
-            services.AddTransient<IEmailSender, EmailSender>();
 
 
         }
