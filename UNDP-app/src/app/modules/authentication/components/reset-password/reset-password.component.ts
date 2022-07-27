@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { LocalStorageItems } from 'src/app/shared/constants/local-storage-items';
@@ -23,6 +23,8 @@ export class ResetPasswordComponent implements OnInit {
   oldfieldTextType: boolean;
   fieldTextType: boolean;
   repeatFieldTextType: boolean;
+  @Input() isProfileComponent: boolean ;
+
   constructor(fb: FormBuilder, private _authService: AuthService, private _passConfValidator: PasswordConfirmationValidatorService,
     private localStorageService: LocalStorageService,
     private _route: ActivatedRoute,) { }

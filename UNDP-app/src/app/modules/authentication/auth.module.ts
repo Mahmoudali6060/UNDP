@@ -25,6 +25,9 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
     ResetPasswordComponent,
     ForgotPasswordComponent
   ],
+    exports: [
+      ResetPasswordComponent
+  ],
   schemas: [ 
     CUSTOM_ELEMENTS_SCHEMA
   ],

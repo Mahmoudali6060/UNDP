@@ -74,7 +74,12 @@
     },
     "Errors": {
         "InvalidUsernameOrPassword": "Invalid Username or Password",
-        "InvalidEmail":"Invalid Email"
+        "InvalidEmail":"Invalid Email",
+        "InvalidFirstName":"The First Name must be at least characters long",
+        "InvalidLastName":"The Last Name must be at least characters long",
+        "InvalidUserName":"The User Name must be at least characters long",
+        "InvalidPassword":"The Password  must have number , letters and special characters at 8 along",
+        "InvalidRole":"Role is required"
     },
     "User": {
         "Users":"Users",
