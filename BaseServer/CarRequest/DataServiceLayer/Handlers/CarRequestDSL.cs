@@ -9,7 +9,7 @@ using FleetManagement.DataAccessLayer;
 using FleetManagement.Entities;
 using Data.Entities.UserManagement;
 using Infrastructure.Contracts;
-using Data.Entities.CarRequest;
+using Data.Entities.FleetManagement;
 
 namespace FleetManagement.DataServiceLayer
 {

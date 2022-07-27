@@ -1,9 +1,9 @@
 ﻿using Data.Contexts;
+using Data.Entities.FleetManagement;
 using Microsoft.EntityFrameworkCore;
 using Shared.Entities.Shared;
 using System.Linq;
 using System.Threading.Tasks;
-using Data.Entities.CarRequest;
 
 namespace FleetManagement.DataAccessLayer
 {

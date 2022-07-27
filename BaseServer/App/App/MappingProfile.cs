@@ -1,7 +1,7 @@
 ﻿using Account.Entities;
 using AutoMapper;
 using Data.Entities;
-using Data.Entities.CarRequest;
+using Data.Entities.FleetManagement;
 using Data.Entities.Shared;
 using Data.Entities.UserManagement;
 using FleetManagement.Entities;

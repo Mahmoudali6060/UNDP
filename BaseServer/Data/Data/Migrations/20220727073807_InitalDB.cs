@@ -248,6 +248,36 @@ namespace Data.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "CarRequests",
+                columns: table => new
+                {
+                    Id = table.Column<long>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Created = table.Column<DateTime>(nullable: false),
+                    Modified = table.Column<DateTime>(nullable: true),
+                    RequesterName = table.Column<string>(nullable: true),
+                    RequesterEmail = table.Column<string>(nullable: true),
+                    DateFrom = table.Column<DateTime>(nullable: false),
+                    DateTo = table.Column<DateTime>(nullable: false),
+                    PickUp = table.Column<string>(nullable: true),
+                    Destination = table.Column<string>(nullable: true),
+                    Comments = table.Column<string>(nullable: true),
+                    Purpose = table.Column<string>(nullable: true),
+                    CarRequestStatusId = table.Column<byte>(nullable: false),
+                    UserProfileId = table.Column<long>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CarRequests", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_CarRequests_UserProfiles_UserProfileId",
+                        column: x => x.UserProfileId,
+                        principalTable: "UserProfiles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -288,6 +318,11 @@ namespace Data.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_CarRequests_UserProfileId",
+                table: "CarRequests",
+                column: "UserProfileId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_UserProfiles_AppUserId",
                 table: "UserProfiles",
                 column: "AppUserId");
@@ -314,6 +349,9 @@ namespace Data.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "CarRequests");
+
+            migrationBuilder.DropTable(
                 name: "Categories");
 
             migrationBuilder.DropTable(
@@ -326,10 +364,10 @@ namespace Data.Migrations
                 name: "Transactions");
 
             migrationBuilder.DropTable(
-                name: "UserProfiles");
+                name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "AspNetRoles");
+                name: "UserProfiles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");

@@ -7,12 +7,12 @@ namespace FleetManagement.Entities
 {
     public class CarRequestDTO
     {
-        [Required(ErrorMessage = "Errors.RegistrarNameIsRequired")]
-        public string RegistrarName { get; set; }
+        [Required(ErrorMessage = "Errors.EequesterNameIsRequired")]
+        public string RequesterName { get; set; }
 
-        [Required(ErrorMessage = "Errors.RegistrarEmailIsRequired")]
+        [Required(ErrorMessage = "Errors.EequesterEmailIsRequired")]
         [EmailAddress(ErrorMessage = "Errors.InvlidEmailAddress")]
-        public string RegistrarEmail { get; set; }
+        public string RequesterEmail { get; set; }
 
         [Required(ErrorMessage = "Errors.DateFromIsRequired")]
         public string DateFrom { get; set; }

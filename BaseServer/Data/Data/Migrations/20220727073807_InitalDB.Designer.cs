@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(UNDbContext))]
-    [Migration("20220725193423_Add_Request_Table")]
-    partial class Add_Request_Table
+    [Migration("20220727073807_InitalDB")]
+    partial class InitalDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,12 +21,15 @@ namespace Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Data.Entities.CarRequest.CarRequest", b =>
+            modelBuilder.Entity("Data.Entities.FleetManagement.CarRequest", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<byte>("CarRequestStatusId")
+                        .HasColumnType("tinyint");
 
                     b.Property<string>("Comments")
                         .HasColumnType("nvarchar(max)");
@@ -52,13 +55,18 @@ namespace Data.Migrations
                     b.Property<string>("Purpose")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("RegistrarEmail")
+                    b.Property<string>("RequesterEmail")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("RegistrarName")
+                    b.Property<string>("RequesterName")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<long?>("UserProfileId")
+                        .HasColumnType("bigint");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("UserProfileId");
 
                     b.ToTable("CarRequests");
                 });
@@ -385,6 +393,13 @@ namespace Data.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("Data.Entities.FleetManagement.CarRequest", b =>
+                {
+                    b.HasOne("Data.Entities.UserManagement.UserProfile", "UserProfile")
+                        .WithMany("CarRequests")
+                        .HasForeignKey("UserProfileId");
                 });
 
             modelBuilder.Entity("Data.Entities.UserManagement.UserProfile", b =>

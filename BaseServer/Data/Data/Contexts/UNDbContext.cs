@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using System.Linq;
 using Data.Entities.Shared;
 using Data.Entities.UserManagement;
-using Data.Entities.CarRequest;
+using Data.Entities.FleetManagement;
 
 namespace Data.Contexts
 {

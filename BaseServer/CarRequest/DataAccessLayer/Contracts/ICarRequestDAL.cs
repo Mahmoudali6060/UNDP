@@ -1,6 +1,6 @@
 ﻿
 
-using Data.Entities.CarRequest;
+using Data.Entities.FleetManagement;
 using Shared.DataAccessLayer;
 
 namespace FleetManagement.DataAccessLayer
