@@ -273,7 +273,13 @@ namespace Data.Migrations
                     b.Property<string>("ImageUrl")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("JobTitle")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Mobile")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("Modified")

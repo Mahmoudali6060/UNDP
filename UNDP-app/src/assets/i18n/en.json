@@ -97,6 +97,12 @@
         "Admin":"Admin",
         "Consumer":"Consumer",
         "SaveChanges":"Save Changes",
-        "Cancel":"Cancel"
+        "Cancel":"Cancel",
+        "Mobile":"Mobile",
+        "jobTitle":"Job Title",
+        "FullName":"Full Name",
+        "EditProfile":"Edit Profile",
+        "UserProfile":"User Profile",
+        "editUser":"Edit User"
     }
 }

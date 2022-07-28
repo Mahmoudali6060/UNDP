@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(UNDbContext))]
-    [Migration("20220727073807_InitalDB")]
-    partial class InitalDB
+    [Migration("20220727220912_AddTwoColumnsToProfile")]
+    partial class AddTwoColumnsToProfile
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -275,7 +275,13 @@ namespace Data.Migrations
                     b.Property<string>("ImageUrl")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("JobTitle")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Mobile")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("Modified")

@@ -14,10 +14,12 @@ namespace Account.Entities
 
      //   [StringLength(50, ErrorMessage = "Errors.InvalidLastName", MinimumLength = 2)]
         public string LastName { get; set; }
+        public string Mobile { get; set; }
+        public string JobTitle { get; set; }
 
-       // [Required]
-       // [EmailAddress]
-       // [RegularExpression("^[a-z0-9_\\+-]+(\\.[a-z0-9_\\+-]+)*@[a-z0-9-]+(\\.[a-z0-9]+)*\\.([a-z]{2,4})$", ErrorMessage = "Errors.InvalidEmail")]
+        // [Required]
+        // [EmailAddress]
+        // [RegularExpression("^[a-z0-9_\\+-]+(\\.[a-z0-9_\\+-]+)*@[a-z0-9-]+(\\.[a-z0-9]+)*\\.([a-z]{2,4})$", ErrorMessage = "Errors.InvalidEmail")]
         public string Email { get; set; }
 
       //  [Required]

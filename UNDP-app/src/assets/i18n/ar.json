@@ -106,6 +106,12 @@
         "Admin":"Admin",
         "Consumer":"Consumer",
         "SaveChanges":"حفظ التغيرات",
-        "Cancel":"الغاء"
+        "Cancel":"الغاء",
+        "Mobile":"رقم الهاتف",
+        "jobTitle":"المسمى الوظيفي",
+        "FullName":"الإسم بالكامل",
+        "EditProfile":"تعديل الملف الشخصي",
+        "UserProfile":"الملف الشخصي",
+        "editUser":"تعديل المستخدم"
     }
 }

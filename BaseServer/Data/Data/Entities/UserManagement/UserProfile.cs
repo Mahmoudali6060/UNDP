@@ -12,6 +12,8 @@ namespace Data.Entities.UserManagement
         public int Age { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public string Mobile { get; set; }
+        public string JobTitle { get; set; }
         public string ImageUrl { get; set; }
         public string Role { get; set; }
         public string DefaultLanguage { get; set; }

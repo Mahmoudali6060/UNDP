@@ -4,9 +4,9 @@
             <div class="col">
                 <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
                     <ol class="breadcrumb mb-0">
-                        <!-- <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item"><a href="#">User</a></li> -->
-                        <li class="breadcrumb-item active" aria-current="page">User Profile</li>
+                        <li *ngIf="!ischangePassword && !edit" class="breadcrumb-item active" aria-current="page">{{'User.UserProfile' |translate}} </li>
+                        <li *ngIf="ischangePassword" class="breadcrumb-item active" aria-current="page">{{'Authentication.ChangePassword' |translate}} </li>
+                        <li *ngIf="edit" class="breadcrumb-item active" aria-current="page">{{'User.EditProfile' |translate}}</li>
                     </ol>
                 </nav>
             </div>
@@ -14,17 +14,22 @@
 
         <div class="row">
             <div class="col-lg-4">
-                <div class="card mb-4 pb-3">
+                <div class="card mb-4 pb-4">
                     <div class="card-body text-center">
-                        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
-                            alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
-                        <h5 class="my-3">Mohamed Roshdy</h5>
-                        <p class="text-muted mb-1">Full Stack Developer</p>
+                        <img *ngIf="profile.imageUrl" src="{{serverUrl}}/wwwroot/Images/Users/{{profile.imageUrl}}"
+                            class="image img-cir img-150 img-fluid">
+
+                        <img *ngIf="!profile.imageUrl" class="image img-cir img-150 img-fluid" src="assets/images/icon/avatar-big-01.jpg" />
+                        <input *ngIf="edit" type="file" id="image" class="form-control" (change)="onFileChange($event)">
+
+                        <h5 class="my-3">{{profile.firstName}} {{profile.lastName}}</h5>
+                        <p class="text-muted mb-1" *ngIf="!edit">{{profile.jobTitle}}</p>
+                        <input *ngIf="edit" type="text" [(ngModel)]="profile.jobTitle" id="jobTitle"
+                            class="form-control mb-2">
                         <!-- <p class="text-muted mb-4">Bay Area, San Francisco, CA</p> -->
                         <div class="d-flex justify-content-center mb-2" *ngIf="!ischangePassword">
                             <!-- <button type="button" class="btn btn-primary">Follow</button> -->
-                            <button type="button" class="btn btn-outline-primary ms-1" (click)="changePassword()">Change
-                                Password</button>
+                            <button type="button" class="btn btn-outline-primary ms-1" (click)="changePassword()">{{'Authentication.ChangePassword' |translate}} </button>
                         </div>
                     </div>
                 </div>
@@ -34,73 +39,92 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-sm-3">
-                                <p class="mb-0">Full Name</p>
+                                <p class="mb-0"> {{'User.FullName' |translate}}</p>
                             </div>
-                            <div class="col-sm-9">
-                                <div class="form-group" *ngIf="edit">
-                                    <input type="text" id="firstName" class="form-control">
+                            <div class="col-sm-4" *ngIf="edit">
+                                <div class="form-group pb-2">
+                                    <input type="text" [(ngModel)]="profile.firstName" id="firstName"
+                                        class="form-control">
                                 </div>
-                                <p class="text-muted mb-0" *ngIf="!edit">Mohamed Roshdy</p>
+                            </div>
+                            <div class="col-sm-1" *ngIf="edit"></div>
+                            <div class="col-sm-4" *ngIf="edit">
+                                <div class="form-group pb-2">
+                                    <input type="text" [(ngModel)]="profile.lastName" id="firstName"
+                                        class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-sm-4" *ngIf="!edit">
+                                <p class="text-muted mb-0">{{profile.firstName}} {{profile.lastName}}</p>
                             </div>
                         </div>
                         <hr *ngIf="!edit">
                         <div class="row">
                             <div class="col-sm-3">
-                                <p class="mb-0">Email</p>
+                                <p class="mb-0">{{'User.UserName' |translate}}</p>
                             </div>
                             <div class="col-sm-9">
-                                <div class="form-group" *ngIf="edit">
-                                    <input type="text" id="Email" class="form-control">
+                                <div class="form-group pb-2" *ngIf="edit">
+                                    <input type="text" [(ngModel)]="profile.userName" id="UserName"
+                                        class="form-control">
                                 </div>
-                                <p class="text-muted mb-0" *ngIf="!edit">m.roshdy@aliaict.com</p>
+                                <p class="text-muted mb-0" *ngIf="!edit">{{profile.userName}}</p>
                             </div>
                         </div>
                         <hr *ngIf="!edit">
                         <div class="row">
                             <div class="col-sm-3">
-                                <p class="mb-0">User Name</p>
+                                <p class="mb-0">{{'User.Email' |translate}}</p>
                             </div>
                             <div class="col-sm-9">
-                                <div class="form-group" *ngIf="edit">
-                                    <input type="text" id="UserName" class="form-control">
+                                <div class="form-group pb-2" *ngIf="edit">
+                                    <input type="text" [(ngModel)]="profile.email" id="Email" class="form-control">
                                 </div>
-                                <p class="text-muted mb-0" *ngIf="!edit">MoRoshdy</p>
+                                <p class="text-muted mb-0" *ngIf="!edit">{{profile.email}}</p>
                             </div>
                         </div>
                         <hr *ngIf="!edit">
                         <div class="row">
                             <div class="col-sm-3">
-                                <p class="mb-0">Mobile</p>
+                                <p class="mb-0">{{'User.Mobile' |translate}}</p>
                             </div>
                             <div class="col-sm-9">
-                                <div class="form-group" *ngIf="edit">
-                                    <input type="text" id="Mobile" class="form-control">
+                                <div class="form-group pb-2" *ngIf="edit">
+                                    <input type="text" [(ngModel)]="profile.mobile" id="Mobile" class="form-control">
                                 </div>
-                                <p class="text-muted mb-0" *ngIf="!edit">01010536968</p>
+                                <p class="text-muted mb-0" *ngIf="!edit">{{profile.mobile}}</p>
                             </div>
                         </div>
                         <hr *ngIf="!edit">
                         <div class="row">
                             <div class="col-sm-3">
-                                <p class="mb-0">Role</p>
+                                <p class="mb-0">{{'User.Role' |translate}}</p>
                             </div>
                             <div class="col-sm-9">
-                                <div class="form-group" *ngIf="edit">
-                                    <input type="text" id="Role" class="form-control">
+                                <div class="form-group pb-2" *ngIf="edit">
+                                    <select name="role" id="select" class="form-control" [(ngModel)]="profile.role">
+                                        <option value="Admin">{{'User.Admin' |translate}}</option>
+                                        <option value="Consumer">{{'User.Consumer' |translate}}</option>
+                                    </select>
                                 </div>
-                                <p class="text-muted mb-0" *ngIf="!edit">Admin</p>
+                                <p class="text-muted mb-0" *ngIf="!edit">{{profile.role}}</p>
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row" *ngIf="!edit">
                             <div class="col-sm-9"></div>
-                            <div class="col-sm-2" *ngIf="!edit">
-                                <button type="button" class="btn btn-outline-primary ml-4" (click)="EditProfile()"> Edit
-                                    Profile </button>
+                            <div class="col-sm-2">
+                                <button type="button" class="btn btn-outline-primary ml-4" (click)="EditProfile()">
+                                    {{'User.EditProfile' |translate}}
+                                </button>
                             </div>
-                            <div class="col-sm-3" *ngIf="edit">
-                                <button type="button" class="btn btn-outline-primary" (click)="save()"> Save
-                                    Changes </button>
-                            </div>
+                        </div>
+
+                        <div class="row flex-container" *ngIf="edit">
+                            <!-- <div class="col-sm-8"></div> -->
+                                <button type="button" class="btn btn-danger"
+                                    (click)="close()">{{'General.Cancel'|translate}}</button>
+
+                                <button type="button" class="btn btn-outline-primary" (click)="save()"> {{'User.SaveChanges' |translate}}</button>
                         </div>
                     </div>
                 </div>
@@ -174,7 +198,8 @@
           </div> -->
             </div>
             <div class="col-lg-8" *ngIf="ischangePassword">
-                <app-reset-password [isProfileComponent]="true"></app-reset-password>
+                <app-reset-password [isProfileComponent]="true" (closeChangePasswordCard)="closeChangePasswordCard()"
+                    [data]="resetPassDto"></app-reset-password>
             </div>
         </div>
     </div>

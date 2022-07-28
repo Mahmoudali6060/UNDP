@@ -57,13 +57,16 @@
             <table class="table table-data2">
                 <thead class="table-header-bc">
                     <tr>
-                        <th class="table-header-fc">
-                            <!-- <label class="au-checkbox">
+                        <th></th>
+                       <!-- <th class="table-header-fc">
+                             <label class="au-checkbox">
                                 <input type="checkbox">
                                 <span class="au-checkmark"></span>
-                            </label> -->
-                        </th>
+                            </label> 
+                        </th>-->
+                        <th class="table-header-fc">{{'User.Image' |translate}}</th>
                         <th class="table-header-fc">{{'User.Name' |translate}}</th>
+                        <th class="table-header-fc">{{'User.Mobile' |translate}}</th>
                         <th class="table-header-fc">{{'User.Email' |translate}}</th>
                         <th class="table-header-fc">{{'User.UserName' |translate}}</th>
 
@@ -72,13 +75,14 @@
                 </thead>
                 <tbody>
                     <tr class="tr-shadow" *ngFor="let item of userList">
+                        <td></td>
                         <td>
-                            <!-- <label class="au-checkbox">
-                                <input type="checkbox">
-                                <span class="au-checkmark"></span>
-                            </label> -->
+                            <img *ngIf="item.imageUrl" src="{{serverUrl}}/wwwroot/Images/Users/{{item.imageUrl}}"
+                            class="image img-cir img-40 img-fluid">
+                        <img class="image img-cir img-40 img-fluid" *ngIf="!item.imageUrl" src="assets/images/icon/avatar-big-01.jpg" />
                         </td>
                         <td>{{item.firstName}} {{item.lastName}}</td>
+                        <td>{{item.mobile}}</td>
                         <td>
                             <span class="block-email">{{item.email}}</span>
                         </td>

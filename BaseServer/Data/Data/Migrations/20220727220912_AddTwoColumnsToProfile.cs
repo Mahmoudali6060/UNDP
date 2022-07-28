@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Data.Migrations
 {
-    public partial class InitalDB : Migration
+    public partial class AddTwoColumnsToProfile : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -232,6 +232,8 @@ namespace Data.Migrations
                     Age = table.Column<int>(nullable: false),
                     FirstName = table.Column<string>(nullable: true),
                     LastName = table.Column<string>(nullable: true),
+                    Mobile = table.Column<string>(nullable: true),
+                    JobTitle = table.Column<string>(nullable: true),
                     ImageUrl = table.Column<string>(nullable: true),
                     Role = table.Column<string>(nullable: true),
                     DefaultLanguage = table.Column<string>(nullable: true),
