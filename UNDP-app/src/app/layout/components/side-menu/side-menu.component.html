@@ -34,6 +34,22 @@
                             <a [routerLink]="['/user/user-list']">
                                 <i class="fas fa-user"></i><span translate>SideMenu.UserList</span></a>
                         </li>
+                        <!--Test-->
+                    </ul>
+                </li>
+
+                <li class="active has-sub">
+                    <a class="js-arrow" href="#">
+                        <i class="fas fa-users"></i> <span translate>SideMenu.FleetManagement</span>
+                        <span class="arrow">
+                            <i class="fas fa-angle-down"></i>
+                        </span>
+                    </a>
+                    <ul class="list-unstyled navbar__sub-list js-sub-list">
+                        <li>
+                            <a [routerLink]="['/fleet-management/car-request-list']">
+                                <i class="fas fa-fleet"></i><span translate>SideMenu.CarRequestList</span></a>
+                        </li>
 
                     </ul>
                 </li>

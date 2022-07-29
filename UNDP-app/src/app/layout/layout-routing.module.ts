@@ -9,7 +9,8 @@ export const routes: Routes = [
     children: [
       { path: 'dashboard', loadChildren: () => import('../modules/dashboard/dashboard.module').then(m => m.DashboardModule) },
       { path: 'company', loadChildren: () => import('../modules/settings/company/company.module').then(m => m.CompanyModule) },
-      { path: 'user', loadChildren: () => import('../modules/user/user.module').then(m => m.UserModule) }
+      { path: 'user', loadChildren: () => import('../modules/user/user.module').then(m => m.UserModule) },
+      { path: 'fleet-management', loadChildren: () => import('../modules/fleet-management/fleet-management.module').then(m => m.FleetManagementModule) },
 
     ]
   }

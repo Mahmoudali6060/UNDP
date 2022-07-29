@@ -1,0 +1,115 @@
+<div class="row">
+    <div class="col-md-12">
+        <!-- DATA TABLE -->
+        <h3 class="title-5 m-b-35"><span>{{'FleetManagement.RequestReviewFormInbox'|translate}}</span></h3>
+        <div class="table-data__tool">
+            <div class="table-data__tool-left">
+                <div class="rs-select2--light rs-select2--md">
+                    <select class="js-select2 select2-hidden-accessible" name="property" tabindex="-1" aria-hidden="true">
+                        <option selected="selected">All Properties</option>
+                        <option value="">Option 1</option>
+                        <option value="">Option 2</option>
+                    </select><span class="select2 select2-container select2-container--default select2-container--below" dir="ltr" style="width: 118.8px;"><span class="selection"><span
+                                class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true"
+                                aria-expanded="false" tabindex="0" aria-labelledby="select2-property-vx-container"><span
+                                    class="select2-selection__rendered" id="select2-property-vx-container"
+                                    title="Option 1">Option 1</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span>
+                    </span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                    <div class="dropDownSelect2"></div>
+                </div>
+                <div class="rs-select2--light rs-select2--sm">
+                    <select class="js-select2 select2-hidden-accessible" name="time" tabindex="-1" aria-hidden="true">
+                        <option selected="selected">Today</option>
+                        <option value="">3 Days</option>
+                        <option value="">1 Week</option>
+                    </select><span class="select2 select2-container select2-container--default select2-container--below" dir="ltr" style="width: 78px;"><span class="selection"><span
+                                class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true"
+                                aria-expanded="false" tabindex="0" aria-labelledby="select2-time-iu-container"><span
+                                    class="select2-selection__rendered" id="select2-time-iu-container" title="3 Days">3
+                                    Days</span><span class="select2-selection__arrow" role="presentation"><b
+                                        role="presentation"></b></span></span>
+                    </span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                    <div class="dropDownSelect2"></div>
+                </div>
+                <button class="au-btn-filter">
+                    <i class="zmdi zmdi-filter-list"></i>filters</button>
+            </div>
+            <div class="table-data__tool-right">
+                <button [routerLink]="['/fleet-management/car-request-form']" class="au-btn au-btn-icon au-btn--green au-btn--small">
+                    <i class="zmdi zmdi-plus"></i>add item
+                </button>
+                <div class="rs-select2--dark rs-select2--sm rs-select2--dark2">
+                    <select class="js-select2 select2-hidden-accessible" name="type" tabindex="-1" aria-hidden="true">
+                        <option selected="selected">Export</option>
+                        <option value="">Option 1</option>
+                        <option value="">Option 2</option>
+                    </select><span class="select2 select2-container select2-container--default select2-container--below" dir="ltr" style="width: 84.4px;"><span class="selection"><span
+                                class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true"
+                                aria-expanded="false" tabindex="0" aria-labelledby="select2-type-j8-container"><span
+                                    class="select2-selection__rendered" id="select2-type-j8-container"
+                                    title="Export">Export</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span>
+                    </span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                    <div class="dropDownSelect2"></div>
+                </div>
+            </div>
+        </div>
+        <div class="table-responsive table-responsive-data2">
+            <table class="table table-data2">
+                <thead class="table-header-bc">
+                    <tr>
+                        <th class="table-header-fc">
+                            <label class="au-checkbox">
+                                <input type="checkbox">
+                                <span class="au-checkmark"></span>
+                            </label>
+                        </th>
+                        <th class="table-header-fc">{{'FleetManagement.RequestID' |translate}}</th>
+                        <th class="table-header-fc">{{'FleetManagement.RequestStatus' |translate}}</th>
+                        <th class="table-header-fc">{{'FleetManagement.StartingTime' |translate}}</th>
+                        <th class="table-header-fc">{{'FleetManagement.EndingTime' |translate}}</th>
+                        <th class="table-header-fc">{{'FleetManagement.RequesterName' |translate}}</th>
+                        <th class="table-header-fc">{{'FleetManagement.RequesterEmail' |translate}}</th>
+
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="tr-shadow" *ngFor="let item of carRequestList">
+                        <td>
+                            <label class="au-checkbox">
+                                <input type="checkbox">
+                                <span class="au-checkmark"></span>
+                            </label>
+                        </td>
+                        <td>34234</td>
+                        <td>
+                            <span class="status--process">Approved</span>
+                        </td>
+                        <td>{{item.dateFrom}}</td>
+                        <td>{{item.dateTo}}</td>
+                        <td>{{item.requesterName}}</td>
+                        <td>{{item.requesterEmail}}</td>
+                        <!--Test-->
+                        <td>
+                            <div class="table-data-feature">
+                                <button class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="Send" (click)="assginToMe(item)">
+                                    <i class="zmdi zmdi-mail-send"></i>
+                                </button>
+                                <button class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit" [routerLink]="['/user/user-form/'+item.id]">
+                                    <i class="zmdi zmdi-edit"></i>
+                                </button>
+                                <button class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" (click)="openConfirmationDialog(item)">
+                                    <i class="zmdi zmdi-delete"></i>
+                                </button>
+                                <button class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="More">
+                                    <i class="zmdi zmdi-more"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- END DATA TABLE -->
+    </div>
+</div>

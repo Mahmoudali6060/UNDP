@@ -54,29 +54,38 @@ export class HttpConfigInterceptor implements HttpInterceptor {
     }
 
     private handleServerSideError(error: HttpErrorResponse): boolean {
-        let transaltedErrorMessage = this.translate.instant(error.error.Message);
-        let handled: boolean = false;
 
-        switch (error.status) {
-            case 401:
-                // this.routeMessageService.message = "Please login again.";
-                // this.authenticationService.logout();
-                this.notificationService.showError(transaltedErrorMessage, this.translate.instant("General.Error"));
-                handled = true;
-                break;
-            case 403:
-                // this.routeMessageService.message = "Please login again.";
-                // this.authenticationService.logout();
-                this.notificationService.showError(transaltedErrorMessage, this.translate.instant("General.Error"));
-                handled = true;
-                break;
 
-            case 500:
+        if (error.error?.errors) {
+            let errorList: any = Object.entries(error.error?.errors)
+            for (let error of errorList) {
+                let transaltedErrorMessage =  this.translate.instant(error[1][0]);
                 this.notificationService.showError(transaltedErrorMessage, this.translate.instant("General.Error"));
-                handled = true;
-                break;
+            }
         }
-        return handled;
+        else if (error.error?.Message) {
+            let transaltedErrorMessage = this.translate.instant(error.error.Message);
+            this.notificationService.showError(transaltedErrorMessage, this.translate.instant("General.Error"));
+        }
+
+        return true;
+        // let handled: boolean = false;
+        // switch (error.status) {
+        //     case 401:
+        //         this.notificationService.showError(transaltedErrorMessage, this.translate.instant("General.Error"));
+        //         handled = true;
+        //         break;
+        //     case 403:
+        //         this.notificationService.showError(transaltedErrorMessage, this.translate.instant("General.Error"));
+        //         handled = true;
+        //         break;
+
+        //     case 500:
+        //         this.notificationService.showError(transaltedErrorMessage, this.translate.instant("General.Error"));
+        //         handled = true;
+        //         break;
+        // }
+        // return handled;
     }
 
 }

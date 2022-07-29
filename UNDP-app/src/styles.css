@@ -49,3 +49,7 @@ body::-webkit-scrollbar-thumb {
     /* border: 3px solid orange; */
     /* creates padding around scroll thumb */
 }
+
+.btn-sm {
+    margin: 5px;
+}

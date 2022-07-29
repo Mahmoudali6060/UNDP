@@ -1,0 +1,86 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <strong>{{'FleetManagement.NewCarRequest'|translate}} </strong>
+            </div>
+            <div class="card-body card-block">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="requesterName" class=" form-control-label">{{'FleetManagement.RequesterName'|translate}}</label>
+                                    <input [(ngModel)]="carRequestDTO.requesterName" type="text" id="requesterName" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="requesterEmail" class=" form-control-label">{{'FleetManagement.RequesterEmail'|translate}}</label>
+                                    <input [(ngModel)]="carRequestDTO.requesterEmail" type="text" id="requesterEmail" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="dateFrom" class=" form-control-label">{{'FleetManagement.DateFrom'|translate}}</label>
+                                    <input [(ngModel)]="carRequestDTO.dateFrom" type="datetime-local" id="dateFrom" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="dateTo" class=" form-control-label">{{'FleetManagement.DateTo'|translate}}</label>
+                                    <input [(ngModel)]="carRequestDTO.dateTo" type="datetime-local" id="dateTo" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="pickUp" class=" form-control-label">{{'FleetManagement.PickUp'|translate}}</label>
+                                    <input [(ngModel)]="carRequestDTO.pickUp" type="text" id="pickUp" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="destination" class=" form-control-label">{{'FleetManagement.Destination'|translate}}</label>
+                                    <input [(ngModel)]="carRequestDTO.destination" type="text" id="destination" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="comments" class=" form-control-label">{{'FleetManagement.Comments'|translate}}</label>
+                                    <input [(ngModel)]="carRequestDTO.comments" type="text" id="comments" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="purpose" class=" form-control-label">{{'FleetManagement.Purpose'|translate}}</label>
+                                    <input [(ngModel)]="carRequestDTO.purpose" type="text" id="purpose" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="card-footer">
+                <button (click)="save()" type="submit" class="btn btn-primary btn-sm">
+                    <i class="fa fa-dot-circle-o"></i> Submit
+                </button>
+                <button type="reset" class="btn btn-danger btn-sm" (click)="cancel()">
+                    <i class="fa fa-ban"></i> Cancel
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

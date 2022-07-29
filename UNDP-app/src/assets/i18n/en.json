@@ -58,11 +58,18 @@
     "SideMenu": {
         "Dashboard": "Dashboard",
         "UserManagement": "User Management",
-        "UserForm": "User Form",
-        "UserList": "User List"
+        "UserList": "User List",
+        "FleetManagement": "Fleet Management",
+        "CarRequestList": "Car Request List"
+
     },
     "Errors": {
-        "InvalidUsernameOrPassword": "Invalid Username or Password"
+        "InvalidUsernameOrPassword": "Invalid Username or Password",
+        "InvlidEmailAddress": "Invlid Email Address",
+        "RequesterNameIsRequired": "Requester name is required",
+        "RequesterEmailIsRequired": "Requester email is required",
+        "DateFromIsRequired": "Date from is required",
+        "DateToIsRequired": "Date to is required"
     },
     "User": {
         "Name": "Name",
@@ -74,5 +81,21 @@
         "Role": "Role",
         "DefaultLanguage": "Default Langague",
         "Image": "Image"
+    },
+    "FleetManagement": {
+        "NewCarRequest": "New Car Request",
+        "RequestReviewFormInbox": "Car Request Inbox",
+        "RequesterName": "Requester Name",
+        "RequesterEmail": "Requester Email",
+        "PickUp": "Pick up",
+        "Destination": "Destination",
+        "Comments": "Comments",
+        "Purpose": "Purpose",
+        "DateFrom": "Date From",
+        "DateTo": "Date To",
+        "RequestID": "Request ID",
+        "RequestStatus": "Request Status",
+        "StartingTime": "Starting Time",
+        "EndingTime": "Ending Time"
     }
 }
