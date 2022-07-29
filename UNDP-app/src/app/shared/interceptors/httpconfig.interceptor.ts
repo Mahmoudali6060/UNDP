@@ -30,19 +30,12 @@ export class HttpConfigInterceptor implements HttpInterceptor {
             .pipe(
                 catchError((returnedError: any) => {
                     let errorMessage;
-
                     if (returnedError.error instanceof ErrorEvent) {
                         errorMessage = `Error: ${returnedError.error.message}`;
-                    } else if (returnedError instanceof HttpErrorResponse && !returnedError.error.errors) {
+                    } else if (returnedError instanceof HttpErrorResponse) {
                         errorMessage = `Error Status ${returnedError.status}: ${returnedError.error.error} - ${returnedError.error.message}`;
                         handled = this.handleServerSideError(returnedError);
                     }
-                    else {
-                        errorMessage =`Error Status ${returnedError.status}: ${returnedError.error.error} - ${returnedError.error.message}`;
-                        handled = this.handleServerSideErrorFromDataAnnotation(returnedError);
-                    }
-                    console.error(errorMessage ? errorMessage : returnedError);
-
                     if (!handled) {
                         if (errorMessage) {
                             return throwError(errorMessage);
@@ -55,38 +48,12 @@ export class HttpConfigInterceptor implements HttpInterceptor {
                 })
             )
     }
-    private handleServerSideErrorFromDataAnnotation(error: any): boolean {
-       var test= Object.keys(error.error.errors);
-        let transaltedErrorMessage = this.translate.instant('Errors.'+test[1]);
-        let handled: boolean = false;
-        switch (error.status) {
-            case 401:
-                // this.routeMessageService.message = "Please login again.";
-                // this.authenticationService.logout();
-                this.notificationService.showError(transaltedErrorMessage, this.translate.instant("General.Error"));
-                handled = true;
-                break;
-            case 403:
-                // this.routeMessageService.message = "Please login again.";
-                // this.authenticationService.logout();
-                this.notificationService.showError(transaltedErrorMessage, this.translate.instant("General.Error"));
-                handled = true;
-                break;
-
-            case 500:
-                this.notificationService.showError(transaltedErrorMessage, this.translate.instant("General.Error"));
-                handled = true;
-                break;
-        }
-        return handled;
-    }
 
     private handleServerSideError(error: HttpErrorResponse): boolean {
-
         if (error.error?.errors) {
             let errorList: any = Object.entries(error.error?.errors)
             for (let error of errorList) {
-                let transaltedErrorMessage =  this.translate.instant(error[1][0]);
+                let transaltedErrorMessage = this.translate.instant(error[1][0]);
                 this.notificationService.showError(transaltedErrorMessage, this.translate.instant("General.Error"));
             }
         }

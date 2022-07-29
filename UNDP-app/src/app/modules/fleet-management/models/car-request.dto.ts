@@ -11,5 +11,5 @@ export class CarRequestDTO {
     comments: string = '';
     purpose: string | undefined;
     carRequestStatusId: CarRequestStatusEnum | undefined;
-    userProfileId: number | undefined;
+    userProfileId: number | null;
 }

@@ -26,7 +26,7 @@ namespace FleetManagement.Entities
         public string Purpose { get; set; }
 
         public CarRequestStatusEnum CarRequestStatusId { get; set; }
-        public long UserProfileId { get; set; }
+        public long? UserProfileId { get; set; }
 
     }
 }
