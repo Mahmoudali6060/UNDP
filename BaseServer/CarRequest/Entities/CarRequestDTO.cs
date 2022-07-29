@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Shared.Enums;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
@@ -24,6 +25,8 @@ namespace FleetManagement.Entities
         public string Comments { get; set; }
         public string Purpose { get; set; }
 
+        public CarRequestStatusEnum CarRequestStatusId { get; set; }
+        public long UserProfileId { get; set; }
 
     }
 }
