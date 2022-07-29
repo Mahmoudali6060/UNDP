@@ -18,6 +18,7 @@ export class UserFormComponent {
 	userProfileDTO: UserProfileDTO = new UserProfileDTO();
 	imageSrc!: string;
 	serverUrl: string;
+	phonePatern = "^((\\+91-?)|0)?[0-9]{10}$";
 
 	constructor(private userProfileService: UserProfileService,
 		private route: ActivatedRoute,

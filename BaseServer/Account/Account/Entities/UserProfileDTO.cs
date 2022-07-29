@@ -11,8 +11,8 @@ namespace Account.Entities
         [Required]
         [StringLength(50, ErrorMessage = "Error.InvalidFirstName", MinimumLength = 2)]
         public string FirstName { get; set; }
-
-     //   [StringLength(50, ErrorMessage = "Errors.InvalidLastName", MinimumLength = 2)]
+        [Required]
+        [StringLength(50, ErrorMessage = "Errors.InvalidLastName", MinimumLength = 2)]
         public string LastName { get; set; }
         public string Mobile { get; set; }
         public string JobTitle { get; set; }
