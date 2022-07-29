@@ -5,21 +5,25 @@ import { ToastrService } from 'ngx-toastr';
 import { UserProfileDTO } from '../../models/user-profile.dto';
 import { UserProfileService } from '../../services/user.service';
 import { Location } from '@angular/common';
+import { ConfigService } from 'src/app/shared/services/config.service';
 declare var jQuery: any;
 
 @Component({
 	selector: 'app-user-form',
-	templateUrl: './user-form.component.html'
+	templateUrl: './user-form.component.html',
+	styleUrls: ['./user-form.component.css']
 })
 export class UserFormComponent {
 
 	userProfileDTO: UserProfileDTO = new UserProfileDTO();
 	imageSrc!: string;
+	serverUrl: string;
+	phonePatern = "^((\\+91-?)|0)?[0-9]{10}$";
 
 	constructor(private userProfileService: UserProfileService,
 		private route: ActivatedRoute,
 		private toasterService: ToastrService,
-		private location: Location) {
+		private location: Location, private _configService: ConfigService) {
 	}
 
 	ngOnInit() {
@@ -32,6 +36,8 @@ export class UserFormComponent {
 	getUserById(userId: any) {
 		this.userProfileService.getById(userId).subscribe((res: any) => {
 			this.userProfileDTO = res;
+			this.serverUrl = this._configService.getServerUrl();
+			this.imageSrc = this.serverUrl+"/wwwroot/Images/Users/"+ this.userProfileDTO.imageUrl ;
 		})
 
 	}

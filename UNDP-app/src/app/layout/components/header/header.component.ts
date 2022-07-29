@@ -1,20 +1,29 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 declare var $: any;
 import { TranslateService } from '@ngx-translate/core';
 import { AuthService } from 'src/app/modules/authentication/services/auth.service';
 import { Router } from '@angular/router';
 import { DatabaseBackupComponent } from 'src/app/modules/database/components/database-backup/database-backup.component';
+import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
+import { LocalStorageItems } from 'src/app/shared/constants/local-storage-items';
+import { UserProfileDTO } from 'src/app/modules/user/models/user-profile.dto';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html'
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit{
+  profile: UserProfileDTO;
 
   constructor(
     private authService: AuthService,
-    private router: Router) {
+    private router: Router,
+    private localStorageService:LocalStorageService) {
   }
-
+  ngOnInit(): void {
+  }
+  // getProfile(){
+  //   this.router.navigate(['user/profile']);
+  // }
   public toggleSideMenu() {
 
     if (!$('body').hasClass('layout-fullwidth')) {

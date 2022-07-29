@@ -88,7 +88,9 @@
         "InvalidLastName":"يجب ألا يقل الاسم الأخير عن 8 أحرف",
         "InvalidUserName":"يجب ألا يقل اسم المستخدم عن 8 أحرف",
         "InvalidPassword":"يجب أن تحتوي كلمة المرور على رقم وحرف وأحرف خاصة على والأ لا تقل عن 8 ",
-        "InvalidRole":"فئة الصلاحية مطلوبة"
+        "InvalidRole":"فئة الصلاحية مطلوبة",
+        "InvalidMobile":"رقم الهاتف غير صحيح",
+        "InvalidJobTitle":"يجب ألا يقل المسمى الوظيفي عن 2 أحرف"
     },
     "User": {
         "Users":"المستخدمين",
@@ -106,6 +108,12 @@
         "Admin":"Admin",
         "Consumer":"Consumer",
         "SaveChanges":"حفظ التغيرات",
-        "Cancel":"الغاء"
+        "Cancel":"الغاء",
+        "Mobile":"رقم الهاتف",
+        "jobTitle":"المسمى الوظيفي",
+        "FullName":"الإسم بالكامل",
+        "EditProfile":"تعديل الملف الشخصي",
+        "UserProfile":"الملف الشخصي",
+        "editUser":"تعديل المستخدم"
     }
 }

@@ -35,6 +35,7 @@ namespace Accout.DataServiceLayer
         }
         public async Task<UserProfileDTO> GetById(long id)
         {
+            var test = _mapper.Map<UserProfileDTO>(await _userProfileDAL.GetById(id));
             return _mapper.Map<UserProfileDTO>(await _userProfileDAL.GetById(id));
         }
 
@@ -83,8 +84,12 @@ namespace Accout.DataServiceLayer
         #region Helper Methods
         private bool UploadImage(UserProfileDTO entity)
         {
-            entity.ImageUrl = string.IsNullOrWhiteSpace(entity.ImageBase64) ? null : entity.UserName + "_" + DateTime.Now.ToString("yyyy_MM_dd_HH_ss") + ".jpg";
-            return _fileManager.UploadImageBase64("wwwroot/Images/Users/" + entity.ImageUrl, entity.ImageBase64);
+            if (entity.ImageBase64 != null)
+            {
+                entity.ImageUrl = string.IsNullOrWhiteSpace(entity.ImageBase64) ? null : entity.UserName + "_" + DateTime.Now.ToString("yyyy_MM_dd_HH_ss") + ".jpg";
+                return _fileManager.UploadImageBase64("wwwroot/Images/Users/" + entity.ImageUrl, entity.ImageBase64);
+            }
+            return true;
         }
         #endregion
     }

@@ -2,6 +2,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
+import { ConfigService } from 'src/app/shared/services/config.service';
 import { DataSourceModel } from '../../../../shared/models/data-source.model';
 import { ConfirmationDialogService } from '../../../../shared/services/confirmation-dialog.service';
 import { UserProfileDTO } from '../../models/user-profile.dto';
@@ -16,11 +17,13 @@ export class UserListComponent {
 
 	dataSource: DataSourceModel = new DataSourceModel();
 	userList: Array<UserProfileDTO> = new Array<UserProfileDTO>();
+	serverUrl: string;
 
 	constructor(private userProfileService: UserProfileService,
 		private confirmationDialogService: ConfirmationDialogService,
 		private toastrService: ToastrService,
-		private translate: TranslateService) {
+		private translate: TranslateService,
+		private _configService: ConfigService) {
 
 	}
 
@@ -31,6 +34,8 @@ export class UserListComponent {
 	getAllUsers() {
 		this.userProfileService.getAll(this.dataSource).subscribe((res: any) => {
 			this.userList = res.list;
+		   this.serverUrl = this._configService.getServerUrl();
+
 		});
 	}
 

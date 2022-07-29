@@ -79,7 +79,10 @@
         "InvalidLastName":"The Last Name must be at least characters long",
         "InvalidUserName":"The User Name must be at least characters long",
         "InvalidPassword":"The Password  must have number , letters and special characters at 8 along",
-        "InvalidRole":"Role is required"
+        "InvalidRole":"Role is required",
+        "InvalidMobile":"Invalid Mobile",
+        "InvalidJobTitle":"The Job Title must be at least characters long",
+        "FirstName":"The First Name must be at least characters long"
     },
     "User": {
         "Users":"Users",
@@ -97,6 +100,12 @@
         "Admin":"Admin",
         "Consumer":"Consumer",
         "SaveChanges":"Save Changes",
-        "Cancel":"Cancel"
+        "Cancel":"Cancel",
+        "Mobile":"Mobile",
+        "jobTitle":"Job Title",
+        "FullName":"Full Name",
+        "EditProfile":"Edit Profile",
+        "UserProfile":"User Profile",
+        "editUser":"Edit User"
     }
 }

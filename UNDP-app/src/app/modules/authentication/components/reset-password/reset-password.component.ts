@@ -1,6 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { LocalStorageItems } from 'src/app/shared/constants/local-storage-items';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 import { ResetPasswordDTO } from '../../models/reset-password-dto';
@@ -24,9 +25,9 @@ export class ResetPasswordComponent implements OnInit {
   fieldTextType: boolean;
   repeatFieldTextType: boolean;
   @Input() isProfileComponent: boolean ;
-
+  @Output() closeChangePasswordCard: EventEmitter<boolean> = new EventEmitter()
   constructor(fb: FormBuilder, private _authService: AuthService, private _passConfValidator: PasswordConfirmationValidatorService,
-    private localStorageService: LocalStorageService,
+    private toasterService: ToastrService,private localStorageService: LocalStorageService,
     private _route: ActivatedRoute,) { }
 
   ngOnInit(): void {
@@ -56,6 +57,9 @@ export class ResetPasswordComponent implements OnInit {
   toggleRepeatFieldTextType() {
     this.repeatFieldTextType = !this.repeatFieldTextType;
   }
+  CloseChangePassword(){
+    this.closeChangePasswordCard.emit(true)
+  }
   public validateControl = (controlName: string) => {
     return this.resetPasswordForm.controls[controlName].invalid && this.resetPasswordForm.controls[controlName].touched
   }
@@ -79,6 +83,8 @@ export class ResetPasswordComponent implements OnInit {
     this._authService.resetPassword('Account/ResetPassword', resetPassDto)
       .subscribe(_ => {
         this.showSuccess = true;
+       this.toasterService.success("success");
+        this.closeChangePasswordCard.emit(true)
       },
         error => {
           this.showError = true;
