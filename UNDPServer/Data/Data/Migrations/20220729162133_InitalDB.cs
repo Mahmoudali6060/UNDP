@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Data.Migrations
 {
-    public partial class AddTwoColumnsToProfile : Migration
+    public partial class InitalDB : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
