@@ -1,13 +1,7 @@
-﻿using Account.DataServiceLayer.Contracts;
-using Account.Entities;
-using Data.Contexts;
-using Data.Entities.Shared;
+﻿using Data.Contexts;
 using Data.Entities.UserManagement;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Shared.Entities.Shared;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -43,7 +37,8 @@ namespace Account.DataAccessLayer
 
         public async Task<UserProfile> GetById(long id)
         {
-            return await _appDbContext.UserProfiles.SingleOrDefaultAsync(x => x.Id == id);
+            var UserProfile = _appDbContext.UserProfiles.Include(x => x.AppUser).SingleOrDefaultAsync(x => x.Id == id);
+            return await UserProfile;
         }
 
 

@@ -1,13 +1,6 @@
-﻿using Account.DataAccessLayer;
-using Account.Entities;
-using Account.Helper;
+﻿using Account.Entities;
 using Data.Constants;
-using Data.Entities.Shared;
 using Data.Entities.UserManagement;
-using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Account.RepositoryLayer
 {
@@ -39,6 +32,8 @@ namespace Account.RepositoryLayer
                 Id = userProfile.Id,
                 FirstName = userProfile.FirstName,
                 LastName = userProfile.LastName,
+                Mobile = userProfile.Mobile,
+                JobTitle = userProfile.JobTitle,
                 Email = appUser.Email,
                 UserName = appUser.UserName,
                 DefaultLanguage = userProfile.DefaultLanguage,
@@ -55,6 +50,8 @@ namespace Account.RepositoryLayer
             {
                 FirstName = registerRequestViewModel.FirstName,
                 LastName = registerRequestViewModel.LastName,
+                Mobile = registerRequestViewModel.Mobile,
+                JobTitle = registerRequestViewModel.JobTitle,
                 UserName = registerRequestViewModel.Username,
                 Email = registerRequestViewModel.Email,
                 Password = registerRequestViewModel.Password,

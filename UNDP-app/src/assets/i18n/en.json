@@ -45,7 +45,7 @@
         "EmailAddress": "Email Address",
         "Password": "Password",
         "RememberMe": "Remember Me",
-        "ForgottenPassword": "Forgotten Password",
+        "ForgottenPassword": "Forgotten Password?",
         "DoNotYouHaveAccount": "Don't you have account?",
         "DoYouHaveAccount": "Don you have account?",
         "SignUpHere": "Sign up here",
@@ -53,7 +53,18 @@
         "Username": "Username",
         "LoginHere": "Login here",
         "SignIn": "Sign in",
-        "DefaultLanguage": "Default Langague"
+        "DefaultLanguage": "Default Langague",
+        "ChangePassword": "Change Password",
+        "NewPassword": "New Password",
+        "YourpasswordhasbeenchangedPlease": "Your password has been changed. Please",
+        "clickheretologin": "clickheretologin",
+        "NewPasswordisrequired": "NewPasswordisrequired",
+        "ConfirmPassword": "Confirm Password",
+        "Confirmationisrequired": "Confirmation is required",
+        "Passwordsmustmatch": "Passwordsmustmatch",
+        "SaveChanges": "Save Changes",
+        "ForgotPassword": "ForgotPassword",
+        "Emailisrequired": "Email is required"
     },
     "SideMenu": {
         "Dashboard": "Dashboard",
@@ -69,9 +80,19 @@
         "RequesterNameIsRequired": "Requester name is required",
         "RequesterEmailIsRequired": "Requester email is required",
         "DateFromIsRequired": "Date from is required",
-        "DateToIsRequired": "Date to is required"
+        "DateToIsRequired": "Date to is required",
+        "InvalidEmail": "Invalid Email",
+        "InvalidFirstName": "The First Name must be at least characters long",
+        "InvalidLastName": "The Last Name must be at least characters long",
+        "InvalidUserName": "The User Name must be at least characters long",
+        "InvalidPassword": "The Password  must have number , letters and special characters at 8 along",
+        "InvalidRole": "Role is required",
+        "InvalidMobile": "Invalid Mobile",
+        "InvalidJobTitle": "The Job Title must be at least characters long",
+        "FirstName": "The First Name must be at least characters long"
     },
     "User": {
+        "Users": "Users",
         "Name": "Name",
         "FirstName": "First Name",
         "LastName": "Last Name",
@@ -96,6 +117,19 @@
         "RequestID": "Request ID",
         "RequestStatus": "Request Status",
         "StartingTime": "Starting Time",
-        "EndingTime": "Ending Time"
+        "EndingTime": "Ending Time",
+        "Image": "Image",
+        "addUser": "Add User",
+        "UploadImage": "Upload Image",
+        "Admin": "Admin",
+        "Consumer": "Consumer",
+        "SaveChanges": "Save Changes",
+        "Cancel": "Cancel",
+        "Mobile": "Mobile",
+        "jobTitle": "Job Title",
+        "FullName": "Full Name",
+        "EditProfile": "Edit Profile",
+        "UserProfile": "User Profile",
+        "editUser": "Edit User"
     }
 }

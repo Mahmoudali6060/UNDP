@@ -13,13 +13,13 @@ namespace Account.Entities
         public string Subject { get; set; }
         public string Content { get; set; }
 
-        //public MessageDTO(IEnumerable<string> to, string subject, string content)
-        //{
-        //    To = new List<MailboxAddress>();
+        public MessageDTO(IEnumerable<string> to, string subject, string content)
+        {
+            To = new List<MailboxAddress>();
 
-        //    To.AddRange(to.Select(x => new MailboxAddress(x)));
-        //    Subject = subject;
-        //    Content = content;
-        //}
+            To.AddRange(to.Select(x => new MailboxAddress(x,"")));
+            Subject = subject;
+            Content = content;
+        }
     }
 }

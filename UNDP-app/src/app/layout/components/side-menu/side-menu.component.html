@@ -7,9 +7,9 @@
     </div>
     <div class="menu-sidebar2__content js-scrollbar1">
         <div class="account2">
-            <div class="image img-cir img-120">
-                <img *ngIf="authService.loggedUserProfile?.imageUrl" src="{{serverUrl}}/wwwroot/Images/Users/{{authService.loggedUserProfile?.imageUrl}}" />
-                <img *ngIf="!authService.loggedUserProfile?.imageUrl" src="assets/images/icon/avatar-big-01.jpg" />
+            <div class="text-center">
+                <img class="image img-cir img-150 img-fluid" *ngIf="authService.loggedUserProfile?.imageUrl" src="{{serverUrl}}/wwwroot/Images/Users/{{authService.loggedUserProfile?.imageUrl}}" />
+                <img class="image img-cir img-150 img-fluid" *ngIf="!authService.loggedUserProfile?.imageUrl" src="assets/images/icon/avatar-big-01.jpg" />
             </div>
             <h4 class="name">{{authService.loggedUserProfile?.firstName}} {{authService.loggedUserProfile?.lastName}}
             </h4>

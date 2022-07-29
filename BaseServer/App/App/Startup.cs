@@ -1,9 +1,6 @@
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using AutoMapper;
 //using Case.DataAccessLayer;
 //using Case.DataServiceLayer;
@@ -17,21 +14,17 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-using Newtonsoft.Json;
 using Data.Contexts;
 using Microsoft.EntityFrameworkCore;
-using Data.Entities;
 using Microsoft.AspNetCore.Identity;
-using Account.DataServiceLayer;
-using Account.DataAccessLayer;
 using App.Helper;
-using Data.Entities.Shared;
-using Newtonsoft.Json.Serialization;
 using Microsoft.Extensions.FileProviders;
 using NLog;
-using Infrastructure.ExceptionHandling;
 using Infrastructure.ExceptionHandling.ExceptionMiddlewareExtensions;
 using Data.Entities.UserManagement;
+using Account.Entities;
+using Account.DataServiceLayer.Contracts;
+using Account.DataServiceLayer.Handlers;
 
 namespace App
 {
@@ -55,17 +48,12 @@ namespace App
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
+            var emailConfig = Configuration
+               .GetSection("EmailConfiguration")
+               .Get<EmailConfigurationDTO>();
+            services.AddSingleton(emailConfig);
 
-            ///>>>Allow Pascal Case
-         //   services.AddMvc(setupAction =>
-         //   {
-         //       setupAction.EnableEndpointRouting = false;
-         //   }).AddJsonOptions(jsonOptions =>
-         //   {
-         //       jsonOptions.JsonSerializerOptions.PropertyNamingPolicy = null;
-         //   })
-         //.SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
-            //>>>END Pascal Case
+           
 
             //services.AddMvc().AddJsonOptions(options =>
             //{
@@ -85,7 +73,7 @@ namespace App
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
             services.AddControllers(options => options.EnableEndpointRouting = false);
-           
+
             //>>>Add JWT Authentication And DbContext
             services.AddDbContext<UNDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")), ServiceLifetime.Transient);
             services.AddIdentity<AppUser, AppRole>()
@@ -111,7 +99,8 @@ namespace App
                 x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
                 x.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-            }).AddJwtBearer(x => {
+            }).AddJwtBearer(x =>
+            {
                 x.RequireHttpsMetadata = false;
                 x.SaveToken = false;
                 x.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters

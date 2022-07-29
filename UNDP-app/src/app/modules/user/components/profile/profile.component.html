@@ -1,0 +1,206 @@
+<section style="background-color: #eee;">
+    <div class="container py-5">
+        <div class="row">
+            <div class="col">
+                <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
+                    <ol class="breadcrumb mb-0">
+                        <li *ngIf="!ischangePassword && !edit" class="breadcrumb-item active" aria-current="page">{{'User.UserProfile' |translate}} </li>
+                        <li *ngIf="ischangePassword" class="breadcrumb-item active" aria-current="page">{{'Authentication.ChangePassword' |translate}} </li>
+                        <li *ngIf="edit" class="breadcrumb-item active" aria-current="page">{{'User.EditProfile' |translate}}</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="card mb-4 pb-4">
+                    <div class="card-body text-center">
+                        <img *ngIf="profile.imageUrl" src="{{serverUrl}}/wwwroot/Images/Users/{{profile.imageUrl}}"
+                            class="image img-cir img-150 img-fluid">
+
+                        <img *ngIf="!profile.imageUrl" class="image img-cir img-150 img-fluid" src="assets/images/icon/avatar-big-01.jpg" />
+                        <input *ngIf="edit" type="file" id="image" class="form-control" (change)="onFileChange($event)">
+
+                        <h5 class="my-3">{{profile.firstName}} {{profile.lastName}}</h5>
+                        <p class="text-muted mb-1" *ngIf="!edit">{{profile.jobTitle}}</p>
+                        <input *ngIf="edit" type="text" [(ngModel)]="profile.jobTitle" id="jobTitle"
+                            class="form-control mb-2">
+                        <!-- <p class="text-muted mb-4">Bay Area, San Francisco, CA</p> -->
+                        <div class="d-flex justify-content-center mb-2" *ngIf="!ischangePassword">
+                            <!-- <button type="button" class="btn btn-primary">Follow</button> -->
+                            <button type="button" class="btn btn-outline-primary ms-1" (click)="changePassword()">{{'Authentication.ChangePassword' |translate}} </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8" *ngIf="!ischangePassword">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0"> {{'User.FullName' |translate}}</p>
+                            </div>
+                            <div class="col-sm-4" *ngIf="edit">
+                                <div class="form-group pb-2">
+                                    <input type="text" [(ngModel)]="profile.firstName" id="firstName"
+                                        class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-sm-1" *ngIf="edit"></div>
+                            <div class="col-sm-4" *ngIf="edit">
+                                <div class="form-group pb-2">
+                                    <input type="text" [(ngModel)]="profile.lastName" id="firstName"
+                                        class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-sm-4" *ngIf="!edit">
+                                <p class="text-muted mb-0">{{profile.firstName}} {{profile.lastName}}</p>
+                            </div>
+                        </div>
+                        <hr *ngIf="!edit">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">{{'User.UserName' |translate}}</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <div class="form-group pb-2" *ngIf="edit">
+                                    <input type="text" [(ngModel)]="profile.userName" id="UserName"
+                                        class="form-control">
+                                </div>
+                                <p class="text-muted mb-0" *ngIf="!edit">{{profile.userName}}</p>
+                            </div>
+                        </div>
+                        <hr *ngIf="!edit">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">{{'User.Email' |translate}}</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <div class="form-group pb-2" *ngIf="edit">
+                                    <input type="text" [(ngModel)]="profile.email" id="Email" class="form-control">
+                                </div>
+                                <p class="text-muted mb-0" *ngIf="!edit">{{profile.email}}</p>
+                            </div>
+                        </div>
+                        <hr *ngIf="!edit">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">{{'User.Mobile' |translate}}</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <div class="form-group pb-2" *ngIf="edit">
+                                    <input type="text" [(ngModel)]="profile.mobile" id="Mobile" class="form-control">
+                                </div>
+                                <p class="text-muted mb-0" *ngIf="!edit">{{profile.mobile}}</p>
+                            </div>
+                        </div>
+                        <hr *ngIf="!edit">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">{{'User.Role' |translate}}</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <div class="form-group pb-2" *ngIf="edit">
+                                    <select name="role" id="select" class="form-control" [(ngModel)]="profile.role">
+                                        <option value="Admin">{{'User.Admin' |translate}}</option>
+                                        <option value="Consumer">{{'User.Consumer' |translate}}</option>
+                                    </select>
+                                </div>
+                                <p class="text-muted mb-0" *ngIf="!edit">{{profile.role}}</p>
+                            </div>
+                        </div>
+                        <div class="row" *ngIf="!edit">
+                            <div class="col-sm-9"></div>
+                            <div class="col-sm-2">
+                                <button type="button" class="btn btn-outline-primary ml-4" (click)="EditProfile()">
+                                    {{'User.EditProfile' |translate}}
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="row flex-container" *ngIf="edit">
+                            <!-- <div class="col-sm-8"></div> -->
+                                <button type="button" class="btn btn-danger"
+                                    (click)="close()">{{'General.Cancel'|translate}}</button>
+
+                                <button type="button" class="btn btn-outline-primary" (click)="save()"> {{'User.SaveChanges' |translate}}</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="row">
+            <div class="col-md-6">
+              <div class="card mb-4 mb-md-0">
+                <div class="card-body">
+                  <p class="mb-4"><span class="text-primary font-italic me-1">assigment</span> Project Status
+                  </p>
+                  <p class="mb-1" style="font-size: .77rem;">Web Design</p>
+                  <div class="progress rounded" style="height: 5px;">
+                    <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80"
+                      aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                  <p class="mt-4 mb-1" style="font-size: .77rem;">Website Markup</p>
+                  <div class="progress rounded" style="height: 5px;">
+                    <div class="progress-bar" role="progressbar" style="width: 72%" aria-valuenow="72"
+                      aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                  <p class="mt-4 mb-1" style="font-size: .77rem;">One Page</p>
+                  <div class="progress rounded" style="height: 5px;">
+                    <div class="progress-bar" role="progressbar" style="width: 89%" aria-valuenow="89"
+                      aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                  <p class="mt-4 mb-1" style="font-size: .77rem;">Mobile Template</p>
+                  <div class="progress rounded" style="height: 5px;">
+                    <div class="progress-bar" role="progressbar" style="width: 55%" aria-valuenow="55"
+                      aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                  <p class="mt-4 mb-1" style="font-size: .77rem;">Backend API</p>
+                  <div class="progress rounded mb-2" style="height: 5px;">
+                    <div class="progress-bar" role="progressbar" style="width: 66%" aria-valuenow="66"
+                      aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="card mb-4 mb-md-0">
+                <div class="card-body">
+                  <p class="mb-4"><span class="text-primary font-italic me-1">assigment</span> Project Status
+                  </p>
+                  <p class="mb-1" style="font-size: .77rem;">Web Design</p>
+                  <div class="progress rounded" style="height: 5px;">
+                    <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80"
+                      aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                  <p class="mt-4 mb-1" style="font-size: .77rem;">Website Markup</p>
+                  <div class="progress rounded" style="height: 5px;">
+                    <div class="progress-bar" role="progressbar" style="width: 72%" aria-valuenow="72"
+                      aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                  <p class="mt-4 mb-1" style="font-size: .77rem;">One Page</p>
+                  <div class="progress rounded" style="height: 5px;">
+                    <div class="progress-bar" role="progressbar" style="width: 89%" aria-valuenow="89"
+                      aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                  <p class="mt-4 mb-1" style="font-size: .77rem;">Mobile Template</p>
+                  <div class="progress rounded" style="height: 5px;">
+                    <div class="progress-bar" role="progressbar" style="width: 55%" aria-valuenow="55"
+                      aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                  <p class="mt-4 mb-1" style="font-size: .77rem;">Backend API</p>
+                  <div class="progress rounded mb-2" style="height: 5px;">
+                    <div class="progress-bar" role="progressbar" style="width: 66%" aria-valuenow="66"
+                      aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> -->
+            </div>
+            <div class="col-lg-8" *ngIf="ischangePassword">
+                <app-reset-password [isProfileComponent]="true" (closeChangePasswordCard)="closeChangePasswordCard()"
+                    [data]="resetPassDto"></app-reset-password>
+            </div>
+        </div>
+    </div>
+</section>

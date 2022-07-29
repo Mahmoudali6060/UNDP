@@ -6,6 +6,29 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Controllers\Accounting\**" />
+    <Compile Remove="Controllers\Clients\**" />
+    <Compile Remove="Controllers\HR\**" />
+    <Compile Remove="Controllers\Settings\**" />
+    <Compile Remove="Controllers\Suppliers\**" />
+    <Content Remove="Controllers\Accounting\**" />
+    <Content Remove="Controllers\Clients\**" />
+    <Content Remove="Controllers\HR\**" />
+    <Content Remove="Controllers\Settings\**" />
+    <Content Remove="Controllers\Suppliers\**" />
+    <EmbeddedResource Remove="Controllers\Accounting\**" />
+    <EmbeddedResource Remove="Controllers\Clients\**" />
+    <EmbeddedResource Remove="Controllers\HR\**" />
+    <EmbeddedResource Remove="Controllers\Settings\**" />
+    <EmbeddedResource Remove="Controllers\Suppliers\**" />
+    <None Remove="Controllers\Accounting\**" />
+    <None Remove="Controllers\Clients\**" />
+    <None Remove="Controllers\HR\**" />
+    <None Remove="Controllers\Settings\**" />
+    <None Remove="Controllers\Suppliers\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Reports\TestReport.repx" />
   </ItemGroup>
 
@@ -31,32 +54,24 @@
     <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="5.6.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.0" />
     <PackageReference Include="Microsoft.Web.Administration" Version="11.1.0" />
+    <PackageReference Include="NETCore.MailKit" Version="2.1.0" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="5.6.0" />
     <PackageReference Include="System.Net.Http" Version="4.3.4" />
   </ItemGroup>
 
 
   <ItemGroup>
-    <Folder Include="Controllers\Accounting\" />
-    <Folder Include="Controllers\Clients\" />
-    <Folder Include="Controllers\HR\" />
-    <Folder Include="Controllers\Settings\" />
-    <Folder Include="Controllers\Suppliers\" />
     <Folder Include="Reports\" />
-    <Folder Include="wwwroot\Images\Users\" />
     <Folder Include="wwwroot\Images\Users\" />
   </ItemGroup>
 
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Accounting\Accounting\Accounting.csproj" />
     <ProjectReference Include="..\..\Account\Account\Account.csproj" />
-    <ProjectReference Include="..\..\Clients\Clients\Clients.csproj" />
+    <ProjectReference Include="..\..\CarRequest\FleetManagement.csproj" />
     <ProjectReference Include="..\..\Data\Data\Data.csproj" />
-    <ProjectReference Include="..\..\HR\HR\HR.csproj" />
     <ProjectReference Include="..\..\Setting\Setting\Setting.csproj" />
     <ProjectReference Include="..\..\Shared\Shared\Shared.csproj" />
-    <ProjectReference Include="..\..\Supplier\Supplier\Supplier.csproj" />
   </ItemGroup>
 
 

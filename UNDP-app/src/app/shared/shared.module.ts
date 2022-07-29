@@ -1,6 +1,6 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule, registerLocaleData, DatePipe } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { TranslateModule } from '@ngx-translate/core';
 import arSaLocale from '@angular/common/locales/ar-SA';
@@ -32,6 +32,7 @@ import { ConfirmationDialogService } from './services/confirmation-dialog.servic
     OrderModule,
     NgbModule,
     MaterialModule,
+    ReactiveFormsModule,
   ],
 
   exports: [

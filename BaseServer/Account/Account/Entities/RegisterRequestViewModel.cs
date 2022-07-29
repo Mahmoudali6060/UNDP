@@ -12,9 +12,11 @@ namespace Account.Entities
 
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
+        public string Mobile { get; set; }
+        public string JobTitle { get; set; }
 
         //[Required]
-        //[EmailAddress]
+        [EmailAddress(ErrorMessage ="Invlid Email Address")]
         [Display(Name = "Email")]
         public string Email { get; set; }
 
