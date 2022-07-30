@@ -2,3 +2,9 @@
     display: flex;
     flex-direction: row-reverse;
   }
+  .is-invalid{
+    border-width: 1.5px; 
+   }
+   .is-valid{
+    border-width: 1.5px; 
+   }

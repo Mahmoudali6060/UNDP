@@ -13,7 +13,8 @@ export class SideMenuComponent {
   
   constructor(
     public authService: AuthService,
-    private _configService: ConfigService
+    private _configService: ConfigService,
+    private router:Router
 
    ) {
     this.serverUrl = _configService.getServerUrl();
@@ -22,5 +23,7 @@ export class SideMenuComponent {
 
   public logOut() {
     this.authService.logOut();
+    this.router.navigate(["login"]);
+
   }
 }
