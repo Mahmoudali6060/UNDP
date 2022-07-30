@@ -4,9 +4,12 @@
             <div class="col">
                 <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
                     <ol class="breadcrumb mb-0">
-                        <li *ngIf="!ischangePassword && !edit" class="breadcrumb-item active" aria-current="page">{{'User.UserProfile' |translate}} </li>
-                        <li *ngIf="ischangePassword" class="breadcrumb-item active" aria-current="page">{{'Authentication.ChangePassword' |translate}} </li>
-                        <li *ngIf="edit" class="breadcrumb-item active" aria-current="page">{{'User.EditProfile' |translate}}</li>
+                        <li *ngIf="!ischangePassword && !edit" class="breadcrumb-item active" aria-current="page">
+                            {{'User.UserProfile' |translate}} </li>
+                        <li *ngIf="ischangePassword" class="breadcrumb-item active" aria-current="page">
+                            {{'Authentication.ChangePassword' |translate}} </li>
+                        <li *ngIf="edit" class="breadcrumb-item active" aria-current="page">{{'User.EditProfile'
+                            |translate}}</li>
                     </ol>
                 </nav>
             </div>
@@ -19,17 +22,23 @@
                         <img *ngIf="profile.imageUrl" src="{{serverUrl}}/wwwroot/Images/Users/{{profile.imageUrl}}"
                             class="image img-cir img-150 img-fluid">
 
-                        <img *ngIf="!profile.imageUrl" class="image img-cir img-150 img-fluid" src="assets/images/icon/avatar-big-01.jpg" />
+                        <img *ngIf="!profile.imageUrl" class="image img-cir img-150 img-fluid"
+                            src="assets/images/icon/avatar-big-01.jpg" />
                         <input *ngIf="edit" type="file" id="image" class="form-control" (change)="onFileChange($event)">
 
                         <h5 class="my-3">{{profile.firstName}} {{profile.lastName}}</h5>
                         <p class="text-muted mb-1" *ngIf="!edit">{{profile.jobTitle}}</p>
-                        <input *ngIf="edit" type="text" [(ngModel)]="profile.jobTitle" id="jobTitle"
-                            class="form-control mb-2">
+                            <input *ngIf="edit" [(ngModel)]="profile.jobTitle" type="text" id="jobTitle" class="form-control mb-2"
+                            #jobTitle="ngModel" [class.is-invalid]="jobTitle.invalid && jobTitle.touched"
+                            [class.is-valid]="jobTitle.valid"  required minlength="2" name="jobTitle" aria-describedby="helpId">
+                        <!-- <small *ngIf="edit" [hidden]="jobTitle.valid || jobTitle.untouched" id="helpId" class="text-muted"
+                            [translate]="'Errors.InvalidJobTitle'"></small> -->
+
                         <!-- <p class="text-muted mb-4">Bay Area, San Francisco, CA</p> -->
                         <div class="d-flex justify-content-center mb-2" *ngIf="!ischangePassword">
                             <!-- <button type="button" class="btn btn-primary">Follow</button> -->
-                            <button type="button" class="btn btn-outline-primary ms-1" (click)="changePassword()">{{'Authentication.ChangePassword' |translate}} </button>
+                            <button type="button" class="btn btn-outline-primary ms-1"
+                                (click)="changePassword()">{{'Authentication.ChangePassword' |translate}} </button>
                         </div>
                     </div>
                 </div>
@@ -43,15 +52,24 @@
                             </div>
                             <div class="col-sm-4" *ngIf="edit">
                                 <div class="form-group pb-2">
-                                    <input type="text" [(ngModel)]="profile.firstName" id="firstName"
-                                        class="form-control">
+                                    <input [(ngModel)]="profile.firstName" type="text" id="firstName"
+                                        class="form-control" #firstName="ngModel"
+                                        [class.is-invalid]="firstName.invalid && firstName.touched"
+                                        [class.is-valid]="firstName.valid" required minlength="3" name="firstName"
+                                        aria-describedby="helpId">
+                                    <small [hidden]="firstName.valid || firstName.untouched" id="helpId"
+                                        class="text-muted" [translate]="'Errors.InvalidFirstName'"></small>
                                 </div>
                             </div>
                             <div class="col-sm-1" *ngIf="edit"></div>
                             <div class="col-sm-4" *ngIf="edit">
                                 <div class="form-group pb-2">
-                                    <input type="text" [(ngModel)]="profile.lastName" id="firstName"
-                                        class="form-control">
+                                    <input [(ngModel)]="profile.lastName" type="text" id="lastName" class="form-control"
+                                        #lastName="ngModel" [class.is-invalid]="lastName.invalid && lastName.touched"
+                                        [class.is-valid]="lastName.valid" required minlength="3" name="lastName"
+                                        aria-describedby="helpId">
+                                    <small [hidden]="lastName.valid || lastName.untouched" id="helpId"
+                                        class="text-muted" [translate]="'Errors.InvalidLastName'"></small>
                                 </div>
                             </div>
                             <div class="col-sm-4" *ngIf="!edit">
@@ -65,8 +83,12 @@
                             </div>
                             <div class="col-sm-9">
                                 <div class="form-group pb-2" *ngIf="edit">
-                                    <input type="text" [(ngModel)]="profile.userName" id="UserName"
-                                        class="form-control">
+                                    <input [(ngModel)]="profile.userName" type="text" id="username" class="form-control"
+                                        #username="ngModel" [class.is-invalid]="username.invalid && username.touched"
+                                        [class.is-valid]="username.valid" required minlength="3" name="userName"
+                                        id="username" class="form-control" aria-describedby="helpId">
+                                    <small [hidden]="username.valid || username.untouched" id="helpId"
+                                        class="text-muted" [translate]="'Errors.InvalidUserName'"></small>
                                 </div>
                                 <p class="text-muted mb-0" *ngIf="!edit">{{profile.userName}}</p>
                             </div>
@@ -78,7 +100,13 @@
                             </div>
                             <div class="col-sm-9">
                                 <div class="form-group pb-2" *ngIf="edit">
-                                    <input type="text" [(ngModel)]="profile.email" id="Email" class="form-control">
+                                    <input [(ngModel)]="profile.email" type="email" id="email"
+                                        class="form-control" #email="ngModel"
+                                        [class.is-invalid]="email.invalid && email.touched"
+                                        [class.is-valid]="email.valid" required minlength="8" name="email" id="email"
+                                        class="form-control" aria-describedby="helpId">
+                                    <small [hidden]="email.valid || email.untouched" id="helpId" class="text-muted"
+                                        [translate]="'Errors.InvalidEmail'"></small>
                                 </div>
                                 <p class="text-muted mb-0" *ngIf="!edit">{{profile.email}}</p>
                             </div>
@@ -90,7 +118,13 @@
                             </div>
                             <div class="col-sm-9">
                                 <div class="form-group pb-2" *ngIf="edit">
-                                    <input type="text" [(ngModel)]="profile.mobile" id="Mobile" class="form-control">
+                                    <input [(ngModel)]="profile.mobile" type="text" id="mobile"
+                                        class="form-control" #mobile="ngModel"
+                                        [class.is-invalid]="mobile.invalid && mobile.touched"
+                                        [class.is-valid]="mobile.valid" required minlength="11" name="mobile"
+                                        aria-describedby="helpId">
+                                    <small [hidden]="mobile.valid || mobile.untouched" id="helpId" class="text-muted"
+                                        [translate]="'Errors.InvalidMobile'"></small>
                                 </div>
                                 <p class="text-muted mb-0" *ngIf="!edit">{{profile.mobile}}</p>
                             </div>
@@ -121,10 +155,11 @@
 
                         <div class="row flex-container" *ngIf="edit">
                             <!-- <div class="col-sm-8"></div> -->
-                                <button type="button" class="btn btn-danger"
-                                    (click)="close()">{{'General.Cancel'|translate}}</button>
+                            <button type="button" class="btn btn-danger"
+                                (click)="close()">{{'General.Cancel'|translate}}</button>
 
-                                <button type="button" class="btn btn-outline-primary" (click)="save()"> {{'User.SaveChanges' |translate}}</button>
+                            <button type="button" class="btn btn-outline-primary" (click)="save()"> {{'User.SaveChanges'
+                                |translate}}</button>
                         </div>
                     </div>
                 </div>

@@ -9,12 +9,15 @@ namespace Account.Entities
 {
     public class ResetPasswordDTO
     {
-        //[Required(ErrorMessage = "Old Password is required")]
-        //public string OldPassword { get; set; }
-        [Required(ErrorMessage = "Password is required")]
+
+        [Required(ErrorMessage = "Errors.PasswordIsRequired")]
+        [DataType(DataType.Password)]
+        [RegularExpression(@"^((?=.*[a-z])(?=.*[A-Z])(?=.*\d)).+$", ErrorMessage = "Errors.InvalidPassword")]
         public string Password { get; set; }
 
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Required(ErrorMessage = "Errors.ConfirmPasswordIsRequired")]
+        [DataType(DataType.Password)]
+        [Compare("Password", ErrorMessage = "Errors.InvalidConfirmPassword")]
         public string ConfirmPassword { get; set; }
 
         public string Email { get; set; }
