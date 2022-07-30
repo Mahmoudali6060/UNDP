@@ -120,7 +120,8 @@
         "Admin":"Admin",
         "Consumer":"Consumer",
         "EditProfile":"Edit Profile",
-        "UserProfile":"User Profile"
+        "UserProfile":"User Profile",
+        "FullName":"Full Name"
     },
     "FleetManagement": {
         "NewCarRequest": "New Car Request",

@@ -19,10 +19,10 @@
             <div class="col-lg-4">
                 <div class="card mb-4 pb-4">
                     <div class="card-body text-center">
-                        <img *ngIf="profile.imageUrl" src="{{serverUrl}}/wwwroot/Images/Users/{{profile.imageUrl}}"
+                        <img *ngIf="imageUrl != null" src="{{imageSrc}}"
                             class="image img-cir img-150 img-fluid">
 
-                        <img *ngIf="!profile.imageUrl" class="image img-cir img-150 img-fluid"
+                        <img *ngIf="imageUrl ==  null" class="image img-cir img-150 img-fluid"
                             src="assets/images/icon/avatar-big-01.jpg" />
                         <input *ngIf="edit" type="file" id="image" class="form-control" (change)="onFileChange($event)">
 
@@ -153,7 +153,7 @@
                             </div>
                         </div>
 
-                        <div class="row flex-container" *ngIf="edit">
+                        <div class="row flex-container pb-3" *ngIf="edit">
                             <!-- <div class="col-sm-8"></div> -->
                             <button type="button" class="btn btn-danger"
                                 (click)="close()">{{'General.Cancel'|translate}}</button>
