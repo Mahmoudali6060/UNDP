@@ -2,6 +2,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
+import { CarRequestStatusEnum } from '../../../../shared/enums/car-request-status.enum';
 import { DataSourceModel } from '../../../../shared/models/data-source.model';
 import { FilterModel } from '../../../../shared/models/filter.model';
 import { ConfirmationDialogService } from '../../../../shared/services/confirmation-dialog.service';
@@ -21,6 +22,8 @@ export class CarRequestListComponent {
 	carRequestSearchCrieria: CarRequestSearchCriteriaDTO = new CarRequestSearchCriteriaDTO();
 	carRequestList: Array<CarRequestDTO> = new Array<CarRequestDTO>();
 	loggedUserId: number;
+	carRequestStatusEnum = CarRequestStatusEnum;
+	showFilterControls: boolean = false;
 	//#endregion
 
 	constructor(private carRequestService: CarRequestService,
@@ -35,11 +38,10 @@ export class CarRequestListComponent {
 
 	ngOnInit() {
 		this.loggedUserId = Number(this.route.snapshot.paramMap.get('loggedUserId'));
-		this.getAllCarRequests();
+		this.search();
 	}
 
 	getAllCarRequests() {
-		this.applyFilters();
 		this.carRequestService.getAll(this.carRequestSearchCrieria).subscribe((res: any) => {
 			this.carRequestList = res.list;
 		});
@@ -54,7 +56,7 @@ export class CarRequestListComponent {
 		});
 	}
 
-	public assginToMe(item: CarRequestDTO) {
+	public assignToMe(item: CarRequestDTO) {
 		item.userProfileId = this.authService.loggedUserProfile.id;
 		this.updateCarRequest(item);
 	}
@@ -62,10 +64,19 @@ export class CarRequestListComponent {
 	updateCarRequest(item: CarRequestDTO) {
 		this.carRequestService.update(item).subscribe((res: any) => {
 			if (res) {
-				this.toastrService.success(this.translate.instant("Message.UpdatedSuccessfully"));
+				this.toastrService.success(this.translate.instant("Message.RequestAssignedSuccessfully"));
 				this.getAllCarRequests();
 			}
 		});
+	}
+
+	toggleFilter() {
+		this.showFilterControls = !this.showFilterControls;
+	}
+
+	search() {
+		this.applyFilters();
+		this.getAllCarRequests();
 	}
 
 	applyFilters() {

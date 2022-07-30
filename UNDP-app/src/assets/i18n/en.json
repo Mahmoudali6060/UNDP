@@ -37,7 +37,8 @@
         "Description": "Do you really want to delete this record ?"
     },
     "Message": {
-        "DeletedSuccessfully": "this record has been deleted successfully"
+        "DeletedSuccessfully": "This record has been deleted successfully",
+        "RequestAssignedSuccessfully": "This request has been assigned to you successfully"
     },
     "Authentication": {
         "FirstName": "First Name",
@@ -76,13 +77,11 @@
     },
     "Errors": {
         "InvalidUsernameOrPassword": "Invalid Username or Password",
-
         "InvlidEmailAddress": "Invlid Email Address",
         "RequesterNameIsRequired": "Requester name is required",
         "RequesterEmailIsRequired": "Requester email is required",
         "DateFromIsRequired": "Date from is required",
         "DateToIsRequired": "Date to is required",
-
         "InvalidEmail": "Invalid Email",
         "InvalidFirstName": "The First Name must be at least 2 characters long",
         "InvalidLastName": "The Last Name must be at least 2 characters long",
@@ -91,15 +90,15 @@
         "InvalidRole": "Role is required",
         "InvalidMobile": "Invalid Mobile , must start with 01",
         "InvalidJobTitle": "The Job Title must be at least characters long",
-        "FirstNameIsRequired":"First Name Is Required",
-        "LastNameIsRequired":"Last Name Is Required",
-        "MobileIsRequired":"Mobile Is Required",
-        "JobTitleIsRequired":"Job Title Is Required",
-        "EmailIsRequired":"Email Is Required",
-        "UserNameIsRequired":"User Name Is Required",
-        "PasswordIsRequired":"Password Is Required",
-        "ConfirmPasswordIsRequired":"Confirm Password Is Required",
-        "InvalidConfirmPassword":"كلمة المرور وكلمة المرور التأكيدية غير متطابقتين"
+        "FirstNameIsRequired": "First Name Is Required",
+        "LastNameIsRequired": "Last Name Is Required",
+        "MobileIsRequired": "Mobile Is Required",
+        "JobTitleIsRequired": "Job Title Is Required",
+        "EmailIsRequired": "Email Is Required",
+        "UserNameIsRequired": "User Name Is Required",
+        "PasswordIsRequired": "Password Is Required",
+        "ConfirmPasswordIsRequired": "Confirm Password Is Required",
+        "InvalidConfirmPassword": "كلمة المرور وكلمة المرور التأكيدية غير متطابقتين"
     },
     "User": {
         "Users": "Users",
@@ -112,14 +111,14 @@
         "Role": "Role",
         "DefaultLanguage": "Default Langague",
         "Image": "Image",
-        "addUser":"Add User",
-        "Mobile":"Mobile",
-        "UploadImage":"Upload Image",
-        "Cancel":"Cancel",
-        "SaveChanges":"Save Changes",
-        "Admin":"Admin",
-        "Consumer":"Consumer",
-        "EditProfile":"Edit Profile"
+        "addUser": "Add User",
+        "Mobile": "Mobile",
+        "UploadImage": "Upload Image",
+        "Cancel": "Cancel",
+        "SaveChanges": "Save Changes",
+        "Admin": "Admin",
+        "Consumer": "Consumer",
+        "EditProfile": "Edit Profile"
     },
     "FleetManagement": {
         "NewCarRequest": "New Car Request",
@@ -148,6 +147,11 @@
         "FullName": "Full Name",
         "EditProfile": "Edit Profile",
         "UserProfile": "User Profile",
-        "editUser": "Edit User"
+        "editUser": "Edit User",
+        "AssignToMe": "Assign to me"
+    },
+    "CarRequestStatusEnum": {
+        "InProgress": "In Progress",
+        "Approved": "Approved"
     }
 }
