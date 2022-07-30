@@ -119,7 +119,8 @@
         "SaveChanges":"Save Changes",
         "Admin":"Admin",
         "Consumer":"Consumer",
-        "EditProfile":"Edit Profile"
+        "EditProfile":"Edit Profile",
+        "UserProfile":"User Profile"
     },
     "FleetManagement": {
         "NewCarRequest": "New Car Request",
