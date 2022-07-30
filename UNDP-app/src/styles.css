@@ -53,3 +53,15 @@ body::-webkit-scrollbar-thumb {
 .btn-sm {
     margin: 5px;
 }
+
+.status-in-progress {
+    color: yellowgreen;
+}
+
+.status-approved {
+    color: blue;
+}
+
+.status-completed {
+    color: green;
+}
