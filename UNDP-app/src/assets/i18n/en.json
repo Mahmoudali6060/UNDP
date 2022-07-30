@@ -71,8 +71,8 @@
         "UserManagement": "User Management",
         "UserList": "User List",
         "FleetManagement": "Fleet Management",
-        "CarRequestList": "Car Request List"
-
+        "CarRequestInbox": "Car Request (Inbox)",
+        "CarRequestMyInbox": "Car Request (My Inbox)"
     },
     "Errors": {
         "InvalidUsernameOrPassword": "Invalid Username or Password",

@@ -10,6 +10,7 @@ import { ConfigService } from '../../../shared/services/config.service';
 export class SideMenuComponent {
 
   serverUrl:string;
+  
   constructor(
     public authService: AuthService,
     private _configService: ConfigService

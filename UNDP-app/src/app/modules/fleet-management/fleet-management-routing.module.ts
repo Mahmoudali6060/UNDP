@@ -6,6 +6,7 @@ import { CarRequestListComponent } from './components/car-request-list/car-reque
 const routes: Routes = [
   { path: '', component: CarRequestListComponent },
   { path: 'car-request-list', component: CarRequestListComponent },
+  { path: 'car-request-list/:loggedUserId', component: CarRequestListComponent },
   { path: 'car-request-form', component: CarRequestFormComponent },
   { path: 'car-request-form/:id', component: CarRequestFormComponent }
 

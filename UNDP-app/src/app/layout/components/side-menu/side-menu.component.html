@@ -47,7 +47,12 @@
                     <ul class="list-unstyled navbar__sub-list js-sub-list">
                         <li>
                             <a [routerLink]="['/fleet-management/car-request-list']">
-                                <i class="fas fa-fleet"></i><span translate>SideMenu.CarRequestList</span></a>
+                                <i class="fas fa-fleet"></i><span translate>SideMenu.CarRequestInbox</span></a>
+                        </li>
+
+                        <li>
+                            <a [routerLink]="['/fleet-management/car-request-list/'+authService?.loggedUserProfile?.id]">
+                                <i class="fas fa-fleet"></i><span translate>SideMenu.CarRequestMyInbox</span></a>
                         </li>
 
                     </ul>

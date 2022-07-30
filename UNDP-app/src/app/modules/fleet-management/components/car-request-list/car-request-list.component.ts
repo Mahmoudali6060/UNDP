@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { DataSourceModel } from '../../../../shared/models/data-source.model';
+import { FilterModel } from '../../../../shared/models/filter.model';
 import { ConfirmationDialogService } from '../../../../shared/services/confirmation-dialog.service';
 import { AuthService } from '../../../authentication/services/auth.service';
 import { CarRequestDTO } from '../../models/car-request.dto';
@@ -17,20 +18,26 @@ export class CarRequestListComponent {
 
 	dataSource: DataSourceModel = new DataSourceModel();
 	carRequestList: Array<CarRequestDTO> = new Array<CarRequestDTO>();
-
+	loggedUserId: number;
 	constructor(private carRequestService: CarRequestService,
 		private confirmationDialogService: ConfirmationDialogService,
 		private toastrService: ToastrService,
 		private translate: TranslateService,
-		private authService: AuthService) {
+		private authService: AuthService,
+		private route: ActivatedRoute
+	) {
 
 	}
 
 	ngOnInit() {
+		debugger;
+		this.loggedUserId = Number(this.route.snapshot.paramMap.get('loggedUserId'));
+
 		this.getAllCarRequests();
 	}
 
 	getAllCarRequests() {
+		this.applyFilters();
 		this.carRequestService.getAll(this.dataSource).subscribe((res: any) => {
 			this.carRequestList = res.list;
 		});
@@ -57,6 +64,16 @@ export class CarRequestListComponent {
 				this.getAllCarRequests();
 			}
 		});
+	}
+
+	applyFilters() {
+		if (this.loggedUserId) {
+			let userProfileIdFilter: FilterModel = new FilterModel();
+			userProfileIdFilter.key = "UserProfileId";
+			userProfileIdFilter.value = this.loggedUserId.toString();
+			userProfileIdFilter.operator = "=";
+			this.dataSource.filter.push(userProfileIdFilter);
+		}
 	}
 
 	public openConfirmationDialog(item: CarRequestDTO) {
