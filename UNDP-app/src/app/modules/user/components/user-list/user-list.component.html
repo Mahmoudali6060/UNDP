@@ -4,7 +4,7 @@
         <h3 class="title-5 m-b-35">{{'User.Users' |translate}}</h3>
         <div class="table-data__tool">
             <div class="table-data__tool-left">
-                <div class="rs-select2--light rs-select2--md">
+                <!-- <div class="rs-select2--light rs-select2--md">
                     <select class="js-select2 select2-hidden-accessible" name="property" tabindex="-1" aria-hidden="true">
                         <option selected="selected">All Properties</option>
                         <option value="">Option 1</option>
@@ -16,8 +16,8 @@
                                     title="Option 1">Option 1</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span>
                     </span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
                     <div class="dropDownSelect2"></div>
-                </div>
-                <div class="rs-select2--light rs-select2--sm">
+                </div> -->
+                <!-- <div class="rs-select2--light rs-select2--sm">
                     <select class="js-select2 select2-hidden-accessible" name="time" tabindex="-1" aria-hidden="true">
                         <option selected="selected">Today</option>
                         <option value="">3 Days</option>
@@ -30,7 +30,7 @@
                                         role="presentation"></b></span></span>
                     </span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
                     <div class="dropDownSelect2"></div>
-                </div>
+                </div> -->
                 <button class="au-btn-filter">
                     <i class="zmdi zmdi-filter-list"></i>filters</button>
             </div>
@@ -58,7 +58,7 @@
                 <thead class="table-header-bc">
                     <tr>
                         <th></th>
-                       <!-- <th class="table-header-fc">
+                        <!-- <th class="table-header-fc">
                              <label class="au-checkbox">
                                 <input type="checkbox">
                                 <span class="au-checkmark"></span>
@@ -77,9 +77,8 @@
                     <tr class="tr-shadow" *ngFor="let item of userList">
                         <td></td>
                         <td>
-                            <img *ngIf="item.imageUrl" src="{{serverUrl}}/wwwroot/Images/Users/{{item.imageUrl}}"
-                            class="image img-cir img-40 img-fluid">
-                        <img class="image img-cir img-40 img-fluid" *ngIf="!item.imageUrl" src="assets/images/icon/avatar-big-01.jpg" />
+                            <img *ngIf="item.imageUrl" src="{{serverUrl}}/wwwroot/Images/Users/{{item.imageUrl}}" class="image img-cir img-40 img-fluid">
+                            <img class="image img-cir img-40 img-fluid" *ngIf="!item.imageUrl" src="assets/images/icon/avatar-big-01.jpg" />
                         </td>
                         <td>{{item.firstName}} {{item.lastName}}</td>
                         <td>{{item.mobile}}</td>
