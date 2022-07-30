@@ -8,6 +8,6 @@ namespace Shared.Entities.Shared
     public class ResponseEntityList<T>
     {
         public int Total { get; set; }
-        public IQueryable<T> List { get; set; }
+        public IEnumerable<T> List { get; set; }
     }
 }

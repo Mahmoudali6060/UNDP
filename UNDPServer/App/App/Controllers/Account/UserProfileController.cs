@@ -22,7 +22,7 @@ namespace App.Controllers.Account
 
         [HttpPost, Route("GetAll")]
         //[Authorize(Roles = Roles.Admin)]
-        public async Task<IActionResult> GetAll([FromBody] DataSource dataSource) => Ok(await _userProfileDSL.GetAll(dataSource));
+        public async Task<IActionResult> GetAll([FromBody] UserProfileSearchCriteriaDTO searchCriteriaDTO) => Ok(await _userProfileDSL.GetAll(searchCriteriaDTO));
 
         [HttpGet, Route("GetById/{id}")]
         //[Authorize(Roles = Roles.Admin)]

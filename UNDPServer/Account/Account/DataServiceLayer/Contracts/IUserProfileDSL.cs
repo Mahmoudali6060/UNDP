@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Accout.DataServiceLayer
 {
-    public interface IUserProfileDSL : ICRUDOperationsDSL<UserProfileDTO>
+    public interface IUserProfileDSL : ICRUDOperationsDSL<UserProfileDTO, UserProfileSearchCriteriaDTO>
     {
         Task<UserProfile> GetUserProfileByAppUserId(string appUserId);
     }

@@ -25,37 +25,33 @@ namespace FleetManagement.DataServiceLayer
             _mapper = mapper;
         }
 
-        public async Task<ResponseEntityList<CarRequestDTO>> GetAll(DataSource dataSource)
-        {
-            var carRequest = await _carRequestDAL.GetAll(dataSource);
-            var list = _mapper.Map<IEnumerable<CarRequestDTO>>(carRequest.List).AsQueryable();
-
-            //Filter by UserProfileId
-            //list = list.Where(x => x.UserProfileId == UserProfileId);
-            return new ResponseEntityList<CarRequestDTO>
-            {
-                List = list.Skip((dataSource.Page - 1) * dataSource.PageSize).Take(dataSource.PageSize),
-                Total = list.Count()
-            };
-            //return Helper.ToResult(list, carRequest.Total, dataSource);
-        }
-
         public async Task<ResponseEntityList<CarRequestDTO>> GetAll(CarRequestSearchCriteriaDTO searchCriteriaDTO)
         {
-            var carRequest = await _carRequestDAL.GetAll(searchCriteriaDTO);
-            var list = _mapper.Map<IEnumerable<CarRequestDTO>>(carRequest.List).AsQueryable();
+            var carRequestList = await _carRequestDAL.GetAll();
+            int total = carRequestList.Count();
 
+            #region Apply Filters
             //Filter by UserProfileId
             if (searchCriteriaDTO.UserProfileId > 0)
             {
-                list = list.Where(x => x.UserProfileId == searchCriteriaDTO.UserProfileId);
+                carRequestList = carRequestList.Where(x => x.UserProfileId == searchCriteriaDTO.UserProfileId);
             }
+            #endregion
 
+            #region Apply Pagination
+            carRequestList = carRequestList.Skip((searchCriteriaDTO.Page - 1) * searchCriteriaDTO.PageSize).Take(searchCriteriaDTO.PageSize);
+            #endregion
+
+
+            #region Mapping and Return List
+            var carRequestDTOList = _mapper.Map<IEnumerable<CarRequestDTO>>(carRequestList);
             return new ResponseEntityList<CarRequestDTO>
             {
-                List = list.Skip((searchCriteriaDTO.Page - 1) * searchCriteriaDTO.PageSize).Take(searchCriteriaDTO.PageSize),
-                Total = list.Count()
+                List = carRequestDTOList,
+                Total = total
             };
+            #endregion
+
         }
 
         public async Task<CarRequestDTO> GetById(long id)
@@ -67,8 +63,8 @@ namespace FleetManagement.DataServiceLayer
         {
             return new ResponseEntityList<CarRequestDTO>()
             {
-                List = _mapper.Map<IQueryable<CarRequestDTO>>(_carRequestDAL.GetAllLite().Result.List),
-                Total = _carRequestDAL.GetAllLite().Result.Total
+                List = _mapper.Map<IQueryable<CarRequestDTO>>(_carRequestDAL.GetAllLite().Result),
+                Total = _carRequestDAL.GetAllLite().Result.Count()
             };
         }
 

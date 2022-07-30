@@ -1,19 +1,20 @@
 ﻿using Shared.Entities.Shared;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Shared.DataAccessLayer
 {
-    public interface ICRUDOperationsDAL<T>
+    public interface ICRUDOperationsDAL<TEntity>
     {
-        Task<ResponseEntityList<T>> GetAll(DataSource dataSource);
-        Task<ResponseEntityList<T>> GetAllLite();
-        Task<T> GetById(long id);
-        Task<long> Add(T entity);
-        Task<long> Update(T entity);
-        Task<bool> Delete(T entity);
+        Task<IQueryable<TEntity>> GetAll();
+        Task<IQueryable<TEntity>> GetAllLite();
+        Task<TEntity> GetById(long id);
+        Task<long> Add(TEntity entity);
+        Task<long> Update(TEntity entity);
+        Task<bool> Delete(TEntity entity);
 
     }
 }

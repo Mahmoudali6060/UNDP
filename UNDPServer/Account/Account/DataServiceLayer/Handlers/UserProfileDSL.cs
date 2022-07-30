@@ -27,11 +27,28 @@ namespace Accout.DataServiceLayer
             _mapper = mapper;
         }
 
-        public async Task<ResponseEntityList<UserProfileDTO>> GetAll(DataSource dataSource)
+        public async Task<ResponseEntityList<UserProfileDTO>> GetAll(UserProfileSearchCriteriaDTO searchCriteriaDTO)
         {
-            var UserProfile = await _userProfileDAL.GetAll(dataSource);
-            var list = _mapper.Map<IEnumerable<UserProfileDTO>>(UserProfile.List).AsQueryable();
-            return Helper.ToResult(list, UserProfile.Total, dataSource);
+            var userProfileList = await _userProfileDAL.GetAll();
+            int total = userProfileList.Count();
+
+            #region Apply Filters
+
+            #endregion
+
+            #region Apply Pagination
+            userProfileList = userProfileList.Skip((searchCriteriaDTO.Page - 1) * searchCriteriaDTO.PageSize).Take(searchCriteriaDTO.PageSize);
+            #endregion
+
+            #region Mapping and Return List
+            var userProfileDTOList = _mapper.Map<IEnumerable<UserProfileDTO>>(userProfileList);
+            return new ResponseEntityList<UserProfileDTO>
+            {
+                List = userProfileDTOList,
+                Total = total
+            };
+            #endregion
+
         }
         public async Task<UserProfileDTO> GetById(long id)
         {
@@ -43,8 +60,8 @@ namespace Accout.DataServiceLayer
         {
             return new ResponseEntityList<UserProfileDTO>()
             {
-                List = _mapper.Map<IQueryable<UserProfileDTO>>(_userProfileDAL.GetAllLite().Result.List),
-                Total = _userProfileDAL.GetAllLite().Result.Total
+                List = _mapper.Map<IQueryable<UserProfileDTO>>(_userProfileDAL.GetAllLite().Result),
+                Total = _userProfileDAL.GetAllLite().Result.Count()
             };
         }
 

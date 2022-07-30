@@ -6,6 +6,7 @@ import { DataSourceModel } from '../../../../shared/models/data-source.model';
 import { FilterModel } from '../../../../shared/models/filter.model';
 import { ConfirmationDialogService } from '../../../../shared/services/confirmation-dialog.service';
 import { AuthService } from '../../../authentication/services/auth.service';
+import { CarRequestSearchCriteriaDTO } from '../../models/car-request-search-criteria.dto';
 import { CarRequestDTO } from '../../models/car-request.dto';
 import { CarRequestService } from '../../services/car-request.service';
 declare var jQuery: any;
@@ -16,9 +17,12 @@ declare var jQuery: any;
 })
 export class CarRequestListComponent {
 
-	dataSource: DataSourceModel = new DataSourceModel();
+	//#region  Variables
+	carRequestSearchCrieria: CarRequestSearchCriteriaDTO = new CarRequestSearchCriteriaDTO();
 	carRequestList: Array<CarRequestDTO> = new Array<CarRequestDTO>();
 	loggedUserId: number;
+	//#endregion
+
 	constructor(private carRequestService: CarRequestService,
 		private confirmationDialogService: ConfirmationDialogService,
 		private toastrService: ToastrService,
@@ -30,15 +34,13 @@ export class CarRequestListComponent {
 	}
 
 	ngOnInit() {
-		debugger;
 		this.loggedUserId = Number(this.route.snapshot.paramMap.get('loggedUserId'));
-
 		this.getAllCarRequests();
 	}
 
 	getAllCarRequests() {
 		this.applyFilters();
-		this.carRequestService.getAll(this.dataSource).subscribe((res: any) => {
+		this.carRequestService.getAll(this.carRequestSearchCrieria).subscribe((res: any) => {
 			this.carRequestList = res.list;
 		});
 	}
@@ -68,11 +70,7 @@ export class CarRequestListComponent {
 
 	applyFilters() {
 		if (this.loggedUserId) {
-			let userProfileIdFilter: FilterModel = new FilterModel();
-			userProfileIdFilter.key = "UserProfileId";
-			userProfileIdFilter.value = this.loggedUserId.toString();
-			userProfileIdFilter.operator = "=";
-			this.dataSource.filter.push(userProfileIdFilter);
+			this.carRequestSearchCrieria.userProfileId = this.loggedUserId;
 		}
 	}
 

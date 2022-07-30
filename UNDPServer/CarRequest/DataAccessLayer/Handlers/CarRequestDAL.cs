@@ -16,23 +16,14 @@ namespace FleetManagement.DataAccessLayer
         }
 
 
-        public async Task<ResponseEntityList<CarRequest>> GetAll(DataSource dataSource)
+        public async Task<IQueryable<CarRequest>> GetAll()
         {
-            return new ResponseEntityList<CarRequest>()
-            {
-                List =  _appDbContext.CarRequests.AsQueryable(),
-                Total = _appDbContext.CarRequests.Count()
-            };
+            return _appDbContext.CarRequests.AsQueryable();
         }
 
-        public async Task<ResponseEntityList<CarRequest>> GetAllLite()
+        public async Task<IQueryable<CarRequest>> GetAllLite()
         {
-
-            return new ResponseEntityList<CarRequest>()
-            {
-                List = _appDbContext.CarRequests.AsQueryable(),
-                Total = _appDbContext.CarRequests.Count()
-            };
+            return _appDbContext.CarRequests.AsQueryable();
         }
 
         public async Task<CarRequest> GetById(long id)

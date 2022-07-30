@@ -20,7 +20,7 @@ namespace App.Controllers.FleetManagement
 
         [HttpPost, Route("GetAll")]
         //[Authorize(Roles = Roles.Admin)]
-        public async Task<IActionResult> GetAll([FromBody] DataSource dataSource) => Ok(await _carRequestDSL.GetAll(dataSource));
+        public async Task<IActionResult> GetAll([FromBody] CarRequestSearchCriteriaDTO searchCriteriaDTO) => Ok(await _carRequestDSL.GetAll(searchCriteriaDTO));
 
         [HttpGet, Route("GetById/{id}")]
         //[Authorize(Roles = Roles.Admin)]

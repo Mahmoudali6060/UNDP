@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 
 namespace FleetManagement.DataServiceLayer
 {
-    public interface ICarRequestDSL : ICRUDOperationsDSL<CarRequestDTO>
+    public interface ICarRequestDSL : ICRUDOperationsDSL<CarRequestDTO, CarRequestSearchCriteriaDTO>
     {
-        Task<ResponseEntityList<CarRequestDTO>> GetAll(CarRequestSearchCriteriaDTO dataSource)
+
     }
 }

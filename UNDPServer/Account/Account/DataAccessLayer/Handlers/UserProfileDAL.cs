@@ -15,24 +15,14 @@ namespace Account.DataAccessLayer
             _appDbContext = appDbContext;
         }
 
-
-        public async Task<ResponseEntityList<UserProfile>> GetAll(DataSource dataSource)
+        public async Task<IQueryable<UserProfile>> GetAll()
         {
-            return new ResponseEntityList<UserProfile>()
-            {
-                List = _appDbContext.UserProfiles.Include(x => x.AppUser).AsQueryable(),
-                Total = _appDbContext.UserProfiles.Count()
-            };
+            return _appDbContext.UserProfiles.Include(x => x.AppUser).AsQueryable();
         }
 
-        public async Task<ResponseEntityList<UserProfile>> GetAllLite()
+        public async Task<IQueryable<UserProfile>> GetAllLite()
         {
-
-            return new ResponseEntityList<UserProfile>()
-            {
-                List = _appDbContext.UserProfiles.AsQueryable(),
-                Total = _appDbContext.UserProfiles.Count()
-            };
+            return _appDbContext.UserProfiles.AsQueryable();
         }
 
         public async Task<UserProfile> GetById(long id)

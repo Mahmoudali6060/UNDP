@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace Shared.DataServiceLayer
 {
-    public interface ICRUDOperationsDSL<T>
+    public interface ICRUDOperationsDSL<TEntity, TSearch>
     {
-        Task<ResponseEntityList<T>> GetAll(DataSource dataSource);
-        Task<ResponseEntityList<T>> GetAllLite();
-        Task<T> GetById(long id);
-        Task<long> Add(T entity);
-        Task<long> Update(T entity);
+        Task<ResponseEntityList<TEntity>> GetAll(TSearch searchCrieria);
+        Task<ResponseEntityList<TEntity>> GetAllLite();
+        Task<TEntity> GetById(long id);
+        Task<long> Add(TEntity entity);
+        Task<long> Update(TEntity entity);
         Task<bool> Delete(long id);
     }
 }
