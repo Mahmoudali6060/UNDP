@@ -1,6 +1,7 @@
 <div class="row">
     <div class="col-lg-12">
         <div class="card">
+            <form #frm="ngForm" (ngSubmit)="save(frm)">
             <div class="card-header">
                 <strong>{{'FleetManagement.NewCarRequest'|translate}} </strong>
             </div>
@@ -11,13 +12,23 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label for="requesterName" class=" form-control-label">{{'FleetManagement.RequesterName'|translate}}</label>
-                                    <input [(ngModel)]="carRequestDTO.requesterName" type="text" id="requesterName" class="form-control">
+                                    <input [(ngModel)]="carRequestDTO.requesterName" type="text" class="form-control"
+                                    #requesterName="ngModel" [class.is-invalid]="requesterName.invalid && requesterName.touched"
+                                    [class.is-valid]="requesterName.valid"  required minlength="3" name="requesterName"
+                                    id="requesterName" class="form-control"  aria-describedby="helpId">
+                                <small [hidden]="requesterName.valid || requesterName.untouched" id="helpId" class="text-muted"
+                                    [translate]="'Errors.invalidRequesterName'"></small>
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label for="requesterEmail" class=" form-control-label">{{'FleetManagement.RequesterEmail'|translate}}</label>
-                                    <input [(ngModel)]="carRequestDTO.requesterEmail" type="text" id="requesterEmail" class="form-control">
+                                    <input [(ngModel)]="carRequestDTO.requesterEmail" type="email"  class="form-control"
+                                    #requesterEmail="ngModel" [class.is-invalid]="requesterEmail.invalid && requesterEmail.touched"
+                                    [class.is-valid]="requesterEmail.valid"  required minlength="3" name="requesterEmail"
+                                    id="requesterEmail" class="form-control"  aria-describedby="helpId">
+                                <small [hidden]="requesterEmail.valid || requesterEmail.untouched" id="helpId" class="text-muted" style="color: blue;"
+                                    [translate]="'Errors.invalidRequesterEmail'"></small>
                                 </div>
                             </div>
                         </div>
@@ -25,14 +36,25 @@
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <label for="dateFrom" class=" form-control-label">{{'FleetManagement.DateFrom'|translate}}</label>
-                                    <input [(ngModel)]="carRequestDTO.dateFrom" type="datetime-local" id="dateFrom" class="form-control">
+                                    <label for="dateFrom"  class=" form-control-label">{{'FleetManagement.DateFrom'|translate}}</label>
+                                    <input max="{{maxDate | date:'mm-dd-yyyy hh:mm:ss'}}" [(ngModel)]="carRequestDTO.dateFrom" type="datetime-local" id="dateFrom" class="form-control"
+                                    #dateFrom="ngModel" [class.is-invalid]="dateFrom.invalid && dateFrom.touched"
+                                    [class.is-valid]="dateFrom.valid"  required minlength="3" name="dateFrom"
+                                    id="dateFrom" class="form-control"  aria-describedby="helpId">
+                                <small [hidden]="dateFrom.valid || dateFrom.untouched" id="helpId" class="text-muted"
+                                    [translate]="'Errors.dateFromIsRequired'"></small>
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label for="dateTo" class=" form-control-label">{{'FleetManagement.DateTo'|translate}}</label>
-                                    <input [(ngModel)]="carRequestDTO.dateTo" type="datetime-local" id="dateTo" class="form-control">
+                                    <input (change)="comparedate()"
+                                     [(ngModel)]="carRequestDTO.dateTo" type="datetime-local" id="dateTo" class="form-control"
+                                    #dateTo="ngModel" [class.is-invalid]="dateTo.invalid && dateTo.touched"
+                                    [class.is-valid]="dateTo.valid"  required minlength="3" name="dateTo"
+                                    id="dateTo" class="form-control"  aria-describedby="helpId">
+                                <small [hidden]="dateTo.valid || dateTo.untouched" id="helpId" class="text-muted"
+                                    [translate]="'Errors.dateToIsRequired'"></small>
                                 </div>
                             </div>
                         </div>
@@ -41,13 +63,23 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label for="pickUp" class=" form-control-label">{{'FleetManagement.PickUp'|translate}}</label>
-                                    <input [(ngModel)]="carRequestDTO.pickUp" type="text" id="pickUp" class="form-control">
+                                    <input [(ngModel)]="carRequestDTO.pickUp" type="text" id="pickUp" class="form-control"
+                                    #pickUp="ngModel" [class.is-invalid]="pickUp.invalid && pickUp.touched"
+                                    [class.is-valid]="pickUp.valid"  required minlength="3" name="pickUp"
+                                    id="pickUp" class="form-control"  aria-describedby="helpId">
+                                <small [hidden]="pickUp.valid || pickUp.untouched" id="helpId" class="text-muted"
+                                    [translate]="'Errors.pickUpIsRequired'"></small>
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label for="destination" class=" form-control-label">{{'FleetManagement.Destination'|translate}}</label>
-                                    <input [(ngModel)]="carRequestDTO.destination" type="text" id="destination" class="form-control">
+                                    <input [(ngModel)]="carRequestDTO.destination" type="text" id="destination" class="form-control"
+                                    #destination="ngModel" [class.is-invalid]="destination.invalid && destination.touched"
+                                    [class.is-valid]="destination.valid"  required minlength="3" name="destination"
+                                    id="destination" class="form-control"  aria-describedby="helpId">
+                                <small [hidden]="destination.valid || destination.untouched" id="helpId" class="text-muted"
+                                    [translate]="'Errors.destinationIsRequired'"></small>
                                 </div>
                             </div>
                         </div>
@@ -62,7 +94,12 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label for="purpose" class=" form-control-label">{{'FleetManagement.Purpose'|translate}}</label>
-                                    <input [(ngModel)]="carRequestDTO.purpose" type="text" id="purpose" class="form-control">
+                                    <input [(ngModel)]="carRequestDTO.purpose" type="text" id="purpose" class="form-control"
+                                    #purpose="ngModel" [class.is-invalid]="purpose.invalid && purpose.touched"
+                                    [class.is-valid]="purpose.valid"  required minlength="3" name="purpose"
+                                    id="purpose" class="form-control"  aria-describedby="helpId">
+                                <small [hidden]="purpose.valid || purpose.untouched" id="helpId" class="text-muted"
+                                    [translate]="'Errors.purposeIsRequired'"></small>
                                 </div>
                             </div>
                         </div>
@@ -73,14 +110,23 @@
                 </div>
 
             </div>
-            <div class="card-footer">
-                <button (click)="save()" type="submit" class="btn btn-primary btn-sm">
+            <div class="flex-container p-3">
+                <button  type="submit" class="btn btn-outline-primary" [disabled]="frm.invalid">
+                    <i class="fa fa-dot-circle-o"></i>{{'User.SaveChanges' |translate}} 
+                </button>
+                <button type="reset" class="btn btn-danger" (click)="cancel()">
+                    <i class="fa fa-ban"></i>{{'User.Cancel' |translate}} 
+                </button>
+            </div>
+            <!-- <div class="card-footer">
+                <button  [disabled]="frm.invalid"  type="submit" class="btn btn-primary btn-sm">
                     <i class="fa fa-dot-circle-o"></i> Submit
                 </button>
                 <button type="reset" class="btn btn-danger btn-sm" (click)="cancel()">
                     <i class="fa fa-ban"></i> Cancel
                 </button>
-            </div>
+            </div> -->
+            </form>
         </div>
     </div>
 </div>

@@ -30,7 +30,11 @@
         "Total": "Total",
         "Number": "Number",
         "Clients": "Clients",
-        "Error": "Error"
+        "Error": "Error",
+        "Filter":"Filter",
+        "Filters":"Filters"
+
+
     },
     "ConfirmaionDialog": {
         "Title": "Confirmaion Dialog",
@@ -98,7 +102,15 @@
         "UserNameIsRequired": "User Name Is Required",
         "PasswordIsRequired": "Password Is Required",
         "ConfirmPasswordIsRequired": "Confirm Password Is Required",
-        "InvalidConfirmPassword": "كلمة المرور وكلمة المرور التأكيدية غير متطابقتين"
+        "InvalidConfirmPassword": "Password And Confirm Password Not Matched",
+        "invalidRequesterName" :"The Requester Name must be at least 2 characters long",
+        "invalidRequesterEmail":"Please Insert valid Email",
+        "dateFromIsRequired":"Date-Time From Is Required",
+        "dateToIsRequired":"Date-Time To Is Required",
+        "pickUpIsRequired":"Pick-Up Is Required",
+        "destinationIsRequired":"Destination Is Required",
+        "purposeIsRequired":"Purpose Is Required"
+
     },
   "User": {
     "Users": "Users",
@@ -120,7 +132,8 @@
     "Consumer": "Consumer",
     "EditProfile": "Edit Profile",
     "FullName": "Full Name",
-    "UserProfile": "User Profile"
+    "UserProfile": "User Profile",
+    "jobTitle":"Job Title"
   },
     "FleetManagement": {
         "NewCarRequest": "New Car Request",
@@ -131,26 +144,14 @@
         "Destination": "Destination",
         "Comments": "Comments",
         "Purpose": "Purpose",
-        "DateFrom": "Date From",
-        "DateTo": "Date To",
+        "DateFrom": "Date/time From",
+        "DateTo": "Date/Time To",
         "RequestID": "Request ID",
         "RequestStatus": "Request Status",
         "StartingTime": "Starting Time",
         "EndingTime": "Ending Time",
-        "Image": "Image",
-        "addUser": "Add User",
-        "UploadImage": "Upload Image",
-        "Admin": "Admin",
-        "Consumer": "Consumer",
-        "SaveChanges": "Save Changes",
-        "Cancel": "Cancel",
-        "Mobile": "Mobile",
-        "jobTitle": "Job Title",
-        "FullName": "Full Name",
-        "EditProfile": "Edit Profile",
-        "UserProfile": "User Profile",
-        "editUser": "Edit User",
-        "AssignToMe": "Assign to me"
+        "AssignToMe": "Assign to me",
+        "CarRequestInbox":"Car Request Inbox"
     },
     "CarRequestStatusEnum": {
         "InProgress": "In Progress",

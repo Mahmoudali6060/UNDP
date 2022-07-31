@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { ResetPasswordComponent } from 'src/app/modules/authentication/components/reset-password/reset-password.component';
 import { ResetPasswordDTO } from 'src/app/modules/authentication/models/reset-password-dto';
@@ -45,7 +46,7 @@ export class ProfileComponent implements OnInit {
   EditProfile() {
     this.edit = true;
   }
-  save() {
+  save(frm: NgForm) {
     this.userProfileService.update(this.profile).subscribe(res => {
       if(res){
         this.getProfileById(this.profile.id)

@@ -6,6 +6,7 @@ import { UserProfileDTO } from '../../models/user-profile.dto';
 import { UserProfileService } from '../../services/user.service';
 import { Location } from '@angular/common';
 import { ConfigService } from 'src/app/shared/services/config.service';
+import { NgForm } from '@angular/forms';
 declare var jQuery: any;
 
 @Component({
@@ -47,7 +48,7 @@ export class UserFormComponent {
 	cancel() {
 		this.location.back();
 	}
-	save() {
+	save(frm: NgForm) {
 
 		if (this.userProfileDTO.id) {
 			this.userProfileService.update(this.userProfileDTO).subscribe(res => {

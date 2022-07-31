@@ -1,6 +1,7 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { ConfigService } from 'src/app/shared/services/config.service';
 import { DataSourceModel } from '../../../../shared/models/data-source.model';
@@ -23,7 +24,8 @@ export class UserListComponent {
 		private confirmationDialogService: ConfirmationDialogService,
 		private toastrService: ToastrService,
 		private translate: TranslateService,
-		private _configService: ConfigService) {
+		private _configService: ConfigService,
+		private SpinnerService: NgxSpinnerService) {
 
 	}
 
@@ -32,6 +34,7 @@ export class UserListComponent {
 	}
 
 	getAllUsers() {
+		this.SpinnerService.show(); 
 		this.userProfileService.getAll(this.dataSource).subscribe((res: any) => {
 			this.userList = res.list;
 		   this.serverUrl = this._configService.getServerUrl();

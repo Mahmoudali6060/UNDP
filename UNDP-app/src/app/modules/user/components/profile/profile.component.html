@@ -44,6 +44,7 @@
                 </div>
             </div>
             <div class="col-lg-8" *ngIf="!ischangePassword">
+                <form #frm="ngForm" (ngSubmit)="save(frm)">
                 <div class="card mb-4">
                     <div class="card-body">
                         <div class="row">
@@ -158,11 +159,12 @@
                             <button type="button" class="btn btn-danger"
                                 (click)="close()">{{'General.Cancel'|translate}}</button>
 
-                            <button type="button" class="btn btn-outline-primary" (click)="save()"> {{'User.SaveChanges'
+                            <button type="submit" [disabled]="frm.invalid" class="btn btn-outline-primary" > {{'User.SaveChanges'
                                 |translate}}</button>
                         </div>
                     </div>
                 </div>
+                </form>
                 <!-- <div class="row">
             <div class="col-md-6">
               <div class="card mb-4 mb-md-0">

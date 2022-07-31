@@ -3,11 +3,11 @@
         <app-change-langague></app-change-langague>
         <div class="login-wrap">
             <div class="login-content">
-                <div class="login-logo">
+                <div class="login-logo" style="background-color: #0468b1;">
                     <!-- <a href="#">
                         <img src="/assets/images/icon/logo.png" alt="CoolAdmin">
                     </a> -->
-                    <svg>
+                    <svg >
                         <use xlink:href="/assets/images/icon/svg-icons.svg#icon-logo"></use>
                     </svg>
                 </div>
@@ -26,8 +26,8 @@
                             </label>
                             <label> <a [routerLink]="['/forgotpassword']" >{{'Authentication.ForgottenPassword' |translate}}</a></label>
                         </div>
-                        <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit" translate>Authentication.LogIn</button>
-                        <!-- <div class="social-login-content">
+                        <button [disabled]="loginForm.invalid" class="au-btn au-btn--block au-btn--green m-b-20" style="background-color: #0468b1;" type="submit" translate>Authentication.LogIn</button>
+                        <!-- <div class="social-login-content" au-btn--green >
                             <div class="social-button">
                                 <button class="au-btn au-btn--block au-btn--blue m-b-20">sign in with facebook</button>
                                 <button class="au-btn au-btn--block au-btn--blue2">sign in with twitter</button>

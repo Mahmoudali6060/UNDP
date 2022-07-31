@@ -44,7 +44,10 @@
         "No": "الغاء",
         "DeleteDetails": "هل تريد حذف هذا الصف ؟",
         "Delete": "حذف",
-        "Error": "خطأ"
+        "Error": "خطأ",
+        "Filter":"تصفية",
+        "Filters":"التصفيات"
+
     },
     "Authentication": {
         "FirstName": "الاسم الأول",
@@ -79,18 +82,21 @@
         "Dashboard": "لوحة التحكم",
         "UserManagement": "اعدادات المستخدمين",
         "UserForm": "اضافة مستخدم",
-        "UserList": "قائمة المستخدمين"
+        "UserList": "قائمة المستخدمين",
+        "FleetManagement":"إدارة السيارات",
+        "CarRequestInbox":"صندوق الوارد لطلبات السيارت",
+        "CarRequestMyInbox":"طلبات السيارة الخاصة بي"
     },
     "Errors": {
         "InvalidUsernameOrPassword": "من فضلك تأكد من اسم المستخدم او كلمة المرور",
         "InvalidEmail":"من فضلك ادخل بريد الكتروني صحيح",
-        "InvalidFirstName":"يجب ألا يقل الاسم الأول عن 2 أحرف",
-        "InvalidLastName":"يجب ألا يقل الاسم الأخير عن 2 أحرف",
-        "InvalidUserName":"يجب ألا يقل اسم المستخدم عن 2 أحرف",
+        "InvalidFirstName":"يجب ألا يقل الاسم الأول عن حرفين",
+        "InvalidLastName":"يجب ألا يقل الاسم الأخير عن حرفين",
+        "InvalidUserName":"يجب ألا يقل اسم المستخدم عن حرفين",
         "InvalidPassword":"يجب أن تحتوي كلمة المرور على رقم وحرف وأحرف خاصة على والأ لا تقل عن 8 ",
         "InvalidRole":"فئة الصلاحية مطلوبة",
         "InvalidMobile":"رقم الهاتف غير صحيح",
-        "InvalidJobTitle":"يجب ألا يقل المسمى الوظيفي عن 2 أحرف",
+        "InvalidJobTitle":"يجب ألا يقل المسمى الوظيفي عن حرفين",
         "FirstNameIsRequired":"الاسم الاول مطلوب",
         "LastNameIsRequired":"الاسم الأخير مطلوب",
         "MobileIsRequired":"رقم الهاتف مطلوب",
@@ -99,7 +105,15 @@
         "UserNameIsRequired":"اسم المستخدم مطلوب",
         "PasswordIsRequired":"كلمة المرور مطلوبة",
         "ConfirmPasswordIsRequired":"كلمة المرورالتأكيدية مطلوبة",
-        "InvalidConfirmPassword":"كلمة المرور وكلمة المرور التأكيدية غير متطابقتين"
+        "InvalidConfirmPassword":"كلمة المرور وكلمة المرور التأكيدية غير متطابقتين",
+        "invalidRequesterName":"يجب ألا يقل اسم الطالب عن حرفين",
+        "invalidRequesterEmail":"من فضلك ادخل بريد الكتروني صحيح",
+        "dateFromIsRequired":"التاريخ-الوقت من مطلوب",
+        "dateToIsRequired":"التاريخ-الوقت إلى مطلوب",
+        "pickUpIsRequired":"نقطة الإلتقاء مطلوبة",
+        "destinationIsRequired":"الوجهة مطلوبة",
+        "purposeIsRequired":"الغرض مطلوب"
+
     },
     "User": {
         "Users":"المستخدمين",
@@ -124,5 +138,26 @@
         "EditProfile":"تعديل الملف الشخصي",
         "UserProfile":"الملف الشخصي",
         "editUser":"تعديل المستخدم"
+    },
+    "FleetManagement": {
+        "NewCarRequest": "إضافة طلب سيارة",
+        "RequestReviewFormInbox": "صندوق الوارد لطلب السيارة",
+        "RequesterName": "اسم الطالب",
+        "RequesterEmail": "البريد الالكتروني للطالب",
+        "PickUp": "نقطة الإلتقاء",
+        "Destination": "الوجهة",
+        "Comments": "التعليقات",
+        "Purpose": "الغرض",
+        "DateFrom": "التاريخ والوقت من",
+        "DateTo": "التاريخ والوقت إلى",
+        "RequestID": "رقم الطلب",
+        "RequestStatus": "حالة الطلب",
+        "StartingTime": "وقت البدء",
+        "EndingTime": "وقت الإنتهاء",
+        "AssignToMe": "تعيين لشخصي"
+    },
+    "CarRequestStatusEnum": {
+        "InProgress": "قيد الموافقة",
+        "Approved": "موافق عليه"
     }
 }
