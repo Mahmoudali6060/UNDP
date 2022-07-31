@@ -6,22 +6,12 @@ import { UserFormComponent } from './components/user-form/user-form.component';
 import { UserProfileService } from './services/user.service';
 import { ProfileComponent } from './components/profile/profile.component';
 import { AuthModule } from '../authentication/auth.module';
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { HttpClient } from '@angular/common/http';
 
 @NgModule({
   imports: [
     UserRoutingModule,
     SharedModule,
-    AuthModule,
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      }
-    })
+    AuthModule
   ],
   declarations: [
     UserListComponent,
@@ -34,7 +24,4 @@ import { HttpClient } from '@angular/common/http';
   ]
 })
 export class UserModule {
-}
-export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
-  return new TranslateHttpLoader(http);
 }
