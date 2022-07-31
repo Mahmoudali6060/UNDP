@@ -22,19 +22,36 @@ export class ProfileComponent implements OnInit {
   profile: UserProfileDTO;
   imageSrc: string;
   serverUrl: string;
+  loggedProfile: UserProfileDTO;
+  imageUrl: string;
   constructor(private userProfileService: UserProfileService, private _configService: ConfigService,private toasterService: ToastrService, private localStorageService: LocalStorageService) { }
 
   ngOnInit(): void {
-    this.profile = this.localStorageService.getItem(LocalStorageItems.userProfile)
-    this.serverUrl = this._configService.getServerUrl();
+    this.edit = false;
+    this.ischangePassword=false;
+    this.profile =  new UserProfileDTO();
+    this.loggedProfile = this.localStorageService.getItem(LocalStorageItems.userProfile);
+    this.getProfileById(this.loggedProfile.id);
   }
+  getProfileById(profileId: any) {
+		this.userProfileService.getById(profileId).subscribe((res: any) => {
+			this.profile = res;
+      this.imageUrl = this.profile.imageUrl;
+			this.serverUrl = this._configService.getServerUrl();
+			this.imageSrc = this.serverUrl+"/wwwroot/Images/Users/"+ this.profile.imageUrl ;
+		})
+
+	}
   EditProfile() {
     this.edit = true;
   }
   save() {
     this.userProfileService.update(this.profile).subscribe(res => {
-      this.toasterService.success("success");
-      this.edit = false;
+      if(res){
+        this.getProfileById(this.profile.id)
+        this.toasterService.success("success");
+        this.edit = false;
+      }
     })
   }
   changePassword() {

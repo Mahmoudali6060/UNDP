@@ -1,13 +1,13 @@
 <!-- MENU SIDEBAR-->
 <aside class="menu-sidebar2">
     <div class="logo">
-        <!-- <a href="#">
-            <img src="assets/images/icon/logo-white.png" alt="Cool Admin" />
-        </a> -->
+        <a href="#">
+            <img src="assets/images/logo.jpeg" alt="UNDP" style="height: 60px;width: 100%;"/>
+        </a>
     </div>
     <div class="menu-sidebar2__content js-scrollbar1">
         <div class="account2">
-            <div class="text-center">
+            <div class="text-center" >
                 <img class="image img-cir img-150 img-fluid" *ngIf="authService.loggedUserProfile?.imageUrl" src="{{serverUrl}}/wwwroot/Images/Users/{{authService.loggedUserProfile?.imageUrl}}" />
                 <img class="image img-cir img-150 img-fluid" *ngIf="!authService.loggedUserProfile?.imageUrl" src="assets/images/icon/avatar-big-01.jpg" />
             </div>
@@ -17,12 +17,12 @@
         </div>
         <nav class="navbar-sidebar2">
             <ul class="list-unstyled navbar__list">
-                <li class="active">
+                <li>
                     <a [routerLink]="['/dashboard']">
                         <i class="fas fa-chart-bar"></i><span translate>SideMenu.Dashboard</span> </a>
                     <!-- <span class="inbox-num">3</span> -->
                 </li>
-                <li class=" has-sub">
+                <li class="active has-sub">
                     <a class="js-arrow" href="#">
                         <i class="fas fa-users"></i> <span translate>SideMenu.UserManagement</span>
                         <span class="arrow">
@@ -37,7 +37,7 @@
                     </ul>
                 </li>
 
-                <li class="has-sub">
+                <li class="active has-sub">
                     <a class="js-arrow" href="#">
                         <i class="fas fa-truck"></i> <span translate>SideMenu.FleetManagement</span>
                         <span class="arrow">
@@ -58,15 +58,32 @@
                     </ul>
                 </li>
 
+                <!-- <li>
+                    <a href="#">
+                        <i class="fas fa-shopping-basket"></i>Clients</a>
+                </li>
+
+
                 <li>
                     <a href="#">
                         <i class="fas fa-shopping-basket"></i>Subscribtion</a>
                 </li>
-
+                <li>
+                    <a href="#">
+                        <i class="fas fa-shopping-basket"></i>Registration</a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-shopping-basket"></i>Expenses</a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-shopping-basket"></i>Safe</a>
+                </li>
                 <li>
                     <a href="#">
                         <i class="fas fa-shopping-basket"></i>Reports</a>
-                </li>
+                </li> -->
 
 
             </ul>

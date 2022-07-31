@@ -10,10 +10,10 @@ namespace FleetManagement.Entities
     {
         public long Id { get; set; }
 
-        [Required(ErrorMessage = "Errors.EequesterNameIsRequired")]
+        [Required(ErrorMessage = "Errors.RequesterNameIsRequired")]
         public string RequesterName { get; set; }
 
-        [Required(ErrorMessage = "Errors.EequesterEmailIsRequired")]
+        [Required(ErrorMessage = "Errors.RequesterEmailIsRequired")]
         [EmailAddress(ErrorMessage = "Errors.InvlidEmailAddress")]
         public string RequesterEmail { get; set; }
 
