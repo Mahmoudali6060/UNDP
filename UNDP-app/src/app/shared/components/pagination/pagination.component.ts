@@ -1,103 +1,73 @@
-import { Component, OnChanges, Input, Output, EventEmitter, SimpleChange } from '@angular/core';
-import { PaginationModel } from './pagination.model';
-import { FixedService } from '../../services/fixed.service';
-import { DataSourceModel } from 'src/app/shared/models/data-source.model';
+import { HttpClient } from '@angular/common/http';
+import {
+  Component,
+  Input,
+  EventEmitter,
+  Output,
+  OnInit,
+  SimpleChange,
+} from '@angular/core';
+import { PagerService } from '../../services/pager.service';
 
 @Component({
   selector: 'app-pagination',
-  templateUrl: './pagination.component.html'
+  templateUrl: './pagination.component.html',
+  styleUrls: ['./pagination.component.scss'],
 })
-export class PaginationComponent implements OnChanges {
-  @Input() total: number | undefined;
-  @Input() scroll: string | undefined;
-  pagination: PaginationModel;
-  @Input() recordPerPage: number | undefined;
-  @Output() changePagination = new EventEmitter<any>();
-  @Input() GoToFirstPage: boolean | undefined;
-  constructor(public fixed: FixedService) {
-    this.pagination = new PaginationModel();
-  }
+export class PaginationComponent implements OnInit {
 
-  ngOnChanges(changes: { [propKey: string]: SimpleChange }) {
+  //#region Variables
+  // Total records count
+  @Input() totalRecordsCount: number = 0;
+  // Records per page
+  @Input() recordsPerPage: number = 30;
+  //When User changes the page number
+  @Output() pageChange = new EventEmitter<number>();
 
-    // this.pagination.total = this.total;
-    // if (this.recordPerPage != this.pagination.recordPerPage) {
-    //   this.pagination.recordPerPage = this.recordPerPage;
-    //   if (this.pagination.currentPage != 1) {
-    //     this.change('first', 1);
+  // Total pages
+  totalPages: number = 0;
+  // Current page number
+  currentPageNumber: number = 1;
+  // Pager
+  pager: any = {};
+  //#endregion
 
-    //   }
-    //   else {
-    //     this.generateData();
-    //     this.changePagination.emit(this.pagination);
-    //   }
+  constructor(private http: HttpClient, private pagerService: PagerService) { }
 
-
-    // }
-    // if (this.GoToFirstPage == true) {
-    //   this.change('first', 1);
-    // }
-    // this.generateData();
-    this.pagination.total = this.total;
-    this.generateData();
+  // On init
+  ngOnInit() {
+    this.setPagination(1);
   }
 
 
-  generateData() {
-    // if (this.pagination.recordPerPage === 0) {
-    //   this.pagination = {
-    //     currentPage: 0,
-    //     lastPage: 1,
-    //     from: 1,
-    //     to: this.total,
-    //     list: [1],
-    //     recordPerPageName: 'Common.All',
-    //     total: this.total,
-    //     recordPerPage: 0
-    //   };
-    // } else {
-    //   this.pagination.recordPerPage = Number(this.pagination.recordPerPage);
-    //   this.pagination.list = [];
-    //   this.pagination.lastPage = this.pagination.total / this.pagination.recordPerPage;
-    //   this.pagination.lastPage = (Number.isInteger(this.pagination.lastPage)) ?
-    //     this.pagination.lastPage : Math.trunc(this.pagination.lastPage + 1);
-    //   const start = (this.pagination.currentPage < 3) ? 1 : this.pagination.currentPage - 2;
-    //   let count = 1;
-    //   for (let i = start; i <= this.pagination.lastPage && count <= 5; i++) {
-    //     this.pagination.list.push(i);
-    //     count++;
-    //   }
-    //   this.pagination.from = ((this.pagination.currentPage - 1) * this.pagination.recordPerPage) + 1;
-    //   this.pagination.to = this.pagination.from + this.pagination.recordPerPage - 1;
-    //   if (this.pagination.to > this.pagination.total) { this.pagination.to = this.pagination.total; }
-    // }
+  // Fetch new page data
+  next() {
+    this.pageChange.emit(this.currentPageNumber + 1);
+    this.setPagination(this.currentPageNumber + 1);
   }
 
-  change(type:any) {
-  //   if (page !== this.pagination.currentPage || type === 'recordPerPage') {
-  //     switch (type) {
-  //       case ('plus'):
-  //         this.pagination.currentPage++;
-  //         break;
-  //       case ('min'):
-  //         this.pagination.currentPage--;
-  //         break;
-  //       case ('last'):
-  //         this.pagination.currentPage = this.pagination.lastPage;
-  //         break;
-  //       case ('first'):
-  //         this.pagination.currentPage = 1;
-  //         break;
-  //       case ('list'):
-  //         this.pagination.currentPage = page;
-  //         break;
-  //       case ('recordPerPage'):
-  //         this.pagination.currentPage = page;
-  //         break;
-  //     }
-  //     this.generateData();
-  //     this.changePagination.emit(this.pagination);
-  //   }
-   }
+  // Fetch previous page data
+  prev() {
+    this.pageChange.emit(this.currentPageNumber - 1);
+    this.setPagination(this.currentPageNumber - 1);
+  }
+
+  // Fetch data from API
+  getData(pageNo: any) {
+    this.pageChange.emit(pageNo);
+    this.setPagination(pageNo);
+  }
+
+  // Set pagination data and pager data
+  setPagination(pageNo: any) {
+    pageNo = Number(pageNo);
+    this.currentPageNumber = pageNo;
+    this.totalPages = Math.ceil(this.totalRecordsCount / this.recordsPerPage);
+    this.pager = this.pagerService.getPager(
+      this.totalRecordsCount,
+      pageNo,
+      this.recordsPerPage
+    );
+  }
 
 }

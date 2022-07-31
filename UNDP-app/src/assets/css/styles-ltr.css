@@ -101,3 +101,7 @@ body {
 i {
     margin-right: 5px;
 }
+
+.btn-search {
+    float: right;
+}

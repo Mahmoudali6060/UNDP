@@ -31,11 +31,7 @@ namespace FleetManagement.DataServiceLayer
             int total = carRequestList.Count();
 
             #region Apply Filters
-            //Filter by UserProfileId
-            if (searchCriteriaDTO.UserProfileId > 0)
-            {
-                carRequestList = carRequestList.Where(x => x.UserProfileId == searchCriteriaDTO.UserProfileId);
-            }
+            carRequestList = ApplyFilert(carRequestList, searchCriteriaDTO);
             #endregion
 
             #region Apply Pagination
@@ -52,6 +48,58 @@ namespace FleetManagement.DataServiceLayer
             };
             #endregion
 
+        }
+
+        private IQueryable<CarRequest> ApplyFilert(IQueryable<CarRequest> carRequestList, CarRequestSearchCriteriaDTO searchCriteriaDTO)
+        {
+            //Filter by UserProfileId
+            if (searchCriteriaDTO.UserProfileId > 0)
+            {
+                carRequestList = carRequestList.Where(x => x.UserProfileId == searchCriteriaDTO.UserProfileId);
+            }
+
+            if (!string.IsNullOrWhiteSpace(searchCriteriaDTO.DateFrom))
+            {
+                carRequestList = carRequestList.Where(x => x.DateFrom >= DateTime.Parse(searchCriteriaDTO.DateFrom));
+            }
+
+            if (!string.IsNullOrWhiteSpace(searchCriteriaDTO.DateTo))
+            {
+                carRequestList = carRequestList.Where(x => x.DateTo <= DateTime.Parse(searchCriteriaDTO.DateTo));
+            }
+
+            if (!string.IsNullOrWhiteSpace(searchCriteriaDTO.RequesterName))
+            {
+                carRequestList = carRequestList.Where(x => x.RequesterName.Contains(searchCriteriaDTO.RequesterName));
+            }
+
+            if (!string.IsNullOrWhiteSpace(searchCriteriaDTO.RequesterEmail))
+            {
+                carRequestList = carRequestList.Where(x => x.RequesterEmail.Contains(searchCriteriaDTO.RequesterName));
+            }
+
+            if (!string.IsNullOrWhiteSpace(searchCriteriaDTO.PickUp))
+            {
+                carRequestList = carRequestList.Where(x => x.PickUp.Contains(searchCriteriaDTO.PickUp));
+            }
+
+            if (!string.IsNullOrWhiteSpace(searchCriteriaDTO.Destination))
+            {
+                carRequestList = carRequestList.Where(x => x.Destination.Contains(searchCriteriaDTO.Destination));
+            }
+
+            if (!string.IsNullOrWhiteSpace(searchCriteriaDTO.Comments))
+            {
+                carRequestList = carRequestList.Where(x => x.Comments.Contains(searchCriteriaDTO.Comments));
+            }
+
+            if (!string.IsNullOrWhiteSpace(searchCriteriaDTO.Purpose))
+            {
+                carRequestList = carRequestList.Where(x => x.Purpose.Contains(searchCriteriaDTO.Purpose));
+            }
+
+
+            return carRequestList;
         }
 
         public async Task<CarRequestDTO> GetById(long id)
