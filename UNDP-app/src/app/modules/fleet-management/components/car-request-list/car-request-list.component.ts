@@ -1,4 +1,5 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, EventEmitter, ViewEncapsulation } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
@@ -20,11 +21,19 @@ export class CarRequestListComponent {
 
 	//#region  Variables
 	carRequestSearchCrieria: CarRequestSearchCriteriaDTO = new CarRequestSearchCriteriaDTO();
-	carRequestList: Array<CarRequestDTO> = new Array<CarRequestDTO>();
+	carRequestList: Array<CarRequestDTO>;// = new Array<CarRequestDTO>();
 	loggedUserId: number;
 	carRequestStatusEnum = CarRequestStatusEnum;
 	showFilterControls: boolean = false;
+	total: number;
 	//#endregion
+
+	form!: FormGroup;
+	students: any = [];
+	searchTerm: string = '';
+	reload: EventEmitter<boolean> = new EventEmitter();
+	isLoadingStudents: boolean = false;
+	recordsPerPage: number = 5;
 
 	constructor(private carRequestService: CarRequestService,
 		private confirmationDialogService: ConfirmationDialogService,
@@ -39,11 +48,13 @@ export class CarRequestListComponent {
 	ngOnInit() {
 		this.loggedUserId = Number(this.route.snapshot.paramMap.get('loggedUserId'));
 		this.search();
+		
 	}
 
 	getAllCarRequests() {
 		this.carRequestService.getAll(this.carRequestSearchCrieria).subscribe((res: any) => {
 			this.carRequestList = res.list;
+			this.total = res.total;
 		});
 	}
 
@@ -93,5 +104,10 @@ export class CarRequestListComponent {
 				}
 			})
 			.catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));
+	}
+
+	onPageChange(event: any) {
+		this.carRequestSearchCrieria.page = event;
+		this.search();
 	}
 }

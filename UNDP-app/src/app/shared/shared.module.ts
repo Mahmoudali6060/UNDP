@@ -10,7 +10,6 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { OrderModule } from 'ngx-order-pipe';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MaterialModule } from '../shared/modules/material.module';
-import { PaginationComponent } from '../shared/components/pagination/pagination.component';
 import { ConfirmationDialogComponent } from '../shared/components/confirmation-dialog/confirmation-dialog.component';
 import { AuthGuardService } from './guards/auth-guard.service';
 import { HelperService } from './services/helper.service';
@@ -19,6 +18,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { ChangeLangagueComponent } from './components/change-langague/change-langague.component';
 import { UserProfileService } from '../modules/user/services/user.service';
 import { ConfirmationDialogService } from './services/confirmation-dialog.service';
+import { PaginationComponent } from './components/pagination/pagination.component';
+import { PagerService } from './services/pager.service';
 @NgModule({
 
   imports: [
@@ -65,7 +66,8 @@ import { ConfirmationDialogService } from './services/confirmation-dialog.servic
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
     JwtHelperService,
     UserProfileService,
-    ConfirmationDialogService
+    ConfirmationDialogService,
+    PagerService
   ],
 })
 

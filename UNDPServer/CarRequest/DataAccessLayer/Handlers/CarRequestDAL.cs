@@ -23,7 +23,7 @@ namespace FleetManagement.DataAccessLayer
 
         public async Task<IQueryable<CarRequest>> GetAllLite()
         {
-            return _appDbContext.CarRequests.AsQueryable();
+            return _appDbContext.CarRequests.OrderByDescending(x=>x.DateFrom).AsQueryable();
         }
 
         public async Task<CarRequest> GetById(long id)
