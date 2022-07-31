@@ -32,8 +32,12 @@
         "Clients": "Clients",
         "Error": "Error",
         "Filter":"Filter",
-        "Filters":"Filters"
-
+        "Filters":"Filters",
+        "Showing":"Showing",
+        "to":"to",
+        "of":"of",
+        "entries":"entries",
+        "Search":"Search"
 
     },
     "ConfirmaionDialog": {

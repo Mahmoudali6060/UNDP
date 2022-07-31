@@ -4,55 +4,86 @@
         <h3 class="title-5 m-b-35">{{'User.Users' |translate}}</h3>
         <div class="table-data__tool">
             <div class="table-data__tool-left">
-                <!-- <div class="rs-select2--light rs-select2--md">
-                    <select class="js-select2 select2-hidden-accessible" name="property" tabindex="-1" aria-hidden="true">
-                        <option selected="selected">All Properties</option>
-                        <option value="">Option 1</option>
-                        <option value="">Option 2</option>
-                    </select><span class="select2 select2-container select2-container--default select2-container--below" dir="ltr" style="width: 118.8px;"><span class="selection"><span
-                                class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true"
-                                aria-expanded="false" tabindex="0" aria-labelledby="select2-property-vx-container"><span
-                                    class="select2-selection__rendered" id="select2-property-vx-container"
-                                    title="Option 1">Option 1</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span>
-                    </span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
-                    <div class="dropDownSelect2"></div>
-                </div> -->
-                <!-- <div class="rs-select2--light rs-select2--sm">
-                    <select class="js-select2 select2-hidden-accessible" name="time" tabindex="-1" aria-hidden="true">
-                        <option selected="selected">Today</option>
-                        <option value="">3 Days</option>
-                        <option value="">1 Week</option>
-                    </select><span class="select2 select2-container select2-container--default select2-container--below" dir="ltr" style="width: 78px;"><span class="selection"><span
-                                class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true"
-                                aria-expanded="false" tabindex="0" aria-labelledby="select2-time-iu-container"><span
-                                    class="select2-selection__rendered" id="select2-time-iu-container" title="3 Days">3
-                                    Days</span><span class="select2-selection__arrow" role="presentation"><b
-                                        role="presentation"></b></span></span>
-                    </span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
-                    <div class="dropDownSelect2"></div>
-                </div> -->
-                <button class="au-btn-filter">
-                    <i class="zmdi zmdi-filter-list"></i>filters</button>
+                <button class="au-btn-filter" (click)="toggleFilter()">
+                    <i class="zmdi zmdi-filter-list"></i>{{'General.Filter'|translate}}</button>
             </div>
             <div class="table-data__tool-right">
                 <button [routerLink]="['/user/user-form']" class="au-btn au-btn-icon au-btn--green au-btn--small">
                     <i class="zmdi zmdi-plus"></i>{{'User.addUser' |translate}}
                 </button>
-                <!-- <div class="rs-select2--dark rs-select2--sm rs-select2--dark2">
-                    <select class="js-select2 select2-hidden-accessible" name="type" tabindex="-1" aria-hidden="true">
-                        <option selected="selected">Export</option>
-                        <option value="">Option 1</option>
-                        <option value="">Option 2</option>
-                    </select><span class="select2 select2-container select2-container--default select2-container--below" dir="ltr" style="width: 84.4px;"><span class="selection"><span
-                                class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true"
-                                aria-expanded="false" tabindex="0" aria-labelledby="select2-type-j8-container"><span
-                                    class="select2-selection__rendered" id="select2-type-j8-container"
-                                    title="Export">Export</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span>
-                    </span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
-                    <div class="dropDownSelect2"></div>
-                </div> -->
             </div>
         </div>
+        <!--Filters-->
+        <div class="row" *ngIf="showFilterControls">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">{{'General.Filters'|translate}}</div>
+                    <div class="card-body">
+                        <div class="col-lg-12">
+                            <div class="row">
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label for="firstName" class=" form-control-label">{{'User.FirstName'
+                                            |translate}}</label>
+                                        <input [(ngModel)]="searchCriteriaDTO.firstName" type="text" id="firstName"
+                                            class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label for="lastName" class=" form-control-label">{{'User.LastName'
+                                            |translate}}</label>
+                                        <input [(ngModel)]="searchCriteriaDTO.lastName" type="text" id="lastName"
+                                            class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label for="email" class=" form-control-label">{{'User.Email'
+                                            |translate}}</label>
+                                        <input [(ngModel)]="searchCriteriaDTO.email" type="email"
+                                            id="email" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label for="mobile" class=" form-control-label">{{'User.Mobile'
+                                            |translate}}</label>
+                                        <input [(ngModel)]="searchCriteriaDTO.mobile" type="number" id="mobile"
+                                            class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label for="UserName" class=" form-control-label">{{'User.UserName'
+                                            |translate}}</label>
+                                        <input [(ngModel)]="searchCriteriaDTO.userName" type="text" id="UserName"
+                                            class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label for="jobTitle" class=" form-control-label">{{'User.jobTitle'
+                                            |translate}}</label>
+                                        <input [(ngModel)]="searchCriteriaDTO.jobTitle" type="text" id="jobTitle"
+                                            class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <button  class="au-btn au-btn-icon au-btn--blue au-btn--small btn-search">
+                                <i class="zmdi zmdi-search"></i>{{'General.Search'|translate}}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--End Filters-->
         <div class="table-responsive table-responsive-data2">
             <table class="table table-data2">
                 <thead class="table-header-bc">
@@ -77,8 +108,10 @@
                     <tr class="tr-shadow" *ngFor="let item of userList">
                         <td></td>
                         <td>
-                            <img *ngIf="item.imageUrl" src="{{serverUrl}}/wwwroot/Images/Users/{{item.imageUrl}}" class="image img-cir img-40 img-fluid">
-                            <img class="image img-cir img-40 img-fluid" *ngIf="!item.imageUrl" src="assets/images/icon/avatar-big-01.jpg" />
+                            <img *ngIf="item.imageUrl" src="{{serverUrl}}/wwwroot/Images/Users/{{item.imageUrl}}"
+                                class="image img-cir img-40 img-fluid">
+                            <img class="image img-cir img-40 img-fluid" *ngIf="!item.imageUrl"
+                                src="assets/images/icon/avatar-big-01.jpg" />
                         </td>
                         <td>{{item.firstName}} {{item.lastName}}</td>
                         <td>{{item.mobile}}</td>
@@ -96,10 +129,12 @@
                                 <!-- <button class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="Send">
                                     <i class="zmdi zmdi-mail-send"></i>
                                 </button> -->
-                                <button class="item ml-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit" [routerLink]="['/user/user-form/'+item.id]">
+                                <button class="item ml-2" data-toggle="tooltip" data-placement="top" title=""
+                                    data-original-title="Edit" [routerLink]="['/user/user-form/'+item.id]">
                                     <i class="zmdi zmdi-edit"></i>
                                 </button>
-                                <button class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" (click)="openConfirmationDialog(item)">
+                                <button class="item" data-toggle="tooltip" data-placement="top" title=""
+                                    data-original-title="Delete" (click)="openConfirmationDialog(item)">
                                     <i class="zmdi zmdi-delete"></i>
                                 </button>
                                 <!-- <button class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="More">
@@ -109,7 +144,10 @@
                         </td>
                     </tr>
                 </tbody>
+       
             </table>
+            <app-pagination (pageChange)="onPageChange($event)" [totalRecordsCount]="total" [recordsPerPage]="searchCriteriaDTO.pageSize" *ngIf="userList">
+            </app-pagination>
         </div>
         <!-- END DATA TABLE -->
     </div>

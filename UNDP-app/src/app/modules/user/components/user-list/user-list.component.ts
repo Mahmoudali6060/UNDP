@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { ConfigService } from 'src/app/shared/services/config.service';
 import { DataSourceModel } from '../../../../shared/models/data-source.model';
 import { ConfirmationDialogService } from '../../../../shared/services/confirmation-dialog.service';
+import {  UserProfileSearchCriteriaDTO } from '../../models/user-list-search-criteria-dto';
 import { UserProfileDTO } from '../../models/user-profile.dto';
 import { UserProfileService } from '../../services/user.service';
 declare var jQuery: any;
@@ -19,6 +20,10 @@ export class UserListComponent {
 	dataSource: DataSourceModel = new DataSourceModel();
 	userList: Array<UserProfileDTO> = new Array<UserProfileDTO>();
 	serverUrl: string;
+	showFilterControls: boolean = false;
+	searchCriteriaDTO:UserProfileSearchCriteriaDTO = new UserProfileSearchCriteriaDTO()
+	total: number;
+	recordsPerPage: number = 5;
 
 	constructor(private userProfileService: UserProfileService,
 		private confirmationDialogService: ConfirmationDialogService,
@@ -32,12 +37,15 @@ export class UserListComponent {
 	ngOnInit() {
 		this.getAllUsers();
 	}
-
+	toggleFilter() {
+		this.showFilterControls = !this.showFilterControls;
+	}
 	getAllUsers() {
-		this.SpinnerService.show(); 
-		this.userProfileService.getAll(this.dataSource).subscribe((res: any) => {
+		//this.SpinnerService.show();
+		this.userProfileService.getAll(this.searchCriteriaDTO).subscribe((res: any) => {
 			this.userList = res.list;
-		   this.serverUrl = this._configService.getServerUrl();
+			this.total = res.total;
+			this.serverUrl = this._configService.getServerUrl();
 
 		});
 	}
@@ -59,5 +67,9 @@ export class UserListComponent {
 				}
 			})
 			.catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));
+	}
+	onPageChange(event: any) {
+		this.searchCriteriaDTO.page = event;
+		// this.search();
 	}
 }
