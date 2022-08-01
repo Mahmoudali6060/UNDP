@@ -32,7 +32,13 @@
                         ],
                         "styles": [
                             "node_modules/ngx-toastr/toastr.css",
-                            "src/styles.css"
+                            "src/styles.css",
+                            "src/app/layout/landing-page-files/css/normalize.min.css",
+                            "src/app/layout/landing-page-files/css/bootstrap.min.css",
+                            "src/app/layout/landing-page-files/css/flexslider.css",
+                            "src/app/layout/landing-page-files/css/styles.css",
+                            "src/app/layout/landing-page-files/css/etline-font.css",
+                            "src/app/layout/landing-page-files/bower_components/animate.css/animate.min.css"
                         ],
                         "scripts": [
                             "./node_modules/jquery/dist/jquery.min.js",
