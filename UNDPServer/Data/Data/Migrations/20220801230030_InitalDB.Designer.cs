@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(UNDbContext))]
-    [Migration("20220729163536_IntialDB")]
-    partial class IntialDB
+    [Migration("20220801230030_InitalDB")]
+    partial class InitalDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -46,6 +46,9 @@ namespace Data.Migrations
                     b.Property<string>("Destination")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<long?>("DriverId")
+                        .HasColumnType("bigint");
+
                     b.Property<DateTime?>("Modified")
                         .HasColumnType("datetime2");
 
@@ -61,12 +64,14 @@ namespace Data.Migrations
                     b.Property<string>("RequesterName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long?>("UserProfileId")
+                    b.Property<long?>("SupervisorId")
                         .HasColumnType("bigint");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserProfileId");
+                    b.HasIndex("DriverId");
+
+                    b.HasIndex("SupervisorId");
 
                     b.ToTable("CarRequests");
                 });
@@ -403,9 +408,14 @@ namespace Data.Migrations
 
             modelBuilder.Entity("Data.Entities.FleetManagement.CarRequest", b =>
                 {
-                    b.HasOne("Data.Entities.UserManagement.UserProfile", "UserProfile")
-                        .WithMany("CarRequests")
-                        .HasForeignKey("UserProfileId");
+                    b.HasOne("Data.Entities.UserManagement.UserProfile", "Driver")
+                        .WithMany("DriverCarRequests")
+                        .HasForeignKey("DriverId")
+                        .OnDelete(DeleteBehavior.NoAction);
+
+                    b.HasOne("Data.Entities.UserManagement.UserProfile", "Supervisor")
+                        .WithMany("SupervisorCarRequests")
+                        .HasForeignKey("SupervisorId");
                 });
 
             modelBuilder.Entity("Data.Entities.UserManagement.UserProfile", b =>

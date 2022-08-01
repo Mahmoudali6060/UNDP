@@ -68,7 +68,7 @@ export class CarRequestListComponent {
 	}
 
 	public assignToMe(item: CarRequestDTO) {
-		item.userProfileId = this.authService.loggedUserProfile.id;
+		item.supervisorId = this.authService.loggedUserProfile.id;
 		this.updateCarRequest(item);
 	}
 

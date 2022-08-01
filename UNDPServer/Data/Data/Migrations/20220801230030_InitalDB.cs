@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Data.Migrations
 {
-    public partial class IntialDB : Migration
+    public partial class InitalDB : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -267,14 +267,20 @@ namespace Data.Migrations
                     Comments = table.Column<string>(nullable: true),
                     Purpose = table.Column<string>(nullable: true),
                     CarRequestStatusId = table.Column<byte>(nullable: false),
-                    UserProfileId = table.Column<long>(nullable: true)
+                    SupervisorId = table.Column<long>(nullable: true),
+                    DriverId = table.Column<long>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_CarRequests", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_CarRequests_UserProfiles_UserProfileId",
-                        column: x => x.UserProfileId,
+                        name: "FK_CarRequests_UserProfiles_DriverId",
+                        column: x => x.DriverId,
+                        principalTable: "UserProfiles",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_CarRequests_UserProfiles_SupervisorId",
+                        column: x => x.SupervisorId,
                         principalTable: "UserProfiles",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -320,9 +326,14 @@ namespace Data.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CarRequests_UserProfileId",
+                name: "IX_CarRequests_DriverId",
                 table: "CarRequests",
-                column: "UserProfileId");
+                column: "DriverId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CarRequests_SupervisorId",
+                table: "CarRequests",
+                column: "SupervisorId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_UserProfiles_AppUserId",

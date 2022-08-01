@@ -25,6 +25,17 @@ namespace Data.Contexts
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<CarRequest>()
+                .HasOne(g => g.Supervisor)
+                .WithMany(t => t.SupervisorCarRequests)
+                .HasForeignKey(t => t.SupervisorId)
+                .HasPrincipalKey(t => t.Id);
+            modelBuilder.Entity<CarRequest>()
+                .HasOne(g => g.Driver)
+                .WithMany(t => t.DriverCarRequests)
+                .HasForeignKey(t => t.DriverId).OnDelete(DeleteBehavior.NoAction)
+                .HasPrincipalKey(t => t.Id);
+
             base.OnModelCreating(modelBuilder);
         }
         public override int SaveChanges()
