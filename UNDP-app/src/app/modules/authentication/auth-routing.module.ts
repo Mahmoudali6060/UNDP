@@ -6,7 +6,7 @@ import { ResetPasswordComponent } from './components/reset-password/reset-passwo
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 
 const routes: Routes = [
-  { path: '', component: LoginComponent },
+  // { path: '', component: LoginComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'resetPassword', component: ResetPasswordComponent },

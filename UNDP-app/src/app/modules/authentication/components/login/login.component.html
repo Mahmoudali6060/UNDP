@@ -1,32 +1,51 @@
-<div class="page-content--bge5">
+<div class="page-content--bge5  hero">
     <div class="container">
         <app-change-langague></app-change-langague>
-        <div class="login-wrap">
-            <div class="login-content">
-                <div class="login-logo" style="background-color: #0468b1;">
-                    <!-- <a href="#">
+        <div>
+            <div>
+                <div class="row">
+                    <div class="login-logo col-md-3">
+                        <!-- <a href="#">
                         <img src="/assets/images/icon/logo.png" alt="CoolAdmin">
                     </a> -->
-                    <svg >
-                        <use xlink:href="/assets/images/icon/svg-icons.svg#icon-logo"></use>
-                    </svg>
+                        <svg>
+                            <use xlink:href="/assets/images/icon/svg-icons.svg#icon-logo"></use>
+                        </svg>
+                    </div>
                 </div>
                 <div class="login-form">
                     <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
-                        <div class="form-group">
-                            <label translate>Authentication.Username</label>
-                            <input class="au-input au-input--full" ngModel type="text" name="userName" placeholder="{{'Authentication.Username' |translate}}">
+                        <div class="row">
+                            <div class="col-md-4"></div>
+                            <div class="form-group col-md-4">
+                                <label translate>Authentication.Username</label>
+                                <input class="au-input au-input--full" ngModel type="text" name="userName"
+                                    placeholder="{{'Authentication.Username' |translate}}">
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label translate>Authentication.Password</label>
-                            <input class="au-input au-input--full" ngModel type="password" name="password" placeholder="{{'Authentication.Password' |translate}}">
+                        <div class="row">
+                            <div class="col-md-4"></div>
+                            <div class="form-group col-md-4">
+                                <label translate>Authentication.Password</label>
+                                <input class="au-input au-input--full" ngModel type="password" name="password"
+                                    placeholder="{{'Authentication.Password' |translate}}">
+                            </div>
                         </div>
-                        <div class="login-checkbox">
+                        <div class="row">
+                            <div class="col-md-4"></div>
+                        <div class="login-checkbox col-md-4">
                             <label> <input type="checkbox" name="remember">{{'Authentication.RememberMe' |translate}}
                             </label>
-                            <label> <a [routerLink]="['/forgotpassword']" >{{'Authentication.ForgottenPassword' |translate}}</a></label>
+                            <label> <a [routerLink]="['/forgotpassword']">{{'Authentication.ForgottenPassword'
+                                    |translate}}</a></label>
                         </div>
-                        <button [disabled]="loginForm.invalid" class="au-btn au-btn--block au-btn--green m-b-20" style="background-color: #0468b1;" type="submit" translate>Authentication.LogIn</button>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4"></div>
+                        <button [disabled]="loginForm.invalid" class="au-btn au-btn--block au-btn--green m-b-20 col-md-4"
+                            style="background-color: #0468b1;" type="submit" translate>Authentication.LogIn</button>
+                        </div>
+
                         <!-- <div class="social-login-content" au-btn--green >
                             <div class="social-button">
                                 <button class="au-btn au-btn--block au-btn--blue m-b-20">sign in with facebook</button>
