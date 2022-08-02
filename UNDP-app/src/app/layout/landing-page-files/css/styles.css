@@ -363,8 +363,7 @@ Hero
     margin-bottom: 80px;
    }
   .hero .hero-content {
-    padding-top: 26%;
-   }
+    padding-top: 26%; }
 
 .navigation {
   -webkit-transition: all 300ms ease-in-out;
@@ -380,11 +379,11 @@ Hero
   width: 100%; }
 
 header {
-  padding: 50px 0;
+  /* padding: 50px 0; */
   border-bottom: solid 1px rgba(255, 255, 255, 0.2);
   position: relative;
-  width: 1170px;
-  margin: 0 auto;
+  /* width: 1170px; */
+  /* margin: 0 auto; */
   -webkit-transition: padding 300ms ease-in-out;
           transition: padding 300ms ease-in-out; }
   header a {
@@ -1160,8 +1159,3 @@ you can use the generic selector below, but it's slower:
 
 .icon-dribbble:before {
   content: "\e063"; }
-
-
-
-
-  
