@@ -11,5 +11,7 @@ export class CarRequestDTO {
     comments: string = '';
     purpose: string ;
     carRequestStatusId: CarRequestStatusEnum ;
-    userProfileId: number | null;
+    supervisorId: number | null;
+    driverId: number | null;
+
 }

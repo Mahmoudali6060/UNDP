@@ -34,6 +34,8 @@ namespace FleetManagement.DataServiceLayer
             carRequestList = ApplyFilert(carRequestList, searchCriteriaDTO);
             #endregion
 
+            //carRequestList = carRequestList.Where(a => !(a.DateFrom.Date >= DateTime.Parse(searchCriteriaDTO.DateFrom).Date && a.DateTo.Date <= DateTime.Parse(searchCriteriaDTO.DateTo)));
+
             #region Apply Pagination
             carRequestList = carRequestList.Skip((searchCriteriaDTO.Page - 1) * searchCriteriaDTO.PageSize).Take(searchCriteriaDTO.PageSize);
             #endregion
@@ -55,7 +57,7 @@ namespace FleetManagement.DataServiceLayer
             //Filter by UserProfileId
             if (searchCriteriaDTO.UserProfileId > 0)
             {
-                carRequestList = carRequestList.Where(x => x.UserProfileId == searchCriteriaDTO.UserProfileId);
+                carRequestList = carRequestList.Where(x => x.SupervisorId == searchCriteriaDTO.UserProfileId);
             }
 
             if (!string.IsNullOrWhiteSpace(searchCriteriaDTO.DateFrom))

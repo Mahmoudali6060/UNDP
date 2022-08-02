@@ -2,6 +2,7 @@
 using Data.Entities.FleetManagement;
 using Microsoft.EntityFrameworkCore;
 using Shared.Entities.Shared;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -49,6 +50,15 @@ namespace FleetManagement.DataAccessLayer
         public async Task<bool> Delete(CarRequest userProfile)
         {
             _appDbContext.CarRequests.Remove(userProfile);
+            await _appDbContext.SaveChangesAsync();
+            return true;
+        }
+
+
+        public async Task<bool> CheckAvailability(DateTime dateFrom, DateTime dateTo)
+        {
+
+            _appDbContext.CarRequests.Where(a => (a.DateFrom.Date >= dateFrom.Date && a.DateTo.Date <= dateTo));
             await _appDbContext.SaveChangesAsync();
             return true;
         }

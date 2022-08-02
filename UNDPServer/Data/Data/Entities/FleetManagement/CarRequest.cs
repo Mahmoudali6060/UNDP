@@ -19,8 +19,11 @@ namespace Data.Entities.FleetManagement
         public string Purpose { get; set; }
         public CarRequestStatusEnum CarRequestStatusId { get; set; }
 
-        public long? UserProfileId { get; set; }
-        public virtual UserProfile UserProfile { get; set; }
+        public long? SupervisorId { get; set; }
+        public virtual UserProfile Supervisor { get; set; }
+
+        public long? DriverId { get; set; }
+        public virtual UserProfile Driver { get; set; }
 
     }
 }

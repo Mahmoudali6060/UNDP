@@ -19,6 +19,8 @@ namespace Data.Entities.UserManagement
         public string DefaultLanguage { get; set; }
         public string AppUserId { get; set; }
         public virtual AppUser AppUser { get; set; }
-        public virtual IEnumerable<CarRequest> CarRequests { get; set; }
+        public virtual IEnumerable<CarRequest> SupervisorCarRequests { get; set; }
+        public virtual IEnumerable<CarRequest> DriverCarRequests { get; set; }
+
     }
 }
