@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { SharedModule } from '../../shared/shared.module';
 import { CarRequestFormComponent } from './components/car-request-form/car-request-form.component';
 import { CarRequestListComponent } from './components/car-request-list/car-request-list.component';
@@ -16,7 +16,13 @@ import { CarRequestService } from './services/car-request.service';
   ],
   providers: [
     CarRequestService
-  ]
+  ],
+  exports: [
+    CarRequestFormComponent
+],
+schemas: [ 
+  CUSTOM_ELEMENTS_SCHEMA
+],
 })
 
 export class FleetManagementModule {

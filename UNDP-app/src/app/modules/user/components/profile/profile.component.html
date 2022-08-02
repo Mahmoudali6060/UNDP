@@ -16,7 +16,7 @@
         </div>
 
         <div class="row">
-            <div class="col-lg-4">
+            <div class="col-md-4">
                 <div class="card mb-4 pb-4">
                     <div class="card-body text-center">
                         <img *ngIf="imageUrl != null" src="{{imageSrc}}"
@@ -27,7 +27,7 @@
                         <input *ngIf="edit" type="file" id="image" class="form-control" (change)="onFileChange($event)">
 
                         <h5 class="my-3">{{profile.firstName}} {{profile.lastName}}</h5>
-                        <p class="text-muted mb-1" *ngIf="!edit">{{profile.jobTitle}}</p>
+                        <p class="mb-1" *ngIf="!edit">{{profile.jobTitle}}</p>
                             <input *ngIf="edit" [(ngModel)]="profile.jobTitle" type="text" id="jobTitle" class="form-control mb-2"
                             #jobTitle="ngModel" [class.is-invalid]="jobTitle.invalid && jobTitle.touched"
                             [class.is-valid]="jobTitle.valid"  required minlength="2" name="jobTitle" aria-describedby="helpId">
@@ -74,7 +74,7 @@
                                 </div>
                             </div>
                             <div class="col-sm-4" *ngIf="!edit">
-                                <p class="text-muted mb-0">{{profile.firstName}} {{profile.lastName}}</p>
+                                <p class=" mb-0">{{profile.firstName}} {{profile.lastName}}</p>
                             </div>
                         </div>
                         <hr *ngIf="!edit">
@@ -91,7 +91,7 @@
                                     <small [hidden]="username.valid || username.untouched" id="helpId"
                                         class="text-muted" [translate]="'Errors.InvalidUserName'"></small>
                                 </div>
-                                <p class="text-muted mb-0" *ngIf="!edit">{{profile.userName}}</p>
+                                <p class=" mb-0" *ngIf="!edit">{{profile.userName}}</p>
                             </div>
                         </div>
                         <hr *ngIf="!edit">
@@ -109,7 +109,7 @@
                                     <small [hidden]="email.valid || email.untouched" id="helpId" class="text-muted"
                                         [translate]="'Errors.InvalidEmail'"></small>
                                 </div>
-                                <p class="text-muted mb-0" *ngIf="!edit">{{profile.email}}</p>
+                                <p class=" mb-0" *ngIf="!edit">{{profile.email}}</p>
                             </div>
                         </div>
                         <hr *ngIf="!edit">
@@ -127,7 +127,7 @@
                                     <small [hidden]="mobile.valid || mobile.untouched" id="helpId" class="text-muted"
                                         [translate]="'Errors.InvalidMobile'"></small>
                                 </div>
-                                <p class="text-muted mb-0" *ngIf="!edit">{{profile.mobile}}</p>
+                                <p class="mb-0" *ngIf="!edit">{{profile.mobile}}</p>
                             </div>
                         </div>
                         <hr *ngIf="!edit">
@@ -142,7 +142,7 @@
                                         <option value="Consumer">{{'User.Consumer' |translate}}</option>
                                     </select>
                                 </div>
-                                <p class="text-muted mb-0" *ngIf="!edit">{{profile.role}}</p>
+                                <p class="mb-0" *ngIf="!edit">{{profile.role}}</p>
                             </div>
                         </div>
                         <div class="row" *ngIf="!edit">

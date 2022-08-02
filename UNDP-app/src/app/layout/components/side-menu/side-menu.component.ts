@@ -23,7 +23,7 @@ export class SideMenuComponent {
 
   public logOut() {
     this.authService.logOut();
-    this.router.navigate(["login"]);
+    this.router.navigate(["/home"]);
 
   }
 }

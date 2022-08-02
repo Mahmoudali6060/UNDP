@@ -24,7 +24,9 @@ export class CarRequestFormComponent {
 	constructor(private carRequestService: CarRequestService,
 		private route: ActivatedRoute,
 		private toasterService: ToastrService,
-		private location: Location) {
+		private location: Location,
+		private translate: TranslateService,
+		) {
 	}
 
 	ngOnInit() {
@@ -68,13 +70,12 @@ export class CarRequestFormComponent {
 	validateDates(sDate: string, eDate: string) {
 		this.isValidDate = true;
 		if ((sDate == null || eDate == null)) {
-			this.toasterService.error("Start date and end date are required.")
+			this.toasterService.error(this.translate.instant("Errors.StartDateAndEndDateAreRequired"));
 			this.isValidDate = false;
 		}
 
 		if ((sDate != null && eDate != null) && (eDate) < (sDate)) {
-			this.toasterService.error("End date should be greater than start date.")
-
+			this.toasterService.error(this.translate.instant("Errors.EndDateShouldBeGreaterThanStartDate"));
 			this.isValidDate = false;
 		}
 		return this.isValidDate;
@@ -83,7 +84,7 @@ export class CarRequestFormComponent {
 		this.isValidDate = true;
 		this.isValidDate = this.validateDates(this.carRequestDTO.dateFrom, this.carRequestDTO.dateTo);
 		if (!this.isValidDate) {
-			this.toasterService.error("End date should be greater than start date.")
+			this.toasterService.error(this.translate.instant("Errors.EndDateShouldBeGreaterThanStartDate"));
 		}
 		if (this.isValidDate) {
 			this.isValidDate = true;
