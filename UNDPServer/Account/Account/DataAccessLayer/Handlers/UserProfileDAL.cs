@@ -32,6 +32,11 @@ namespace Account.DataAccessLayer
         }
 
 
+        public async Task<IQueryable<UserProfile>> GetAllDriver()
+        {
+            return  _appDbContext.UserProfiles.Include(x => x.DriverCarRequests).AsQueryable();
+        }
+
         public async Task<long> Add(UserProfile entity)
         {
             _appDbContext.Entry(entity).State = EntityState.Added;

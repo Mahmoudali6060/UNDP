@@ -32,6 +32,10 @@ namespace App.Controllers.Account
         //[Authorize(Roles = Roles.Admin)]
         public async Task<IActionResult> GetAllLite() => Ok(await _userProfileDSL.GetAllLite());
 
+        [HttpPost, Route("GetAllDrivers")]
+        //[Authorize(Roles = Roles.Admin)]
+        public async Task<IActionResult> GetAllDrivers([FromBody] AvailabilitySearchCriteriaDTO searchCriteriaDTO) => Ok(await _userProfileDSL.GetAllDrivers(searchCriteriaDTO));
+
         [HttpPost, Route("Add")]
         //[Authorize(Roles = Roles.Admin)]
         public async Task<IActionResult> Add([FromBody] UserProfileDTO model) => Ok(await _userProfileDSL.Add(model));

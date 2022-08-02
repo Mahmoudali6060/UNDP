@@ -56,7 +56,7 @@ namespace Account.RepositoryLayer
                 Email = registerRequestViewModel.Email,
                 Password = registerRequestViewModel.Password,
                 DefaultLanguage = registerRequestViewModel.DefaultLanguage,
-                Role = Roles.Consumer//Default role is Consumer not admin when user register his account
+                Role = Roles.Driver//Default role is Consumer not admin when user register his account
             };
         }
 

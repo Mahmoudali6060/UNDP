@@ -55,14 +55,6 @@ namespace FleetManagement.DataAccessLayer
         }
 
 
-        public async Task<bool> CheckAvailability(DateTime dateFrom, DateTime dateTo)
-        {
-
-            _appDbContext.CarRequests.Where(a => (a.DateFrom.Date >= dateFrom.Date && a.DateTo.Date <= dateTo));
-            await _appDbContext.SaveChangesAsync();
-            return true;
-        }
-
 
     }
 }

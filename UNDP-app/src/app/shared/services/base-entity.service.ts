@@ -21,7 +21,7 @@ export class BaseEntityService {
     private urlGetAllLite = "GetAllLite";
     controllerName: string = "";
 
-    constructor(private httpHelperService: HttpHelperService) {
+    constructor(public httpHelperService: HttpHelperService) {
         
     }
 
