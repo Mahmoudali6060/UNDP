@@ -37,7 +37,9 @@
         "to":"to",
         "of":"of",
         "entries":"entries",
-        "Search":"Search"
+        "Search":"Search",
+        "UnitedNationsDevelopmentProgramme":"United Nations Development Programme",
+        "PleaseLetUsKnowIfYouWantToRequestACar":"Please Let Us Know If You Want To Request A Car"
 
     },
     "ConfirmaionDialog": {
@@ -54,10 +56,10 @@
         "EmailAddress": "Email Address",
         "Password": "Password",
         "RememberMe": "Remember Me",
-        "ForgottenPassword": "Forgotten Password?",
-        "DoNotYouHaveAccount": "Don't You Have Account?",
+        "ForgottenPassword": "Forgotten Password ?",
+        "DoNotYouHaveAccount": "Don't You Have Account ?",
         "DoYouHaveAccount": "Don You Have Account?",
-        "SignUpHere": "Sign Up Here",
+        "SignUpHere": "Sign Up",
         "LogIn": "Log In",
         "Username": "Username",
         "LoginHere": "Login Here",

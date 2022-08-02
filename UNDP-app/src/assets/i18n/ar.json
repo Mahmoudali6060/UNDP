@@ -51,7 +51,9 @@
         "to":"إلى",
         "of":"من",
         "entries":"المدخلات",
-        "Search":"بحث"
+        "Search":"بحث",
+        "UnitedNationsDevelopmentProgramme":"برنامج الأمم المتحدة الإنمائي",
+        "PleaseLetUsKnowIfYouWantToRequestACar":"من فضلك أخبرنا إذا كنت تريد أن تطلب طلب سيارة"
 
     },
     "Authentication": {
@@ -63,12 +65,12 @@
         "ForgottenPassword":"نسيت كلمة المرور؟",
         "DoYouHaveAccount": " لديك حساب؟",
         "DoNotYouHaveAccount": "ليس لديك حساب ؟ ",
-        "SignUpHere": "أنشأ حساب هنا",
+        "SignUpHere": "أنشأ حساب",
         "LoginUpHere": "سجل دخول هنا",
         "LogIn": "تسجيل دخول",
         "Username": "اسم المستخدم",
         "LoginHere": "سجل دخول هنا",
-        "SignIn": "إنشاء حساب",
+        "SignIn": "تسجيل دخول",
         "DefaultLanguage": "اللغة الاساسية",
         "ChangePassword":"تغيير كلمة المرور",
         "NewPassword":"كلمة المرور الجديدة",

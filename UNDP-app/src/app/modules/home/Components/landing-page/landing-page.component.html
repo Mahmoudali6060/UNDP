@@ -19,8 +19,8 @@
                             <li><a href="#download">Download</a></li>
                         </ul> -->
                         <ul class="member-actions">
-                            <li><a [routerLink]="['/login']" class="btn-white btn-small" >Log in</a></li>
-                            <li><a href="#download" class="btn-white btn-small">Sign up</a></li>
+                            <li><a [routerLink]="['/login']" class="btn-white btn-small" >{{'Authentication.LogIn' | translate}}</a></li>
+                            <li><a href="#download" class="btn-white btn-small">{{'Authentication.SignUpHere' | translate}}</a></li>
                              <!-- <li><a class="btn-white btn-small"><app-change-langague></app-change-langague></a></li> -->
                         </ul>
                     </nav>
@@ -35,13 +35,16 @@
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <div class="hero-content text-center">
-                    <h1>United Nations Development Programme!</h1>
-                    <p class="intro">Please let us know if you want to request a car..</p>
+                    <h1> {{'General.UnitedNationsDevelopmentProgramme' | translate}}</h1>
+                    <p class="intro">{{'General.PleaseLetUsKnowIfYouWantToRequestACar' | translate}}</p>
                     <a href="#" class="btn btn-fill btn-large ">{{'landingPage.RequestCar' | translate}} </a>
                      <a href="#" class="btn btn-accent btn-large">{{'landingPage.LearnMore' | translate}}</a>
                 </div>
             </div>
         </div>
     </div>
-    <!-- <div class="down-arrow floating-arrow"><a href="#"><i class="fa fa-angle-down"></i></a></div> -->
+    <div class="down-arrow floating-arrow"><a href="#"><i class="fa fa-angle-down"></i></a></div>
+</section>
+<section>
+    <app-car-request-form></app-car-request-form>
 </section>

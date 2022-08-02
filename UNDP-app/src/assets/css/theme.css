@@ -414,7 +414,9 @@ section {
 .login-checkbox>label>a {
     color: #fff;
 }
-
+.login-checkbox>label {
+    color: #fff;
+}
 @media (max-width: 991px) {
     .login-checkbox {
         -webkit-box-orient: vertical;
@@ -452,9 +454,13 @@ section {
 }
 
 .register-link>p>a {
-    color: #ff2e44;
-}
+    color: white;
+    padding: 10px;
 
+}
+.register-link>p>span {
+    color: white;
+}
 .fontawesome-list-wrap {
     background: #fff;
     border: 1px solid #C9CDD7;
