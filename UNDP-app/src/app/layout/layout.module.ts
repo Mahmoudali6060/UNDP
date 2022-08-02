@@ -11,7 +11,6 @@ import { FullLayoutComponent } from './components/full-layout/full-layout.compon
 import { HeaderMobileComponent } from './components/header-mobile/header-mobile.component';
 import { DatabaseModule } from '../modules/database/database.module';
 import { AuthService } from '../modules/authentication/services/auth.service';
-import { LandingPageComponent } from './landing-page/landing-page.component';
 
 
 @NgModule({
@@ -21,14 +20,11 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
     FooterComponent,
     SideMenuComponent,
     FullLayoutComponent,
-    LandingPageComponent
   ],
   imports: [
     LayoutRoutingModule,
     SharedModule,
     DatabaseModule
-  ],exports:[
-    LandingPageComponent
   ],
   providers: [
     AuthService,

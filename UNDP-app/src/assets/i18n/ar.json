@@ -117,7 +117,9 @@
         "dateToIsRequired":"التاريخ-الوقت إلى مطلوب",
         "pickUpIsRequired":"نقطة الإلتقاء مطلوبة",
         "destinationIsRequired":"الوجهة مطلوبة",
-        "purposeIsRequired":"الغرض مطلوب"
+        "purposeIsRequired":"الغرض مطلوب",
+        "StartDateAndEndDateAreRequired":"تاريخ البداية والنهاية مطلوبين",
+        "EndDateShouldBeGreaterThanStartDate":"تاريخ النهاية لابد أن يكون أكبر من تاريخ البداية"
 
     },
     "User": {
@@ -164,5 +166,9 @@
     "CarRequestStatusEnum": {
         "InProgress": "قيد الموافقة",
         "Approved": "موافق عليه"
+    },
+    "landingPage":{
+     "RequestCar":"طلب سيارة",
+     "LearnMore":"معرفة المزيد"   
     }
 }

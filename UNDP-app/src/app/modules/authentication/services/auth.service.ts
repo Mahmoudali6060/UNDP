@@ -49,7 +49,7 @@ export class AuthService {
   }
   logOut() {
     this.localStorageService.clear();
-    this.router.navigateByUrl('/');
+    this.router.navigateByUrl('/home');
   }
 
 }

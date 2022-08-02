@@ -94,9 +94,9 @@ label {
     left: 34px;
 }
 
-body {
-    /* text-align: left; */
-}
+/* body {
+     text-align: left; 
+} */
 
 i {
     margin-right: 5px;
@@ -104,4 +104,18 @@ i {
 
 .btn-search {
     float: right;
+}
+.hero p.intro {
+    color: #fff;
+    font-size: 20px;
+    font-weight: 300;
+    margin-bottom: 80px;
+  }
+  
+  .hero .hero-content {
+    padding-top: 15%;
+    margin-left: 15%;
+  }
+  .imgLogo{
+    margin-left: 30px;
 }

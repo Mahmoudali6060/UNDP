@@ -105,3 +105,19 @@ i {
 .btn-search {
     float: left;
 }
+.hero p.intro {
+    direction: ltr;
+  
+    color: #fff;
+    font-size: 20px;
+    font-weight: 300;
+    margin-bottom: 80px;
+  }
+  .hero .hero-content {
+    padding-top: 15%;
+    margin-right: 25%;
+    margin-left: 0;
+  }
+  .imgLogo{
+    margin-right: 30px;
+}

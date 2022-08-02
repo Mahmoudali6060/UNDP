@@ -20,6 +20,6 @@ export class HeaderMobileComponent {
   }
 
   public logOut() {
-    this.router.navigate(["/"]);
+    this.router.navigate(["/home"]);
   }
 }
