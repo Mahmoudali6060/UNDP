@@ -8,6 +8,9 @@ import { DataSourceModel } from '../../../../shared/models/data-source.model';
 import { FilterModel } from '../../../../shared/models/filter.model';
 import { ConfirmationDialogService } from '../../../../shared/services/confirmation-dialog.service';
 import { AuthService } from '../../../authentication/services/auth.service';
+import { AvailabilitySearchCriteriaDTO } from '../../../user/models/availability-search-criteria-dto';
+import { UserProfileDTO } from '../../../user/models/user-profile.dto';
+import { UserProfileService } from '../../../user/services/user.service';
 import { CarRequestSearchCriteriaDTO } from '../../models/car-request-search-criteria.dto';
 import { CarRequestDTO } from '../../models/car-request.dto';
 import { CarRequestService } from '../../services/car-request.service';
@@ -22,6 +25,7 @@ export class CarRequestListComponent {
 	//#region  Variables
 	carRequestSearchCrieria: CarRequestSearchCriteriaDTO = new CarRequestSearchCriteriaDTO();
 	carRequestList: Array<CarRequestDTO>;// = new Array<CarRequestDTO>();
+	avaliableDrivers: Array<UserProfileDTO>;// = new Array<UserProfileDTO>();
 	loggedUserId: number;
 	carRequestStatusEnum = CarRequestStatusEnum;
 	showFilterControls: boolean = false;
@@ -40,6 +44,7 @@ export class CarRequestListComponent {
 		private toastrService: ToastrService,
 		private translate: TranslateService,
 		private authService: AuthService,
+		private userProfileService: UserProfileService,
 		private route: ActivatedRoute
 	) {
 
@@ -48,7 +53,7 @@ export class CarRequestListComponent {
 	ngOnInit() {
 		this.loggedUserId = Number(this.route.snapshot.paramMap.get('loggedUserId'));
 		this.search();
-		
+
 	}
 
 	getAllCarRequests() {
@@ -109,5 +114,16 @@ export class CarRequestListComponent {
 	onPageChange(event: any) {
 		this.carRequestSearchCrieria.page = event;
 		this.search();
+	}
+
+	getAllAvailableDrivers(item: CarRequestDTO) {
+		debugger;
+		let availabilitySearchCriteriaDTO: AvailabilitySearchCriteriaDTO = new AvailabilitySearchCriteriaDTO();
+		availabilitySearchCriteriaDTO.DateFrom = item.dateFrom;
+		availabilitySearchCriteriaDTO.DateTo = item.dateTo;
+
+		this.userProfileService.getAllAvailableDrivers(availabilitySearchCriteriaDTO).subscribe((res: any) => {
+			this.avaliableDrivers = res;
+		});
 	}
 }

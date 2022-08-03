@@ -139,6 +139,11 @@
                                 <button class="item" data-toggle="tooltip" data-placement="top" title="{{'FleetManagement.AssignToMe'|translate}}" data-original-title="Send" (click)="assignToMe(item)">
                                     <i class="zmdi zmdi-mail-send"></i>
                                 </button>
+                                <button class="item" data-toggle="tooltip" data-placement="top" title="{{'FleetManagement.AvailableDrivers'|translate}}" data-original-title="Send" (click)="getAllAvailableDrivers(item)">
+                                    <i class="fas fa-users"></i>
+                                </button>
+
+
                                 <!-- <button class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit" [routerLink]="['/user/user-form/'+item.id]">
                                     <i class="zmdi zmdi-edit"></i>
                                 </button>

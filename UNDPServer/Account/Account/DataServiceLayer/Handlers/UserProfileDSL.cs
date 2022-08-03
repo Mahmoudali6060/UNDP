@@ -65,6 +65,15 @@ namespace Accout.DataServiceLayer
             };
         }
 
+        public async Task<IEnumerable<UserProfileDTO>> GetAllDrivers(AvailabilitySearchCriteriaDTO availabilitySearchCriteriaDTO)
+        {
+            var driverList = _userProfileDAL.GetAllDriver().Result;
+            //Check about user Type
+            driverList = driverList.Where(x =>!( x.DriverCarRequests.Count()>0 && x.DriverCarRequests.Any(a => (a.DateFrom.Date >= DateTime.Parse(availabilitySearchCriteriaDTO.DateFrom).Date && a.DateTo.Date <= DateTime.Parse(availabilitySearchCriteriaDTO.DateTo)))));
+            IEnumerable<UserProfileDTO> result = _mapper.Map<IEnumerable<UserProfileDTO>>(driverList);
+            return result;
+        }
+
         public async Task<long> Add(UserProfileDTO entity)
         {
             AppUser appUser = UserMapper.MapAppUser(entity);
@@ -75,6 +84,7 @@ namespace Accout.DataServiceLayer
                 UploadImage(entity);
                 return await _userProfileDAL.Add(_mapper.Map<UserProfile>(entity));
             }
+            await _accountDAL.DeleteUser(appUser.Id);
             throw new Exception(createUserResult.Errors.ToList()[0].Description);
         }
 
