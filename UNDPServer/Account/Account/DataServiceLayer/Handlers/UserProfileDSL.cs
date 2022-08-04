@@ -33,7 +33,7 @@ namespace Accout.DataServiceLayer
             int total = userProfileList.Count();
 
             #region Apply Filters
-
+            userProfileList = ApplyFilert(userProfileList, searchCriteriaDTO);
             #endregion
 
             #region Apply Pagination
@@ -49,6 +49,37 @@ namespace Accout.DataServiceLayer
             };
             #endregion
 
+        }
+
+        private IQueryable<UserProfile> ApplyFilert(IQueryable<UserProfile> UserProfileList, UserProfileSearchCriteriaDTO searchCriteriaDTO)
+        {
+            //Filter
+
+            if (!string.IsNullOrWhiteSpace(searchCriteriaDTO.FirstName))
+            {
+                UserProfileList = UserProfileList.Where(x => x.FirstName.Contains(searchCriteriaDTO.FirstName));
+            }
+
+            if (!string.IsNullOrWhiteSpace(searchCriteriaDTO.LastName))
+            {
+                UserProfileList = UserProfileList.Where(x => x.LastName.Contains(searchCriteriaDTO.LastName));
+            }
+
+            if (!string.IsNullOrWhiteSpace(searchCriteriaDTO.Mobile))
+            {
+                UserProfileList = UserProfileList.Where(x => x.Mobile.Contains(searchCriteriaDTO.Mobile));
+            }
+
+            if (!string.IsNullOrWhiteSpace(searchCriteriaDTO.UserName))
+            {
+                UserProfileList = UserProfileList.Where(x => x.AppUser.UserName.Contains(searchCriteriaDTO.UserName));
+            }
+
+            if (!string.IsNullOrWhiteSpace(searchCriteriaDTO.JobTitle))
+            {
+                UserProfileList = UserProfileList.Where(x => x.JobTitle.Contains(searchCriteriaDTO.JobTitle));
+            }
+            return UserProfileList;
         }
         public async Task<UserProfileDTO> GetById(long id)
         {

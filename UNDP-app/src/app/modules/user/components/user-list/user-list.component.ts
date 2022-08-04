@@ -18,7 +18,7 @@ declare var jQuery: any;
 export class UserListComponent {
 
 	dataSource: DataSourceModel = new DataSourceModel();
-	userList: Array<UserProfileDTO> = new Array<UserProfileDTO>();
+	userList: Array<UserProfileDTO> ;
 	serverUrl: string;
 	showFilterControls: boolean = false;
 	searchCriteriaDTO:UserProfileSearchCriteriaDTO = new UserProfileSearchCriteriaDTO()
@@ -35,7 +35,7 @@ export class UserListComponent {
 	}
 
 	ngOnInit() {
-		this.getAllUsers();
+		this.search();
 	}
 	toggleFilter() {
 		this.showFilterControls = !this.showFilterControls;
@@ -49,7 +49,9 @@ export class UserListComponent {
 
 		});
 	}
-
+    search(){
+		this.getAllUsers();
+	}
 	delete(id: any) {
 		this.userProfileService.delete(id).subscribe((res: any) => {
 			if (res) {
