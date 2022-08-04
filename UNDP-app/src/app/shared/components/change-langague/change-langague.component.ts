@@ -24,7 +24,7 @@ export class ChangeLangagueComponent {
 
   useLanguage(language: string): void {
     this.helperService.useLanguage(language);
-    this.updateUserLanguage(language);
+    //this.updateUserLanguage(language);
   }
 
   updateUserLanguage(language: string) {

@@ -70,6 +70,8 @@ export class UserListComponent {
 	}
 	onPageChange(event: any) {
 		this.searchCriteriaDTO.page = event;
+		this.getAllUsers();
+
 		// this.search();
 	}
 }

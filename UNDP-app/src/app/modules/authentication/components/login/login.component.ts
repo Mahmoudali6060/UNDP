@@ -16,6 +16,7 @@ import { HelperService } from '../../../../shared/services/helper.service';
 export class LoginComponent {
   invalidLogin: boolean = false;//For showing or error message in case invalid username or password
   clicked = false;
+  lang: string;
   constructor(private router: Router,
     private authService: AuthService,
     private localStorageService: LocalStorageService,
@@ -23,7 +24,16 @@ export class LoginComponent {
     public translate: TranslateService) {
 
   }
-
+  switchLang($event: any) {
+    console.log("lang", $event.target.innerHTML)
+    if($event.target.innerHTML === "English")
+    {
+      this.lang='en';
+    }
+    else{
+      this.lang='ar';
+    }
+  }
   login(form: NgForm) {
     let credentials = JSON.stringify(form.value);
     this.authService.login(credentials).subscribe((response: any) => {
@@ -31,8 +41,8 @@ export class LoginComponent {
         this.localStorageService.setItem(LocalStorageItems.token, response.token);
         this.localStorageService.setItem(LocalStorageItems.email, response.email);
         this.localStorageService.setItem(LocalStorageItems.userProfile, response);
-        this.helperService.useLanguage(response.DefaultLanguage);
-        console.log("LocalStorageItems",LocalStorageItems)
+        this.helperService.useLanguage(response.defaultLanguage);
+        console.log("LocalStorageItems", LocalStorageItems)
         this.invalidLogin = false;
         this.router.navigate(["/dashboard"]);
       }

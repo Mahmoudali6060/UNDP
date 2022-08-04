@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import * as $ from 'jquery'
+import { UserProfileDTO } from 'src/app/modules/user/models/user-profile.dto';
+import { LocalStorageItems } from 'src/app/shared/constants/local-storage-items';
+import { HelperService } from 'src/app/shared/services/helper.service';
+import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 
 @Component({
   selector: 'app-full-layout',
@@ -8,7 +13,16 @@ import * as $ from 'jquery'
 })
 export class FullLayoutComponent implements OnInit {
 
-  constructor() { }
+  constructor(private localStorageService:LocalStorageService,private translate: TranslateService,private helpserService: HelperService ) {
+    let userProfileDTO = this.localStorageService.getItem(LocalStorageItems.userProfile) as UserProfileDTO;
+    if (userProfileDTO) {
+      this.helpserService.useLanguage(userProfileDTO.defaultLanguage);
+    }
+    else {
+       translate.setDefaultLang('en');
+       translate.currentLang = 'en';
+    }
+   }
 
   ngOnInit() {
     this.slideToggle();

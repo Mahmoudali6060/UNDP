@@ -12,7 +12,7 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label for="requesterName" class=" form-control-label">{{'FleetManagement.RequesterName'|translate}}</label>
-                                    <input [(ngModel)]="carRequestDTO.requesterName" type="text" class="form-control"
+                                    <input [(ngModel)]="carRequestDTO.requesterName"  [ngModelOptions]="{standalone: true}" type="text" class="form-control"
                                     #requesterName="ngModel" [class.is-invalid]="requesterName.invalid && requesterName.touched"
                                     [class.is-valid]="requesterName.valid"  required minlength="3" name="requesterName"
                                     id="requesterName" class="form-control"  aria-describedby="helpId">
@@ -23,7 +23,7 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label for="requesterEmail" class=" form-control-label">{{'FleetManagement.RequesterEmail'|translate}}</label>
-                                    <input [(ngModel)]="carRequestDTO.requesterEmail" type="email"  class="form-control"
+                                    <input [(ngModel)]="carRequestDTO.requesterEmail"  [ngModelOptions]="{standalone: true}" type="email"  class="form-control"
                                     #requesterEmail="ngModel" [class.is-invalid]="requesterEmail.invalid && requesterEmail.touched"
                                     [class.is-valid]="requesterEmail.valid"  required minlength="3" name="requesterEmail"
                                     id="requesterEmail" class="form-control"  aria-describedby="helpId">
@@ -37,7 +37,7 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label for="dateFrom"  class=" form-control-label">{{'FleetManagement.DateFrom'|translate}}</label>
-                                    <input max="{{maxDate | date:'mm-dd-yyyy hh:mm:ss'}}" [(ngModel)]="carRequestDTO.dateFrom" type="datetime-local" id="dateFrom" class="form-control"
+                                    <input max="{{maxDate | date:'mm-dd-yyyy hh:mm:ss'}}" [(ngModel)]="carRequestDTO.dateFrom"  [ngModelOptions]="{standalone: true}" type="datetime-local" id="dateFrom" class="form-control"
                                     #dateFrom="ngModel" [class.is-invalid]="dateFrom.invalid && dateFrom.touched"
                                     [class.is-valid]="dateFrom.valid"  required minlength="3" name="dateFrom"
                                     id="dateFrom" class="form-control"  aria-describedby="helpId">
@@ -49,7 +49,7 @@
                                 <div class="form-group">
                                     <label for="dateTo" class=" form-control-label">{{'FleetManagement.DateTo'|translate}}</label>
                                     <input (change)="comparedate()"
-                                     [(ngModel)]="carRequestDTO.dateTo" type="datetime-local" id="dateTo" class="form-control"
+                                     [(ngModel)]="carRequestDTO.dateTo"  [ngModelOptions]="{standalone: true}" type="datetime-local" id="dateTo" class="form-control"
                                     #dateTo="ngModel" [class.is-invalid]="dateTo.invalid && dateTo.touched"
                                     [class.is-valid]="dateTo.valid"  required minlength="3" name="dateTo"
                                     id="dateTo" class="form-control"  aria-describedby="helpId">
@@ -63,7 +63,7 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label for="pickUp" class=" form-control-label">{{'FleetManagement.PickUp'|translate}}</label>
-                                    <input [(ngModel)]="carRequestDTO.pickUp" type="text" id="pickUp" class="form-control"
+                                    <input [(ngModel)]="carRequestDTO.pickUp"  [ngModelOptions]="{standalone: true}" type="text" id="pickUp" class="form-control"
                                     #pickUp="ngModel" [class.is-invalid]="pickUp.invalid && pickUp.touched"
                                     [class.is-valid]="pickUp.valid"  required minlength="3" name="pickUp"
                                     id="pickUp" class="form-control"  aria-describedby="helpId">
@@ -74,7 +74,7 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label for="destination" class=" form-control-label">{{'FleetManagement.Destination'|translate}}</label>
-                                    <input [(ngModel)]="carRequestDTO.destination" type="text" id="destination" class="form-control"
+                                    <input [(ngModel)]="carRequestDTO.destination"  [ngModelOptions]="{standalone: true}" type="text" id="destination" class="form-control"
                                     #destination="ngModel" [class.is-invalid]="destination.invalid && destination.touched"
                                     [class.is-valid]="destination.valid"  required minlength="3" name="destination"
                                     id="destination" class="form-control"  aria-describedby="helpId">
@@ -88,13 +88,13 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label for="comments" class=" form-control-label">{{'FleetManagement.Comments'|translate}}</label>
-                                    <input [(ngModel)]="carRequestDTO.comments" type="text" id="comments" class="form-control">
+                                    <input [(ngModel)]="carRequestDTO.comments"  [ngModelOptions]="{standalone: true}" type="text" id="comments" class="form-control">
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label for="purpose" class=" form-control-label">{{'FleetManagement.Purpose'|translate}}</label>
-                                    <input [(ngModel)]="carRequestDTO.purpose" type="text" id="purpose" class="form-control"
+                                    <input [(ngModel)]="carRequestDTO.purpose"  [ngModelOptions]="{standalone: true}" type="text" id="purpose" class="form-control"
                                     #purpose="ngModel" [class.is-invalid]="purpose.invalid && purpose.touched"
                                     [class.is-valid]="purpose.valid"  required minlength="3" name="purpose"
                                     id="purpose" class="form-control"  aria-describedby="helpId">

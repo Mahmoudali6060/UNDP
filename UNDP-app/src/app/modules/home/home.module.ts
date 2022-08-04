@@ -5,11 +5,13 @@ import { HomeRoutingModule } from './home-routing.module';
 import { LandingPageComponent } from './Components/landing-page/landing-page.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { FleetManagementModule } from '../fleet-management/fleet-management.module';
+import { CarRequestComponent } from './Components/car-request/car-request.component';
 
 
 @NgModule({
   declarations: [
-    LandingPageComponent
+    LandingPageComponent,
+    CarRequestComponent
   ],
   imports: [
     CommonModule,

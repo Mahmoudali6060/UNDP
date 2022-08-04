@@ -11,6 +11,8 @@ import { FullLayoutComponent } from './components/full-layout/full-layout.compon
 import { HeaderMobileComponent } from './components/header-mobile/header-mobile.component';
 import { DatabaseModule } from '../modules/database/database.module';
 import { AuthService } from '../modules/authentication/services/auth.service';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
 
 @NgModule({
@@ -24,10 +26,20 @@ import { AuthService } from '../modules/authentication/services/auth.service';
   imports: [
     LayoutRoutingModule,
     SharedModule,
-    DatabaseModule
+    DatabaseModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
   ],
   providers: [
     AuthService,
   ]
 })
 export class LayoutModule { }
+export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
+  return new TranslateHttpLoader(http);
+}

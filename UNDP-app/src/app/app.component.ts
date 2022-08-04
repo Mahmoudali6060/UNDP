@@ -16,13 +16,13 @@ export class AppComponent {
     private localStorageService: LocalStorageService,
     private helpserService: HelperService) {
     let userProfileDTO = this.localStorageService.getItem(LocalStorageItems.userProfile) as UserProfileDTO;
-    if (userProfileDTO) {
-      this.helpserService.useLanguage(userProfileDTO.defaultLanguage);
-    }
-    else {
+   // if (userProfileDTO) {
+    //  this.helpserService.useLanguage(userProfileDTO.defaultLanguage);
+   // }
+ //   else {
       translate.setDefaultLang('en');
       translate.currentLang = 'en';
-    }
+  //  }
 
   }
 }
