@@ -7,6 +7,9 @@ import { UserProfileService } from '../../services/user.service';
 import { Location } from '@angular/common';
 import { ConfigService } from 'src/app/shared/services/config.service';
 import { NgForm } from '@angular/forms';
+import { UserTypeEnum } from '../../models/user-type-enum';
+import { HelperService } from 'src/app/shared/services/helper.service';
+import { LabelValuePair } from 'src/app/shared/enums/label-value-pair';
 declare var jQuery: any;
 
 @Component({
@@ -20,27 +23,31 @@ export class UserFormComponent {
 	imageSrc!: string;
 	serverUrl: string;
 	phonePatern = "^((\\+91-?)|0)?[0-9]{10}$";
-
+	userTypeEnum: any
+	userTypes: any
+	types:any
 	constructor(private userProfileService: UserProfileService,
 		private route: ActivatedRoute,
 		private toasterService: ToastrService,
-		private location: Location, private _configService: ConfigService) {
+		private location: Location, private _configService: ConfigService,
+		private helperService: HelperService,
+		private translate: TranslateService) {
 	}
 
 	ngOnInit() {
-	this.userProfileDTO = new UserProfileDTO();
-
+		this.userTypeEnum = UserTypeEnum;
+		this.userTypes = this.helperService.enumSelector(this.userTypeEnum);
+		this.userProfileDTO = new UserProfileDTO();
 		const id = this.route.snapshot.paramMap.get('id');
 		if (id) {
 			this.getUserById(id);
 		}
 	}
-
 	getUserById(userId: any) {
 		this.userProfileService.getById(userId).subscribe((res: any) => {
 			this.userProfileDTO = res;
 			this.serverUrl = this._configService.getServerUrl();
-			this.imageSrc = this.serverUrl+"/wwwroot/Images/Users/"+ this.userProfileDTO.imageUrl ;
+			this.imageSrc = this.serverUrl + "/wwwroot/Images/Users/" + this.userProfileDTO.imageUrl;
 		})
 
 	}
@@ -49,7 +56,7 @@ export class UserFormComponent {
 		this.location.back();
 	}
 	save(frm: NgForm) {
-
+		   this.userProfileDTO.role = this.userTypeEnum[this.userProfileDTO.userTypeId]
 		if (this.userProfileDTO.id) {
 			this.userProfileService.update(this.userProfileDTO).subscribe(res => {
 				this.toasterService.success("success");

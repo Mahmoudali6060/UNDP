@@ -169,5 +169,10 @@
     "landingPage":{
      "RequestCar":"Request Car",
      "LearnMore":"Learn More"   
+    },
+    "userTypeEnum":{
+        "Admin":"Admin",
+        "Supervisor":"Supervisor",
+        "Driver":"Driver"
     }
 }

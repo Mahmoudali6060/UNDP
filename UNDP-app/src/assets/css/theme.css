@@ -411,12 +411,12 @@ section {
     margin-right: 8px;
 }
 
-.login-checkbox>label>a {
+/* .login-checkbox>label>a {
     color: #fff;
 }
 .login-checkbox>label {
     color: #fff;
-}
+} */
 @media (max-width: 991px) {
     .login-checkbox {
         -webkit-box-orient: vertical;

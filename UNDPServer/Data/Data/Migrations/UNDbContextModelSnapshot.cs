@@ -74,24 +74,6 @@ namespace Data.Migrations
                     b.ToTable("CarRequests");
                 });
 
-            modelBuilder.Entity("Data.Entities.Shared.AccountTree", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("NameAr")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("NameEn")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("AccountTrees");
-                });
-
             modelBuilder.Entity("Data.Entities.Shared.Category", b =>
                 {
                     b.Property<int>("Id")
@@ -292,6 +274,9 @@ namespace Data.Migrations
 
                     b.Property<string>("Role")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserTypeId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

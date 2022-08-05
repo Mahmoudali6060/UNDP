@@ -2,6 +2,7 @@ import { Injectable, Inject } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { ActionNameEnum } from 'src/app/shared/enums/Action.enum';
 import { TranslateService } from '@ngx-translate/core';
+import { Enum } from '../enums/enum';
 
 
 @Injectable({ providedIn: 'root' })
@@ -81,6 +82,17 @@ export class HelperService {
         }
     }
 
+    //// function for convert enum to object
+     enumSelector(definition:any) {
+        return Object.keys(definition)
+		.filter((v) => isNaN(Number(v)))
+		.map((label) => {
+		  return {
+			value: definition[label as keyof typeof definition],
+			 label,
+		  };
+		});
+      }
 
 
 }

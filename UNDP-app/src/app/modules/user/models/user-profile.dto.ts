@@ -12,4 +12,6 @@ export class UserProfileDTO {
     token: string ;
     imageBase64: string ;
     imageUrl: string ;
+    userTypeId:number;
+    userType:string;
 }

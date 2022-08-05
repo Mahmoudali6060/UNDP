@@ -18,7 +18,7 @@ namespace Data.Contexts
         public DbSet<Company> Companies { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
-        public DbSet<AccountTree> AccountTrees { get; set; }
+        //public DbSet<AccountTree> AccountTrees { get; set; }
         public DbSet<Settings> Settings { get; set; }
         public DbSet<UserProfile> UserProfiles { get; set; }
         public DbSet<CarRequest> CarRequests { get; set; }

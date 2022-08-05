@@ -172,5 +172,10 @@
     "landingPage":{
      "RequestCar":"طلب سيارة",
      "LearnMore":"معرفة المزيد"   
+    },
+    "userTypeEnum":{
+        "Admin":"مسؤول",
+        "Supervisor":"مشرف",
+        "Driver":"سائق"
     }
 }

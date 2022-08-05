@@ -119,3 +119,9 @@ i {
   .imgLogo{
     margin-left: 30px;
 }
+.cardFormRequest{
+    margin-right: 40px;
+}
+.borderFormRequest{
+    border-radius: 1rem 0 0 1rem;;
+}

@@ -15,6 +15,7 @@ namespace Data.Entities.UserManagement
         public string Mobile { get; set; }
         public string JobTitle { get; set; }
         public string ImageUrl { get; set; }
+        public UserTypeEnum UserTypeId { get; set; }
         public string Role { get; set; }
         public string DefaultLanguage { get; set; }
         public string AppUserId { get; set; }

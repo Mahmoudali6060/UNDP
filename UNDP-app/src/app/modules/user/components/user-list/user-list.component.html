@@ -72,6 +72,16 @@
                                             class="form-control">
                                     </div>
                                 </div>
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label for="role" class=" form-control-label">{{'User.Role' |translate}}</label>
+                                        <select name="role" id="select" class="form-control" [(ngModel)]="searchCriteriaDTO.userTypeId">
+                                            <option *ngFor="let usertype of userTypes" 
+                                            [value]="usertype.value">{{usertype.label}}
+                                          </option>
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="col-lg-12">
@@ -100,6 +110,7 @@
                         <th class="table-header-fc">{{'User.Mobile' |translate}}</th>
                         <th class="table-header-fc">{{'User.Email' |translate}}</th>
                         <th class="table-header-fc">{{'User.UserName' |translate}}</th>
+                        <th class="table-header-fc">{{'User.Role' |translate}}</th>
 
                         <th></th>
                     </tr>
@@ -119,6 +130,8 @@
                             <span class="block-email">{{item.email}}</span>
                         </td>
                         <td class="desc">{{item.userName}}</td>
+                        <td>{{item.role}}</td>
+
                         <!-- <td>2018-09-27 02:12</td>
                         <td>
                             <span class="status--process">Processed</span>

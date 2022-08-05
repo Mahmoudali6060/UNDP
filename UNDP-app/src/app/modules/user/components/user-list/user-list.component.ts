@@ -3,11 +3,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
+import { LabelValuePair } from 'src/app/shared/enums/label-value-pair';
 import { ConfigService } from 'src/app/shared/services/config.service';
+import { HelperService } from 'src/app/shared/services/helper.service';
 import { DataSourceModel } from '../../../../shared/models/data-source.model';
 import { ConfirmationDialogService } from '../../../../shared/services/confirmation-dialog.service';
 import {  UserProfileSearchCriteriaDTO } from '../../models/user-list-search-criteria-dto';
 import { UserProfileDTO } from '../../models/user-profile.dto';
+import { UserTypeEnum } from '../../models/user-type-enum';
 import { UserProfileService } from '../../services/user.service';
 declare var jQuery: any;
 
@@ -24,17 +27,21 @@ export class UserListComponent {
 	searchCriteriaDTO:UserProfileSearchCriteriaDTO = new UserProfileSearchCriteriaDTO()
 	total: number;
 	recordsPerPage: number = 5;
-
+	userTypeEnum:any;
+	userTypes:LabelValuePair[];
 	constructor(private userProfileService: UserProfileService,
 		private confirmationDialogService: ConfirmationDialogService,
 		private toastrService: ToastrService,
 		private translate: TranslateService,
 		private _configService: ConfigService,
-		private SpinnerService: NgxSpinnerService) {
+		private SpinnerService: NgxSpinnerService,
+		private helperService:HelperService) {
 
 	}
 
 	ngOnInit() {
+		this.userTypeEnum = UserTypeEnum;
+		this.userTypes = this.helperService.enumSelector(this.userTypeEnum);
 		this.search();
 	}
 	toggleFilter() {
@@ -46,7 +53,7 @@ export class UserListComponent {
 			this.userList = res.list;
 			this.total = res.total;
 			this.serverUrl = this._configService.getServerUrl();
-
+            console.log("userList",this.userList)
 		});
 	}
     search(){

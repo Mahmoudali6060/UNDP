@@ -42,6 +42,8 @@ namespace Account.Entities
         [Required( ErrorMessage = "Errors.InvalidRole")]
         [StringLength(50, MinimumLength = 2)]
         public string Role { get; set; }
+        public int UserTypeId { get; set; }
+        public string UserType { get; set; }
         public string Token { get; set; }
         public string AppUserId { get; set; }
         public string ImageBase64 { get; set; }

@@ -6,5 +6,6 @@ export class UserProfileSearchCriteriaDTO extends DataSourceModel {
     email: string ;
     mobile: string ;
     userName: string ;
-    jobTitle:string
+    jobTitle:string;
+    userTypeId:number;
 }

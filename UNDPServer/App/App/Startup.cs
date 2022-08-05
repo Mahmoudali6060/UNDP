@@ -73,7 +73,7 @@ namespace App
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
             services.AddControllers(options => options.EnableEndpointRouting = false);
-
+            services.AddControllers().AddNewtonsoftJson();
             //>>>Add JWT Authentication And DbContext
             services.AddDbContext<UNDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")), ServiceLifetime.Transient);
             services.AddIdentity<AppUser, AppRole>()

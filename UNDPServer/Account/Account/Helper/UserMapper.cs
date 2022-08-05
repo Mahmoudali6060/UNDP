@@ -1,6 +1,7 @@
 ﻿using Account.Entities;
 using Data.Constants;
 using Data.Entities.UserManagement;
+using System;
 
 namespace Account.RepositoryLayer
 {
@@ -38,6 +39,8 @@ namespace Account.RepositoryLayer
                 UserName = appUser.UserName,
                 DefaultLanguage = userProfile.DefaultLanguage,
                 Role = userProfile.Role,
+                UserTypeId = (int)userProfile.UserTypeId,
+                UserType = Enum.GetName(typeof(UserTypeEnum), userProfile.UserTypeId),
                 AppUserId = appUser.Id,
                 ImageUrl = userProfile.ImageUrl
 
@@ -56,7 +59,8 @@ namespace Account.RepositoryLayer
                 Email = registerRequestViewModel.Email,
                 Password = registerRequestViewModel.Password,
                 DefaultLanguage = registerRequestViewModel.DefaultLanguage,
-                Role = Roles.Driver//Default role is Consumer not admin when user register his account
+                Role = Roles.Driver,
+                UserTypeId = (int)UserTypeEnum.Driver //Default role is Driver not admin when user register his account
             };
         }
 

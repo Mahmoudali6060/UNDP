@@ -1,4 +1,5 @@
-﻿using Shared.Entities.Shared;
+﻿using Data.Entities.UserManagement;
+using Shared.Entities.Shared;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -14,6 +15,7 @@ namespace Account.Entities
         public string JobTitle { get; set; }
         public string Email { get; set; }
         public string UserName { get; set; }
+        public UserTypeEnum UserTypeId { get; set; }
         //public string DefaultLanguage { get; set; }
         //public string Role { get; set; }
 

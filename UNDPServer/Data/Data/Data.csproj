@@ -25,6 +25,7 @@
 
   <ItemGroup>
     <Folder Include="Constants\" />
+    <Folder Include="PostScripts\" />
   </ItemGroup>
 
 </Project>

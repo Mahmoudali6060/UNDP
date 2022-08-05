@@ -11,7 +11,9 @@ import { HelperService } from '../../../../shared/services/helper.service';
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.html'
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
+
 })
 export class LoginComponent {
   invalidLogin: boolean = false;//For showing or error message in case invalid username or password

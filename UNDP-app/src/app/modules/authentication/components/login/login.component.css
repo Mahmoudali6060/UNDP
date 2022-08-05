@@ -1,0 +1,14 @@
+
+
+  .right,
+.left {
+  height: 45px;
+  width: 45px;
+}
+.right {
+    border-bottom-right-radius: 90px;
+    border-top-right-radius: 90px;
+    background: #9e978e;
+    display: inline-block;
+    margin: 0 1em 1em 0;
+  }
