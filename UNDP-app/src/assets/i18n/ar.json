@@ -121,7 +121,8 @@
         "destinationIsRequired":"الوجهة مطلوبة",
         "purposeIsRequired":"الغرض مطلوب",
         "StartDateAndEndDateAreRequired":"تاريخ البداية والنهاية مطلوبين",
-        "EndDateShouldBeGreaterThanStartDate":"تاريخ النهاية لابد أن يكون أكبر من تاريخ البداية"
+        "EndDateShouldBeGreaterThanStartDate":"تاريخ النهاية لابد أن يكون أكبر من تاريخ البداية",
+        "PleaseInsertValidData":"من فضلك ادخل بيانات صحيحة"
 
     },
     "User": {

@@ -117,7 +117,8 @@
         "destinationIsRequired":"Destination Is Required",
         "purposeIsRequired":"Purpose Is Required",
         "StartDateAndEndDateAreRequired":"Start Date And End Date Are Required",
-        "EndDateShouldBeGreaterThanStartDate":"End Date Should Be Greater Than Start Date"
+        "EndDateShouldBeGreaterThanStartDate":"End Date Should Be Greater Than Start Date",
+        "PleaseInsertValidData":"Please Insert valid Data"
 
     },
   "User": {

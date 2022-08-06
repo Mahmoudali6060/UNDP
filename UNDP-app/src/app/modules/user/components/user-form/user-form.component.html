@@ -107,8 +107,8 @@
                         <div class="row">
                             <div class="col-lg-12 mb-2" *ngIf="imageSrc">{{'User.Image' |translate}}</div>
                             <div class="col-lg-12">
-                                <img [src]="imageSrc" *ngIf="userProfileDTO.imageUrl" style="height: auto; width:100%">
-                                <img  style="height: auto; width:100%" *ngIf="!userProfileDTO.imageUrl" src="assets/images/icon/avatar-big-01.jpg" />
+                                <img  src="{{imageSrc}}" *ngIf="userProfileDTO.imageUrl" style="height: auto; width:100%">
+                                <img  style="height: auto; width:100%" *ngIf="!userProfileDTO.imageUrl"  src="{{imageSrc}}"/>
                             </div>
                             <div class="col-lg-12"></div>
                         </div>

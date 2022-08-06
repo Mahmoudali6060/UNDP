@@ -2,21 +2,23 @@
     <button class=" btn btn-outline-primary ml-1" type="button">
         <app-change-langague></app-change-langague>
     </button>
-
+    <div>
+        <img src="assets/images/logo.jpeg" class="carImage" alt="UNDP" />
+    </div>
     <div class="container py-3 ">
-        <span>
+        <!-- <span>
             <img src="assets/images/logo.jpeg" class="carImage" alt="UNDP" />
-        </span>
+        </span> -->
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col col-xl-10">
                 <div class="card" style="border-radius: 1rem;">
                     <div class="row g-0">
                         <div class="col-md-6 col-lg-5 d-none d-md-block">
-                            <img src="assets/images/car3.jpg" alt="login form" class="img-fluid borderFormRequest" />
+                            <img src="assets/images/Car.jpg" alt="car request form" class="img-fluid borderFormRequest" />
                         </div>
                         <div class="col-md-6 col-lg-7 d-flex align-items-center">
                             <div class=" cardFormRequest text-black mt-4">
-                                <app-car-request-form></app-car-request-form>
+                                <app-car-request-form [isCarRequestFromOut]="true"></app-car-request-form>
                             </div>
                         </div>
                     </div>

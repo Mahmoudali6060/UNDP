@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
@@ -21,6 +21,7 @@ export class CarRequestFormComponent {
 	imageSrc!: string;
 	isValidDate: boolean;
 	maxDate: Date
+	@Input() isCarRequestFromOut:boolean = false;
 	constructor(private carRequestService: CarRequestService,
 		private route: ActivatedRoute,
 		private toasterService: ToastrService,
@@ -49,13 +50,15 @@ export class CarRequestFormComponent {
 
 	save(frm: NgForm) {
 		if (!this.isValidDate) {
-			this.toasterService.error("Please Insert Add valid Data")
+			this.toasterService.error(this.translate.instant("Errors.PleaseInsertValidData"));
 		}
 		else {
 			if (this.carRequestDTO.id) {
 				this.carRequestService.update(this.carRequestDTO).subscribe(res => {
 					this.toasterService.success("success");
-					this.cancel();
+					if(this.isCarRequestFromOut === false){
+						this.cancel();
+					}
 				})
 			}
 			else {
@@ -75,7 +78,11 @@ export class CarRequestFormComponent {
 		}
 
 		if ((sDate != null && eDate != null) && (eDate) < (sDate)) {
-			this.toasterService.error(this.translate.instant("Errors.EndDateShouldBeGreaterThanStartDate"));
+			//this.toasterService.error(this.translate.instant("Errors.EndDateShouldBeGreaterThanStartDate"));
+			this.isValidDate = false;
+		}
+		if ((sDate != null && eDate != null) && (eDate) === (sDate)) {
+			//this.toasterService.error(this.translate.instant("Errors.EndDateShouldBeGreaterThanStartDate"));
 			this.isValidDate = false;
 		}
 		return this.isValidDate;
