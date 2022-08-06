@@ -47,12 +47,12 @@ h5 {
   text-transform: uppercase;
 }
 
-.btn:hover,
+/* .btn:hover,
 .btn:focus {
   color: #fff;
   border-color: #FF5274;
   background-color: #FF5274;
-}
+} */
 
 .btn-white {
   font-size: 13px;
