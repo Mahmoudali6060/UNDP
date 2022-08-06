@@ -93,17 +93,8 @@ export class HelperService {
 		  };
 		});
       }
-      IsAdmin()
+      getRole()
       {
-        return localStorage.getItem('role') == 'Admin';
+        return localStorage.getItem('role');
       }
-      IsSupervisor()
-      {
-        return localStorage.getItem('role') == 'Supervisor';
-      }
-      IsDriver()
-      {
-        return localStorage.getItem('role') == 'Driver';
-      }
-
 }
