@@ -1,5 +1,8 @@
 <section class="hero">
-    <a class="changeLang"><app-change-langague></app-change-langague></a>
+    <!-- <a class="changeLang"><app-change-langague></app-change-langague></a> -->
+    <button class=" btn btn-outline-primary ml-1" type="button">
+        <app-change-langague></app-change-langague>
+    </button>
         <section class="navigation">
         <header>
             <div class="header-content">
@@ -20,8 +23,8 @@
                         </ul> -->
                         <ul class="member-actions">
                             <li><a [routerLink]="['/login']" class="btn-white btn-small" >{{'Authentication.LogIn' | translate}}</a></li>
-                            <li><a href="#download" class="btn-white btn-small">{{'Authentication.SignUpHere' | translate}}</a></li>
-                             <!-- <li><a class="btn-white btn-small"><app-change-langague></app-change-langague></a></li> -->
+                             <!-- <li><a href="#download" class="btn-white btn-small">{{'Authentication.SignUpHere' | translate}}</a></li>
+                            <li><a class="btn-white btn-small"><app-change-langague></app-change-langague></a></li> -->
                         </ul>
                     </nav>
                 </div>
@@ -43,6 +46,6 @@
             </div>
         </div>
     </div>
-    <div class="down-arrow floating-arrow"><a href="#"><i class="fa fa-angle-down"></i></a></div>
+    <!-- <div class="down-arrow floating-arrow"><a href="#"><i class="fa fa-angle-down"></i></a></div> -->
 </section>
-<app-car-request></app-car-request>
+<!-- <app-car-request></app-car-request> -->

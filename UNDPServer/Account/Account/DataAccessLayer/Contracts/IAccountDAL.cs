@@ -12,6 +12,7 @@ namespace Account.DataAccessLayer
     public interface IAccountDAL
     {
         Task<IdentityResult> CreateUserAsync(AppUser user, string password, string role);
+        Task<IdentityResult> UpdateUserAsync(UserProfileDTO userProfileDTO);
         Task<SignInResult> IsValidUser(LoginModel loginModel);
         Task<AppUser> GetUserByUsername(LoginModel loginModel);
         Task<IdentityResult> AddToRoleAsync(AppUser user, string role);

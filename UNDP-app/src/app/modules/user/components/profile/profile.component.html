@@ -21,9 +21,8 @@
                     <div class="card-body text-center">
                         <img *ngIf="imageUrl != null" src="{{imageSrc}}"
                             class="image img-cir img-150 img-fluid">
-
                         <img *ngIf="imageUrl ==  null" class="image img-cir img-150 img-fluid"
-                            src="assets/images/icon/avatar-big-01.jpg" />
+                        src="{{imageSrc}}" />
                         <input *ngIf="edit" type="file" id="image" class="form-control" (change)="onFileChange($event)">
 
                         <h5 class="my-3">{{profile.firstName}} {{profile.lastName}}</h5>
@@ -137,9 +136,10 @@
                             </div>
                             <div class="col-sm-9">
                                 <div class="form-group pb-2" *ngIf="edit">
-                                    <select name="role" id="select" class="form-control" [(ngModel)]="profile.role">
-                                        <option value="Admin">{{'User.Admin' |translate}}</option>
-                                        <option value="Consumer">{{'User.Consumer' |translate}}</option>
+                                    <select name="role" id="select" class="form-control" [(ngModel)]="profile.userTypeId">
+                                        <option *ngFor="let usertype of userTypes" 
+                                        [value]="usertype.value">{{usertype.label}}
+                                      </option>
                                     </select>
                                 </div>
                                 <p class="mb-0" *ngIf="!edit">{{profile.role}}</p>

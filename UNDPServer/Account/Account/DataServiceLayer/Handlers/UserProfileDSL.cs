@@ -127,8 +127,15 @@ namespace Accout.DataServiceLayer
 
         public async Task<long> Update(UserProfileDTO entity)
         {
-            UploadImage(entity);
-            return await _userProfileDAL.Update(_mapper.Map<UserProfile>(entity));
+          //  UploadImage(entity);
+           // AppUser appUser = UserMapper.MapAppUser(entity);
+            var createUserResult = await _accountDAL.UpdateUserAsync(entity);
+            if (createUserResult.Succeeded)
+            {
+                UploadImage(entity);
+                return await _userProfileDAL.Update(_mapper.Map<UserProfile>(entity));
+            }
+            throw new Exception(createUserResult.Errors.ToList()[0].Description);
         }
 
         public async Task<bool> Delete(long id)

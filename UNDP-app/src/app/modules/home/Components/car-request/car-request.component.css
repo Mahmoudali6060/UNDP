@@ -2,8 +2,9 @@
     height: 500px !important;
 } */
 .carImage{
-    width:3% ;
+    width:2% ;
+    margin: 10px;
 }
 .container{
-    max-width: 76% !important;
+    max-width: 74.5% !important;
 }

@@ -48,6 +48,9 @@ export class UserFormComponent {
 			this.userProfileDTO = res;
 			this.serverUrl = this._configService.getServerUrl();
 			this.imageSrc = this.serverUrl + "/wwwroot/Images/Users/" + this.userProfileDTO.imageUrl;
+			if(!this.userProfileDTO.imageUrl){
+				this.imageSrc="assets/images/icon/avatar-big-01.jpg";
+			  }
 		})
 
 	}

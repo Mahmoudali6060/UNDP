@@ -4,9 +4,12 @@ import { ToastrService } from 'ngx-toastr';
 import { ResetPasswordComponent } from 'src/app/modules/authentication/components/reset-password/reset-password.component';
 import { ResetPasswordDTO } from 'src/app/modules/authentication/models/reset-password-dto';
 import { LocalStorageItems } from 'src/app/shared/constants/local-storage-items';
+import { LabelValuePair } from 'src/app/shared/enums/label-value-pair';
 import { ConfigService } from 'src/app/shared/services/config.service';
+import { HelperService } from 'src/app/shared/services/helper.service';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 import { UserProfileDTO } from '../../models/user-profile.dto';
+import { UserTypeEnum } from '../../models/user-type-enum';
 import { UserProfileService } from '../../services/user.service';
 
 @Component({
@@ -25,12 +28,16 @@ export class ProfileComponent implements OnInit {
   serverUrl: string;
   loggedProfile: UserProfileDTO;
   imageUrl: string;
-  constructor(private userProfileService: UserProfileService, private _configService: ConfigService,private toasterService: ToastrService, private localStorageService: LocalStorageService) { }
+  userTypeEnum:any;
+  userTypes:LabelValuePair[];
+  constructor(private helperService:HelperService,private userProfileService: UserProfileService, private _configService: ConfigService,private toasterService: ToastrService, private localStorageService: LocalStorageService) { }
 
   ngOnInit(): void {
     this.edit = false;
     this.ischangePassword=false;
     this.profile =  new UserProfileDTO();
+    this.userTypeEnum = UserTypeEnum;
+		this.userTypes = this.helperService.enumSelector(this.userTypeEnum);
     this.loggedProfile = this.localStorageService.getItem(LocalStorageItems.userProfile);
     this.getProfileById(this.loggedProfile.id);
   }
@@ -40,6 +47,9 @@ export class ProfileComponent implements OnInit {
       this.imageUrl = this.profile.imageUrl;
 			this.serverUrl = this._configService.getServerUrl();
 			this.imageSrc = this.serverUrl+"/wwwroot/Images/Users/"+ this.profile.imageUrl ;
+      if(!this.profile.imageUrl){
+        this.imageSrc="assets/images/icon/avatar-big-01.jpg";
+      }
 		})
 
 	}
