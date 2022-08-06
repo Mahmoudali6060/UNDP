@@ -43,8 +43,8 @@ export class LoginComponent {
         this.localStorageService.setItem(LocalStorageItems.token, response.token);
         this.localStorageService.setItem(LocalStorageItems.email, response.email);
         this.localStorageService.setItem(LocalStorageItems.userProfile, response);
+        this.localStorageService.setItem(LocalStorageItems.role, response.role);
         this.helperService.useLanguage(response.defaultLanguage);
-        console.log("LocalStorageItems", LocalStorageItems)
         this.invalidLogin = false;
         this.router.navigate(["/dashboard"]);
       }

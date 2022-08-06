@@ -52,6 +52,14 @@ export class AuthService {
     this.router.navigateByUrl('/home');
   }
 
+  IsAdmin()
+  {
+    return localStorage.getItem('role') == 'Admin';
+  }
+  IsSupervisor()
+  {
+    return localStorage.getItem('role') == 'Supervisor';
+  }
 }
 
 
