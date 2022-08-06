@@ -29,6 +29,14 @@ namespace Account.DataAccessLayer
             return result;
         }
 
+        public async Task<IdentityResult> UpdateUserAsync(UserProfileDTO userProfileDTO)
+        {
+            var appUser = await _userManager.FindByIdAsync(userProfileDTO.AppUserId);
+            appUser.Email = userProfileDTO.Email;
+            appUser.UserName = userProfileDTO.UserName;
+            var result = await _userManager.UpdateAsync(appUser);   //CreateAsync(user, password);
+            return result;
+        }
         public async Task<SignInResult> IsValidUser(LoginModel loginModel)
         {
             return await _signInManager.PasswordSignInAsync(
