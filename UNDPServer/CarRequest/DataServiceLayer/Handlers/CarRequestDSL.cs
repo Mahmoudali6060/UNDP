@@ -31,7 +31,7 @@ namespace FleetManagement.DataServiceLayer
             int total = carRequestList.Count();
 
             #region Order
-            carRequestList = carRequestList.OrderByDescending(x => x.DateFrom);
+            carRequestList = carRequestList.OrderByDescending(x => x.Id);
             #endregion
 
             #region Apply Filters
@@ -131,6 +131,8 @@ namespace FleetManagement.DataServiceLayer
 
         public async Task<long> Update(CarRequestDTO entity)
         {
+            var tt=DateTime.Parse( entity.DateFrom);
+            var ff = DateTime.ParseExact(entity.DateFrom, "dd/MM/yyyy HH:ss tt", null);
             return await _carRequestDAL.Update(_mapper.Map<CarRequest>(entity));
         }
 
