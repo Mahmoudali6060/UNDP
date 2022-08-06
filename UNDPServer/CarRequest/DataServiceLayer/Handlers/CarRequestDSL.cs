@@ -30,6 +30,10 @@ namespace FleetManagement.DataServiceLayer
             var carRequestList = await _carRequestDAL.GetAll();
             int total = carRequestList.Count();
 
+            #region Order
+            carRequestList = carRequestList.OrderByDescending(x => x.DateFrom);
+            #endregion
+
             #region Apply Filters
             carRequestList = ApplyFilert(carRequestList, searchCriteriaDTO);
             #endregion
@@ -120,6 +124,8 @@ namespace FleetManagement.DataServiceLayer
 
         public async Task<long> Add(CarRequestDTO entity)
         {
+           
+            entity.SequenceNumber = DateTime.Now.ToString("MMddfff");
             return await _carRequestDAL.Add(_mapper.Map<CarRequest>(entity));
         }
 

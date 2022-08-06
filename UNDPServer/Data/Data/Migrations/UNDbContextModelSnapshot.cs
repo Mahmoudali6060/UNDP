@@ -62,6 +62,9 @@ namespace Data.Migrations
                     b.Property<string>("RequesterName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("SequenceNumber")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<long?>("SupervisorId")
                         .HasColumnType("bigint");
 

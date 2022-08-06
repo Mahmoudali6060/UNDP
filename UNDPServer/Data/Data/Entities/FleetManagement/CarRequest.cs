@@ -18,6 +18,7 @@ namespace Data.Entities.FleetManagement
         public string Comments { get; set; }
         public string Purpose { get; set; }
         public CarRequestStatusEnum CarRequestStatusId { get; set; }
+        public string SequenceNumber { get; set; }
 
         public long? SupervisorId { get; set; }
         public virtual UserProfile Supervisor { get; set; }

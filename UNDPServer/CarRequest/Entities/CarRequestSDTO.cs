@@ -26,7 +26,7 @@ namespace FleetManagement.Entities
         public string Destination { get; set; }
         public string Comments { get; set; }
         public string Purpose { get; set; }
-
+        public string SequenceNumber { get; set; }
         public CarRequestStatusEnum CarRequestStatusId { get; set; }
         public long? SupervisorId { get; set; }
         public long? DriverId { get; set; }

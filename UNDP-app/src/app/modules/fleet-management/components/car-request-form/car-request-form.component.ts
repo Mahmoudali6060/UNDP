@@ -7,6 +7,7 @@ import { CarRequestService } from '../../services/car-request.service';
 import { Location } from '@angular/common';
 import { CarRequestStatusEnum } from '../../../../shared/enums/car-request-status.enum';
 import { NgForm } from '@angular/forms';
+import { from } from 'rxjs';
 declare var jQuery: any;
 
 @Component({
@@ -26,7 +27,7 @@ export class CarRequestFormComponent {
 		private toasterService: ToastrService,
 		private location: Location,
 		private translate: TranslateService,
-		) {
+	) {
 	}
 
 	ngOnInit() {
@@ -48,6 +49,7 @@ export class CarRequestFormComponent {
 	}
 
 	save(frm: NgForm) {
+		this.comparedate();
 		if (!this.isValidDate) {
 			this.toasterService.error("Please Insert Add valid Data")
 		}
@@ -55,14 +57,18 @@ export class CarRequestFormComponent {
 			if (this.carRequestDTO.id) {
 				this.carRequestService.update(this.carRequestDTO).subscribe(res => {
 					this.toasterService.success("success");
-					this.cancel();
+					// this.carRequestDTO = new CarRequestDTO();
+					frm.resetForm();
+					// this.cancel();
 				})
 			}
 			else {
 				this.carRequestDTO.carRequestStatusId = CarRequestStatusEnum.InProgress;
 				this.carRequestService.add(this.carRequestDTO).subscribe(res => {
 					this.toasterService.success("success");
-					this.cancel();
+					// this.carRequestDTO = new CarRequestDTO();
+					frm.resetForm();
+					// this.cancel();
 				})
 			}
 		}

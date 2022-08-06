@@ -1,17 +1,20 @@
 <div class="row">
     <div class="col-md-12">
         <!-- DATA TABLE -->
-        <h3 class="title-5 m-b-35"><span>{{'FleetManagement.RequestReviewFormInbox'|translate}}</span></h3>
+        <h3 class="title-5 m-b-35">
+            <span *ngIf="!loggedUserId">{{'FleetManagement.RequestReviewFormInbox'|translate}}</span>
+            <span *ngIf="loggedUserId">{{'FleetManagement.CarRequestMyInbox'|translate}}</span>
+        </h3>
         <div class="table-data__tool">
             <div class="table-data__tool-left">
                 <button class="au-btn-filter" (click)="toggleFilter()">
                     <i class="zmdi zmdi-filter-list"></i>{{'General.Filter'|translate}}</button>
             </div>
-            <div class="table-data__tool-right">
+            <!-- <div class="table-data__tool-right">
                 <button [routerLink]="['/fleet-management/car-request-form']" class="au-btn au-btn-icon au-btn--green au-btn--small">
                     <i class="zmdi zmdi-plus"></i> {{'FleetManagement.NewCarRequest'|translate}}
                 </button>
-            </div>
+            </div> -->
         </div>
 
         <!--Filters-->
@@ -122,7 +125,8 @@
                                 <span class="au-checkmark"></span>
                             </label> -->
                         </td>
-                        <td>34234</td>
+                        <td *ngIf="!loggedUserId">{{item.sequenceNumber}}</td>
+                        <td *ngIf="loggedUserId" (click)="getAllAvailableDrivers(item)"><a class="link">{{item.sequenceNumber}}</a> </td>
                         <td>
                             <span *ngIf="item.carRequestStatusId==carRequestStatusEnum.InProgress" class="status-in-progress">
                                 {{'CarRequestStatusEnum.InProgress'|translate}}</span>
@@ -136,10 +140,10 @@
                         <!--Test-->
                         <td>
                             <div class="table-data-feature">
-                                <button class="item" data-toggle="tooltip" data-placement="top" title="{{'FleetManagement.AssignToMe'|translate}}" data-original-title="Send" (click)="assignToMe(item)">
+                                <button *ngIf="!loggedUserId" class="item" data-toggle="tooltip" data-placement="top" title="{{'FleetManagement.AssignToMe'|translate}}" data-original-title="Send" (click)="assignToMe(item)">
                                     <i class="zmdi zmdi-mail-send"></i>
                                 </button>
-                                <button class="item" data-toggle="tooltip" data-placement="top" title="{{'FleetManagement.AvailableDrivers'|translate}}" data-original-title="Send" (click)="getAllAvailableDrivers(item)">
+                                <button *ngIf="loggedUserId" class="item" data-toggle="tooltip" data-placement="top" title="{{'FleetManagement.AvailableDrivers'|translate}}" data-original-title="Send" (click)="getAllAvailableDrivers(item)">
                                     <i class="fas fa-users"></i>
                                 </button>
 

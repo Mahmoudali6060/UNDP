@@ -65,3 +65,9 @@ body::-webkit-scrollbar-thumb {
 .status-completed {
     color: green;
 }
+
+.link {
+    color: blue!important;
+    text-decoration: underline !important;
+    cursor: pointer;
+}

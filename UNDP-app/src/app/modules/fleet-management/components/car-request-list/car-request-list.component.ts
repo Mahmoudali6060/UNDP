@@ -1,6 +1,7 @@
 import { Component, EventEmitter, ViewEncapsulation } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { CarRequestStatusEnum } from '../../../../shared/enums/car-request-status.enum';
@@ -13,7 +14,9 @@ import { UserProfileDTO } from '../../../user/models/user-profile.dto';
 import { UserProfileService } from '../../../user/services/user.service';
 import { CarRequestSearchCriteriaDTO } from '../../models/car-request-search-criteria.dto';
 import { CarRequestDTO } from '../../models/car-request.dto';
+import { AvailableDriversDialogService } from '../../services/available-drivers-dialog.service';
 import { CarRequestService } from '../../services/car-request.service';
+import { AvailableDriversComponent } from '../available-drivers/available-drivers.component';
 declare var jQuery: any;
 
 @Component({
@@ -25,19 +28,12 @@ export class CarRequestListComponent {
 	//#region  Variables
 	carRequestSearchCrieria: CarRequestSearchCriteriaDTO = new CarRequestSearchCriteriaDTO();
 	carRequestList: Array<CarRequestDTO>;// = new Array<CarRequestDTO>();
-	avaliableDrivers: Array<UserProfileDTO>;// = new Array<UserProfileDTO>();
 	loggedUserId: number;
 	carRequestStatusEnum = CarRequestStatusEnum;
 	showFilterControls: boolean = false;
 	total: number;
 	//#endregion
 
-	form!: FormGroup;
-	students: any = [];
-	searchTerm: string = '';
-	reload: EventEmitter<boolean> = new EventEmitter();
-	isLoadingStudents: boolean = false;
-	recordsPerPage: number = 5;
 
 	constructor(private carRequestService: CarRequestService,
 		private confirmationDialogService: ConfirmationDialogService,
@@ -45,7 +41,8 @@ export class CarRequestListComponent {
 		private translate: TranslateService,
 		private authService: AuthService,
 		private userProfileService: UserProfileService,
-		private route: ActivatedRoute
+		private route: ActivatedRoute,
+		private availableDriversDialogService: AvailableDriversDialogService
 	) {
 
 	}
@@ -80,7 +77,7 @@ export class CarRequestListComponent {
 	updateCarRequest(item: CarRequestDTO) {
 		this.carRequestService.update(item).subscribe((res: any) => {
 			if (res) {
-				this.toastrService.success(this.translate.instant("Message.RequestAssignedSuccessfully"));
+				this.toastrService.success(this.translate.instant("Message.UpdatedSuccessfully"));
 				this.getAllCarRequests();
 			}
 		});
@@ -116,14 +113,32 @@ export class CarRequestListComponent {
 		this.search();
 	}
 
+	//#region  Handle Available Drivers
 	getAllAvailableDrivers(item: CarRequestDTO) {
 		debugger;
 		let availabilitySearchCriteriaDTO: AvailabilitySearchCriteriaDTO = new AvailabilitySearchCriteriaDTO();
 		availabilitySearchCriteriaDTO.DateFrom = item.dateFrom;
 		availabilitySearchCriteriaDTO.DateTo = item.dateTo;
-
 		this.userProfileService.getAllAvailableDrivers(availabilitySearchCriteriaDTO).subscribe((res: any) => {
-			this.avaliableDrivers = res;
+			if (res && res.length > 0)
+				this.openAvailableDriversDialog(res, item);
+			else {
+				this.toastrService.warning(this.translate.instant("Warning.NoDriversAvialable"));
+			}
 		});
 	}
+
+	public openAvailableDriversDialog(avaliableDrivers: Array<UserProfileDTO>, selectedCarRequest: CarRequestDTO) {
+		this.availableDriversDialogService.show(avaliableDrivers, 'sm')
+			.then((driverId) => {
+				if (driverId) {
+					selectedCarRequest.carRequestStatusId = CarRequestStatusEnum.Approved;
+					selectedCarRequest.driverId = driverId;
+					this.updateCarRequest(selectedCarRequest);
+				}
+			})
+			.catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));
+	}
+	//#endregion
+
 }
