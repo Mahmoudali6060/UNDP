@@ -37,6 +37,7 @@ export class UserFormComponent {
 	ngOnInit() {
 		this.userTypeEnum = UserTypeEnum;
 		this.userTypes = this.helperService.enumSelector(this.userTypeEnum);
+		this.imageSrc="assets/images/icon/avatar-big-01.jpg";
 		this.userProfileDTO = new UserProfileDTO();
 		const id = this.route.snapshot.paramMap.get('id');
 		if (id) {

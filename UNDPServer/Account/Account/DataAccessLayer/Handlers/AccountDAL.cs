@@ -3,6 +3,7 @@ using Data.Contexts;
 using Data.Entities.UserManagement;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -24,14 +25,40 @@ namespace Account.DataAccessLayer
 
         public async Task<IdentityResult> CreateUserAsync(AppUser user, string password, string role)
         {
+            await ValidateEmailAndUserName(user);
             var result = await _userManager.CreateAsync(user, password);
             await AddToRoleAsync(user, role);
             return result;
         }
-
+        private async Task<bool> ValidateEmailAndUserName(AppUser user)
+        {
+            var appUser = await _userManager.FindByEmailAsync(user.Email);
+            if (appUser.UserName == user.UserName)
+            {
+                throw new Exception("Errors.UserNameExist");
+            }
+            else if (appUser.Email == user.Email)
+            {
+                throw new Exception("Errors.EmailExist");
+            }
+            else
+            {
+                return true;
+            }
+        }
         public async Task<IdentityResult> UpdateUserAsync(UserProfileDTO userProfileDTO)
         {
             var appUser = await _userManager.FindByIdAsync(userProfileDTO.AppUserId);
+            var IsUserNameExist = await _userManager.Users.AnyAsync(x=>x.UserName == userProfileDTO.UserName && x.Id != appUser.Id);
+            if(IsUserNameExist)
+            {
+                throw new Exception("Errors.UserNameExist");
+            }
+            var IsEmailExist = await _userManager.Users.AnyAsync(x => x.Email == userProfileDTO.Email && x.Id != appUser.Id);
+            if (IsEmailExist)
+            {
+                throw new Exception("Errors.EmailExist");
+            }
             appUser.Email = userProfileDTO.Email;
             appUser.UserName = userProfileDTO.UserName;
             var result = await _userManager.UpdateAsync(appUser);   //CreateAsync(user, password);
