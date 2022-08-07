@@ -1,5 +1,6 @@
 export const LocalStorageItems = {
     token: "token",
     userProfile: "userProfile",
-    email:"email"
+    email:"email",
+    role:"role"
 }

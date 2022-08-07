@@ -93,6 +93,8 @@ export class HelperService {
 		  };
 		});
       }
-
-
+      getRole()
+      {
+        return localStorage.getItem('role');
+      }
 }
