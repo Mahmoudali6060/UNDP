@@ -120,7 +120,8 @@
         "StartDateAndEndDateAreRequired": "Start Date And End Date Are Required",
         "EndDateShouldBeGreaterThanStartDate": "End Date Should Be Greater Than Start Date",
         "UserNameExist":"UserName Exist Before Please Insert Another UserName",
-        "EmailExist":"Email Exist Before Please Insert Another Email"
+        "EmailExist":"Email Exist Before Please Insert Another Email",
+        "NonExistRole":"Role Not Exist Please Add Role First"
     },
     "Warning": {
         "NoDriversAvialable": "There is no any driver available in this period"

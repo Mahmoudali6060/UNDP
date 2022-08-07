@@ -13,33 +13,55 @@ namespace Account.DataAccessLayer
     {
         private readonly SignInManager<AppUser> _signInManager;
         private readonly UserManager<AppUser> _userManager;
+        private readonly RoleManager<AppRole> _roleManager;
         private readonly UNDbContext _appDbContext;
 
-        public AccountDAL(SignInManager<AppUser> signInManager, UserManager<AppUser> userManager, UNDbContext appDbContext)
+        public AccountDAL(SignInManager<AppUser> signInManager, UserManager<AppUser> userManager, UNDbContext appDbContext,RoleManager<AppRole> roleManager)
         {
             _signInManager = signInManager;
             _userManager = userManager;
             _appDbContext = appDbContext;
+            _roleManager = roleManager;
         }
 
 
         public async Task<IdentityResult> CreateUserAsync(AppUser user, string password, string role)
         {
-            await ValidateEmailAndUserName(user);
-            var result = await _userManager.CreateAsync(user, password);
-            await AddToRoleAsync(user, role);
-            return result;
+            var IsRoleExist = await _roleManager.RoleExistsAsync(role);
+            if(IsRoleExist)
+            {
+                await ValidateEmailAndUserName(user);
+                var result = await _userManager.CreateAsync(user, password);
+                if (result.Succeeded)
+                {
+                    return await AddToRoleAsync(user, role);
+
+                }
+                return result;
+            }
+            else
+            {
+                throw new Exception("Errors.NonExistRole");
+            }
+
         }
         private async Task<bool> ValidateEmailAndUserName(AppUser user)
         {
             var appUser = await _userManager.FindByEmailAsync(user.Email);
-            if (appUser.UserName == user.UserName)
+            if (appUser != null)
             {
-                throw new Exception("Errors.UserNameExist");
-            }
-            else if (appUser.Email == user.Email)
-            {
-                throw new Exception("Errors.EmailExist");
+                if (appUser.UserName == user.UserName)
+                {
+                    throw new Exception("Errors.UserNameExist");
+                }
+                else if (appUser.Email == user.Email)
+                {
+                    throw new Exception("Errors.EmailExist");
+                }
+                else
+                {
+                    return true;
+                }
             }
             else
             {
@@ -49,8 +71,8 @@ namespace Account.DataAccessLayer
         public async Task<IdentityResult> UpdateUserAsync(UserProfileDTO userProfileDTO)
         {
             var appUser = await _userManager.FindByIdAsync(userProfileDTO.AppUserId);
-            var IsUserNameExist = await _userManager.Users.AnyAsync(x=>x.UserName == userProfileDTO.UserName && x.Id != appUser.Id);
-            if(IsUserNameExist)
+            var IsUserNameExist = await _userManager.Users.AnyAsync(x => x.UserName == userProfileDTO.UserName && x.Id != appUser.Id);
+            if (IsUserNameExist)
             {
                 throw new Exception("Errors.UserNameExist");
             }
@@ -78,7 +100,8 @@ namespace Account.DataAccessLayer
 
         public async Task<IdentityResult> AddToRoleAsync(AppUser user, string role)
         {
-            return await _userManager.AddToRoleAsync(user, role);
+
+             return  await _userManager.AddToRoleAsync(user, role);
         }
 
         public async Task<IList<string>> GetRolesAsync(AppUser user)
@@ -100,7 +123,7 @@ namespace Account.DataAccessLayer
 
         public async Task<AppUser> FindByEmailAsync(string email)
         {
-           var user = await _userManager.FindByEmailAsync(email);
+            var user = await _userManager.FindByEmailAsync(email);
             return user;
         }
 
@@ -111,7 +134,7 @@ namespace Account.DataAccessLayer
             return token;
         }
 
-        public async Task<IdentityResult> ResetPasswordAsync(AppUser appUser,string token , string password)
+        public async Task<IdentityResult> ResetPasswordAsync(AppUser appUser, string token, string password)
         {
             var resetPassResult = await _userManager.ResetPasswordAsync(appUser, token, password);
             return resetPassResult;
