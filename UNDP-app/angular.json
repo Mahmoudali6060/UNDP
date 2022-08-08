@@ -36,8 +36,7 @@
                             "src/app/modules/home/landing-page-files/css/normalize.min.css",
                             "src/app/modules/home/landing-page-files/css/flexslider.css",
                             "src/app/modules/home/landing-page-files/css/styles.css",
-                            "src/app/modules/home/landing-page-files/css/etline-font.css",
-                            "src/app/modules/home/landing-page-files/bower_components/animate.css/animate.min.css"
+                            "src/app/modules/home/landing-page-files/css/etline-font.css"
                         ],
                         "scripts": [
                             "./node_modules/jquery/dist/jquery.min.js",

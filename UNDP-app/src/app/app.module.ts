@@ -12,6 +12,8 @@ import { SharedModule } from './shared/shared.module';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { SpinnerInterceptor } from './shared/interceptors/spinner.interceptor';
+import { NgxSpinnerModule } from 'ngx-spinner';
 @NgModule({
   declarations: [
     AppComponent
@@ -21,6 +23,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     SharedModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    NgxSpinnerModule,
     ToastrModule.forRoot(),
     TranslateModule.forRoot({
       loader: {
@@ -31,7 +34,10 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     })
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true },
+    {
+      provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })
