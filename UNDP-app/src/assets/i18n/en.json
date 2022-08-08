@@ -119,9 +119,9 @@
         "purposeIsRequired": "Purpose Is Required",
         "StartDateAndEndDateAreRequired": "Start Date And End Date Are Required",
         "EndDateShouldBeGreaterThanStartDate": "End Date Should Be Greater Than Start Date",
-        "UserNameExist":"UserName Exist Before Please Insert Another UserName",
-        "EmailExist":"Email Exist Before Please Insert Another Email",
-        "NonExistRole":"Role Not Exist Please Add Role First"
+        "UserNameExist": "UserName Exist Before Please Insert Another UserName",
+        "EmailExist": "Email Exist Before Please Insert Another Email",
+        "NonExistRole": "Role Not Exist Please Add Role First"
     },
     "Warning": {
         "NoDriversAvialable": "There is no any driver available in this period"
@@ -169,7 +169,12 @@
         "AssignToMe": "Assign To Me",
         "CarRequestInbox": "Car Request Inbox",
         "AvailableDrivers": "Available Drivers",
-        "Drivers": "Drivers"
+        "Drivers": "Drivers",
+        "ClosingReason": "Closing Reason",
+        "Comment": "Comment",
+        "NoAvailableDrivers": "No Available Drivers",
+        "WrongData": "Wrong Data",
+        "Other": "Other"
     },
     "CarRequestStatusEnum": {
         "InProgress": "In Progress",

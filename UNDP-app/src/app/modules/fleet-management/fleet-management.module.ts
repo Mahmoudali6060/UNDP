@@ -1,11 +1,13 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { SharedModule } from '../../shared/shared.module';
-import { AvailableDriversComponent } from './components/available-drivers/available-drivers.component';
+import { AvailableDriversPopupComponent } from './components/available-drivers-popup/available-drivers-popup.component';
 import { CarRequestFormComponent } from './components/car-request-form/car-request-form.component';
 import { CarRequestListComponent } from './components/car-request-list/car-request-list.component';
+import { ClosingReasonPopupComponent } from './components/closing-reason-popup/closing-reason-popup.component';
 import { FleetManagementRoutingModule } from './fleet-management-routing.module';
-import { AvailableDriversDialogService } from './services/available-drivers-dialog.service';
+import { AvailableDriversPopupService } from './services/available-drivers-popup.service';
 import { CarRequestService } from './services/car-request.service';
+import { ClosingReasonPopupService } from './services/closing-reason-popup.service';
 
 @NgModule({
   imports: [
@@ -15,11 +17,13 @@ import { CarRequestService } from './services/car-request.service';
   declarations: [
     CarRequestListComponent,
     CarRequestFormComponent,
-    AvailableDriversComponent
+    AvailableDriversPopupComponent,
+    ClosingReasonPopupComponent
   ],
   providers: [
     CarRequestService,
-    AvailableDriversDialogService
+    AvailableDriversPopupService,
+    ClosingReasonPopupService
   ],
   exports: [
     CarRequestFormComponent

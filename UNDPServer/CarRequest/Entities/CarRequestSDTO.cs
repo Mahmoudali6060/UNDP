@@ -30,6 +30,8 @@ namespace FleetManagement.Entities
         public CarRequestStatusEnum CarRequestStatusId { get; set; }
         public long? SupervisorId { get; set; }
         public long? DriverId { get; set; }
+        public ClosingReasonEnum ClosingReasonId { get; set; }
+        public string ClosingReasonComment { get; set; }
 
     }
 }

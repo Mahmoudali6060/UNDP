@@ -14,10 +14,10 @@ import { UserProfileDTO } from '../../../user/models/user-profile.dto';
 import { UserProfileService } from '../../../user/services/user.service';
 import { CarRequestSearchCriteriaDTO } from '../../models/car-request-search-criteria.dto';
 import { CarRequestDTO } from '../../models/car-request.dto';
-import { AvailableDriversDialogService } from '../../services/available-drivers-dialog.service';
+import { ClosingReasonDTO } from '../../models/closing-reason.dto';
+import { AvailableDriversPopupService } from '../../services/available-drivers-popup.service';
 import { CarRequestService } from '../../services/car-request.service';
-import { AvailableDriversComponent } from '../available-drivers/available-drivers.component';
-declare var jQuery: any;
+import { ClosingReasonPopupService } from '../../services/closing-reason-popup.service';
 
 @Component({
 	selector: 'app-car-request-list',
@@ -42,7 +42,9 @@ export class CarRequestListComponent {
 		private authService: AuthService,
 		private userProfileService: UserProfileService,
 		private route: ActivatedRoute,
-		private availableDriversDialogService: AvailableDriversDialogService
+		private availableDriversDialogService: AvailableDriversPopupService,
+		private closingReasonPopupService: ClosingReasonPopupService
+
 	) {
 
 	}
@@ -124,6 +126,7 @@ export class CarRequestListComponent {
 				this.openAvailableDriversDialog(res, item);
 			else {
 				this.toastrService.warning(this.translate.instant("Warning.NoDriversAvialable"));
+				this.openClosingReasonDialog(item);
 			}
 		});
 	}
@@ -134,6 +137,19 @@ export class CarRequestListComponent {
 				if (driverId) {
 					selectedCarRequest.carRequestStatusId = CarRequestStatusEnum.Approved;
 					selectedCarRequest.driverId = driverId;
+					this.updateCarRequest(selectedCarRequest);
+				}
+			})
+			.catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));
+	}
+
+	public openClosingReasonDialog(selectedCarRequest: CarRequestDTO) {
+		this.closingReasonPopupService.show('sm')
+			.then((closingReasonDTO: ClosingReasonDTO) => {
+				if (closingReasonDTO) {
+					selectedCarRequest.closingReasonId = closingReasonDTO.closingReasonId;
+					selectedCarRequest.closingReasonComment = closingReasonDTO.comment;
+					selectedCarRequest.carRequestStatusId = CarRequestStatusEnum.Closed;
 					this.updateCarRequest(selectedCarRequest);
 				}
 			})

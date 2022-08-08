@@ -26,5 +26,8 @@ namespace Data.Entities.FleetManagement
         public long? DriverId { get; set; }
         public virtual UserProfile Driver { get; set; }
 
+        public ClosingReasonEnum ClosingReasonId { get; set; }
+        public string ClosingReasonComment { get; set; }
+
     }
 }

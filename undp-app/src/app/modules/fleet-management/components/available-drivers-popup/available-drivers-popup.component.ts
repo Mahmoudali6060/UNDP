@@ -3,11 +3,11 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { UserProfileDTO } from '../../../user/models/user-profile.dto';
 @Component({
-  selector: 'app-available-drivers',
-  templateUrl: './available-drivers.component.html'
+  selector: 'app-available-drivers-popup',
+  templateUrl: './available-drivers-popup.component.html'
 })
 
-export class AvailableDriversComponent {
+export class AvailableDriversPopupComponent {
 
   driverId: number;
   driverList: Array<UserProfileDTO>;

@@ -29,6 +29,12 @@ namespace Data.Migrations
                     b.Property<byte>("CarRequestStatusId")
                         .HasColumnType("tinyint");
 
+                    b.Property<string>("ClosingReasonComment")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte>("ClosingReasonId")
+                        .HasColumnType("tinyint");
+
                     b.Property<string>("Comments")
                         .HasColumnType("nvarchar(max)");
 

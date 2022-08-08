@@ -7,6 +7,7 @@ namespace Shared.Enums
     public enum CarRequestStatusEnum :byte
     {
         InProgress = 1,
-        Approved = 2
+        Approved = 2,
+        Closed=3
     }
 }
