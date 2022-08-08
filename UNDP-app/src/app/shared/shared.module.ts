@@ -20,6 +20,8 @@ import { UserProfileService } from '../modules/user/services/user.service';
 import { ConfirmationDialogService } from './services/confirmation-dialog.service';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { PagerService } from './services/pager.service';
+import { LoaderComponent } from './components/loader/loader.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
 @NgModule({
 
   imports: [
@@ -34,6 +36,8 @@ import { PagerService } from './services/pager.service';
     NgbModule,
     MaterialModule,
     ReactiveFormsModule,
+    NgxSpinnerModule,
+
   ],
 
   exports: [
@@ -48,14 +52,16 @@ import { PagerService } from './services/pager.service';
     NgbModule,
     PaginationComponent,
     MaterialModule,
-    ChangeLangagueComponent
+    ChangeLangagueComponent,
+    LoaderComponent
     // ModalBasicComponent
   ],
   declarations: [
     ConfirmationDialogComponent,
     PaginationComponent,
-    ChangeLangagueComponent
-  ],
+    ChangeLangagueComponent,
+    LoaderComponent
+    ],
   entryComponents: [
     ConfirmationDialogComponent,
   ],
