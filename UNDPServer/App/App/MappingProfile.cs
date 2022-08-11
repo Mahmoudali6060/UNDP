@@ -36,11 +36,13 @@ namespace App
 
             #region Fleet Management
             CreateMap<CarRequest, CarRequestDTO>();
-                //.ForMember(dest => dest.DateFrom, opt => opt.MapFrom(src => src.DateFrom.ToString("dd-MM-yyyy HH:ss tt")))
-                //.ForMember(dest => dest.DateTo, opt => opt.MapFrom(src => src.DateTo.ToString("dd-MM-yyyy HH:ss tt")));
+            //.ForMember(dest => dest.DateFrom, opt => opt.MapFrom(src => src.DateFrom.ToString("dd/MM/yyyy HH:mm tt")))
+            //.ForMember(dest => dest.DateTo, opt => opt.MapFrom(src => src.DateTo.ToString("dd/MM/yyyy HH:mm tt")));
 
             CreateMap<CarRequestDTO, CarRequest>();
-               
+                 //.ForMember(dest => dest.DateFrom, opt => opt.MapFrom(src => DateTime.ParseExact(src.DateFrom, "dd/MM/yyyy HH:mm tt", null)))
+                 //.ForMember(dest => dest.DateTo, opt => opt.MapFrom(src => DateTime.ParseExact(src.DateTo, "dd/MM/yyyy HH:mm tt", null)));
+
 
             #endregion
 

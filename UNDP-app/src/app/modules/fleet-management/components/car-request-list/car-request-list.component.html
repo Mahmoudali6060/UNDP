@@ -132,6 +132,8 @@
                                 {{'CarRequestStatusEnum.InProgress'|translate}}</span>
                             <span *ngIf="item.carRequestStatusId==carRequestStatusEnum.Approved" class="status-approved">
                                 {{'CarRequestStatusEnum.Approved'|translate}}</span>
+                            <span *ngIf="item.carRequestStatusId==carRequestStatusEnum.Closed" class="status-completed">
+                                {{'CarRequestStatusEnum.Closed'|translate}}</span>
                         </td>
                         <td>{{item.dateFrom}}</td>
                         <td>{{item.dateTo}}</td>

@@ -131,8 +131,8 @@ namespace FleetManagement.DataServiceLayer
 
         public async Task<long> Update(CarRequestDTO entity)
         {
-            var tt=DateTime.Parse( entity.DateFrom);
-            var ff = DateTime.ParseExact(entity.DateFrom, "dd/MM/yyyy HH:ss tt", null);
+            //var ff = DateTime.ParseExact(entity.DateFrom, "dd/MM/yyyy HH:mm tt", null);
+
             return await _carRequestDAL.Update(_mapper.Map<CarRequest>(entity));
         }
 

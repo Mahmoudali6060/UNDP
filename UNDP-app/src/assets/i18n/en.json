@@ -178,7 +178,8 @@
     },
     "CarRequestStatusEnum": {
         "InProgress": "In Progress",
-        "Approved": "Approved"
+        "Approved": "Approved",
+        "Closed": "Closed"
     },
     "landingPage": {
         "RequestCar": "Request Car",
