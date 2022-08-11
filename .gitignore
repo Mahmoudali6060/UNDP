@@ -362,3 +362,4 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 /UNDPServer/Data/Data/Migrations
+/UNDP-app/dist/base-app
