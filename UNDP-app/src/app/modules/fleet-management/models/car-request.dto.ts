@@ -14,6 +14,6 @@ export class CarRequestDTO {
     supervisorId: number | null;
     driverId: number | null;
     sequenceNumber: string;
-    closingReasonId :number;
-    closingReasonComment:string;
+    closingReasonId: number | undefined;
+    closingReasonComment: string;
 }

@@ -2,19 +2,18 @@
     <div class="col-md-12">
         <!-- DATA TABLE -->
         <h3 class="title-5 m-b-35">
-            <span *ngIf="!loggedUserId">{{'FleetManagement.RequestReviewFormInbox'|translate}}</span>
-            <span *ngIf="loggedUserId">{{'FleetManagement.CarRequestMyInbox'|translate}}</span>
+            <span>{{pageTitle}}</span>
         </h3>
         <div class="table-data__tool">
             <div class="table-data__tool-left">
                 <button class="au-btn-filter" (click)="toggleFilter()">
                     <i class="zmdi zmdi-filter-list"></i>{{'General.Filter'|translate}}</button>
             </div>
-            <!-- <div class="table-data__tool-right">
+            <div class="table-data__tool-right">
                 <button [routerLink]="['/fleet-management/car-request-form']" class="au-btn au-btn-icon au-btn--green au-btn--small">
                     <i class="zmdi zmdi-plus"></i> {{'FleetManagement.NewCarRequest'|translate}}
                 </button>
-            </div> -->
+            </div>
         </div>
 
         <!--Filters-->

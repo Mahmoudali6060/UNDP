@@ -28,17 +28,16 @@ namespace FleetManagement.DataServiceLayer
         public async Task<ResponseEntityList<CarRequestDTO>> GetAll(CarRequestSearchCriteriaDTO searchCriteriaDTO)
         {
             var carRequestList = await _carRequestDAL.GetAll();
-            int total = carRequestList.Count();
-
-            #region Order
-            carRequestList = carRequestList.OrderByDescending(x => x.Id);
-            #endregion
 
             #region Apply Filters
             carRequestList = ApplyFilert(carRequestList, searchCriteriaDTO);
             #endregion
 
-            //carRequestList = carRequestList.Where(a => !(a.DateFrom.Date >= DateTime.Parse(searchCriteriaDTO.DateFrom).Date && a.DateTo.Date <= DateTime.Parse(searchCriteriaDTO.DateTo)));
+            int total = carRequestList.Count();
+
+            #region Order
+            carRequestList = carRequestList.OrderByDescending(x => x.Id);
+            #endregion
 
             #region Apply Pagination
             carRequestList = carRequestList.Skip((searchCriteriaDTO.Page - 1) * searchCriteriaDTO.PageSize).Take(searchCriteriaDTO.PageSize);
@@ -62,6 +61,11 @@ namespace FleetManagement.DataServiceLayer
             if (searchCriteriaDTO.UserProfileId > 0)
             {
                 carRequestList = carRequestList.Where(x => x.SupervisorId == searchCriteriaDTO.UserProfileId);
+            }
+
+            if (searchCriteriaDTO.CarRequestStatusId > 0)
+            {
+                carRequestList = carRequestList.Where(x => x.CarRequestStatusId == searchCriteriaDTO.CarRequestStatusId);
             }
 
             if (!string.IsNullOrWhiteSpace(searchCriteriaDTO.DateFrom))
@@ -131,8 +135,6 @@ namespace FleetManagement.DataServiceLayer
 
         public async Task<long> Update(CarRequestDTO entity)
         {
-            //var ff = DateTime.ParseExact(entity.DateFrom, "dd/MM/yyyy HH:mm tt", null);
-
             return await _carRequestDAL.Update(_mapper.Map<CarRequest>(entity));
         }
 

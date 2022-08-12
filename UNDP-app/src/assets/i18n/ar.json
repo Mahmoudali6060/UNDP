@@ -91,7 +91,8 @@
         "UserList": "قائمة المستخدمين",
         "FleetManagement": "إدارة السيارات",
         "CarRequestInbox": "صندوق الوارد لطلبات السيارت",
-        "CarRequestMyInbox": "طلبات السيارة الخاصة بي"
+        "CarRequestMyInbox": "طلبات السيارة الخاصة بي",
+        "CarRequestCompleted": "طلبات السيارات المغلقة"
     },
     "Errors": {
         "InvalidUsernameOrPassword": "من فضلك تأكد من اسم المستخدم او كلمة المرور",
@@ -121,10 +122,9 @@
         "purposeIsRequired": "الغرض مطلوب",
         "StartDateAndEndDateAreRequired": "تاريخ البداية والنهاية مطلوبين",
         "EndDateShouldBeGreaterThanStartDate": "تاريخ النهاية لابد أن يكون أكبر من تاريخ البداية",
-        "UserNameExist":"اسم المستخدم موجود مسبقا من فضلك ادخل اسم مستخدم آخر",
-        "EmailExist":" البريد الالكتروني موجود مسبقا من فضلك ادخل بريد الكتروني آخر",
-        "NonExistRole":"فئة الصلاحية غير موجوده من فضلك قم بإضافتها أولا"
-
+        "UserNameExist": "اسم المستخدم موجود مسبقا من فضلك ادخل اسم مستخدم آخر",
+        "EmailExist": " البريد الالكتروني موجود مسبقا من فضلك ادخل بريد الكتروني آخر",
+        "NonExistRole": "فئة الصلاحية غير موجوده من فضلك قم بإضافتها أولا"
     },
     "Warning": {
         "NoDriversAvialable": "لا يوجد سائق متاح في هذه الفترة"
@@ -170,11 +170,19 @@
         "EndingTime": "وقت الإنتهاء",
         "AssignToMe": "تعيين لشخصي",
         "AvailableDrivers": "السائقون المتاحون",
-        "Drivers": "السائقون"
+        "Drivers": "السائقون",
+        "SelectClosingReason": "أختر سبب انهاء الطلب",
+        "CarRequestCompleted": "طلبات السيارات المغلقة"
+
     },
     "CarRequestStatusEnum": {
         "InProgress": "قيد الموافقة",
         "Approved": "موافق عليه"
+    },
+    "ClosingReasonEnum": {
+        "NoAvailableDrivers": "لا يوجد سائقون متاحون",
+        "WrongData": "خطأ في البيانات",
+        "Other": "أخرى"
     },
     "landingPage": {
         "RequestCar": "طلب سيارة",

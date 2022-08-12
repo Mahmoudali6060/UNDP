@@ -1,4 +1,4 @@
-import { Component, EventEmitter, ViewEncapsulation } from '@angular/core';
+import { Component, EventEmitter, Input, ViewEncapsulation } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -21,17 +21,19 @@ import { ClosingReasonPopupService } from '../../services/closing-reason-popup.s
 
 @Component({
 	selector: 'app-car-request-list',
-	templateUrl: './car-request-list.component.html'
+	templateUrl: './car-request-list.component.html',
+	styleUrls: ['./car-request-list.component.css']
 })
 export class CarRequestListComponent {
 
 	//#region  Variables
-	carRequestSearchCrieria: CarRequestSearchCriteriaDTO = new CarRequestSearchCriteriaDTO();
+	@Input() carRequestSearchCrieria: CarRequestSearchCriteriaDTO = new CarRequestSearchCriteriaDTO();
 	carRequestList: Array<CarRequestDTO>;// = new Array<CarRequestDTO>();
 	loggedUserId: number;
 	carRequestStatusEnum = CarRequestStatusEnum;
 	showFilterControls: boolean = false;
 	total: number;
+	@Input() pageTitle: string;
 	//#endregion
 
 
@@ -51,8 +53,9 @@ export class CarRequestListComponent {
 
 	ngOnInit() {
 		this.loggedUserId = Number(this.route.snapshot.paramMap.get('loggedUserId'));
+		if (!this.pageTitle)
+			this.pageTitle = !this.loggedUserId ? this.translate.instant('FleetManagement.RequestReviewFormInbox') : this.translate.instant('FleetManagement.CarRequestMyInbox');
 		this.search();
-
 	}
 
 	getAllCarRequests() {
