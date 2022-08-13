@@ -37,6 +37,7 @@ export class UserFormComponent {
 	ngOnInit() {
 		this.userTypeEnum = UserTypeEnum;
 		this.userTypes = this.helperService.enumSelector(this.userTypeEnum);
+		console.log("userTypes",this.userTypes)
 		this.imageSrc="assets/images/icon/avatar-big-01.jpg";
 		this.userProfileDTO = new UserProfileDTO();
 		const id = this.route.snapshot.paramMap.get('id');
@@ -74,7 +75,14 @@ export class UserFormComponent {
 				this.cancel();
 			})
 		}
+		//this.sendMessage();
+		//this.helperService.postUserProfile('Message from Home Component to user form Component!');
 	}
+    sendMessage(): void {
+        // send message to subscribers via observable subject
+        this.helperService.sendMessage(new UserProfileDTO);
+    }
+
 
 	onFileChange(event: any) {
 

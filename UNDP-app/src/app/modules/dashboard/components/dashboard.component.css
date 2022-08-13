@@ -1,0 +1,15 @@
+.in-progress {
+    background-color: yellowgreen;
+}
+
+.approved {
+    background-color: blue;
+}
+
+.completed {
+    background-color: green;
+}
+.overview-box .icon i {
+    font-size: 40px;
+    color: #fff;
+}

@@ -85,7 +85,7 @@
 	}
 
 	nav ul.member-actions li {
-		display: block;
+		/* display: block; */
 	}
 
 	nav a.login {

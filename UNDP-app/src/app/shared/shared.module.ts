@@ -22,6 +22,7 @@ import { PaginationComponent } from './components/pagination/pagination.componen
 import { PagerService } from './services/pager.service';
 import { LoaderComponent } from './components/loader/loader.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { CarRequestService } from '../modules/fleet-management/services/car-request.service';
 @NgModule({
 
   imports: [
@@ -73,7 +74,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     JwtHelperService,
     UserProfileService,
     ConfirmationDialogService,
-    PagerService
+    PagerService,
+    CarRequestService
   ],
 })
 

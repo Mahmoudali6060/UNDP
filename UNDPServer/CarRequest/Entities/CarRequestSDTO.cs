@@ -32,6 +32,9 @@ namespace FleetManagement.Entities
         public long? DriverId { get; set; }
         public ClosingReasonEnum ClosingReasonId { get; set; }
         public string ClosingReasonComment { get; set; }
+        public int TotalApproved { get; set; }
+        public int TotalInProgress { get; set; }
+        public int TotalClosed { get; set; }
 
     }
 }

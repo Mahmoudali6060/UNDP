@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { Subscription } from 'rxjs';
 import { ResetPasswordComponent } from 'src/app/modules/authentication/components/reset-password/reset-password.component';
 import { ResetPasswordDTO } from 'src/app/modules/authentication/models/reset-password-dto';
 import { LocalStorageItems } from 'src/app/shared/constants/local-storage-items';
@@ -30,7 +31,21 @@ export class ProfileComponent implements OnInit {
   imageUrl: string;
   userTypeEnum:any;
   userTypes:LabelValuePair[];
-  constructor(private helperService:HelperService,private userProfileService: UserProfileService, private _configService: ConfigService,private toasterService: ToastrService, private localStorageService: LocalStorageService) { }
+  subscription: Subscription;
+  messages: any[] = [];
+  constructor(private helperService:HelperService,private userProfileService: UserProfileService, private _configService: ConfigService,private toasterService: ToastrService, private localStorageService: LocalStorageService) { 
+ 
+    this.subscription = this.helperService.selectedUser.subscribe(message => {
+      alert("done from profile")
+      if (message) {
+        this.messages.push(message);
+      } else {
+        // clear messages when empty message received
+        this.messages = [];
+        console.log("userProfile",this.messages)
+      }
+    });
+  }
 
   ngOnInit(): void {
     this.edit = false;

@@ -10,6 +10,7 @@ using FleetManagement.Entities;
 using Data.Entities.UserManagement;
 using Infrastructure.Contracts;
 using Data.Entities.FleetManagement;
+using Shared.Enums;
 
 namespace FleetManagement.DataServiceLayer
 {
@@ -27,8 +28,14 @@ namespace FleetManagement.DataServiceLayer
 
         public async Task<ResponseEntityList<CarRequestDTO>> GetAll(CarRequestSearchCriteriaDTO searchCriteriaDTO)
         {
+            CarRequestDTO carRequestDTO = new CarRequestDTO();
             var carRequestList = await _carRequestDAL.GetAll();
             int total = carRequestList.Count();
+            int TotalApproved = carRequestList.Where(c => c.CarRequestStatusId == CarRequestStatusEnum.Approved).Count();
+            int TotalInProgress = carRequestList.Where(c => c.CarRequestStatusId == CarRequestStatusEnum.InProgress).Count();
+            int TotalClosed = carRequestList.Where(c => c.CarRequestStatusId == CarRequestStatusEnum.Closed).Count();
+
+
 
             #region Order
             carRequestList = carRequestList.OrderByDescending(x => x.Id);
@@ -46,7 +53,14 @@ namespace FleetManagement.DataServiceLayer
 
 
             #region Mapping and Return List
-            var carRequestDTOList = _mapper.Map<IEnumerable<CarRequestDTO>>(carRequestList);
+            List<CarRequestDTO> carRequestDTOList = _mapper.Map<List<CarRequestDTO>>(carRequestList);
+            carRequestDTOList.ForEach(c =>
+            {
+                c.TotalApproved = TotalApproved;
+                c.TotalInProgress = TotalInProgress;
+                c.TotalClosed = TotalClosed;
+            });
+           // carRequestDTOList.Add(carRequestDTO);
             return new ResponseEntityList<CarRequestDTO>
             {
                 List = carRequestDTOList,

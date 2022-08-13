@@ -89,9 +89,9 @@
                                 <div class="form-group">
                                     <label for="role" class=" form-control-label">{{'User.Role' |translate}}</label>
                                     <select name="role" id="select" class="form-control" [(ngModel)]="userProfileDTO.userTypeId">
-                                        <option *ngFor="let usertype of userTypes" 
-                                        [value]="usertype.value">{{usertype.label}}
-                                      </option>
+                                        <option *ngFor="let usertype of userTypes" [value]="usertype.value">
+                                            {{'userTypeEnum.'+usertype.label |translate}}
+                                        </option>
                                     </select>
                                 </div>
                             </div>

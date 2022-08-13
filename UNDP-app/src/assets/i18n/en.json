@@ -42,6 +42,15 @@
         "PleaseLetUsKnowIfYouWantToRequestACar": "Please Let Us Know If You Want To Request A Car",
         "Ok": "Ok"
     },
+    "dashboard":{
+        "overview":"Overview",
+        "users":"Users",
+        "TotalRequestApproved":"Approved",
+        "TotalRequestInProgress":"InProgress",
+        "TotalRequestClosed":"Closed",
+        "RecentRequests":"Recent Requests"
+
+    },
     "ConfirmaionDialog": {
         "Title": "Confirmaion Dialog",
         "Description": "Do You Really Want To Delete This Record ?"
@@ -76,7 +85,8 @@
         "Passwordsmustmatch": "Passwords Must Match",
         "SaveChanges": "Save Changes",
         "ForgotPassword": "Forgot Password",
-        "Emailisrequired": "Email Is Required"
+        "Emailisrequired": "Email Is Required",
+        "SignOut":"Sign Out"
     },
     "SideMenu": {
         "Dashboard": "Dashboard",
@@ -182,7 +192,7 @@
     },
     "landingPage": {
         "RequestCar": "Request Car",
-        "LearnMore": "Learn More"
+        "Search": "Search"
     },
     "userTypeEnum": {
         "Admin": "Admin",

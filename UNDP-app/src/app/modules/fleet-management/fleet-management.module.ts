@@ -26,7 +26,8 @@ import { ClosingReasonPopupService } from './services/closing-reason-popup.servi
     ClosingReasonPopupService
   ],
   exports: [
-    CarRequestFormComponent
+    CarRequestFormComponent,
+    CarRequestListComponent
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA

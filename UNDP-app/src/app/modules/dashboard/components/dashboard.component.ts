@@ -1,15 +1,32 @@
+import { DatePipe } from '@angular/common';
 import { Component, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { CarRequestStatusEnum } from 'src/app/shared/enums/car-request-status.enum';
+import { CarRequestSearchCriteriaDTO } from '../../fleet-management/models/car-request-search-criteria.dto';
+import { CarRequestDTO } from '../../fleet-management/models/car-request.dto';
+import { CarRequestService } from '../../fleet-management/services/car-request.service';
+import { UserProfileSearchCriteriaDTO } from '../../user/models/user-list-search-criteria-dto';
+import { UserProfileService } from '../../user/services/user.service';
 declare var jQuery: any;
 
 @Component({
 	selector: 'app-dashboard',
-	templateUrl: './dashboard.component.html'
+	templateUrl: './dashboard.component.html',
+	styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent {
-
-	constructor() {
+	searchCriteriaDTO:UserProfileSearchCriteriaDTO = new UserProfileSearchCriteriaDTO();
+	carRequestSearchCrieria:CarRequestSearchCriteriaDTO = new CarRequestSearchCriteriaDTO();
+	totalUsers: any;
+	totalRequests: number;
+	carRequestList: any;
+	carRequestStatusEnum :any
+	approvedRequest: number;
+	inProgressRequest: number;
+	ClosedRequest: number;
+	constructor(private userProfileService:UserProfileService,private carRequestService:CarRequestService,
+		private datepipe: DatePipe) {
 
 	}
 
@@ -18,6 +35,9 @@ export class DashboardComponent {
 	}
 
 	ngOnInit() {
+		this.carRequestStatusEnum = CarRequestStatusEnum
+		this.getAllUsers();
+		this.getAllCarRequests();
 		// $(function () {
 		// 	var data, options;
 
@@ -134,5 +154,24 @@ export class DashboardComponent {
 
 		// });
 	}
-
+	getAllUsers() {
+		this.userProfileService.getAll(this.searchCriteriaDTO).subscribe((res: any) => {
+			this.totalUsers = res.total;
+		});
+	}
+	getAllCarRequests() {
+		this.carRequestService.getAll(this.carRequestSearchCrieria).subscribe((res: any) => {
+			this.carRequestList = res.list;
+			this.totalRequests = res.total;
+			if(res.list){
+				this.inProgressRequest = this.carRequestList[0].totalInProgress
+				this.approvedRequest = this.carRequestList[0].totalApproved
+				this.ClosedRequest = this.carRequestList[0].totalClosed
+			}
+		});
+	}
+	onPageChange(event: any) {
+		this.carRequestSearchCrieria.page = event;
+		this.getAllCarRequests();
+	}
 }

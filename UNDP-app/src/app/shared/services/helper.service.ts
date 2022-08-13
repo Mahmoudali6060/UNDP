@@ -3,15 +3,63 @@ import { DatePipe } from '@angular/common';
 import { ActionNameEnum } from 'src/app/shared/enums/Action.enum';
 import { TranslateService } from '@ngx-translate/core';
 import { Enum } from '../enums/enum';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { UserProfileDTO } from 'src/app/modules/user/models/user-profile.dto';
+import { LocalStorage } from '@ngx-pwa/local-storage';
+import { LocalStorageService } from './local-storage.service';
+import { LocalStorageItems } from '../constants/local-storage-items';
 
 
 @Injectable({ providedIn: 'root' })
 
 export class HelperService {
-
-    constructor(private _datePipe: DatePipe, public translate: TranslateService) {
+    public selectedUser = new BehaviorSubject<UserProfileDTO>(
+        this.getSelectedUser()
+    );
+    constructor(private _datePipe: DatePipe, public translate: TranslateService,private localStorageService:LocalStorageService) {
 
     }
+    UserObservable = this.selectedUser.asObservable();
+    getSelectedUser(): UserProfileDTO {
+        return this.localStorageService.getItem(LocalStorageItems.userProfile) as UserProfileDTO;
+      }
+    sendMessage(message: UserProfileDTO) {
+        this.selectedUser.next(message);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    //public subject = new Subject<any>();
+    // getMessage(): Observable<any> {
+    //     return this.subject.asObservable();
+    // }
+    // postUserProfile(message: string) {
+    //     this.subject.next({ text: message });
+    // }
     transformDate(date: any) {
         return this._datePipe.transform(date, "yyyy-MM-dd"); //whatever format you need. 
     }
@@ -83,18 +131,17 @@ export class HelperService {
     }
 
     //// function for convert enum to object
-     enumSelector(definition:any) {
+    enumSelector(definition: any) {
         return Object.keys(definition)
-		.filter((v) => isNaN(Number(v)))
-		.map((label) => {
-		  return {
-			value: definition[label as keyof typeof definition],
-			 label,
-		  };
-		});
-      }
-      getRole()
-      {
+            .filter((v) => isNaN(Number(v)))
+            .map((label) => {
+                return {
+                    value: definition[label as keyof typeof definition],
+                    label,
+                };
+            });
+    }
+    getRole() {
         return localStorage.getItem('role');
-      }
+    }
 }

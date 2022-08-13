@@ -56,6 +56,14 @@
         "PleaseLetUsKnowIfYouWantToRequestACar": "من فضلك أخبرنا إذا كنت تريد أن تطلب طلب سيارة",
         "Ok": "موافق"
     },
+    "dashboard":{
+        "overview":"نظرة عامة",
+        "users":"المستخدمين",
+        "TotalRequestApproved":"الموافق عليها",
+        "TotalRequestInProgress":"قيد التنفيذ",
+        "TotalRequestClosed":"المغلقة",
+        "RecentRequests":"الطلبات الحديثة"
+    },
     "Authentication": {
         "FirstName": "الاسم الأول",
         "LastName": "الاسم الأخير",
@@ -82,7 +90,8 @@
         "Passwordsmustmatch": "يجب أن تتطابق كلمات المرور",
         "SaveChanges": "حفظ التغيرات",
         "ForgotPassword": "نسيت كلمة المرور",
-        "Emailisrequired": "البريد الالكتروني مطلوب"
+        "Emailisrequired": "البريد الالكتروني مطلوب",
+        "SignOut":"تسجيل خروج"
     },
     "SideMenu": {
         "Dashboard": "لوحة التحكم",
@@ -178,7 +187,7 @@
     },
     "landingPage": {
         "RequestCar": "طلب سيارة",
-        "LearnMore": "معرفة المزيد"
+        "Search": "بحث"
     },
     "userTypeEnum": {
         "Admin": "مسؤول",

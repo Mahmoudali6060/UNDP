@@ -1,20 +1,22 @@
 <div class="row">
     <div class="col-md-12">
         <!-- DATA TABLE -->
-        <h3 class="title-5 m-b-35">
+        <h3 class="title-5 m-b-35" *ngIf="isCarRequestsLandingPage == false">
             <span *ngIf="!loggedUserId">{{'FleetManagement.RequestReviewFormInbox'|translate}}</span>
             <span *ngIf="loggedUserId">{{'FleetManagement.CarRequestMyInbox'|translate}}</span>
         </h3>
         <div class="table-data__tool">
-            <div class="table-data__tool-left">
-                <button class="au-btn-filter" (click)="toggleFilter()">
+            <div class="table-data__tool-left" >
+                <button class="au-btn-filter" (click)="toggleFilter()" *ngIf="isCarRequestsLandingPage == false">
                     <i class="zmdi zmdi-filter-list"></i>{{'General.Filter'|translate}}</button>
+                <button class="btn btn-accent btn-large top" (click)="toggleFilter()" *ngIf="isCarRequestsLandingPage == true">
+                    <i class="zmdi zmdi-filter-list"></i>{{'General.Filter'|translate}}</button> 
             </div>
-            <!-- <div class="table-data__tool-right">
+            <div class="table-data__tool-right" *ngIf="isCarRequestsLandingPage == false">
                 <button [routerLink]="['/fleet-management/car-request-form']" class="au-btn au-btn-icon au-btn--green au-btn--small">
                     <i class="zmdi zmdi-plus"></i> {{'FleetManagement.NewCarRequest'|translate}}
                 </button>
-            </div> -->
+            </div>
         </div>
 
         <!--Filters-->
@@ -114,7 +116,7 @@
                         <th class="table-header-fc">{{'FleetManagement.RequesterName' |translate}}</th>
                         <th class="table-header-fc">{{'FleetManagement.RequesterEmail' |translate}}</th>
 
-                        <th></th>
+                        <th  *ngIf="isCarRequestsLandingPage == false"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -138,7 +140,7 @@
                         <td>{{item.requesterName}}</td>
                         <td>{{item.requesterEmail}}</td>
                         <!--Test-->
-                        <td>
+                        <td  *ngIf="isCarRequestsLandingPage == false">
                             <div class="table-data-feature">
                                 <button *ngIf="!loggedUserId" class="item" data-toggle="tooltip" data-placement="top" title="{{'FleetManagement.AssignToMe'|translate}}" data-original-title="Send" (click)="assignToMe(item)">
                                     <i class="zmdi zmdi-mail-send"></i>

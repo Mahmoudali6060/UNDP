@@ -138,11 +138,12 @@
                                 <div class="form-group pb-2" *ngIf="edit">
                                     <select name="role" id="select" class="form-control" [(ngModel)]="profile.userTypeId">
                                         <option *ngFor="let usertype of userTypes" 
-                                        [value]="usertype.value">{{usertype.label}}
+                                        [value]="usertype.value">
+                                        {{'userTypeEnum.'+usertype.label |translate}}
                                       </option>
                                     </select>
                                 </div>
-                                <p class="mb-0" *ngIf="!edit">{{profile.role}}</p>
+                                <p class="mb-0" *ngIf="!edit">{{'userTypeEnum.'+profile.role |translate}}</p>
                             </div>
                         </div>
                         <div class="row" *ngIf="!edit">

@@ -16,4 +16,7 @@ export class CarRequestDTO {
     sequenceNumber: string;
     closingReasonId :number;
     closingReasonComment:string;
+    totalApproved:number;
+    totalInProgress :number;
+    totalClosed :number;
 }
