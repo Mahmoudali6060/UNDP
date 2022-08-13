@@ -98,14 +98,10 @@ namespace FleetManagement.DataServiceLayer
                 carRequestList = carRequestList.Where(x => x.Destination.Contains(searchCriteriaDTO.Destination));
             }
 
-            if (!string.IsNullOrWhiteSpace(searchCriteriaDTO.Comments))
+           
+            if (!string.IsNullOrWhiteSpace(searchCriteriaDTO.SequenceNumber))
             {
-                carRequestList = carRequestList.Where(x => x.Comments.Contains(searchCriteriaDTO.Comments));
-            }
-
-            if (!string.IsNullOrWhiteSpace(searchCriteriaDTO.Purpose))
-            {
-                carRequestList = carRequestList.Where(x => x.Purpose.Contains(searchCriteriaDTO.Purpose));
+                carRequestList = carRequestList.Where(x => x.SequenceNumber==searchCriteriaDTO.SequenceNumber);
             }
 
 

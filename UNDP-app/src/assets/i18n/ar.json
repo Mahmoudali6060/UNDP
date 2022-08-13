@@ -172,12 +172,15 @@
         "AvailableDrivers": "السائقون المتاحون",
         "Drivers": "السائقون",
         "SelectClosingReason": "أختر سبب انهاء الطلب",
-        "CarRequestCompleted": "طلبات السيارات المغلقة"
-
+        "CarRequestCompleted": "طلبات السيارات المغلقة",
+        "CloseRequest": "غلق طلب السيارة",
+        "CarRequestList": "قائمة طلبات السيارة",
+        "SelectRequestStatus": "أختر حالة الطلب"
     },
     "CarRequestStatusEnum": {
         "InProgress": "قيد الموافقة",
-        "Approved": "موافق عليه"
+        "Approved": "موافق عليه",
+        "Closed": "مغلق"
     },
     "ClosingReasonEnum": {
         "NoAvailableDrivers": "لا يوجد سائقون متاحون",

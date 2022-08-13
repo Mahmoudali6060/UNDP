@@ -174,7 +174,10 @@
         "ClosingReason": "Closing Reason",
         "Comment": "Comment",
         "SelectClosingReason": "Select closing reason",
-        "CarRequestCompleted": "Car Request (Completed)"
+        "CarRequestCompleted": "Car Request (Completed)",
+        "CloseRequest": "Close request",
+        "CarRequestList": "Car Request List",
+        "SelectRequestStatus": "Select request status"
 
     },
     "CarRequestStatusEnum": {

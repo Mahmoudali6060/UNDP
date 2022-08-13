@@ -9,7 +9,7 @@
                 <button class="au-btn-filter" (click)="toggleFilter()">
                     <i class="zmdi zmdi-filter-list"></i>{{'General.Filter'|translate}}</button>
             </div>
-            <div class="table-data__tool-right">
+            <div *ngIf="selectedCarRequestPageType==careRequestPageType.Index" class="table-data__tool-right">
                 <button [routerLink]="['/fleet-management/car-request-form']" class="au-btn au-btn-icon au-btn--green au-btn--small">
                     <i class="zmdi zmdi-plus"></i> {{'FleetManagement.NewCarRequest'|translate}}
                 </button>
@@ -37,6 +37,32 @@
                                     </div>
                                 </div>
 
+                                <div class="col-lg-3" *ngIf="selectedCarRequestPageType!=careRequestPageType.Completed">
+                                    <div class="form-group">
+                                        <label for="drivers" class="form-control-label">{{'FleetManagement.RequestStatus'
+                                            |translate}}</label>
+                                        <select name="drivers" id="drivers" class="form-control" [(ngModel)]="carRequestSearchCrieria.carRequestStatusId">
+                                            <option value=0 selected>
+                                                {{'General.All' |translate}}
+                                            </option>
+                                            <option *ngFor="let item of carRequestStatusList" [value]="item">
+                                                {{('CarRequestStatusEnum.'+carRequestStatusEnum[item])|translate}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label for="requestId" class="form-control-label">{{'FleetManagement.RequestID'|translate}}</label>
+                                        <input [(ngModel)]="carRequestSearchCrieria.sequenceNumber" type="text" id="reuqestId" class="form-control">
+                                    </div>
+                                </div>
+
+
+
+
+
                                 <div class="col-lg-3">
                                     <div class="form-group">
                                         <label for="requesterName" class=" form-control-label">{{'FleetManagement.RequesterName'|translate}}</label>
@@ -51,9 +77,6 @@
                                 </div>
 
 
-                            </div>
-
-                            <div class="row">
                                 <div class="col-lg-3">
                                     <div class="form-group">
                                         <label for="pickUp" class=" form-control-label">{{'FleetManagement.PickUp'|translate}}</label>
@@ -67,18 +90,8 @@
                                     </div>
                                 </div>
 
-                                <div class="col-lg-3">
-                                    <div class="form-group">
-                                        <label for="comments" class=" form-control-label">{{'FleetManagement.Comments'|translate}}</label>
-                                        <input [(ngModel)]="carRequestSearchCrieria.comments" type="text" id="comments" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="form-group">
-                                        <label for="purpose" class=" form-control-label">{{'FleetManagement.Purpose'|translate}}</label>
-                                        <input [(ngModel)]="carRequestSearchCrieria.purpose" type="text" id="purpose" class="form-control">
-                                    </div>
-                                </div>
+
+
                             </div>
 
                         </div>
@@ -124,8 +137,8 @@
                                 <span class="au-checkmark"></span>
                             </label> -->
                         </td>
-                        <td *ngIf="!loggedUserId">{{item.sequenceNumber}}</td>
-                        <td *ngIf="loggedUserId" (click)="getAllAvailableDrivers(item)"><a class="link">{{item.sequenceNumber}}</a> </td>
+                        <td>{{item.sequenceNumber}}</td>
+                        <!-- <td (click)="getAllAvailableDrivers(item)"><a class="link">{{item.sequenceNumber}}</a> </td> -->
                         <td>
                             <span *ngIf="item.carRequestStatusId==carRequestStatusEnum.InProgress" class="status-in-progress">
                                 {{'CarRequestStatusEnum.InProgress'|translate}}</span>
@@ -141,18 +154,17 @@
                         <!--Test-->
                         <td>
                             <div class="table-data-feature">
-                                <button *ngIf="!loggedUserId" class="item" data-toggle="tooltip" data-placement="top" title="{{'FleetManagement.AssignToMe'|translate}}" data-original-title="Send" (click)="assignToMe(item)">
+                                <button *ngIf="selectedCarRequestPageType==careRequestPageType.Index" class="item" data-toggle="tooltip" data-placement="top" title="{{'FleetManagement.AssignToMe'|translate}}" data-original-title="Send" (click)="assignToMe(item)">
                                     <i class="zmdi zmdi-mail-send"></i>
                                 </button>
-                                <button *ngIf="loggedUserId" class="item" data-toggle="tooltip" data-placement="top" title="{{'FleetManagement.AvailableDrivers'|translate}}" data-original-title="Send" (click)="getAllAvailableDrivers(item)">
+                                <button *ngIf="selectedCarRequestPageType==careRequestPageType.MyIndex" class="item" data-toggle="tooltip" data-placement="top" title="{{'FleetManagement.AvailableDrivers'|translate}}" data-original-title="Send" (click)="getAllAvailableDrivers(item)">
                                     <i class="fas fa-users"></i>
                                 </button>
-
-
-                                <!-- <button class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit" [routerLink]="['/user/user-form/'+item.id]">
-                                    <i class="zmdi zmdi-edit"></i>
+                                <button *ngIf="selectedCarRequestPageType==careRequestPageType.Index" class="item" data-toggle="tooltip" data-placement="top" title="{{'FleetManagement.CloseRequest'|translate}}" title="" data-original-title="Edit" (click)="closeRequest(item)">
+                                    <i class="fas fa-ban"></i>
                                 </button>
-                                <button class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" (click)="openConfirmationDialog(item)">
+
+                                <!-- <button class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" (click)="openConfirmationDialog(item)">
                                     <i class="zmdi zmdi-delete"></i>
                                 </button>
                                 <button class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="More">
