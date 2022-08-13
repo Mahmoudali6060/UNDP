@@ -1,12 +1,12 @@
 import { Component, EventEmitter, Input, ViewEncapsulation } from '@angular/core';
+import { Component, EventEmitter, Input, ViewEncapsulation } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { CarRequestStatusEnum } from '../../../../shared/enums/car-request-status.enum';
-import { DataSourceModel } from '../../../../shared/models/data-source.model';
-import { FilterModel } from '../../../../shared/models/filter.model';
+import { CarRequestPageTypeEnum } from '../../../../shared/enums/care-request-page-type.enum';
 import { ConfirmationDialogService } from '../../../../shared/services/confirmation-dialog.service';
 import { AuthService } from '../../../authentication/services/auth.service';
 import { AvailabilitySearchCriteriaDTO } from '../../../user/models/availability-search-criteria-dto';
@@ -21,20 +21,24 @@ import { ClosingReasonPopupService } from '../../services/closing-reason-popup.s
 
 @Component({
 	selector: 'app-car-request-list',
-	templateUrl: './car-request-list.component.html'
+	templateUrl: './car-request-list.component.html',
+	styleUrls: ['./car-request-list.component.css']
 })
 export class CarRequestListComponent {
 
 	//#region  Variables
 	carRequestSearchCrieria: CarRequestSearchCriteriaDTO = new CarRequestSearchCriteriaDTO();
 	carRequestList: Array<CarRequestDTO>;// = new Array<CarRequestDTO>();
-	loggedUserId: number;
 	carRequestStatusEnum = CarRequestStatusEnum;
 	showFilterControls: boolean = false;
 	total: number;
+	pageTitle: string;
+	careRequestPageType = CarRequestPageTypeEnum;
+	carRequestStatusList: any;
+	@Input() selectedCarRequestPageType: CarRequestPageTypeEnum = CarRequestPageTypeEnum.Index;//selected by default
+	@Input() loggedUserId: number;//Passed from Car Request My Index Page
 	//#endregion
 	@Input() isCarRequestsLandingPage:boolean = false;
-
 
 	constructor(private carRequestService: CarRequestService,
 		private confirmationDialogService: ConfirmationDialogService,
@@ -42,7 +46,6 @@ export class CarRequestListComponent {
 		private translate: TranslateService,
 		private authService: AuthService,
 		private userProfileService: UserProfileService,
-		private route: ActivatedRoute,
 		private availableDriversDialogService: AvailableDriversPopupService,
 		private closingReasonPopupService: ClosingReasonPopupService
 
@@ -51,9 +54,27 @@ export class CarRequestListComponent {
 	}
 
 	ngOnInit() {
-		this.loggedUserId = Number(this.route.snapshot.paramMap.get('loggedUserId'));
+		this.carRequestSearchCrieria.carRequestStatusId = 0;
+		this.carRequestStatusList = Object.keys(this.carRequestStatusEnum).filter(f => !isNaN(Number(f)));
+		this.setPageTitle();
 		this.search();
+	}
 
+	setPageTitle() {
+		switch (this.selectedCarRequestPageType) {
+			case CarRequestPageTypeEnum.Completed:
+				this.pageTitle = this.translate.instant('FleetManagement.CarRequestCompleted')
+				break;
+			case CarRequestPageTypeEnum.MyIndex:
+				this.pageTitle = this.translate.instant('FleetManagement.CarRequestMyInbox')
+				break;
+			case CarRequestPageTypeEnum.Annonymous:
+				this.pageTitle = this.translate.instant('FleetManagement.CarRequestList')
+				break;
+			default:
+				this.pageTitle = this.translate.instant('FleetManagement.CarRequestInbox')
+				break;
+		}
 	}
 
 	getAllCarRequests() {
@@ -99,6 +120,10 @@ export class CarRequestListComponent {
 		if (this.loggedUserId) {
 			this.carRequestSearchCrieria.userProfileId = this.loggedUserId;
 		}
+		if (this.selectedCarRequestPageType == CarRequestPageTypeEnum.Completed) {
+			this.carRequestSearchCrieria.carRequestStatusId = CarRequestStatusEnum.Closed;
+		}
+
 	}
 
 	public openConfirmationDialog(item: CarRequestDTO) {
@@ -158,4 +183,7 @@ export class CarRequestListComponent {
 	}
 	//#endregion
 
+	closeRequest(item: CarRequestDTO) {
+		this.openClosingReasonDialog(item);
+	}
 }

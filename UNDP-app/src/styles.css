@@ -55,19 +55,27 @@ body::-webkit-scrollbar-thumb {
 }
 
 .status-in-progress {
-    color: yellowgreen;
+    color: black;
+    background-color: yellow;
 }
 
 .status-approved {
-    color: blue;
+    color: white;
+    background-color: blue;
 }
 
 .status-completed {
-    color: green;
+    color: white;
+    background-color: green;
 }
 
 .link {
     color: blue!important;
     text-decoration: underline !important;
+    cursor: pointer;
+}
+
+i:hover {
+    font-size: 30px !important;
     cursor: pointer;
 }

@@ -10,6 +10,8 @@ export class CarRequestSearchCriteriaDTO extends DataSourceModel {
     destination: string | undefined;
     comments: string = '';
     purpose: string | undefined;
-    carRequestStatusId: CarRequestStatusEnum | undefined;
+    carRequestStatusId: CarRequestStatusEnum | 0;
     userProfileId: number | null;
+    sequenceNumber: string | null;
+
 }

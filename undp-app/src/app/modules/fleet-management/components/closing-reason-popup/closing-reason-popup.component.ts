@@ -13,11 +13,12 @@ export class ClosingReasonPopupComponent {
 
   closingReasonDTO: ClosingReasonDTO = new ClosingReasonDTO();
   closingReasonList: any;
-  closingReasonEnum=ClosingReasonEnum;
+  closingReasonEnum = ClosingReasonEnum;
   constructor(private activeModal: NgbActiveModal) { }
 
   ngOnInit() {
-    this.closingReasonList=Object.keys(this.closingReasonEnum).filter(f => !isNaN(Number(f)));
+    this.closingReasonList = Object.keys(this.closingReasonEnum).filter(f => !isNaN(Number(f)));
+    this.closingReasonDTO.closingReasonId = undefined;
   }
 
   public cancel() {

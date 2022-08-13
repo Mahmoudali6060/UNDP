@@ -1,6 +1,6 @@
 
 export class ClosingReasonDTO {
-    closingReasonId: number;
+    closingReasonId: number | undefined;
     comment: string;
 
 }

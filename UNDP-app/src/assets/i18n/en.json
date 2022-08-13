@@ -94,7 +94,8 @@
         "UserList": "User List",
         "FleetManagement": "Fleet Management",
         "CarRequestInbox": "Car Request (Inbox)",
-        "CarRequestMyInbox": "Car Request (My Inbox)"
+        "CarRequestMyInbox": "Car Request (My Inbox)",
+        "CarRequestCompleted": "Car Request (Completed)"
     },
     "Errors": {
         "InvalidUsernameOrPassword": "Invalid Username Or Password",
@@ -182,13 +183,22 @@
         "Drivers": "Drivers",
         "ClosingReason": "Closing Reason",
         "Comment": "Comment",
-        "NoAvailableDrivers": "No Available Drivers",
-        "WrongData": "Wrong Data",
-        "Other": "Other"
+        "SelectClosingReason": "Select closing reason",
+        "CarRequestCompleted": "Car Request (Completed)",
+        "CloseRequest": "Close request",
+        "CarRequestList": "Car Request List",
+        "SelectRequestStatus": "Select request status"
+
     },
     "CarRequestStatusEnum": {
         "InProgress": "In Progress",
-        "Approved": "Approved"
+        "Approved": "Approved",
+        "Closed": "Closed"
+    },
+    "ClosingReasonEnum": {
+        "NoAvailableDrivers": "No Available Drivers",
+        "WrongData": "Wrong Data",
+        "Other": "Other"
     },
     "landingPage": {
         "RequestCar": "Request Car",

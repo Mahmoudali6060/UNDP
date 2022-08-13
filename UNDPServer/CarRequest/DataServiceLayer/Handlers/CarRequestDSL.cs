@@ -30,6 +30,11 @@ namespace FleetManagement.DataServiceLayer
         {
             CarRequestDTO carRequestDTO = new CarRequestDTO();
             var carRequestList = await _carRequestDAL.GetAll();
+
+            #region Apply Filters
+            carRequestList = ApplyFilert(carRequestList, searchCriteriaDTO);
+            #endregion
+
             int total = carRequestList.Count();
             int TotalApproved = carRequestList.Where(c => c.CarRequestStatusId == CarRequestStatusEnum.Approved).Count();
             int TotalInProgress = carRequestList.Where(c => c.CarRequestStatusId == CarRequestStatusEnum.InProgress).Count();
@@ -40,12 +45,6 @@ namespace FleetManagement.DataServiceLayer
             #region Order
             carRequestList = carRequestList.OrderByDescending(x => x.Id);
             #endregion
-
-            #region Apply Filters
-            carRequestList = ApplyFilert(carRequestList, searchCriteriaDTO);
-            #endregion
-
-            //carRequestList = carRequestList.Where(a => !(a.DateFrom.Date >= DateTime.Parse(searchCriteriaDTO.DateFrom).Date && a.DateTo.Date <= DateTime.Parse(searchCriteriaDTO.DateTo)));
 
             #region Apply Pagination
             carRequestList = carRequestList.Skip((searchCriteriaDTO.Page - 1) * searchCriteriaDTO.PageSize).Take(searchCriteriaDTO.PageSize);
@@ -78,6 +77,11 @@ namespace FleetManagement.DataServiceLayer
                 carRequestList = carRequestList.Where(x => x.SupervisorId == searchCriteriaDTO.UserProfileId);
             }
 
+            if (searchCriteriaDTO.CarRequestStatusId > 0)
+            {
+                carRequestList = carRequestList.Where(x => x.CarRequestStatusId == searchCriteriaDTO.CarRequestStatusId);
+            }
+
             if (!string.IsNullOrWhiteSpace(searchCriteriaDTO.DateFrom))
             {
                 carRequestList = carRequestList.Where(x => x.DateFrom >= DateTime.Parse(searchCriteriaDTO.DateFrom));
@@ -108,14 +112,10 @@ namespace FleetManagement.DataServiceLayer
                 carRequestList = carRequestList.Where(x => x.Destination.Contains(searchCriteriaDTO.Destination));
             }
 
-            if (!string.IsNullOrWhiteSpace(searchCriteriaDTO.Comments))
+           
+            if (!string.IsNullOrWhiteSpace(searchCriteriaDTO.SequenceNumber))
             {
-                carRequestList = carRequestList.Where(x => x.Comments.Contains(searchCriteriaDTO.Comments));
-            }
-
-            if (!string.IsNullOrWhiteSpace(searchCriteriaDTO.Purpose))
-            {
-                carRequestList = carRequestList.Where(x => x.Purpose.Contains(searchCriteriaDTO.Purpose));
+                carRequestList = carRequestList.Where(x => x.SequenceNumber==searchCriteriaDTO.SequenceNumber);
             }
 
 
@@ -145,8 +145,6 @@ namespace FleetManagement.DataServiceLayer
 
         public async Task<long> Update(CarRequestDTO entity)
         {
-            var tt=DateTime.Parse( entity.DateFrom);
-            var ff = DateTime.ParseExact(entity.DateFrom, "dd/MM/yyyy HH:ss tt", null);
             return await _carRequestDAL.Update(_mapper.Map<CarRequest>(entity));
         }
 

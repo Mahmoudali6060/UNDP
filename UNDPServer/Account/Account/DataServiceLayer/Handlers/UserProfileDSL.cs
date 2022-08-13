@@ -10,6 +10,7 @@ using Account.Entities;
 using Data.Entities.UserManagement;
 using Account.RepositoryLayer;
 using Infrastructure.Contracts;
+using Shared.Enums;
 
 namespace Accout.DataServiceLayer
 {
@@ -105,7 +106,7 @@ namespace Accout.DataServiceLayer
             driverList = driverList.Where(x =>
             x.UserTypeId == UserTypeEnum.Driver
             && !(x.DriverCarRequests.Count() > 0
-            && x.DriverCarRequests.Any(a => (a.DateFrom.Date >= DateTime.Parse(availabilitySearchCriteriaDTO.DateFrom).Date && a.DateTo.Date <= DateTime.Parse(availabilitySearchCriteriaDTO.DateTo)))));
+            && x.DriverCarRequests.Any(a => a.CarRequestStatusId != CarRequestStatusEnum.Closed && (a.DateFrom.Date >= DateTime.Parse(availabilitySearchCriteriaDTO.DateFrom).Date && a.DateTo.Date <= DateTime.Parse(availabilitySearchCriteriaDTO.DateTo)))));
             IEnumerable<UserProfileDTO> result = _mapper.Map<IEnumerable<UserProfileDTO>>(driverList);
             return result;
         }
@@ -127,8 +128,8 @@ namespace Accout.DataServiceLayer
 
         public async Task<long> Update(UserProfileDTO entity)
         {
-          //  UploadImage(entity);
-           // AppUser appUser = UserMapper.MapAppUser(entity);
+            //  UploadImage(entity);
+            // AppUser appUser = UserMapper.MapAppUser(entity);
             var createUserResult = await _accountDAL.UpdateUserAsync(entity);
             if (createUserResult.Succeeded)
             {

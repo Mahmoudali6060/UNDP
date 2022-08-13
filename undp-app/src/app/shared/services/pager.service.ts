@@ -46,7 +46,7 @@ export class PagerService {
       totalPages: totalPages,
       startPage: startPage,
       endPage: endPage,
-      startIndex: startIndex,
+      startIndex: startIndex >= 0 ? startIndex : -1,
       endIndex: endIndex,
       pages: pages,
     };
