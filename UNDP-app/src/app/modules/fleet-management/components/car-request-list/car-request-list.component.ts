@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, ViewEncapsulation } from '@angular/core';
-import { Component, EventEmitter, Input, ViewEncapsulation } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';

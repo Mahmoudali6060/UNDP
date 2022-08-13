@@ -11,7 +11,7 @@
                 <button class="btn btn-accent btn-large top" (click)="toggleFilter()" *ngIf="isCarRequestsLandingPage == true">
                     <i class="zmdi zmdi-filter-list"></i>{{'General.Filter'|translate}}</button> 
             </div>
-            <div *ngIf="selectedCarRequestPageType==careRequestPageType.Index" class="table-data__tool-right" *ngIf="isCarRequestsLandingPage == false">
+            <div *ngIf="selectedCarRequestPageType == careRequestPageType.Index && isCarRequestsLandingPage == false" class="table-data__tool-right" >
                 <button [routerLink]="['/fleet-management/car-request-form']" class="au-btn au-btn-icon au-btn--green au-btn--small">
                     <i class="zmdi zmdi-plus"></i> {{'FleetManagement.NewCarRequest'|translate}}
                 </button>

@@ -14,7 +14,7 @@ export class CarRequestDTO {
     supervisorId: number | null;
     driverId: number | null;
     sequenceNumber: string;
-    closingReasonId :number;
+    closingReasonId :number | undefined;
     closingReasonComment:string;
     totalApproved:number;
     totalInProgress :number;

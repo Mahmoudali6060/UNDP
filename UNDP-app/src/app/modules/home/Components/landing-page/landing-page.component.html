@@ -41,17 +41,18 @@
                 <div class="hero-content text-center">
                     <h1> {{'General.UnitedNationsDevelopmentProgramme' | translate}}</h1>
                     <p class="intro">{{'General.PleaseLetUsKnowIfYouWantToRequestACar' | translate}}</p>
-                    <a href="#" (click)="openRequestForm()" [routerLink]="['/CarRequest']" class="btn btn-fill btn-large ">{{'landingPage.RequestCar' | translate}} </a>
+                    <a href="#" (click)="openRequestForm()" [routerLink]="['/CarRequest']"
+                        class="btn btn-fill btn-large ">{{'landingPage.RequestCar' | translate}} </a>
                     <a href="#top" class="btn btn-accent btn-large top">{{'landingPage.Search' | translate}}</a>
                 </div>
             </div>
         </div>
     </div>
-    <div class="down-arrow floating-arrow"><a  href="#top" class="top"><i class="fa fa-angle-down"></i></a></div>
+    <div class="down-arrow floating-arrow"><a href="#top" class="top"><i class="fa fa-angle-down"></i></a></div>
 </section>
 <section class="intro section-padding" id="top">
     <div class="containerRequest">
-            <app-car-request-list [isCarRequestsLandingPage]="true"></app-car-request-list>
+        <app-car-request-list [isCarRequestsLandingPage]="true"></app-car-request-list>
     </div>
 </section>
 <!-- <app-car-request></app-car-request> -->
