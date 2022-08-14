@@ -55,18 +55,21 @@ body::-webkit-scrollbar-thumb {
 }
 
 .status-in-progress {
-    color: black;
-    background-color: yellow;
+    /* color: black; */
+    color: orangered;
+    font-weight: bold;
 }
 
 .status-approved {
-    color: white;
-    background-color: blue;
+    /* color: white; */
+    color: blue;
+    font-weight: bold;
 }
 
 .status-completed {
-    color: white;
-    background-color: green;
+    /* color: white; */
+    color: green;
+    font-weight: bold;
 }
 
 .link {
