@@ -16,7 +16,6 @@ export class AvailableDriversPopupComponent {
 
   ngOnInit() {
 
-    console.log(this.driverList);
   }
 
   public cancel() {

@@ -19,9 +19,9 @@ export class SpinnerInterceptor implements HttpInterceptor {
         return next.handle(req)
             .pipe(tap(
                 event => {
-                    console.log(event)
+                  //  console.log(event)
                 },
-                error => console.log(error)
+               // error => console.log(error)
 
             ), finalize(() => {
                 this.count--;

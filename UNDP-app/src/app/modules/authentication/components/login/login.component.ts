@@ -27,7 +27,6 @@ export class LoginComponent {
 
   }
   switchLang($event: any) {
-    console.log("lang", $event.target.innerHTML)
     if($event.target.innerHTML === "English")
     {
       this.lang='en';

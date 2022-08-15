@@ -11,6 +11,8 @@ import { UserTypeEnum } from '../../models/user-type-enum';
 import { HelperService } from 'src/app/shared/services/helper.service';
 import { LabelValuePair } from 'src/app/shared/enums/label-value-pair';
 import { SubjectService } from 'src/app/shared/services/subject.service';
+import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
+import { LocalStorageItems } from 'src/app/shared/constants/local-storage-items';
 declare var jQuery: any;
 
 @Component({
@@ -27,19 +29,21 @@ export class UserFormComponent {
 	userTypeEnum: any
 	userTypes: any
 	types:any
+	userProfile: UserProfileDTO;
 	constructor(private userProfileService: UserProfileService,
 		private route: ActivatedRoute,
 		private toasterService: ToastrService,
 		private location: Location, private _configService: ConfigService,
 		private helperService: HelperService,
 		private translate: TranslateService,
-		private subjectService:SubjectService) {
+		private subjectService:SubjectService,
+		private localStorageService:LocalStorageService) {
 	}
 
 	ngOnInit() {
 		this.userTypeEnum = UserTypeEnum;
+		this.userProfile = this.localStorageService.getItem(LocalStorageItems.userProfile);
 		this.userTypes = this.helperService.enumSelector(this.userTypeEnum);
-		console.log("userTypes",this.userTypes)
 		this.imageSrc="assets/images/icon/avatar-big-01.jpg";
 		this.userProfileDTO = new UserProfileDTO();
 		const id = this.route.snapshot.paramMap.get('id');
@@ -63,10 +67,13 @@ export class UserFormComponent {
 		this.location.back();
 	}
 	save(frm: NgForm) {
-		   this.userProfileDTO.role = this.userTypeEnum[this.userProfileDTO.userTypeId]
+		this.userProfileDTO.role = this.userTypeEnum[this.userProfileDTO.userTypeId]
 		if (this.userProfileDTO.id) {
 			this.userProfileService.update(this.userProfileDTO).subscribe(res => {
 				this.toasterService.success("success");
+				if(this.userProfile.id == this.userProfileDTO.id){
+					this.sendUserProfile();
+				}
 				this.cancel();
 			})
 		}
@@ -77,12 +84,10 @@ export class UserFormComponent {
 				this.cancel();
 			})
 		}
-		this.sendMessage();
-		//this.helperService.postUserProfile('Message from Home Component to user form Component!');
 	}
-    sendMessage(): void {
+    sendUserProfile(): void {
         // send message to subscribers via observable subject
-        this.subjectService.sendMessage(new UserProfileDTO);
+        this.subjectService.sendUserProfile(this.userProfileDTO);
     }
 
 

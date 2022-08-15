@@ -50,7 +50,6 @@ export class BaseEntityService {
     }
 
     errorHandler(error: Response) {
-        console.log(error);
         return Observable.throw(error);
     }
 }

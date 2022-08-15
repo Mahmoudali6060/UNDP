@@ -39,7 +39,6 @@ export class ForgotPasswordComponent implements OnInit {
       clientURI:strUrl
       
     }
-   // console.log("forgotPassDto",forgotPassDto)
     this._authService.forgotPassword('Account/ForgotPassword', forgotPassDto)
     .subscribe(_ => {
       this.showSuccess = true;

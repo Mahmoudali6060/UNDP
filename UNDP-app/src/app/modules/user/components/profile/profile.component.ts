@@ -9,6 +9,7 @@ import { LabelValuePair } from 'src/app/shared/enums/label-value-pair';
 import { ConfigService } from 'src/app/shared/services/config.service';
 import { HelperService } from 'src/app/shared/services/helper.service';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
+import { SubjectService } from 'src/app/shared/services/subject.service';
 import { UserProfileDTO } from '../../models/user-profile.dto';
 import { UserTypeEnum } from '../../models/user-type-enum';
 import { UserProfileService } from '../../services/user.service';
@@ -33,7 +34,7 @@ export class ProfileComponent implements OnInit {
   userTypes:LabelValuePair[];
   subscription: Subscription;
   messages: any[] = [];
-  constructor(private helperService:HelperService,private userProfileService: UserProfileService, private _configService: ConfigService,private toasterService: ToastrService, private localStorageService: LocalStorageService) { 
+  constructor(private subjectService:SubjectService,private helperService:HelperService,private userProfileService: UserProfileService, private _configService: ConfigService,private toasterService: ToastrService, private localStorageService: LocalStorageService) { 
  
     // this.subscription = this.helperService.selectedUser.subscribe(message => {
     //   alert("done from profile")
@@ -76,10 +77,16 @@ export class ProfileComponent implements OnInit {
       if(res){
         this.getProfileById(this.profile.id)
         this.toasterService.success("success");
-        this.edit = false;
+				if(this.loggedProfile.id == this.profile.id){
+					this.sendUserProfile();
+				}        this.edit = false;
       }
     })
   }
+  sendUserProfile(): void {
+    // send message to subscribers via observable subject
+    this.subjectService.sendUserProfile(this.profile);
+}
   changePassword() {
     this.ischangePassword = true;
   }
