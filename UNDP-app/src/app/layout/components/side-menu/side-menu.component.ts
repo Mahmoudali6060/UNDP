@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { UserProfileDTO } from 'src/app/modules/user/models/user-profile.dto';
 import { UserProfileService } from 'src/app/modules/user/services/user.service';
 import { HelperService } from 'src/app/shared/services/helper.service';
+import { SubjectService } from 'src/app/shared/services/subject.service';
 import { AuthService } from '../../../modules/authentication/services/auth.service';
 import { ConfigService } from '../../../shared/services/config.service';
 
@@ -23,7 +24,8 @@ export class SideMenuComponent implements OnInit {
     private _configService: ConfigService,
     private router: Router,
     private helperService: HelperService,
-    private userProfileService: UserProfileService
+    private userProfileService: UserProfileService,
+    private subjectService:SubjectService
   ) {
     
   }
@@ -32,10 +34,9 @@ export class SideMenuComponent implements OnInit {
     this.serverUrl = this._configService.getServerUrl();
     this.role = this.helperService.getRole();
     console.log("role", this.role)
-//     this.helperService.UserObservable.subscribe(message => {
-//       alert("done from SideMenu")
-//      // console.log("userProfile",this.messages)
-//  });
+    this.subjectService.selectedUser.subscribe(message => {
+     // console.log("userProfile",this.messages)
+ });
   }
 
   public logOut() {

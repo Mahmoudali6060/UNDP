@@ -14,6 +14,8 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { SpinnerInterceptor } from './shared/interceptors/spinner.interceptor';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { HomeModule } from './modules/home/home.module';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 @NgModule({
   declarations: [
     AppComponent
@@ -24,6 +26,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     AppRoutingModule,
     BrowserAnimationsModule,
     NgxSpinnerModule,
+    HttpClientModule,
+    HomeModule,
     ToastrModule.forRoot(),
     TranslateModule.forRoot({
       loader: {
@@ -37,7 +41,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     { provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true },
     {
       provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi: true
-    }
+    },
+    {provide : LocationStrategy , useClass: HashLocationStrategy},
   ],
   bootstrap: [AppComponent]
 })

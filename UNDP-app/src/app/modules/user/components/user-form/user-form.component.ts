@@ -10,6 +10,7 @@ import { NgForm } from '@angular/forms';
 import { UserTypeEnum } from '../../models/user-type-enum';
 import { HelperService } from 'src/app/shared/services/helper.service';
 import { LabelValuePair } from 'src/app/shared/enums/label-value-pair';
+import { SubjectService } from 'src/app/shared/services/subject.service';
 declare var jQuery: any;
 
 @Component({
@@ -31,7 +32,8 @@ export class UserFormComponent {
 		private toasterService: ToastrService,
 		private location: Location, private _configService: ConfigService,
 		private helperService: HelperService,
-		private translate: TranslateService) {
+		private translate: TranslateService,
+		private subjectService:SubjectService) {
 	}
 
 	ngOnInit() {
@@ -75,12 +77,12 @@ export class UserFormComponent {
 				this.cancel();
 			})
 		}
-		//this.sendMessage();
+		this.sendMessage();
 		//this.helperService.postUserProfile('Message from Home Component to user form Component!');
 	}
     sendMessage(): void {
         // send message to subscribers via observable subject
-        this.helperService.sendMessage(new UserProfileDTO);
+        this.subjectService.sendMessage(new UserProfileDTO);
     }
 
 

@@ -35,16 +35,16 @@ export class ProfileComponent implements OnInit {
   messages: any[] = [];
   constructor(private helperService:HelperService,private userProfileService: UserProfileService, private _configService: ConfigService,private toasterService: ToastrService, private localStorageService: LocalStorageService) { 
  
-    this.subscription = this.helperService.selectedUser.subscribe(message => {
-      alert("done from profile")
-      if (message) {
-        this.messages.push(message);
-      } else {
-        // clear messages when empty message received
-        this.messages = [];
-        console.log("userProfile",this.messages)
-      }
-    });
+    // this.subscription = this.helperService.selectedUser.subscribe(message => {
+    //   alert("done from profile")
+    //   if (message) {
+    //     this.messages.push(message);
+    //   } else {
+    //     // clear messages when empty message received
+    //     this.messages = [];
+    //     console.log("userProfile",this.messages)
+    //   }
+    // });
   }
 
   ngOnInit(): void {

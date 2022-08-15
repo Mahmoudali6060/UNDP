@@ -13,45 +13,10 @@ import { LocalStorageItems } from '../constants/local-storage-items';
 @Injectable({ providedIn: 'root' })
 
 export class HelperService {
-    public selectedUser = new BehaviorSubject<UserProfileDTO>(
-        this.getSelectedUser()
-    );
+
     constructor(private _datePipe: DatePipe, public translate: TranslateService,private localStorageService:LocalStorageService) {
 
     }
-    UserObservable = this.selectedUser.asObservable();
-    getSelectedUser(): UserProfileDTO {
-        return this.localStorageService.getItem(LocalStorageItems.userProfile) as UserProfileDTO;
-      }
-    sendMessage(message: UserProfileDTO) {
-        this.selectedUser.next(message);
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     
     //public subject = new Subject<any>();
     // getMessage(): Observable<any> {

@@ -137,7 +137,7 @@ namespace Account.DataServiceLayer
             var callback = QueryHelpers.AddQueryString(forgotPasswordModel.ClientURI, param);
             var hash = callback.Split("#");
             var query = hash[0];
-            string replace = query.Replace("/?", "/resetPassword?");
+            string replace = query.Replace("/?", "/#/resetPassword?");
             var message = new MessageDTO(new string[] { user.Email }, "UN.", $"Dear {user.UserName}\r\n Please follow link to reset your password {replace}");
             _emailSender.SendEmail(message);
             return true;
