@@ -35,6 +35,7 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="9.0.0" />
+    <PackageReference Include="CorePush" Version="3.1.1" />
     <PackageReference Include="FastReport.OpenSource.Export.PdfSimple" Version="2020.1.25" />
     <PackageReference Include="FastReport.OpenSource.Web" Version="2020.1.25" />
     <PackageReference Include="IdentityServer4" Version="3.1.0" />
@@ -55,6 +56,8 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.0" />
     <PackageReference Include="Microsoft.Web.Administration" Version="11.1.0" />
     <PackageReference Include="NETCore.MailKit" Version="2.1.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="5.6.0" />
     <PackageReference Include="System.Net.Http" Version="4.3.4" />
   </ItemGroup>

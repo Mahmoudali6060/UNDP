@@ -25,6 +25,12 @@ using Data.Entities.UserManagement;
 using Account.Entities;
 using Account.DataServiceLayer.Contracts;
 using Account.DataServiceLayer.Handlers;
+using Infrastructure.Notifications.Contracts;
+using Infrastructure.Notifications.Handlers;
+using CorePush.Google;
+using CorePush.Apple;
+using Infrastructure.Notifications.Models;
+using Microsoft.OpenApi.Models;
 
 namespace App
 {
@@ -115,6 +121,21 @@ namespace App
 
             DependencyInjection.AddTransient(services);
 
+            #region Firebase
+            services.AddTransient<INotificationService, NotificationService>();
+            services.AddHttpClient<FcmSender>();
+            services.AddHttpClient<ApnSender>();
+
+            // Configure strongly typed settings objects
+            var appSettingsSection = Configuration.GetSection("FcmNotification");
+            services.Configure<FcmNotificationSetting>(appSettingsSection);
+
+            // Register the swagger generator
+            services.AddSwaggerGen(c => {
+                c.SwaggerDoc(name: "V1", new OpenApiInfo { Title = "My API", Version = "V1" });
+            });
+            #endregion
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -138,6 +159,21 @@ namespace App
                 });
                 app.UseHsts();
             }
+
+            #region Firbase 
+            // Enable middleware to serve generated Swagger as a JSON endpoint
+            app.UseSwagger();
+            // Enable the SwaggerUI
+            app.UseSwaggerUI(c => {
+                c.SwaggerEndpoint(url: "/swagger/V1/swagger.json", name: "UNDP APIs V1");
+            });
+            app.UseHttpsRedirection();
+            app.UseRouting();
+            app.UseAuthorization();
+            app.UseEndpoints(endpoints => {
+                endpoints.MapControllers();
+            });
+            #endregion
 
             app.UseCors(builder => builder.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
 
