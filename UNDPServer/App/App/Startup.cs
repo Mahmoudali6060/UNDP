@@ -160,6 +160,8 @@ namespace App
                 app.UseHsts();
             }
 
+            app.UseCors(builder => builder.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
+
             #region Firbase 
             // Enable middleware to serve generated Swagger as a JSON endpoint
             app.UseSwagger();
@@ -175,7 +177,6 @@ namespace App
             });
             #endregion
 
-            app.UseCors(builder => builder.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
 
             app.UseAuthentication();//JWT Auth
 
