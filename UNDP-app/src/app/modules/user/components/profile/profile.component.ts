@@ -62,7 +62,7 @@ export class ProfileComponent implements OnInit {
 			this.profile = res;
       this.imageUrl = this.profile.imageUrl;
 			this.serverUrl = this._configService.getServerUrl();
-			this.imageSrc = this.serverUrl+"/wwwroot/Images/Users/"+ this.profile.imageUrl ;
+			this.imageSrc = this.serverUrl+"wwwroot/Images/Users/"+ this.profile.imageUrl ;
       if(!this.profile.imageUrl){
         this.imageSrc="assets/images/icon/avatar-big-01.jpg";
       }
