@@ -162,20 +162,6 @@ namespace App
 
             app.UseCors(builder => builder.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
 
-            #region Firbase 
-            // Enable middleware to serve generated Swagger as a JSON endpoint
-            app.UseSwagger();
-            // Enable the SwaggerUI
-            app.UseSwaggerUI(c => {
-                c.SwaggerEndpoint(url: "/swagger/V1/swagger.json", name: "UNDP APIs V1");
-            });
-            app.UseHttpsRedirection();
-            app.UseRouting();
-            app.UseAuthorization();
-            app.UseEndpoints(endpoints => {
-                endpoints.MapControllers();
-            });
-            #endregion
 
 
             app.UseAuthentication();//JWT Auth
@@ -196,6 +182,22 @@ namespace App
                             Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Images")),
                 RequestPath = "/wwwroot/Images"
             });
+
+            #region Firbase 
+            // Enable middleware to serve generated Swagger as a JSON endpoint
+            app.UseSwagger();
+            // Enable the SwaggerUI
+            app.UseSwaggerUI(c => {
+                c.SwaggerEndpoint(url: "/swagger/V1/swagger.json", name: "UNDP APIs V1");
+            });
+            app.UseHttpsRedirection();
+            app.UseRouting();
+            app.UseAuthorization();
+            app.UseEndpoints(endpoints => {
+                endpoints.MapControllers();
+            });
+            #endregion
+
 
             app.ConfigureCustomExceptionMiddleware();
             app.UseMvc();
