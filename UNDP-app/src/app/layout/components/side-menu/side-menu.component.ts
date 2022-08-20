@@ -50,7 +50,7 @@ export class SideMenuComponent implements OnInit {
 			this.userProfile = res;
       this.imageUrl = this.userProfile.imageUrl;
       this.serverUrl = this._configService.getServerUrl();
-      this.imageSrc = this.serverUrl + "/wwwroot/Images/Users/" + this.userProfile.imageUrl;
+      this.imageSrc = this.serverUrl + "wwwroot/Images/Users/" + this.userProfile.imageUrl;
       if (!this.userProfile.imageUrl) {
         this.imageSrc = "assets/images/icon/avatar-big-01.jpg";
 			  }
