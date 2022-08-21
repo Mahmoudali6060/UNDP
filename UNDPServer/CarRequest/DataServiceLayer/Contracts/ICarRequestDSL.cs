@@ -7,6 +7,6 @@ namespace FleetManagement.DataServiceLayer
 {
     public interface ICarRequestDSL : ICRUDOperationsDSL<CarRequestDTO, CarRequestSearchCriteriaDTO>
     {
-
+        Task<CarRequestTotalDetails> GetAllCarRequestTotalDetails();
     }
 }
