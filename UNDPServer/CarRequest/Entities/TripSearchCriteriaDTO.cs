@@ -1,13 +1,12 @@
-﻿using Data.Entities.Shared;
-using Data.Entities.UserManagement;
+﻿using Shared.Entities.Shared;
 using Shared.Enums;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Data.Entities.FleetManagement
+namespace FleetManagement.Entities
 {
-    public class Trip : BaseEntity
+    public class TripSearchCriteriaDTO : DataSource
     {
         public TripStatusEnum TripStatusId { get; set; }
         public int PreviousKiloMeterCounter { get; set; }
@@ -15,9 +14,6 @@ namespace Data.Entities.FleetManagement
         public DateTime ActualStartTime { get; set; }
         public DateTime ActualEndTime { get; set; }
         public TripClosingReasonEnum TripClosingReasonId { get; set; }
-        public string PictureUrl { get; set; }
         public long CarRequestId { get; set; }
-        public CarRequest CarRequest { get; set; }
-
     }
 }

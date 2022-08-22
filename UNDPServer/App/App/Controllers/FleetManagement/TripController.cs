@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using FleetManagement.DataServiceLayer;
+using FleetManagement.DataServiceLayer.Contracts;
 using FleetManagement.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Shared.Entities.Shared;
@@ -12,11 +13,15 @@ namespace App.Controllers.FleetManagement
     //[Authorize(Roles = Roles.Admin)]
     public class TripController : Controller
     {
-        //ITripDSL _tripDSL;
-        //public TripController(ITripDSL tripDSL)
-        //{
-        //    this._tripDSL = tripDSL;
-        //}
+        ITripDSL _tripDSL;
+        public TripController(ITripDSL tripDSL)
+        {
+            this._tripDSL = tripDSL;
+        }
+
+
+        [HttpPost, Route("Add")]
+        public async Task<IActionResult> Add([FromBody] TripDTO model) => Ok(await _tripDSL.Add(model));
 
         //[HttpPost, Route("GetAll")]
         ////[Authorize(Roles = Roles.Admin)]
@@ -34,10 +39,6 @@ namespace App.Controllers.FleetManagement
         //[HttpGet, Route("GetAllLite")]
         ////[Authorize(Roles = Roles.Admin)]
         //public async Task<IActionResult> GetAllLite() => Ok(await _tripDSL.GetAllLite());
-
-        //[HttpPost, Route("Add")]
-        ////[Authorize(Roles = Roles.Admin)]
-        //public async Task<IActionResult> Add([FromBody] TripDTO model) => Ok(await _tripDSL.Add(model));
 
         ////[Authorize(Roles = Roles.Admin + "," + Roles.Consumer)]
         //[HttpPost, Route("Update")]
