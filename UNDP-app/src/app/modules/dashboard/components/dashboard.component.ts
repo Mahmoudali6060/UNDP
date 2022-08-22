@@ -1,6 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Component, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CarRequestStatusEnum } from '../../../shared/enums/car-request-status.enum';
 import { CarRequestSearchCriteriaDTO } from '../../fleet-management/models/car-request-search-criteria.dto';
 import { CarRequestTotalDetails } from '../../fleet-management/models/car-request-total-details';
 import { CarRequestDTO } from '../../fleet-management/models/car-request.dto';
@@ -15,13 +16,14 @@ declare var jQuery: any;
 	styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent {
-	searchCriteriaDTO:UserProfileSearchCriteriaDTO = new UserProfileSearchCriteriaDTO();
-	carRequestSearchCrieria:CarRequestSearchCriteriaDTO = new CarRequestSearchCriteriaDTO();
+	searchCriteriaDTO: UserProfileSearchCriteriaDTO = new UserProfileSearchCriteriaDTO();
+	carRequestSearchCrieria: CarRequestSearchCriteriaDTO = new CarRequestSearchCriteriaDTO();
 	totalUsers: any;
 	totalRequests: number;
 	carRequestList: any;
-	carRequestTotalDetails:CarRequestTotalDetails
-	constructor(private userProfileService:UserProfileService,private carRequestService:CarRequestService,
+	carRequestTotalDetails: CarRequestTotalDetails
+	carRequestStatusEnum = CarRequestStatusEnum;
+	constructor(private userProfileService: UserProfileService, private carRequestService: CarRequestService,
 		private datepipe: DatePipe) {
 
 	}
@@ -162,8 +164,8 @@ export class DashboardComponent {
 			this.totalRequests = res.total;
 		});
 	}
-	getAllCarRequestsTotalDetails(){
-		this.carRequestService.getAllCarRequestTotalDetails().subscribe(res=>{
+	getAllCarRequestsTotalDetails() {
+		this.carRequestService.getAllCarRequestTotalDetails().subscribe(res => {
 			this.carRequestTotalDetails = res
 		})
 	}

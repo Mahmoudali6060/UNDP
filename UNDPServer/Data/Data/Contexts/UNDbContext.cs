@@ -22,19 +22,31 @@ namespace Data.Contexts
         public DbSet<Settings> Settings { get; set; }
         public DbSet<UserProfile> UserProfiles { get; set; }
         public DbSet<CarRequest> CarRequests { get; set; }
+        public DbSet<Trip> Trips { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            #region Car Request 
             modelBuilder.Entity<CarRequest>()
                 .HasOne(g => g.Supervisor)
                 .WithMany(t => t.SupervisorCarRequests)
                 .HasForeignKey(t => t.SupervisorId)
                 .HasPrincipalKey(t => t.Id);
+
             modelBuilder.Entity<CarRequest>()
                 .HasOne(g => g.Driver)
                 .WithMany(t => t.DriverCarRequests)
                 .HasForeignKey(t => t.DriverId).OnDelete(DeleteBehavior.NoAction)
                 .HasPrincipalKey(t => t.Id);
+
+            modelBuilder.Entity<CarRequest>()
+                .HasOne(a => a.Trip)
+                .WithOne(b => b.CarRequest)
+                .HasForeignKey<Trip>(b => b.CarRequestId);
+
+            #endregion
+
 
             base.OnModelCreating(modelBuilder);
         }

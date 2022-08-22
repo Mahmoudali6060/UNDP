@@ -83,6 +83,51 @@ namespace Data.Migrations
                     b.ToTable("CarRequests");
                 });
 
+            modelBuilder.Entity("Data.Entities.FleetManagement.Trip", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("ActualEndTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("ActualStartTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long>("CarRequestId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("CurrentKiloMeterCounter")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("Modified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("PictureUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PreviousKiloMeterCounter")
+                        .HasColumnType("int");
+
+                    b.Property<byte>("TripClosingReasonId")
+                        .HasColumnType("tinyint");
+
+                    b.Property<byte>("TripStatusId")
+                        .HasColumnType("tinyint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CarRequestId")
+                        .IsUnique();
+
+                    b.ToTable("Trips");
+                });
+
             modelBuilder.Entity("Data.Entities.Shared.Category", b =>
                 {
                     b.Property<int>("Id")
@@ -408,6 +453,15 @@ namespace Data.Migrations
                     b.HasOne("Data.Entities.UserManagement.UserProfile", "Supervisor")
                         .WithMany("SupervisorCarRequests")
                         .HasForeignKey("SupervisorId");
+                });
+
+            modelBuilder.Entity("Data.Entities.FleetManagement.Trip", b =>
+                {
+                    b.HasOne("Data.Entities.FleetManagement.CarRequest", "CarRequest")
+                        .WithOne("Trip")
+                        .HasForeignKey("Data.Entities.FleetManagement.Trip", "CarRequestId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Data.Entities.UserManagement.UserProfile", b =>

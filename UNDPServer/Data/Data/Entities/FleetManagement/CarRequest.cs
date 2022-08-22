@@ -29,5 +29,7 @@ namespace Data.Entities.FleetManagement
         public ClosingReasonEnum ClosingReasonId { get; set; }
         public string ClosingReasonComment { get; set; }
 
+        public virtual Trip Trip { get; set; }
+
     }
 }
