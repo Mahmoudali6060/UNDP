@@ -29,7 +29,9 @@ namespace App
             #region Users Management
             CreateMap<UserProfile, UserProfileDTO>()
                 .ForMember(dest => dest.UserName, opt => opt.MapFrom(src => src.AppUser.UserName))
-                .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.AppUser.Email));
+                .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.AppUser.Email))
+                .ForMember(dest => dest.DeviceId, opt => opt.MapFrom(src => src.UserDevice.DeviceId));
+
 
             CreateMap<UserProfileDTO, UserProfile>();
             #endregion
@@ -40,8 +42,8 @@ namespace App
             //.ForMember(dest => dest.DateTo, opt => opt.MapFrom(src => src.DateTo.ToString("dd/MM/yyyy HH:mm tt")));
 
             CreateMap<CarRequestDTO, CarRequest>();
-                 //.ForMember(dest => dest.DateFrom, opt => opt.MapFrom(src => DateTime.ParseExact(src.DateFrom, "dd/MM/yyyy HH:mm tt", null)))
-                 //.ForMember(dest => dest.DateTo, opt => opt.MapFrom(src => DateTime.ParseExact(src.DateTo, "dd/MM/yyyy HH:mm tt", null)));
+            //.ForMember(dest => dest.DateFrom, opt => opt.MapFrom(src => DateTime.ParseExact(src.DateFrom, "dd/MM/yyyy HH:mm tt", null)))
+            //.ForMember(dest => dest.DateTo, opt => opt.MapFrom(src => DateTime.ParseExact(src.DateTo, "dd/MM/yyyy HH:mm tt", null)));
 
 
             #endregion

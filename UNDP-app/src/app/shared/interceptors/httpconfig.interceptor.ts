@@ -4,17 +4,15 @@ import { HttpInterceptor, HttpRequest, HttpResponse, HttpHandler, HttpEvent, Htt
 import { Observable, of, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { ToastrService } from 'ngx-toastr';
-import { NotificationService } from '../services/notification.service';
+import { AlertService } from '../services/alert.service';
 import { LocalStorageService } from '../services/local-storage.service';
-import { LocalStorageItems } from '../constants/local-storage-items';
 import { TranslateService } from '@ngx-translate/core';
 
 @Injectable()
 export class HttpConfigInterceptor implements HttpInterceptor {
     count = 0;
     constructor(private spinner: NgxSpinnerService,
-        private notificationService: NotificationService,
+        private alertService: AlertService,
         private localStorageService: LocalStorageService,
         private translate: TranslateService) {
     }
@@ -54,28 +52,28 @@ export class HttpConfigInterceptor implements HttpInterceptor {
             let errorList: any = Object.entries(error.error?.errors)
             for (let error of errorList) {
                 let transaltedErrorMessage = this.translate.instant(error[1][0]);
-                this.notificationService.showError(transaltedErrorMessage, this.translate.instant("General.Error"));
+                this.alertService.showError(transaltedErrorMessage, this.translate.instant("General.Error"));
             }
         }
         else if (error.error?.Message) {
             let transaltedErrorMessage = this.translate.instant(error.error.Message);
-            this.notificationService.showError(transaltedErrorMessage, this.translate.instant("General.Error"));
+            this.alertService.showError(transaltedErrorMessage, this.translate.instant("General.Error"));
         }
 
         return true;
         // let handled: boolean = false;
         // switch (error.status) {
         //     case 401:
-        //         this.notificationService.showError(transaltedErrorMessage, this.translate.instant("General.Error"));
+        //         this.alertService.showError(transaltedErrorMessage, this.translate.instant("General.Error"));
         //         handled = true;
         //         break;
         //     case 403:
-        //         this.notificationService.showError(transaltedErrorMessage, this.translate.instant("General.Error"));
+        //         this.alertService.showError(transaltedErrorMessage, this.translate.instant("General.Error"));
         //         handled = true;
         //         break;
 
         //     case 500:
-        //         this.notificationService.showError(transaltedErrorMessage, this.translate.instant("General.Error"));
+        //         this.alertService.showError(transaltedErrorMessage, this.translate.instant("General.Error"));
         //         handled = true;
         //         break;
         // }

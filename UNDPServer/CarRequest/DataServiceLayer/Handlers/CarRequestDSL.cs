@@ -146,7 +146,7 @@ namespace FleetManagement.DataServiceLayer
         {
             return await _carRequestDAL.Update(_mapper.Map<CarRequest>(entity));
         }
-
+    
         public async Task<bool> Delete(long id)
         {
             CarRequest userProfile = await _carRequestDAL.GetById(id);

@@ -22,6 +22,7 @@ namespace Data.Entities.UserManagement
         public virtual AppUser AppUser { get; set; }
         public virtual IEnumerable<CarRequest> SupervisorCarRequests { get; set; }
         public virtual IEnumerable<CarRequest> DriverCarRequests { get; set; }
+        public UserDevice UserDevice { get; set; }
 
     }
 }

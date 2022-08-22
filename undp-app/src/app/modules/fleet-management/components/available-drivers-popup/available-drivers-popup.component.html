@@ -11,7 +11,7 @@
                 <label for="drivers" class="form-control-label">{{'FleetManagement.Drivers' |translate}}</label>
                 <select name="drivers" id="drivers" class="form-control" [(ngModel)]="driverId">
                     <option *ngFor="let driver of driverList" [value]="driver.id">{{driver.firstName}}
-                        {{driver.lastName}}
+                        {{driver.lastName}}-{{driver.mobile}}
                     </option>
                 </select>
             </div>

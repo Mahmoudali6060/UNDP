@@ -10,6 +10,7 @@ import { UserProfileDTO } from '../../../user/models/user-profile.dto';
 export class AvailableDriversPopupComponent {
 
   driverId: number;
+  selectedDriver: UserProfileDTO | undefined;
   driverList: Array<UserProfileDTO>;
 
   constructor(private activeModal: NgbActiveModal) { }
@@ -23,7 +24,10 @@ export class AvailableDriversPopupComponent {
   }
 
   public ok() {
-    this.activeModal.close(this.driverId);
+    if (this.driverId) {
+      this.selectedDriver = this.driverList.find(x => x.id == this.driverId);
+      this.activeModal.close(this.selectedDriver);
+    }
   }
 
   public dismiss() {

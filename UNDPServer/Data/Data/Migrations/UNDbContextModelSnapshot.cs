@@ -289,6 +289,33 @@ namespace Data.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("Data.Entities.UserManagement.UserDevice", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DeviceId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("Modified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long>("UserProfileId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserProfileId")
+                        .IsUnique();
+
+                    b.ToTable("UserDevices");
+                });
+
             modelBuilder.Entity("Data.Entities.UserManagement.UserProfile", b =>
                 {
                     b.Property<long>("Id")
@@ -460,6 +487,15 @@ namespace Data.Migrations
                     b.HasOne("Data.Entities.FleetManagement.CarRequest", "CarRequest")
                         .WithOne("Trip")
                         .HasForeignKey("Data.Entities.FleetManagement.Trip", "CarRequestId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Data.Entities.UserManagement.UserDevice", b =>
+                {
+                    b.HasOne("Data.Entities.UserManagement.UserProfile", "UserProfile")
+                        .WithOne("UserDevice")
+                        .HasForeignKey("Data.Entities.UserManagement.UserDevice", "UserProfileId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

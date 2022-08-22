@@ -11,7 +11,7 @@ export class AvailableDriversPopupService {
 
     constructor(private modalService: NgbModal) { }
 
-    public show(driverList: Array<UserProfileDTO>, dialogSize: 'sm' | 'lg' = 'sm'): Promise<number> {
+    public show(driverList: Array<UserProfileDTO>, dialogSize: 'sm' | 'lg' = 'sm'): Promise<UserProfileDTO> {
         const modalRef = this.modalService.open(AvailableDriversPopupComponent, { size: dialogSize });
         modalRef.componentInstance.driverList = driverList;
         return modalRef.result;

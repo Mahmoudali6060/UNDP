@@ -5,13 +5,13 @@
             <span>{{pageTitle}}</span>
         </h3>
         <div class="table-data__tool">
-            <div class="table-data__tool-left" >
+            <div class="table-data__tool-left">
                 <button class="au-btn-filter" (click)="toggleFilter()" *ngIf="isCarRequestsLandingPage == false">
                     <i class="zmdi zmdi-filter-list"></i>{{'General.Filter'|translate}}</button>
                 <button class="btn btn-accent btn-large top" (click)="toggleFilter()" *ngIf="isCarRequestsLandingPage == true">
-                    <i class="zmdi zmdi-filter-list"></i>{{'General.Filter'|translate}}</button> 
+                    <i class="zmdi zmdi-filter-list"></i>{{'General.Filter'|translate}}</button>
             </div>
-            <div *ngIf="selectedCarRequestPageType == careRequestPageType.Index && isCarRequestsLandingPage == false" class="table-data__tool-right" >
+            <div *ngIf="selectedCarRequestPageType == careRequestPageType.Index && isCarRequestsLandingPage == false" class="table-data__tool-right">
                 <button [routerLink]="['/fleet-management/car-request-form']" class="au-btn au-btn-icon au-btn--green au-btn--small">
                     <i class="zmdi zmdi-plus"></i> {{'FleetManagement.NewCarRequest'|translate}}
                 </button>
@@ -128,7 +128,7 @@
                         <th class="table-header-fc">{{'FleetManagement.RequesterName' |translate}}</th>
                         <th class="table-header-fc">{{'FleetManagement.RequesterEmail' |translate}}</th>
 
-                        <th  *ngIf="isCarRequestsLandingPage == false"></th>
+                        <th *ngIf="isCarRequestsLandingPage == false"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -154,7 +154,7 @@
                         <td>{{item.requesterName}}</td>
                         <td>{{item.requesterEmail}}</td>
                         <!--Test-->
-                        <td  *ngIf="isCarRequestsLandingPage == false">
+                        <td *ngIf="isCarRequestsLandingPage == false">
                             <div class="table-data-feature">
                                 <button *ngIf="selectedCarRequestPageType==careRequestPageType.Index" class="item" data-toggle="tooltip" data-placement="top" title="{{'FleetManagement.AssignToMe'|translate}}" data-original-title="Send" (click)="assignToMe(item)">
                                     <i class="zmdi zmdi-mail-send"></i>
@@ -177,7 +177,6 @@
                     </tr>
                 </tbody>
             </table>
-
 
             <app-pagination (pageChange)="onPageChange($event)" [totalRecordsCount]="total" [recordsPerPage]="carRequestSearchCrieria.pageSize" *ngIf="carRequestList">
             </app-pagination>

@@ -23,6 +23,7 @@ namespace Data.Contexts
         public DbSet<UserProfile> UserProfiles { get; set; }
         public DbSet<CarRequest> CarRequests { get; set; }
         public DbSet<Trip> Trips { get; set; }
+        public DbSet<UserDevice> UserDevices { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -45,6 +46,14 @@ namespace Data.Contexts
                 .WithOne(b => b.CarRequest)
                 .HasForeignKey<Trip>(b => b.CarRequestId);
 
+
+            #endregion
+
+            #region
+            modelBuilder.Entity<UserProfile>()
+              .HasOne(a => a.UserDevice)
+              .WithOne(b => b.UserProfile)
+              .HasForeignKey<UserDevice>(b => b.UserProfileId);
             #endregion
 
 

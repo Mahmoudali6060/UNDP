@@ -1,27 +1,19 @@
-import { Injectable } from '@angular/core';
-import { ToastrService } from 'ngx-toastr';
+import { Injectable, Inject } from '@angular/core';
+import { Observable } from 'rxjs';
+import { NotificationModel } from '../models/notification.model';
+import { HttpHelperService } from './http-helper.service';
 
-@Injectable({
-    providedIn: 'root'
-})
+@Injectable(
+    { providedIn: 'root' }
+)
 export class NotificationService {
+    controllerName: string = "Notification";
 
-    constructor(private toastr: ToastrService) { }
-
-    showSuccess(message: any, title: any) {
-        this.toastr.success(message, title)
+    constructor(public httpHelperService: HttpHelperService) {
     }
 
-    showError(message: any, title: any) {
-        this.toastr.error(message, title)
-    }
-
-    showInfo(message: any, title: any) {
-        this.toastr.info(message, title)
-    }
-
-    showWarning(message: any, title: any) {
-        this.toastr.warning(message, title)
+    sendNotification(entity: NotificationModel) {
+        return this.httpHelperService.post(`${this.controllerName}/Send/`, entity);
     }
 
 }
