@@ -65,6 +65,7 @@
 
   <ItemGroup>
     <Folder Include="Reports\" />
+    <Folder Include="wwwroot\Images\Trips\" />
     <Folder Include="wwwroot\Images\Users\" />
   </ItemGroup>
 

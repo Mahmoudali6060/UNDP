@@ -4,7 +4,11 @@ using Account.DataServiceLayer.Contracts;
 using Account.DataServiceLayer.Handlers;
 using Accout.DataServiceLayer;
 using FleetManagement.DataAccessLayer;
+using FleetManagement.DataAccessLayer.Contracts;
+using FleetManagement.DataAccessLayer.Handlers;
 using FleetManagement.DataServiceLayer;
+using FleetManagement.DataServiceLayer.Contracts;
+using FleetManagement.DataServiceLayer.Handlers;
 //using Data.Backup;
 using Infrastructure.Contracts;
 using Infrastructure.Handlers;
@@ -44,6 +48,10 @@ namespace App.Helper
             services.AddTransient<ICarRequestDSL, CarRequestDSL>();
             #endregion
 
+            #region Trips
+            services.AddTransient<ITripDAL, TripDAL>();
+            services.AddTransient<ITripDSL, TripDSL>();
+            #endregion
 
 
         }

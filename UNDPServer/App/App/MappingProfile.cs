@@ -45,9 +45,11 @@ namespace App
             //.ForMember(dest => dest.DateFrom, opt => opt.MapFrom(src => DateTime.ParseExact(src.DateFrom, "dd/MM/yyyy HH:mm tt", null)))
             //.ForMember(dest => dest.DateTo, opt => opt.MapFrom(src => DateTime.ParseExact(src.DateTo, "dd/MM/yyyy HH:mm tt", null)));
 
+            #region Trip
+            CreateMap<Trip, TripDTO>();
+            CreateMap<TripDTO, Trip>();
 
             #endregion
-
         }
     }
 }
