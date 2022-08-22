@@ -22,6 +22,11 @@ namespace App.Controllers.FleetManagement
         //[Authorize(Roles = Roles.Admin)]
         public async Task<IActionResult> GetAll([FromBody] CarRequestSearchCriteriaDTO searchCriteriaDTO) => Ok(await _carRequestDSL.GetAll(searchCriteriaDTO));
 
+
+        [HttpGet, Route("GetAllCarRequestTotalDetails")]
+        //[Authorize(Roles = Roles.Admin)]
+        public async Task<IActionResult> GetAllCarRequestTotalDetails() => Ok(await _carRequestDSL.GetAllCarRequestTotalDetails());
+
         [HttpGet, Route("GetById/{id}")]
         //[Authorize(Roles = Roles.Admin)]
         public async Task<IActionResult> GetById(long id) => Ok(await _carRequestDSL.GetById(id));

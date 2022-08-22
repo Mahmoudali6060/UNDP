@@ -1,9 +1,8 @@
 import { DatePipe } from '@angular/common';
 import { Component, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
-import { CarRequestStatusEnum } from 'src/app/shared/enums/car-request-status.enum';
 import { CarRequestSearchCriteriaDTO } from '../../fleet-management/models/car-request-search-criteria.dto';
+import { CarRequestTotalDetails } from '../../fleet-management/models/car-request-total-details';
 import { CarRequestDTO } from '../../fleet-management/models/car-request.dto';
 import { CarRequestService } from '../../fleet-management/services/car-request.service';
 import { UserProfileSearchCriteriaDTO } from '../../user/models/user-list-search-criteria-dto';
@@ -21,10 +20,7 @@ export class DashboardComponent {
 	totalUsers: any;
 	totalRequests: number;
 	carRequestList: any;
-	carRequestStatusEnum :any
-	approvedRequest: number;
-	inProgressRequest: number;
-	ClosedRequest: number;
+	carRequestTotalDetails:CarRequestTotalDetails
 	constructor(private userProfileService:UserProfileService,private carRequestService:CarRequestService,
 		private datepipe: DatePipe) {
 
@@ -35,9 +31,10 @@ export class DashboardComponent {
 	}
 
 	ngOnInit() {
-		this.carRequestStatusEnum = CarRequestStatusEnum
+		this.carRequestTotalDetails = new CarRequestTotalDetails()
 		this.getAllUsers();
 		this.getAllCarRequests();
+		this.getAllCarRequestsTotalDetails();
 		// $(function () {
 		// 	var data, options;
 
@@ -163,15 +160,16 @@ export class DashboardComponent {
 		this.carRequestService.getAll(this.carRequestSearchCrieria).subscribe((res: any) => {
 			this.carRequestList = res.list;
 			this.totalRequests = res.total;
-			if(res.list){
-				this.inProgressRequest = this.carRequestList[0].totalInProgress
-				this.approvedRequest = this.carRequestList[0].totalApproved
-				this.ClosedRequest = this.carRequestList[0].totalClosed
-			}
 		});
+	}
+	getAllCarRequestsTotalDetails(){
+		this.carRequestService.getAllCarRequestTotalDetails().subscribe(res=>{
+			this.carRequestTotalDetails = res
+		})
 	}
 	onPageChange(event: any) {
 		this.carRequestSearchCrieria.page = event;
 		this.getAllCarRequests();
+		this.getAllCarRequestsTotalDetails();
 	}
 }

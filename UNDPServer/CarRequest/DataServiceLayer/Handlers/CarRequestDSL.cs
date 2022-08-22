@@ -36,11 +36,6 @@ namespace FleetManagement.DataServiceLayer
             #endregion
 
             int total = carRequestList.Count();
-            int TotalApproved = carRequestList.Where(c => c.CarRequestStatusId == CarRequestStatusEnum.Approved).Count();
-            int TotalInProgress = carRequestList.Where(c => c.CarRequestStatusId == CarRequestStatusEnum.InProgress).Count();
-            int TotalClosed = carRequestList.Where(c => c.CarRequestStatusId == CarRequestStatusEnum.Closed).Count();
-
-
 
             #region Order
             carRequestList = carRequestList.OrderByDescending(x => x.Id);
@@ -53,13 +48,6 @@ namespace FleetManagement.DataServiceLayer
 
             #region Mapping and Return List
             List<CarRequestDTO> carRequestDTOList = _mapper.Map<List<CarRequestDTO>>(carRequestList);
-            carRequestDTOList.ForEach(c =>
-            {
-                c.TotalApproved = TotalApproved;
-                c.TotalInProgress = TotalInProgress;
-                c.TotalClosed = TotalClosed;
-            });
-           // carRequestDTOList.Add(carRequestDTO);
             return new ResponseEntityList<CarRequestDTO>
             {
                 List = carRequestDTOList,
@@ -67,6 +55,17 @@ namespace FleetManagement.DataServiceLayer
             };
             #endregion
 
+        }
+
+        public async Task<CarRequestTotalDetails> GetAllCarRequestTotalDetails() {
+            var carRequestList = await _carRequestDAL.GetAll();
+            CarRequestTotalDetails carRequestDTO = new CarRequestTotalDetails();
+
+            carRequestDTO.Total = carRequestList.Count();
+            carRequestDTO.TotalApproved = carRequestList.Where(c => c.CarRequestStatusId == CarRequestStatusEnum.Approved).Count();
+            carRequestDTO.TotalInProgress = carRequestList.Where(c => c.CarRequestStatusId == CarRequestStatusEnum.InProgress).Count();
+            carRequestDTO.TotalClosed = carRequestList.Where(c => c.CarRequestStatusId == CarRequestStatusEnum.Closed).Count();
+            return carRequestDTO;
         }
 
         private IQueryable<CarRequest> ApplyFilert(IQueryable<CarRequest> carRequestList, CarRequestSearchCriteriaDTO searchCriteriaDTO)
