@@ -139,6 +139,7 @@ namespace Accout.DataServiceLayer
             throw new Exception(createUserResult.Errors.ToList()[0].Description);
         }
 
+    
         public async Task<bool> Delete(long id)
         {
             UserProfile userProfile = await _userProfileDAL.GetById(id);

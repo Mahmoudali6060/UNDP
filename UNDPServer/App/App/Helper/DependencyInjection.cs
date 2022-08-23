@@ -39,6 +39,10 @@ namespace App.Helper
             services.AddTransient<IUserProfileDAL, UserProfileDAL>();
             services.AddTransient<IUserProfileDSL, UserProfileDSL>();
 
+            services.AddTransient<IUserDeviceDAL, UserDeviceDAL>();
+            services.AddTransient<IUserDeviceDSL, UserDeviceDSL>();
+
+
             services.AddTransient<IEmailSender, EmailSender>();
 
             #endregion

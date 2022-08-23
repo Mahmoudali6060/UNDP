@@ -31,16 +31,18 @@ namespace Account.DataServiceLayer
         IAccountDAL _accountDAL;
         ISettingDSL _settingDSL;
         IUserProfileDSL _userProfileDSL;
+        IUserDeviceDSL _userDeviceDSL;
         ApplicationSettings _appSettings;
         private readonly IEmailSender _emailSender;
 
-        public AccountDSL(IAccountDAL accountDAL, ISettingDSL settingDSL, IOptions<ApplicationSettings> appSettings, IUserProfileDSL userProfileDSL, ILoggerManager logger, IEmailSender emailSender)
+        public AccountDSL(IAccountDAL accountDAL, ISettingDSL settingDSL, IOptions<ApplicationSettings> appSettings, IUserProfileDSL userProfileDSL, IUserDeviceDSL userDeviceDSL, ILoggerManager logger, IEmailSender emailSender)
         {
             _accountDAL = accountDAL;
             _settingDSL = settingDSL;
             _appSettings = appSettings.Value;
             _userProfileDSL = userProfileDSL;
             _emailSender = emailSender;
+            _userDeviceDSL = userDeviceDSL;
         }
 
         public async Task<UserProfileDTO> Register(RegisterRequestViewModel model)
@@ -71,7 +73,13 @@ namespace Account.DataServiceLayer
                 var role = await _accountDAL.GetRolesAsync(appUser);
                 userDto.Token = AddToken(appUser, role);
                 userDto.Email = appUser.Email;
-
+                loginModel.DeviceId = "cfz2ZzlZQ5eu2AMZNxbHlQ:APA91bHZySyNQP9uO9xxNaj9UHgiNRxGOIKZ50tQ3xhjW8KsyFJoc1Zw53twZ62qRqAU4iPML3lSa6fQqCxc-rW6T9WgyR4iVvFk35lqXZfRxpq-3NZ3k0LSNqmI5UUoeTJIXd90o9VI";
+                //Set DeviceId for driver and Update it when user login
+                if (!string.IsNullOrWhiteSpace(loginModel.DeviceId))
+                {
+                    userDto.DeviceId = loginModel.DeviceId;
+                    await _userDeviceDSL.SetDeviceId(userDto);
+                }
                 return userDto;
             }
             throw new Exception("Errors.InvalidUsernameOrPassword");
@@ -123,11 +131,11 @@ namespace Account.DataServiceLayer
 
         public async Task<bool> ForgotPassword([FromBody] ForgotPasswordDTO forgotPasswordModel)
         {
-            var user = await  _accountDAL.FindByEmailAsync(forgotPasswordModel.Email);
+            var user = await _accountDAL.FindByEmailAsync(forgotPasswordModel.Email);
             if (user == null)
                 throw new Exception("Errors.InvalidEmail");
 
-            var token =await _accountDAL.GeneratePasswordResetTokenAsync(user);
+            var token = await _accountDAL.GeneratePasswordResetTokenAsync(user);
             var param = new Dictionary<string, string>
              {
                  {"token", token },
