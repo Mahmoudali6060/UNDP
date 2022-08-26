@@ -17,8 +17,8 @@ namespace Account.Entities
         {
             To = new List<MailboxAddress>();
 
-            To.AddRange(to.Select(x => new MailboxAddress(x,"")));
-            Subject = subject;
+            To.AddRange(to.Select(x => new MailboxAddress(x,x)));
+            Subject = "UNDP";
             Content = content;
         }
     }
