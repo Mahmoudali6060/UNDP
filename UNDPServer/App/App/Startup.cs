@@ -159,6 +159,8 @@ namespace App
                 });
                 app.UseHsts();
             }
+            app.ConfigureCustomExceptionMiddleware();
+
 
             app.UseCors(builder => builder.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
 
@@ -199,7 +201,6 @@ namespace App
             #endregion
 
 
-            app.ConfigureCustomExceptionMiddleware();
             app.UseMvc();
         }
     }
