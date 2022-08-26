@@ -1,6 +1,7 @@
 import { DatePipe } from '@angular/common';
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewChild, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { PaginationComponent } from 'src/app/shared/components/pagination/pagination.component';
 import { CarRequestStatusEnum } from '../../../shared/enums/car-request-status.enum';
 import { CarRequestSearchCriteriaDTO } from '../../fleet-management/models/car-request-search-criteria.dto';
 import { CarRequestTotalDetails } from '../../fleet-management/models/car-request-total-details';
@@ -18,6 +19,8 @@ declare var jQuery: any;
 export class DashboardComponent {
 	searchCriteriaDTO: UserProfileSearchCriteriaDTO = new UserProfileSearchCriteriaDTO();
 	carRequestSearchCrieria: CarRequestSearchCriteriaDTO = new CarRequestSearchCriteriaDTO();
+	@ViewChild(PaginationComponent) paginationComponent: PaginationComponent;
+
 	totalUsers: any;
 	totalRequests: number;
 	carRequestList: any;
@@ -162,6 +165,10 @@ export class DashboardComponent {
 		this.carRequestService.getAll(this.carRequestSearchCrieria).subscribe((res: any) => {
 			this.carRequestList = res.list;
 			this.totalRequests = res.total;
+			if (this.paginationComponent) {
+				this.paginationComponent.totalRecordsCount = this.totalRequests;
+				this.paginationComponent.setPagination(this.carRequestSearchCrieria.page);
+			}
 		});
 	}
 	getAllCarRequestsTotalDetails() {

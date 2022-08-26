@@ -1,8 +1,9 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewChild, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
+import { PaginationComponent } from 'src/app/shared/components/pagination/pagination.component';
 import { LabelValuePair } from 'src/app/shared/enums/label-value-pair';
 import { ConfigService } from 'src/app/shared/services/config.service';
 import { HelperService } from 'src/app/shared/services/helper.service';
@@ -19,7 +20,7 @@ declare var jQuery: any;
 	templateUrl: './user-list.component.html'
 })
 export class UserListComponent {
-
+	@ViewChild(PaginationComponent) paginationComponent: PaginationComponent;
 	dataSource: DataSourceModel = new DataSourceModel();
 	userList: Array<UserProfileDTO> ;
 	serverUrl: string;
@@ -52,8 +53,11 @@ export class UserListComponent {
 		this.userProfileService.getAll(this.searchCriteriaDTO).subscribe((res: any) => {
 			this.userList = res.list;
 			this.total = res.total;
+			if (this.paginationComponent) {
+				this.paginationComponent.totalRecordsCount = this.total;
+				this.paginationComponent.setPagination(this.searchCriteriaDTO.page);
+			}
 			this.serverUrl = this._configService.getServerUrl();
-            console.log("userList",this.userList)
 		});
 	}
     search(){
