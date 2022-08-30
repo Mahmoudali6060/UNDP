@@ -186,6 +186,24 @@
         "CarRequestList": "قائمة طلبات السيارة",
         "SelectRequestStatus": "أختر حالة الطلب"
     },
+    "Trip":{
+        "Trips":"الرحلات",
+        "RequestID":"رقم الطلب",
+        "ActualStartTime":"وقت البدء الفعلي",
+        "ActualEndTime":"وقت الإنتهاء الفعلي",
+        "PreviousKiloMeterCounter":"عدد الكيلومترات السابقة",
+        "CurrentKiloMeterCounter":"عدد الكيلومترات الحالية",
+        "TripStatus":"حالة الرحلة",
+        "TripClosingReason":"سبب إغلاق الرحلة"
+    },
+    "TripStatusEnum":{
+        "Started" :"بدء",
+        "Canceled" :"إلغاء"
+    },
+    "TripClosingReasonEnum":{
+        "Canceled" : "إلغاء",
+        "Completed" : "اكتملت"
+    },
     "CarRequestStatusEnum": {
         "InProgress": "قيد الموافقة",
         "Approved": "موافق عليه",

@@ -23,9 +23,9 @@ namespace App.Controllers.FleetManagement
         [HttpPost, Route("Add")]
         public async Task<IActionResult> Add([FromBody] TripDTO model) => Ok(await _tripDSL.Add(model));
 
-        //[HttpPost, Route("GetAll")]
-        ////[Authorize(Roles = Roles.Admin)]
-        //public async Task<IActionResult> GetAll([FromBody] TripSearchCriteriaDTO searchCriteriaDTO) => Ok(await _tripDSL.GetAll(searchCriteriaDTO));
+        [HttpPost, Route("GetAll")]
+        //[Authorize(Roles = Roles.Admin)]
+        public async Task<IActionResult> GetAll([FromBody] TripSearchCriteriaDTO searchCriteriaDTO) => Ok(await _tripDSL.GetAll(searchCriteriaDTO));
 
 
         //[HttpGet, Route("GetAllTripTotalDetails")]

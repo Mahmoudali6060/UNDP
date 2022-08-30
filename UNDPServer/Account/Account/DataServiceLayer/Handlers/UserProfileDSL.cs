@@ -119,6 +119,7 @@ namespace Accout.DataServiceLayer
             if (createUserResult.Succeeded)
             {
                 entity.AppUserId = appUser.Id;
+                entity.DefaultLanguage = "en";
                 UploadImage(entity);
                 return await _userProfileDAL.Add(_mapper.Map<UserProfile>(entity));
             }

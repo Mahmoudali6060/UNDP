@@ -29,9 +29,9 @@ namespace FleetManagement.DataAccessLayer.Handlers
             throw new NotImplementedException();
         }
 
-        public Task<IQueryable<Trip>> GetAll()
+        public async Task<IQueryable<Trip>> GetAll()
         {
-            throw new NotImplementedException();
+            return _appDbContext.Trips.Include(t=>t.CarRequest).OrderByDescending(x => x.Id).AsQueryable();
         }
 
         public Task<IQueryable<Trip>> GetAllLite()

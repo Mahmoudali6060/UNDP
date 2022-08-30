@@ -11,9 +11,9 @@ namespace FleetManagement.Entities
         public TripStatusEnum TripStatusId { get; set; }
         public int PreviousKiloMeterCounter { get; set; }
         public int CurrentKiloMeterCounter { get; set; }
-        public DateTime ActualStartTime { get; set; }
-        public DateTime ActualEndTime { get; set; }
+        public string ActualStartTime { get; set; }
+        public string ActualEndTime { get; set; }
         public TripClosingReasonEnum TripClosingReasonId { get; set; }
-        public long CarRequestId { get; set; }
+        public string SequenceNumber { get; set; }
     }
 }

@@ -72,6 +72,11 @@ body::-webkit-scrollbar-thumb {
     font-weight: bold;
 }
 
+.status-canceled {
+    /* color: white; */
+    color: red;
+    font-weight: bold;
+}
 .link {
     color: blue!important;
     text-decoration: underline !important;

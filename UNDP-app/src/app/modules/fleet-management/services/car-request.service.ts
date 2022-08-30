@@ -11,4 +11,7 @@ export class CarRequestService extends BaseEntityService {
   getAllCarRequestTotalDetails():Observable<any> {
     return this.httpHelperService.get(this.controllerName + '/GetAllCarRequestTotalDetails');
   }
+  getAllTrips(dataSourceModel: any): any {
+    return this.httpHelperService.post('Trip' + '/' + 'GetAll', dataSourceModel);
+}
 }
