@@ -154,8 +154,8 @@
                         <td>{{item.requesterName}}</td>
                         <td>{{item.requesterEmail}}</td>
                         <!--Test-->
-                        <td *ngIf="isCarRequestsLandingPage == false">
-                            <div class="table-data-feature">
+                        <td *ngIf="isCarRequestsLandingPage == false ">
+                            <div class="table-data-feature" *ngIf="item.carRequestStatusId != carRequestStatusEnum.Closed">
                                 <button *ngIf="selectedCarRequestPageType==careRequestPageType.Index" class="item" data-toggle="tooltip" data-placement="top" title="{{'FleetManagement.AssignToMe'|translate}}" data-original-title="Send" (click)="assignToMe(item)">
                                     <i class="zmdi zmdi-mail-send"></i>
                                 </button>

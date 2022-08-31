@@ -25,6 +25,12 @@ namespace FleetManagement.DataAccessLayer.Handlers
             {
                 try
                 {
+                    if(entity.TripStatusId == Shared.Enums.TripStatusEnum.Canceled)
+                    {
+                        entity.ActualStartTime = DateTime.Now;
+                        entity.ActualEndTime = DateTime.Now;
+
+                    }
                     var request = _appDbContext.CarRequests.Where(c => c.Id == entity.CarRequestId).FirstOrDefault();
                     request.CarRequestStatusId = Shared.Enums.CarRequestStatusEnum.Closed;
                     _appDbContext.Entry(request).State = EntityState.Modified;
