@@ -203,7 +203,7 @@
         "Driver":"Driver"
     },
     "TripStatusEnum":{
-        "Started" : "Started",
+        "Completed" : "Completed",
         "Canceled" :"Canceled"
     },
     "TripClosingReasonEnum":{

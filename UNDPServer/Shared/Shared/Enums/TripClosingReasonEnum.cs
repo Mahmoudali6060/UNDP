@@ -6,7 +6,7 @@ namespace Shared.Enums
 {
     public enum TripClosingReasonEnum : byte
     {
-        Canceled = 1,
-        Completed = 2
+        Completed = 1,
+        Canceled = 2
     }
 }

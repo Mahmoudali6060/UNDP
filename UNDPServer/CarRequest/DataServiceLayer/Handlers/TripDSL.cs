@@ -27,12 +27,16 @@ namespace FleetManagement.DataServiceLayer.Handlers
 
         public async Task<long> Add(TripDTO entity)
         {
-            if (entity.TripClosingReasonId == 0)
-            {
-                if(entity.ActualStartTime == null || entity.ActualEndTime == null || entity.PreviousKiloMeterCounter == 0
-                   || entity.CurrentKiloMeterCounter == 0 || entity.TripStatusId == 0)
-                throw new Exception("Errors.InvalidData");
-            }
+            //if (entity.TripClosingReasonId == 0)
+            //{
+            //    if(entity.ActualStartTime == null || entity.ActualEndTime == null || entity.PreviousKiloMeterCounter == 0
+            //       || entity.CurrentKiloMeterCounter == 0 || entity.TripStatusId == 0)
+            //    throw new Exception("Errors.InvalidData");
+            //}
+            //else
+            //{
+            //    entity.TripStatusId = 0;
+            //}
             var Trip =  await _tripDAL.Add(_mapper.Map<Trip>(entity));
             //if (Trip != 0)
             //{

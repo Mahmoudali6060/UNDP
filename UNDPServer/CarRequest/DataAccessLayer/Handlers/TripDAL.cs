@@ -1,5 +1,6 @@
 ﻿using Data.Contexts;
 using Data.Entities.FleetManagement;
+using Data.Entities.Shared;
 using FleetManagement.DataAccessLayer.Contracts;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -7,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
 
 namespace FleetManagement.DataAccessLayer.Handlers
 {
@@ -19,8 +21,24 @@ namespace FleetManagement.DataAccessLayer.Handlers
         }
         public async Task<long> Add(Trip entity)
         {
-            _appDbContext.Entry(entity).State = EntityState.Added;
-            await _appDbContext.SaveChangesAsync();
+            using (var ts = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
+            {
+                try
+                {
+                    var request = _appDbContext.CarRequests.Where(c => c.Id == entity.CarRequestId).FirstOrDefault();
+                    request.CarRequestStatusId = Shared.Enums.CarRequestStatusEnum.Closed;
+                    _appDbContext.Entry(request).State = EntityState.Modified;
+                    _appDbContext.Entry(entity).State = EntityState.Added;
+                    await _appDbContext.SaveChangesAsync();
+                    ts.Complete();
+                }
+                catch
+                {
+                    ts.Dispose();
+                    throw new Exception("Errors.InvalidData");
+                }
+
+            }
             return entity.Id;
         }
 

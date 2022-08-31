@@ -135,13 +135,13 @@
                         <td>{{item.previousKiloMeterCounter}}</td>
                         <td>{{item.currentKiloMeterCounter}}</td>
                         <td>
-                            <span *ngIf="item.tripStatusId==tripStatusEnum.Started" class="status-completed">
-                                {{'TripStatusEnum.Started'|translate}}</span>
+                            <span *ngIf="item.tripStatusId==tripStatusEnum.Completed" class="status-completed">
+                                {{'TripStatusEnum.Completed'|translate}}</span>
                             <span *ngIf="item.tripStatusId==tripStatusEnum.Canceled" class="status-canceled">
                                 {{'TripStatusEnum.Canceled'|translate}}</span> 
                         </td>
                         <td>
-                            <span *ngIf="item.tripClosingReasonId==tripClosingReasonEnum.Completed" class="status-approved">
+                            <span *ngIf="item.tripClosingReasonId==tripClosingReasonEnum.Completed" class="status-completed">
                                 {{'TripClosingReasonEnum.Completed'|translate}}</span>
                             <span *ngIf="item.tripClosingReasonId==tripClosingReasonEnum.Canceled" class="status-canceled">
                                 {{'TripClosingReasonEnum.Canceled'|translate}}</span> 

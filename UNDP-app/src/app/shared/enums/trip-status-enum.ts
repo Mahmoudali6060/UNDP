@@ -1,4 +1,4 @@
 export enum TripStatusEnum{
-    Started = 1,
+    Completed = 1,
     Canceled = 2
 }

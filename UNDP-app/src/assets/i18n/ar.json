@@ -198,7 +198,7 @@
         "Driver":"السائق"
     },
     "TripStatusEnum":{
-        "Started" :"بدء",
+        "Completed" :"اكتملت",
         "Canceled" :"إلغاء"
     },
     "TripClosingReasonEnum":{
