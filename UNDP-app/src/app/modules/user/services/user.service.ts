@@ -10,6 +10,9 @@ export class UserProfileService extends BaseEntityService {
   controllerName = 'UserProfile';
 
   getAllAvailableDrivers(availabilitySearchCriteriaDTO: AvailabilitySearchCriteriaDTO): any {
+    return this.httpHelperService.post(this.controllerName + '/GetAllAvailableDrivers', availabilitySearchCriteriaDTO);
+  }
+  getAllDrivers(availabilitySearchCriteriaDTO: AvailabilitySearchCriteriaDTO): any {
     return this.httpHelperService.post(this.controllerName + '/GetAllDrivers', availabilitySearchCriteriaDTO);
   }
 

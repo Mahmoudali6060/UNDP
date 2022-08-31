@@ -194,7 +194,8 @@
         "PreviousKiloMeterCounter":"عدد الكيلومترات السابقة",
         "CurrentKiloMeterCounter":"عدد الكيلومترات الحالية",
         "TripStatus":"حالة الرحلة",
-        "TripClosingReason":"سبب إغلاق الرحلة"
+        "TripClosingReason":"سبب إغلاق الرحلة",
+        "Driver":"السائق"
     },
     "TripStatusEnum":{
         "Started" :"بدء",

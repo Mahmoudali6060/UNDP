@@ -39,6 +39,19 @@
                                 </div>
                                 <div class="col-lg-3">
                                     <div class="form-group">
+                                        <label for="drivers" class="form-control-label">{{'Trip.Driver'|translate}}</label>
+                                        <select name="drivers" id="drivers" class="form-control" [(ngModel)]="tripSearchCrieria.driverId">
+                                            <!-- <option value=0 selected>
+                                                {{'General.All' |translate}}
+                                            </option> -->
+                                            <option *ngFor="let item of driversList" [value]="item.id">
+                                                {{item.firstName + item.lastName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="form-group">
                                         <label for="previousKiloMeterCounter" class=" form-control-label">{{'Trip.PreviousKiloMeterCounter'|translate}}</label>
                                         <input [(ngModel)]="tripSearchCrieria.previousKiloMeterCounter" type="text" id="previousKiloMeterCounter" class="form-control">
                                     </div>
@@ -104,6 +117,7 @@
                         <th class="table-header-fc">{{'Trip.RequestID' |translate}}</th>
                         <th class="table-header-fc">{{'Trip.ActualStartTime' |translate}}</th>
                         <th class="table-header-fc">{{'Trip.ActualEndTime' |translate}}</th>
+                        <th class="table-header-fc">{{'Trip.Driver' |translate}}</th>
                         <th class="table-header-fc">{{'Trip.PreviousKiloMeterCounter' |translate}}</th>
                         <th class="table-header-fc">{{'Trip.CurrentKiloMeterCounter' |translate}}</th>
                         <th class="table-header-fc">{{'Trip.TripStatus' |translate}}</th>
@@ -115,8 +129,9 @@
                         <td>
                         </td>
                         <td>{{item.sequenceNumber}}</td>
-                        <td>{{item.actualStartTime}}</td>
-                        <td>{{item.actualEndTime}}</td>
+                        <td>{{item.actualStartTime | date: 'dd/MM/yyyy h:mm a'}}</td>
+                        <td>{{item.actualEndTime | date: 'dd/MM/yyyy h:mm a'}}</td>
+                        <td>{{item.driverName}}</td>
                         <td>{{item.previousKiloMeterCounter}}</td>
                         <td>{{item.currentKiloMeterCounter}}</td>
                         <td>

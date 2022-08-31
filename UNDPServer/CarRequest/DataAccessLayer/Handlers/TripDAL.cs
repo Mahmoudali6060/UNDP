@@ -31,7 +31,7 @@ namespace FleetManagement.DataAccessLayer.Handlers
 
         public async Task<IQueryable<Trip>> GetAll()
         {
-            return _appDbContext.Trips.Include(t=>t.CarRequest).OrderByDescending(x => x.Id).AsQueryable();
+            return _appDbContext.Trips.Include(t=>t.CarRequest).ThenInclude(t=>t.Driver).OrderByDescending(x => x.Id).AsQueryable();
         }
 
         public Task<IQueryable<Trip>> GetAllLite()

@@ -15,6 +15,8 @@ namespace FleetManagement.Entities
         public DateTime ActualEndTime { get; set; }
         public TripClosingReasonEnum TripClosingReasonId { get; set; }
         public long CarRequestId { get; set; }
+        public long DriverId { get; set; }
+        public string DriverName { get; set; }
         public string SequenceNumber { get; set; }
 
     }

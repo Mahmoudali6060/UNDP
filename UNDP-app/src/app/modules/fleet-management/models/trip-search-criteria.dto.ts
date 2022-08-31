@@ -8,4 +8,5 @@ export class TripSerachCriteria extends DataSourceModel{
       actualEndTime :string
       tripClosingReasonId :number
       sequenceNumber :string
+      driverId : number
 }

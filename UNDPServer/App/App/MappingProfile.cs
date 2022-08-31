@@ -48,7 +48,9 @@ namespace App
 
             #region Trip
             CreateMap<Trip, TripDTO>()
-                 .ForMember(trip => trip.SequenceNumber, opt => opt.MapFrom(src => src.CarRequest.SequenceNumber));
+                 .ForMember(trip => trip.SequenceNumber, opt => opt.MapFrom(src => src.CarRequest.SequenceNumber))
+                 .ForMember(trip => trip.DriverId, opt => opt.MapFrom(src => src.CarRequest.DriverId))
+                 .ForMember(trip => trip.DriverName, opt => opt.MapFrom(src => src.CarRequest.Driver.FirstName + " "+ src.CarRequest.Driver.LastName));
             CreateMap<TripDTO, Trip>();
 
             #endregion

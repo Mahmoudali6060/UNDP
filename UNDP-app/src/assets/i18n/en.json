@@ -199,7 +199,8 @@
         "PreviousKiloMeterCounter":"Previous Km Counter",
         "CurrentKiloMeterCounter":"Current Km Counter",
         "TripStatus":"Trip Status",
-        "TripClosingReason":"Trip Closing Reason"
+        "TripClosingReason":"Trip Closing Reason",
+        "Driver":"Driver"
     },
     "TripStatusEnum":{
         "Started" : "Started",

@@ -10,4 +10,6 @@ export class TripDTO{
       actualEndTime : string
       tripClosingReasonId : TripClosingReasonEnum
       sequenceNumber :  number;
+      driverId :  number;
+      driverName : string
 }

@@ -1,6 +1,8 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { AuthService } from 'src/app/modules/authentication/services/auth.service';
+import { AvailabilitySearchCriteriaDTO } from 'src/app/modules/user/models/availability-search-criteria-dto';
+import { UserProfileDTO } from 'src/app/modules/user/models/user-profile.dto';
 import { UserProfileService } from 'src/app/modules/user/services/user.service';
 import { PaginationComponent } from 'src/app/shared/components/pagination/pagination.component';
 import { TripClosingReasonEnum } from 'src/app/shared/enums/trip-closing-reason-enum';
@@ -27,6 +29,7 @@ export class TripListComponent implements OnInit {
 	@Input() loggedUserId: number;
 	@Input() istripsLandingPage: boolean = false;
 	@ViewChild(PaginationComponent) paginationComponent: PaginationComponent;
+	driversList: UserProfileDTO[] = [];
 
 	constructor(private carRequestService: CarRequestService,
 		private translate: TranslateService,
@@ -39,6 +42,7 @@ export class TripListComponent implements OnInit {
 		this.tripStatusList = Object.keys(this.tripStatusEnum).filter(f => !isNaN(Number(f)));
 		this.tripClosingReasonList = Object.keys(this.tripClosingReasonEnum).filter(f => !isNaN(Number(f)));
 		this.search();
+		this.getAllDrivers();
 	}
 	search() {
 		this.getAllTrips();
@@ -53,7 +57,14 @@ export class TripListComponent implements OnInit {
 			}
 		});
 	}
-
+	//#region    Drivers
+	getAllDrivers() {
+		let availabilitySearchCriteriaDTO: AvailabilitySearchCriteriaDTO = new AvailabilitySearchCriteriaDTO();
+		this.userProfileService.getAllDrivers(availabilitySearchCriteriaDTO).subscribe((res: any) => {
+			if (res && res.length > 0)
+				this.driversList = res
+		});
+	}
 	toggleFilter() {
 		this.showFilterControls = !this.showFilterControls;
 	}

@@ -82,7 +82,10 @@ namespace FleetManagement.DataServiceLayer.Handlers
             {
                 tripList = tripList.Where(x => x.CarRequest.SequenceNumber == searchCrieria.SequenceNumber);
             }
-
+            if (searchCrieria.DriverId > 0)
+            {
+                tripList = tripList.Where(x => x.CarRequest.DriverId == searchCrieria.DriverId);
+            }
             if (searchCrieria.TripStatusId > 0)
             {
                 tripList = tripList.Where(x => x.TripStatusId == searchCrieria.TripStatusId);
