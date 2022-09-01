@@ -21,31 +21,39 @@ namespace FleetManagement.DataAccessLayer.Handlers
         }
         public async Task<long> Add(Trip entity)
         {
-            using (var ts = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
+            if (entity.CarRequest.CarRequestStatusId != Shared.Enums.CarRequestStatusEnum.Closed || entity.CarRequest.CarRequestStatusId != Shared.Enums.CarRequestStatusEnum.InProgress)
             {
-                try
+                using (var ts = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
                 {
-                    if(entity.TripStatusId == Shared.Enums.TripStatusEnum.Canceled)
+                    try
                     {
-                        entity.ActualStartTime = DateTime.Now;
-                        entity.ActualEndTime = DateTime.Now;
+                        if (entity.TripStatusId == Shared.Enums.TripStatusEnum.Canceled)
+                        {
+                            entity.ActualStartTime = DateTime.Now;
+                            entity.ActualEndTime = DateTime.Now;
 
+                        }
+                        var request = _appDbContext.CarRequests.Where(c => c.Id == entity.CarRequestId).FirstOrDefault();
+                        request.CarRequestStatusId = Shared.Enums.CarRequestStatusEnum.Closed;
+                        _appDbContext.Entry(request).State = EntityState.Modified;
+                        _appDbContext.Entry(entity).State = EntityState.Added;
+                        await _appDbContext.SaveChangesAsync();
+                        ts.Complete();
                     }
-                    var request = _appDbContext.CarRequests.Where(c => c.Id == entity.CarRequestId).FirstOrDefault();
-                    request.CarRequestStatusId = Shared.Enums.CarRequestStatusEnum.Closed;
-                    _appDbContext.Entry(request).State = EntityState.Modified;
-                    _appDbContext.Entry(entity).State = EntityState.Added;
-                    await _appDbContext.SaveChangesAsync();
-                    ts.Complete();
-                }
-                catch
-                {
-                    ts.Dispose();
-                    throw new Exception("Errors.InvalidData");
-                }
+                    catch
+                    {
+                        ts.Dispose();
+                        throw new Exception("Errors.InvalidData");
+                    }
 
+                }
+                return entity.Id;
             }
-            return entity.Id;
+            else
+            {
+                throw new Exception("Errors.InvalidData");
+            }
+
         }
 
         public Task<bool> Delete(Trip entity)
