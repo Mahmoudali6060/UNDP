@@ -16,8 +16,8 @@ export class AuthGuardService implements CanActivate {
         if (token && !this.jwtHelper.isTokenExpired(token)) {
             return true;
         }
-     window.alert('Access Denied, Login is Required to Access This Page!')
-        this.router.navigate(["home"]);
+        // window.alert('Access Denied, Login is Required to Access This Page!')
+        this.router.navigate(["/"]);
         return false;
     }
     getToken() {

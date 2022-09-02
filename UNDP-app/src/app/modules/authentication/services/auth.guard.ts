@@ -12,19 +12,15 @@ export class AuthGuard implements CanActivate {
 
 
   constructor(private router: Router,
-    private localStorageService: LocalStorageService,private authService:AuthGuardService) {
+    private localStorageService: LocalStorageService, private authService: AuthGuardService) {
   }
-  canActivate():boolean
-  {
-    return true;
-    // if(this.authService.canActivate())
-    // {
-    //   return true;
-    // }
-    // else
-    // {
-    //   return false;
-    // }
+  canActivate(): boolean {
+    if (this.authService.canActivate()) {
+      return true;
+    }
+    else {
+      return false;
+    }
   }
   // canActivate(
   //   next: ActivatedRouteSnapshot,
