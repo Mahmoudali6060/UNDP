@@ -73,7 +73,7 @@ namespace Account.DataServiceLayer
                 var role = await _accountDAL.GetRolesAsync(appUser);
                 userDto.Token = AddToken(appUser, role);
                 userDto.Email = appUser.Email;
-                loginModel.DeviceId = "cfz2ZzlZQ5eu2AMZNxbHlQ:APA91bHZySyNQP9uO9xxNaj9UHgiNRxGOIKZ50tQ3xhjW8KsyFJoc1Zw53twZ62qRqAU4iPML3lSa6fQqCxc-rW6T9WgyR4iVvFk35lqXZfRxpq-3NZ3k0LSNqmI5UUoeTJIXd90o9VI";
+                // "cfz2ZzlZQ5eu2AMZNxbHlQ:APA91bHZySyNQP9uO9xxNaj9UHgiNRxGOIKZ50tQ3xhjW8KsyFJoc1Zw53twZ62qRqAU4iPML3lSa6fQqCxc-rW6T9WgyR4iVvFk35lqXZfRxpq-3NZ3k0LSNqmI5UUoeTJIXd90o9VI";
                 //Set DeviceId for driver and Update it when user login
                 if (!string.IsNullOrWhiteSpace(loginModel.DeviceId))
                 {
