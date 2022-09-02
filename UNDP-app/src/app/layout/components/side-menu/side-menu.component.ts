@@ -41,6 +41,7 @@ export class SideMenuComponent implements OnInit {
   ngOnInit(): void {
     this.serverUrl = this._configService.getServerUrl();
     this.role = this.helperService.getRole();
+    console.log("role",this.role)
     this.userProfile = this.localStorageService.getItem(LocalStorageItems.userProfile);
     this.getUserById(this.userProfile.id);
 

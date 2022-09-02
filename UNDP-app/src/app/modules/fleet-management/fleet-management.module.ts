@@ -11,6 +11,7 @@ import { FleetManagementRoutingModule } from './fleet-management-routing.module'
 import { AvailableDriversPopupService } from './services/available-drivers-popup.service';
 import { CarRequestService } from './services/car-request.service';
 import { ClosingReasonPopupService } from './services/closing-reason-popup.service';
+import { TripListComponent } from './components/trip-list/trip-list.component';
 
 @NgModule({
   imports: [
@@ -24,7 +25,8 @@ import { ClosingReasonPopupService } from './services/closing-reason-popup.servi
     ClosingReasonPopupComponent,
     CarRequestListCompletedComponent,
     CarRequestListMyIndexComponent,
-    CarRequestListAnnonymousComponent
+    CarRequestListAnnonymousComponent,
+    TripListComponent
   ],
   providers: [
     CarRequestService,

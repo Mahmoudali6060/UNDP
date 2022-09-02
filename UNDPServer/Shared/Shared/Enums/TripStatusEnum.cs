@@ -6,7 +6,7 @@ namespace Shared.Enums
 {
     public enum TripStatusEnum : byte
     {
-        Started = 1,
+        Completed = 1,
         Canceled = 2
     }
 }

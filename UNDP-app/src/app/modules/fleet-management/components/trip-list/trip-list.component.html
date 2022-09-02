@@ -1,0 +1,159 @@
+<div class="row">
+    <div class="col-md-12">
+        <!-- DATA TABLE -->
+        <h3 class="title-5 m-b-35">
+            <span>{{'Trip.Trips'|translate}}</span>
+        </h3>
+        <div class="table-data__tool">
+            <div class="table-data__tool-left">
+                <button class="au-btn-filter" (click)="toggleFilter()" >
+                    <i class="zmdi zmdi-filter-list"></i>{{'General.Filter'|translate}}</button>
+            </div>
+        </div>
+
+        <!--Filters-->
+        <div class="row" *ngIf="showFilterControls">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">{{'General.Filters'|translate}}</div>
+                    <div class="card-body">
+                        <div class="col-lg-12">
+                            <div class="row">
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label for="requestId" class="form-control-label">{{'Trip.RequestID'|translate}}</label>
+                                        <input [(ngModel)]="tripSearchCrieria.sequenceNumber" type="text" id="reuqestId" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label for="actualStartTime" class=" form-control-label">{{'Trip.ActualStartTime'|translate}}</label>
+                                        <input [(ngModel)]="tripSearchCrieria.actualStartTime" type="datetime-local" id="actualStartTime" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label for="actualEndTime" class=" form-control-label">{{'Trip.ActualEndTime'|translate}}</label>
+                                        <input [(ngModel)]="tripSearchCrieria.actualEndTime" type="datetime-local" id="actualEndTime" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label for="drivers" class="form-control-label">{{'Trip.Driver'|translate}}</label>
+                                        <select name="drivers" id="drivers" class="form-control" [(ngModel)]="tripSearchCrieria.driverId">
+                                            <!-- <option value=0 selected>
+                                                {{'General.All' |translate}}
+                                            </option> -->
+                                            <option *ngFor="let item of driversList" [value]="item.id">
+                                                {{item.firstName + item.lastName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label for="previousKiloMeterCounter" class=" form-control-label">{{'Trip.PreviousKiloMeterCounter'|translate}}</label>
+                                        <input [(ngModel)]="tripSearchCrieria.previousKiloMeterCounter" type="text" id="previousKiloMeterCounter" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label for="currentKiloMeterCounter" class=" form-control-label">{{'Trip.CurrentKiloMeterCounter'|translate}}</label>
+                                        <input [(ngModel)]="tripSearchCrieria.currentKiloMeterCounter" type="text" id="currentKiloMeterCounter" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label for="drivers" class="form-control-label">{{'Trip.TripStatus'
+                                            |translate}}</label>
+                                        <select name="drivers" id="drivers" class="form-control" [(ngModel)]="tripSearchCrieria.tripStatusId">
+                                            <option value=0 selected>
+                                                {{'General.All' |translate}}
+                                            </option>
+                                            <option *ngFor="let item of tripStatusList" [value]="item">
+                                                {{('TripStatusEnum.'+tripStatusEnum[item])|translate}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label for="drivers" class="form-control-label">{{'Trip.TripClosingReason'
+                                            |translate}}</label>
+                                        <select name="drivers" id="drivers" class="form-control" [(ngModel)]="tripSearchCrieria.tripClosingReasonId">
+                                            <option value=0 selected>
+                                                {{'General.All' |translate}}
+                                            </option>
+                                            <option *ngFor="let item of tripClosingReasonList" [value]="item">
+                                                {{('TripClosingReasonEnum.'+tripClosingReasonEnum[item])|translate}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col-lg-12">
+                            <button (click)="search()" class="au-btn au-btn-icon au-btn--blue au-btn--small btn-search">
+                                <i class="zmdi zmdi-search"></i>{{'General.Search'|translate}}
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--End Filters-->
+
+        <!--DATA TABLE -->
+        <div class="table-responsive table-responsive-data2">
+            <table class="table table-data2">
+                <thead class="table-header-bc">
+                    <tr>
+                        <th class="table-header-fc">
+
+                        </th>
+                        <th class="table-header-fc">{{'Trip.RequestID' |translate}}</th>
+                        <th class="table-header-fc">{{'Trip.ActualStartTime' |translate}}</th>
+                        <th class="table-header-fc">{{'Trip.ActualEndTime' |translate}}</th>
+                        <th class="table-header-fc">{{'Trip.Driver' |translate}}</th>
+                        <th class="table-header-fc">{{'Trip.PreviousKiloMeterCounter' |translate}}</th>
+                        <th class="table-header-fc">{{'Trip.CurrentKiloMeterCounter' |translate}}</th>
+                        <th class="table-header-fc">{{'Trip.TripStatus' |translate}}</th>
+                        <th class="table-header-fc">{{'Trip.TripClosingReason' |translate}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="tr-shadow" *ngFor="let item of tripList">
+                        <td>
+                        </td>
+                        <td>{{item.sequenceNumber}}</td>
+                        <td>{{item.actualStartTime | date: 'dd/MM/yyyy h:mm a'}}</td>
+                        <td>{{item.actualEndTime | date: 'dd/MM/yyyy h:mm a'}}</td>
+                        <td>{{item.driverName}}</td>
+                        <td>{{item.previousKiloMeterCounter}}</td>
+                        <td>{{item.currentKiloMeterCounter}}</td>
+                        <td>
+                            <span *ngIf="item.tripStatusId==tripStatusEnum.Completed" class="status-completed">
+                                {{'TripStatusEnum.Completed'|translate}}</span>
+                            <span *ngIf="item.tripStatusId==tripStatusEnum.Canceled" class="status-canceled">
+                                {{'TripStatusEnum.Canceled'|translate}}</span> 
+                        </td>
+                        <td>
+                            <span *ngIf="item.tripClosingReasonId==tripClosingReasonEnum.Completed" class="status-completed">
+                                {{'TripClosingReasonEnum.Completed'|translate}}</span>
+                            <span *ngIf="item.tripClosingReasonId==tripClosingReasonEnum.Canceled" class="status-canceled">
+                                {{'TripClosingReasonEnum.Canceled'|translate}}</span> 
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <app-pagination (pageChange)="onPageChange($event)" [totalRecordsCount]="total" [recordsPerPage]="tripSearchCrieria.pageSize" *ngIf="tripList">
+            </app-pagination>
+
+        </div>
+        <!-- END DATA TABLE -->
+    </div>
+</div>

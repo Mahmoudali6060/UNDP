@@ -191,6 +191,25 @@
         "SelectRequestStatus": "Select request status"
 
     },
+    "Trip":{
+        "Trips":"Trips",
+        "RequestID":"Request Id",
+        "ActualStartTime":"Actual Start Time",
+        "ActualEndTime":"Actual End Time",
+        "PreviousKiloMeterCounter":"Previous Km Counter",
+        "CurrentKiloMeterCounter":"Current Km Counter",
+        "TripStatus":"Trip Status",
+        "TripClosingReason":"Trip Closing Reason",
+        "Driver":"Driver"
+    },
+    "TripStatusEnum":{
+        "Completed" : "Completed",
+        "Canceled" :"Canceled"
+    },
+    "TripClosingReasonEnum":{
+        "Canceled" : "Canceled",
+        "Completed" : "Completed"
+    },
     "CarRequestStatusEnum": {
         "InProgress": "In Progress",
         "Approved": "Approved",

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { LocalStorageItems } from 'src/app/shared/constants/local-storage-items';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
@@ -24,10 +24,10 @@ export class ResetPasswordComponent implements OnInit {
   oldfieldTextType: boolean;
   fieldTextType: boolean;
   repeatFieldTextType: boolean;
-  @Input() isProfileComponent: boolean ;
+  @Input() isProfileComponent: boolean;
   @Output() closeChangePasswordCard: EventEmitter<boolean> = new EventEmitter()
   constructor(fb: FormBuilder, private _authService: AuthService, private _passConfValidator: PasswordConfirmationValidatorService,
-    private toasterService: ToastrService,private localStorageService: LocalStorageService,
+    private toasterService: ToastrService, private localStorageService: LocalStorageService,private router:Router,
     private _route: ActivatedRoute,) { }
 
   ngOnInit(): void {
@@ -39,13 +39,14 @@ export class ResetPasswordComponent implements OnInit {
 
     // this.resetPasswordForm.get('confirm')?.setValidators([Validators.required,
     //   this._passConfValidator.validateConfirmPassword(this.resetPasswordForm.value.get('password'))]);
-
-      this.token =  this.localStorageService.getItem(LocalStorageItems.token)
+    debugger;
+    if (this.isProfileComponent) {
+      this.token = this.localStorageService.getItem(LocalStorageItems.token)
       this.email = this.localStorageService.getItem(LocalStorageItems.email)
-      if(this.token === null && this.email === null){
+    } else {
       this.token = this._route.snapshot.queryParams['token'];
       this.email = this._route.snapshot.queryParams['email'];
-      }
+    }
 
   }
   toggleOldFieldTextType() {
@@ -57,7 +58,7 @@ export class ResetPasswordComponent implements OnInit {
   toggleRepeatFieldTextType() {
     this.repeatFieldTextType = !this.repeatFieldTextType;
   }
-  CloseChangePassword(){
+  CloseChangePassword() {
     this.closeChangePasswordCard.emit(true)
   }
   public validateControl = (controlName: string) => {
@@ -73,18 +74,20 @@ export class ResetPasswordComponent implements OnInit {
 
     const resetPass = { ...resetPasswordFormValue };
     const resetPassDto: ResetPasswordDTO = {
-     // oldPassword:resetPass.oldPassword,
+      // oldPassword:resetPass.oldPassword,
       password: resetPass.password,
       confirmPassword: resetPass.confirm,
       token: this.token,
       email: this.email
     }
-
+    debugger;
     this._authService.resetPassword('Account/ResetPassword', resetPassDto)
       .subscribe(_ => {
+        debugger;
         this.showSuccess = true;
-       this.toasterService.success("success");
+        this.toasterService.success("success");
         this.closeChangePasswordCard.emit(true)
+        this.router.navigate(["login"]);
       },
         error => {
           this.showError = true;

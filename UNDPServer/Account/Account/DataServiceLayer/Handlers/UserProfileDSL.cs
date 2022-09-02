@@ -100,13 +100,19 @@ namespace Accout.DataServiceLayer
             };
         }
 
-        public async Task<IEnumerable<UserProfileDTO>> GetAllDrivers(AvailabilitySearchCriteriaDTO availabilitySearchCriteriaDTO)
+        public async Task<IEnumerable<UserProfileDTO>> GetAllAvailableDrivers(AvailabilitySearchCriteriaDTO availabilitySearchCriteriaDTO)
         {
             var driverList = _userProfileDAL.GetAllDriver().Result;
             driverList = driverList.Where(x =>
             x.UserTypeId == UserTypeEnum.Driver
             && !(x.DriverCarRequests.Count() > 0
             && x.DriverCarRequests.Any(a => a.CarRequestStatusId != CarRequestStatusEnum.Closed && (a.DateFrom.Date >= DateTime.Parse(availabilitySearchCriteriaDTO.DateFrom).Date && a.DateTo.Date <= DateTime.Parse(availabilitySearchCriteriaDTO.DateTo)))));
+            IEnumerable<UserProfileDTO> result = _mapper.Map<IEnumerable<UserProfileDTO>>(driverList);
+            return result;
+        }
+        public async Task<IEnumerable<UserProfileDTO>> GetAllDrivers(AvailabilitySearchCriteriaDTO availabilitySearchCriteriaDTO)
+        {
+            var driverList = _userProfileDAL.GetAllDriver().Result;
             IEnumerable<UserProfileDTO> result = _mapper.Map<IEnumerable<UserProfileDTO>>(driverList);
             return result;
         }
@@ -119,6 +125,7 @@ namespace Accout.DataServiceLayer
             if (createUserResult.Succeeded)
             {
                 entity.AppUserId = appUser.Id;
+                entity.DefaultLanguage = "en";
                 UploadImage(entity);
                 return await _userProfileDAL.Add(_mapper.Map<UserProfile>(entity));
             }
