@@ -21,7 +21,8 @@ namespace FleetManagement.DataAccessLayer.Handlers
         }
         public async Task<long> Add(Trip entity)
         {
-            if (entity.CarRequest.CarRequestStatusId != Shared.Enums.CarRequestStatusEnum.Closed || entity.CarRequest.CarRequestStatusId != Shared.Enums.CarRequestStatusEnum.InProgress)
+            var request = _appDbContext.CarRequests.Where(c => c.Id == entity.CarRequestId).FirstOrDefault();
+            if (request.CarRequestStatusId != Shared.Enums.CarRequestStatusEnum.Closed || request.CarRequestStatusId != Shared.Enums.CarRequestStatusEnum.InProgress)
             {
                 using (var ts = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
                 {
@@ -33,7 +34,6 @@ namespace FleetManagement.DataAccessLayer.Handlers
                             entity.ActualEndTime = DateTime.Now;
 
                         }
-                        var request = _appDbContext.CarRequests.Where(c => c.Id == entity.CarRequestId).FirstOrDefault();
                         request.CarRequestStatusId = Shared.Enums.CarRequestStatusEnum.Closed;
                         _appDbContext.Entry(request).State = EntityState.Modified;
                         _appDbContext.Entry(entity).State = EntityState.Added;
