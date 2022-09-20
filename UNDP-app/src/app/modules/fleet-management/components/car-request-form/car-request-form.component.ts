@@ -23,6 +23,7 @@ export class CarRequestFormComponent {
 	isValidDate: boolean;
 	maxDate: Date
 	@Input() isCarRequestFromOut:boolean = false;
+	isDisabled: boolean;
 	constructor(private carRequestService: CarRequestService,
 		private route: ActivatedRoute,
 		private toasterService: ToastrService,
@@ -52,7 +53,7 @@ export class CarRequestFormComponent {
 	save(frm: NgForm) {
 		this.comparedate();
 		if (!this.isValidDate) {
-			this.toasterService.error(this.translate.instant("Errors.PleaseInsertValidData"));
+			this.toasterService.error(this.translate.instant("Errors.InvalidData"));
 		}
 		else {
 			if (this.carRequestDTO.id) {
@@ -61,12 +62,14 @@ export class CarRequestFormComponent {
 					if(this.isCarRequestFromOut === false){
 						this.cancel();
 					}
+					this.isDisabled = true;
 				})
 			}
 			else {
 				this.carRequestDTO.carRequestStatusId = CarRequestStatusEnum.InProgress;
 				this.carRequestService.add(this.carRequestDTO).subscribe(res => {
 					this.toasterService.success("success");
+					this.isDisabled = true;
 					// this.carRequestDTO = new CarRequestDTO();
 					frm.resetForm();
 					// this.cancel();

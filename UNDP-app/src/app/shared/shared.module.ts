@@ -23,6 +23,7 @@ import { PagerService } from './services/pager.service';
 import { LoaderComponent } from './components/loader/loader.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { CarRequestService } from '../modules/fleet-management/services/car-request.service';
+import { DebounceClickDirective } from './constants/directives/debounce-click.directive';
 @NgModule({
 
   imports: [
@@ -54,14 +55,16 @@ import { CarRequestService } from '../modules/fleet-management/services/car-requ
     PaginationComponent,
     MaterialModule,
     ChangeLangagueComponent,
-    LoaderComponent
+    LoaderComponent,
+    DebounceClickDirective
     // ModalBasicComponent
   ],
   declarations: [
     ConfirmationDialogComponent,
     PaginationComponent,
     ChangeLangagueComponent,
-    LoaderComponent
+    LoaderComponent,
+    DebounceClickDirective
     ],
   entryComponents: [
     ConfirmationDialogComponent,
