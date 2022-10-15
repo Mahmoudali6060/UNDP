@@ -1,8 +1,11 @@
-﻿using Data.Contexts;
+﻿using Account.DataServiceLayer.Contracts;
+using Account.Entities;
+using Data.Contexts;
 using Data.Entities.FleetManagement;
 using Data.Entities.Shared;
 using FleetManagement.DataAccessLayer.Contracts;
 using Microsoft.EntityFrameworkCore;
+using Shared.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,9 +18,12 @@ namespace FleetManagement.DataAccessLayer.Handlers
     public class TripDAL : ITripDAL
     {
         private readonly UNDbContext _appDbContext;
-        public TripDAL(UNDbContext appDbContext)
+        private readonly IEmailSender _emailSender;
+
+        public TripDAL(UNDbContext appDbContext, IEmailSender emailSender)
         {
             _appDbContext = appDbContext;
+            _emailSender = emailSender;
         }
         public async Task<long> Add(Trip entity)
         {
@@ -38,6 +44,8 @@ namespace FleetManagement.DataAccessLayer.Handlers
                         _appDbContext.Entry(request).State = EntityState.Modified;
                         _appDbContext.Entry(entity).State = EntityState.Added;
                         await _appDbContext.SaveChangesAsync();
+                        var message = new MessageDTO(new string[] { request.RequesterEmail }, "UNDP.", $"Dear {request.RequesterName}\r\n Your trip number {request.SequenceNumber} has been {Enum.GetName(typeof(TripStatusEnum), entity.TripStatusId)}");
+                        _emailSender.SendEmail(message);
                         ts.Complete();
                     }
                     catch
@@ -63,7 +71,7 @@ namespace FleetManagement.DataAccessLayer.Handlers
 
         public async Task<IQueryable<Trip>> GetAll()
         {
-            return _appDbContext.Trips.Include(t=>t.CarRequest).ThenInclude(t=>t.Driver).OrderByDescending(x => x.Id).AsQueryable();
+            return _appDbContext.Trips.Include(t => t.CarRequest).ThenInclude(t => t.Driver).OrderByDescending(x => x.Id).AsQueryable();
         }
 
         public Task<IQueryable<Trip>> GetAllLite()

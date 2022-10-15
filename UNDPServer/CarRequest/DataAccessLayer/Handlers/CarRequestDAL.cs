@@ -1,7 +1,10 @@
-﻿using Data.Contexts;
+﻿using Account.DataServiceLayer.Contracts;
+using Account.Entities;
+using Data.Contexts;
 using Data.Entities.FleetManagement;
 using Microsoft.EntityFrameworkCore;
 using Shared.Entities.Shared;
+using Shared.Enums;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -11,9 +14,12 @@ namespace FleetManagement.DataAccessLayer
     public class CarRequestDAL : ICarRequestDAL
     {
         private readonly UNDbContext _appDbContext;
-        public CarRequestDAL(UNDbContext appDbContext)
+        private readonly IEmailSender _emailSender;
+
+        public CarRequestDAL(UNDbContext appDbContext, IEmailSender emailSender)
         {
             _appDbContext = appDbContext;
+            _emailSender = emailSender;
         }
 
 
@@ -44,6 +50,11 @@ namespace FleetManagement.DataAccessLayer
         {
             _appDbContext.Entry(entity).State = EntityState.Modified;
             await _appDbContext.SaveChangesAsync();
+            if(entity.CarRequestStatusId == CarRequestStatusEnum.Approved || entity.CarRequestStatusId == CarRequestStatusEnum.Closed)
+            {
+            var message = new MessageDTO(new string[] { entity.RequesterEmail }, "UNDP.", $"Dear {entity.RequesterName}\r\n Your request number {entity.SequenceNumber} has been {Enum.GetName(typeof(CarRequestStatusEnum), entity.CarRequestStatusId)}");
+            _emailSender.SendEmail(message);
+            }
             return entity.Id;
         }
 
