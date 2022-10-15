@@ -42,6 +42,8 @@ export class CarRequestListComponent {
 	//#endregion
 	@Input() isCarRequestsLandingPage: boolean = false;
 	@ViewChild(PaginationComponent) paginationComponent: PaginationComponent;
+	driverInfo: UserProfileDTO;
+	displayStyle = "none";
 	constructor(private carRequestService: CarRequestService,
 		private confirmationDialogService: ConfirmationDialogService,
 		private toastrService: ToastrService,
@@ -50,7 +52,7 @@ export class CarRequestListComponent {
 		private userProfileService: UserProfileService,
 		private availableDriversDialogService: AvailableDriversPopupService,
 		private closingReasonPopupService: ClosingReasonPopupService,
-		private notificationService: NotificationService
+		private notificationService: NotificationService,
 
 	) {
 
@@ -61,6 +63,7 @@ export class CarRequestListComponent {
 		this.carRequestStatusList = Object.keys(this.carRequestStatusEnum).filter(f => !isNaN(Number(f)));
 		this.setPageTitle();
 		this.search();
+		this.driverInfo = new UserProfileDTO();
 	}
 
 	setPageTitle() {
@@ -90,7 +93,21 @@ export class CarRequestListComponent {
 			}
 		});
 	}
+	getDriverInfo(item: any){
+		if(item.driverId){
+			this.userProfileService.getById(item.driverId).subscribe((res:any)=>{
+				this.driverInfo = res
+			this.displayStyle = "block";
+	
+			})
+		}else{
+			this.toastrService.warning(this.translate.instant("Warning.NoDriverAvialable"));
+		}
 
+	}
+	closePopup() {
+		this.displayStyle = "none";
+	  }
 	delete(id: any) {
 		this.carRequestService.delete(id).subscribe((res: any) => {
 			if (res) {

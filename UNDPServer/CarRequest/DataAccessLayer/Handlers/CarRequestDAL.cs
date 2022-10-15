@@ -19,7 +19,7 @@ namespace FleetManagement.DataAccessLayer
 
         public async Task<IQueryable<CarRequest>> GetAll()
         {
-            return _appDbContext.CarRequests.AsQueryable();
+            return _appDbContext.CarRequests.Include(c=>c.Driver).AsQueryable();
         }
 
         public async Task<IQueryable<CarRequest>> GetAllLite()

@@ -37,7 +37,8 @@ namespace App
             #endregion
 
             #region Fleet Management
-            CreateMap<CarRequest, CarRequestDTO>();
+            CreateMap<CarRequest, CarRequestDTO>()
+                 .ForMember(trip => trip.DriverName, opt => opt.MapFrom(src => src.Driver.FirstName + " " + src.Driver.LastName)); ;
             //.ForMember(dest => dest.DateFrom, opt => opt.MapFrom(src => src.DateFrom.ToString("dd/MM/yyyy HH:mm tt")))
             //.ForMember(dest => dest.DateTo, opt => opt.MapFrom(src => src.DateTo.ToString("dd/MM/yyyy HH:mm tt")));
 

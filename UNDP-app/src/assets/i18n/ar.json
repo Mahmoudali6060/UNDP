@@ -54,7 +54,8 @@
         "Search": "بحث",
         "UnitedNationsDevelopmentProgramme": "برنامج الأمم المتحدة الإنمائي",
         "PleaseLetUsKnowIfYouWantToRequestACar": "من فضلك أخبرنا إذا كنت تريد أن تطلب طلب سيارة",
-        "Ok": "موافق"
+        "Ok": "موافق",
+        "close":"إغلاق"
     },
     "dashboard":{
         "overview":"نظرة عامة",
@@ -89,9 +90,11 @@
         "Confirmationisrequired": "التأكيد مطلوب",
         "Passwordsmustmatch": "يجب أن تتطابق كلمات المرور",
         "SaveChanges": "حفظ التغيرات",
+        "submit":"حفظ",
         "ForgotPassword": "نسيت كلمة المرور",
         "Emailisrequired": "البريد الالكتروني مطلوب",
-        "SignOut":"تسجيل خروج"
+        "SignOut":"تسجيل خروج",
+        "OldPassword":"الرقم السري الحالي"
     },
     "SideMenu": {
         "Dashboard": "لوحة التحكم",
@@ -133,10 +136,13 @@
         "EndDateShouldBeGreaterThanStartDate": "تاريخ النهاية لابد أن يكون أكبر من تاريخ البداية",
         "UserNameExist": "اسم المستخدم موجود مسبقا من فضلك ادخل اسم مستخدم آخر",
         "EmailExist": " البريد الالكتروني موجود مسبقا من فضلك ادخل بريد الكتروني آخر",
-        "NonExistRole": "فئة الصلاحية غير موجوده من فضلك قم بإضافتها أولا"
+        "NonExistRole": "فئة الصلاحية غير موجوده من فضلك قم بإضافتها أولا",
+        "InvlidOldPassword":"الرقم السري الحالي غير صحيح",
+        "Passwordsmustmatch":"يجب أن تتطابق كلمات المرور"
     },
     "Warning": {
-        "NoDriversAvialable": "لا يوجد سائق متاح في هذه الفترة"
+        "NoDriversAvialable": "لا يوجد سائق متاح في هذه الفترة",
+        "NoDriverAvialable": "لا يوجد سائق تم تعيينه لهذا الطلب "
     },
     "User": {
         "Users": "المستخدمين",

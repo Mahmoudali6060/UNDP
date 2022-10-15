@@ -40,7 +40,8 @@
         "Search": "Search",
         "UnitedNationsDevelopmentProgramme": "United Nations Development Programme",
         "PleaseLetUsKnowIfYouWantToRequestACar": "Please Let Us Know If You Want To Request A Car",
-        "Ok": "Ok"
+        "Ok": "Ok",
+        "close":"Close"
     },
     "dashboard":{
         "overview":"Overview",
@@ -86,7 +87,8 @@
         "SaveChanges": "Save Changes",
         "ForgotPassword": "Forgot Password",
         "Emailisrequired": "Email Is Required",
-        "SignOut":"Sign Out"
+        "SignOut":"Sign Out",
+        "OldPassword":"Old Password"
     },
     "SideMenu": {
         "Dashboard": "Dashboard",
@@ -133,10 +135,15 @@
         "UserNameExist": "UserName Exist Before Please Insert Another UserName",
         "EmailExist": "Email Exist Before Please Insert Another Email",
         "NonExistRole": "Role Not Exist Please Add Role First",
-        "InvalidData":"Invalid Data"
+        "InvalidData":"Invalid Data",
+        "InvlidOldPassword": "Invlid Old Password",
+        "Passwordsmustmatch": "Passwords Must Match"
+
+        
     },
     "Warning": {
-        "NoDriversAvialable": "There is no any driver available in this period"
+        "NoDriversAvialable": "There is no any driver available in this period",
+        "NoDriverAvialable" : "There is no any driver assigned in this request"
     },
     "User": {
         "Users": "Users",
@@ -154,6 +161,7 @@
         "UploadImage": "Upload Image",
         "Cancel": "Cancel",
         "SaveChanges": "Save Changes",
+        "submit":"Submit",
         "Admin": "Admin",
         "Consumer": "Consumer",
         "EditProfile": "Edit Profile",

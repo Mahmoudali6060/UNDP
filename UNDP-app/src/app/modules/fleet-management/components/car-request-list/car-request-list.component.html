@@ -127,6 +127,7 @@
                         <th class="table-header-fc">{{'FleetManagement.EndingTime' |translate}}</th>
                         <th class="table-header-fc">{{'FleetManagement.RequesterName' |translate}}</th>
                         <th class="table-header-fc">{{'FleetManagement.RequesterEmail' |translate}}</th>
+                        <th class="table-header-fc">{{'Trip.Driver' |translate}}</th>
 
                         <th *ngIf="isCarRequestsLandingPage == false"></th>
                     </tr>
@@ -153,6 +154,7 @@
                         <td>{{item.dateTo}}</td>
                         <td>{{item.requesterName}}</td>
                         <td>{{item.requesterEmail}}</td>
+                        <td (click)="getDriverInfo(item)" class="desc">{{item.driverName === null ? '': item.driverName}}</td>
                         <!--Test-->
                         <td *ngIf="isCarRequestsLandingPage == false ">
                             <div class="table-data-feature" *ngIf="item.carRequestStatusId != carRequestStatusEnum.Closed">
@@ -183,5 +185,34 @@
 
         </div>
         <!-- END DATA TABLE -->
+    </div>
+
+
+
+</div>
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">{{'userTypeEnum.Driver'| translate}}</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-3">{{'User.Name' |translate}}</div>
+                    <div class="col-md-9">{{driverInfo.firstName}}{{driverInfo.lastName}}</div>
+            
+                    <div class="col-md-3">{{'User.Mobile' |translate}}</div>
+                    <div class="col-md-9">{{driverInfo.mobile}}</div>
+
+                    <div class="col-md-3">{{'User.Email' |translate}} </div>
+                    <div class="col-md-9">{{driverInfo.email}}</div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" (click)="closePopup()">
+                    <i class="fa fa-ban"></i>{{'General.close' |translate}}
+                </button>
+            </div>
+        </div>
     </div>
 </div>

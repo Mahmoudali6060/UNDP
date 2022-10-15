@@ -13,6 +13,7 @@ export class CarRequestDTO {
     carRequestStatusId: CarRequestStatusEnum;
     supervisorId: number | null;
     driverId: number | null;
+    driverName: string;
     sequenceNumber: string;
     closingReasonId :number | undefined;
     closingReasonComment:string;
