@@ -119,9 +119,13 @@ export class CarRequestListComponent {
 
 	public assignToMe(item: CarRequestDTO) {
 		item.supervisorId = this.authService.loggedUserProfile.id;
+		item.carRequestStatusId = CarRequestStatusEnum.Reserved;
 		this.updateCarRequest(item);
 	}
-
+	makeNotAvailable(item: CarRequestDTO){
+		item.carRequestStatusId = CarRequestStatusEnum.NotAvailable;
+		this.updateCarRequest(item);
+	}
 	updateCarRequest(item: CarRequestDTO) {
 		this.carRequestService.update(item).subscribe((res: any) => {
 			if (res) {
@@ -198,7 +202,7 @@ export class CarRequestListComponent {
 		this.availableDriversDialogService.show(avaliableDrivers, 'sm')
 			.then((driver: UserProfileDTO) => {
 				if (driver) {
-					selectedCarRequest.carRequestStatusId = CarRequestStatusEnum.Approved;
+					selectedCarRequest.carRequestStatusId = CarRequestStatusEnum.Assigned;
 					selectedCarRequest.driverId = driver.id;
 					this.updateCarRequest(selectedCarRequest);
 					this.sendNotification(driver, selectedCarRequest);

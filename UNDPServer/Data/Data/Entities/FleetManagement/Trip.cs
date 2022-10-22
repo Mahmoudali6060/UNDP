@@ -18,6 +18,8 @@ namespace Data.Entities.FleetManagement
         public string PictureUrl { get; set; }
         public long CarRequestId { get; set; }
         public CarRequest CarRequest { get; set; }
+        public long CarId { get; set; }
+        public Car Car { get; set; }
 
     }
 }

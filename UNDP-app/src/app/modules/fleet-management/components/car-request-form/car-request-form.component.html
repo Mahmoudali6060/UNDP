@@ -75,9 +75,9 @@
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label for="purpose" class=" form-control-label">{{'FleetManagement.Purpose'|translate}}</label>
-                                        <input [(ngModel)]="carRequestDTO.purpose" [ngModelOptions]="{standalone: true}" type="text" id="purpose" class="form-control" #purpose="ngModel" [class.is-invalid]="purpose.invalid && purpose.touched" [class.is-valid]="purpose.valid" required minlength="3"
-                                            name="purpose" id="purpose" class="form-control" aria-describedby="helpId">
-                                        <small [hidden]="purpose.valid || purpose.untouched" id="helpId" class="text-muted" [translate]="'Errors.purposeIsRequired'"></small>
+                                        <input [(ngModel)]="carRequestDTO.purpose" [ngModelOptions]="{standalone: true}" type="text" id="purpose" class="form-control" #purpose="ngModel" minlength="3"
+                                            name="purpose" aria-describedby="helpId">
+                                        <!-- <small [hidden]="purpose.valid || purpose.untouched" id="helpId" class="text-muted" [translate]="'Errors.purposeIsRequired'"></small> -->
                                     </div>
                                 </div>
                             </div>
@@ -89,12 +89,15 @@
 
                 </div>
                 <div class="flex-container p-3">
-                    <button  type="submit" class="btn btn-outline-primary" [disabled]="isDisabled">
-                    <i class="fa fa-dot-circle-o"></i>{{'User.SaveChanges' |translate}} 
-                </button>
                     <button *ngIf="isCarRequestFromOut == false" type="reset" class="btn btn-danger" (click)="cancel()">
-                    <i class="fa fa-ban"></i>{{'User.Cancel' |translate}} 
-                </button>
+                        <i class="fa fa-ban"></i>{{'User.Cancel' |translate}}
+                    </button>
+                    <button *ngIf="isCarRequestFromOut" type="reset" class="btn btn-danger" (click)="back()">
+                        <i class="fa fa-ban"></i>{{'User.Cancel' |translate}}
+                    </button>
+                    <button type="submit" class="btn btn-outline-primary" [disabled]="isDisabled">
+                        <i class="fa fa-dot-circle-o"></i>{{'FleetManagement.submit' |translate}}
+                    </button>
                 </div>
                 <!-- <div class="card-footer">
                 <button  [disabled]="frm.invalid"  type="submit" class="btn btn-primary btn-sm">

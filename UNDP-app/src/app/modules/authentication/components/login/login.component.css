@@ -15,3 +15,6 @@
 h3{
   color: #0468b1;
 }
+.space-around{
+  justify-content: space-around;
+}

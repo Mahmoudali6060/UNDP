@@ -62,8 +62,8 @@ namespace FleetManagement.DataServiceLayer
             CarRequestTotalDetails carRequestDTO = new CarRequestTotalDetails();
 
             carRequestDTO.Total = carRequestList.Count();
-            carRequestDTO.TotalApproved = carRequestList.Where(c => c.CarRequestStatusId == CarRequestStatusEnum.Approved).Count();
-            carRequestDTO.TotalInProgress = carRequestList.Where(c => c.CarRequestStatusId == CarRequestStatusEnum.InProgress).Count();
+            carRequestDTO.TotalApproved = carRequestList.Where(c => c.CarRequestStatusId == CarRequestStatusEnum.Assigned).Count();
+            carRequestDTO.TotalInProgress = carRequestList.Where(c => c.CarRequestStatusId == CarRequestStatusEnum.UnderReview).Count();
             carRequestDTO.TotalClosed = carRequestList.Where(c => c.CarRequestStatusId == CarRequestStatusEnum.Closed).Count();
             return carRequestDTO;
         }
@@ -149,8 +149,8 @@ namespace FleetManagement.DataServiceLayer
     
         public async Task<bool> Delete(long id)
         {
-            CarRequest userProfile = await _carRequestDAL.GetById(id);
-            return await _carRequestDAL.Delete(userProfile);
+            CarRequest carRequest = await _carRequestDAL.GetById(id);
+            return await _carRequestDAL.Delete(carRequest);
         }
 
         #region Helper Methods

@@ -49,4 +49,7 @@ export class ForgotPasswordComponent implements OnInit {
       this.errorMessage = err;
     })
   }
+  back(){
+    this._route.navigate(['/home']);
+  }
 }

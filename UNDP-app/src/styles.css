@@ -65,7 +65,11 @@ body::-webkit-scrollbar-thumb {
     color: blue;
     font-weight: bold;
 }
-
+.status-reserved {
+    /* color: white; */
+    color: cornflowerblue;
+    font-weight: bold;
+}
 .status-completed {
     /* color: white; */
     color: green;

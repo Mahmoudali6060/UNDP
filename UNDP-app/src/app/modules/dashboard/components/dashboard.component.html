@@ -112,10 +112,16 @@
                             <tr class="tr-shadow" *ngFor="let item of carRequestList">
                                 <td>{{item.sequenceNumber}}</td>
                                 <td>
-                                    <span *ngIf="item.carRequestStatusId==carRequestStatusEnum.InProgress" class="status-in-progress">
-                                        {{'CarRequestStatusEnum.InProgress'|translate}}</span>
-                                    <span *ngIf="item.carRequestStatusId==carRequestStatusEnum.Approved" class="status-approved">
-                                        {{'CarRequestStatusEnum.Approved'|translate}}</span>
+                                    <span *ngIf="item.carRequestStatusId==carRequestStatusEnum.UnderReview" class="status-in-progress">
+                                        {{'CarRequestStatusEnum.UnderReview'|translate}}</span>
+                                    <span *ngIf="item.carRequestStatusId==carRequestStatusEnum.Assigned" class="status-approved">
+                                        {{'CarRequestStatusEnum.Assigned'|translate}}</span>
+                                    <span *ngIf="item.carRequestStatusId==carRequestStatusEnum.Closed" class="status-completed">
+                                        {{'CarRequestStatusEnum.Closed'|translate}}</span>
+                                    <span *ngIf="item.carRequestStatusId==carRequestStatusEnum.NotAvailable" class="status-in-progress">
+                                        {{'CarRequestStatusEnum.NotAvailable'|translate}}</span>
+                                    <span *ngIf="item.carRequestStatusId==carRequestStatusEnum.Reserved" class="status-reserved">
+                                        {{'CarRequestStatusEnum.Reserved'|translate}}</span>
                                 </td>
                                 <td>{{item.dateFrom}}</td>
                                 <td>{{item.dateTo}}</td>

@@ -19,6 +19,33 @@ namespace Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("Data.Entities.FleetManagement.Car", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CarModel")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CardBrand")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CardNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("Modified")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Cars");
+                });
+
             modelBuilder.Entity("Data.Entities.FleetManagement.CarRequest", b =>
                 {
                     b.Property<long>("Id")
@@ -96,6 +123,9 @@ namespace Data.Migrations
                     b.Property<DateTime>("ActualStartTime")
                         .HasColumnType("datetime2");
 
+                    b.Property<long>("CarId")
+                        .HasColumnType("bigint");
+
                     b.Property<long>("CarRequestId")
                         .HasColumnType("bigint");
 
@@ -121,6 +151,9 @@ namespace Data.Migrations
                         .HasColumnType("tinyint");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CarId")
+                        .IsUnique();
 
                     b.HasIndex("CarRequestId")
                         .IsUnique();
@@ -484,6 +517,12 @@ namespace Data.Migrations
 
             modelBuilder.Entity("Data.Entities.FleetManagement.Trip", b =>
                 {
+                    b.HasOne("Data.Entities.FleetManagement.Car", "Car")
+                        .WithOne("Trip")
+                        .HasForeignKey("Data.Entities.FleetManagement.Trip", "CarId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Data.Entities.FleetManagement.CarRequest", "CarRequest")
                         .WithOne("Trip")
                         .HasForeignKey("Data.Entities.FleetManagement.Trip", "CarRequestId")

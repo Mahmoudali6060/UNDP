@@ -26,6 +26,7 @@ export class CarRequestFormComponent {
 	isDisabled: boolean;
 	constructor(private carRequestService: CarRequestService,
 		private route: ActivatedRoute,
+		private roueter : Router,
 		private toasterService: ToastrService,
 		private location: Location,
 		private translate: TranslateService,
@@ -47,9 +48,11 @@ export class CarRequestFormComponent {
 	}
 
 	cancel() {
-		this.location.back();
+		this.roueter.navigate(['/fleet-management/car-request-list']);
 	}
-
+	back(){
+		this.roueter.navigate(['/home']);
+	  }
 	save(frm: NgForm) {
 		this.comparedate();
 		if (!this.isValidDate) {
@@ -62,17 +65,23 @@ export class CarRequestFormComponent {
 					if(this.isCarRequestFromOut === false){
 						this.cancel();
 					}
+					else{
+						this.back();
+					}
 					this.isDisabled = true;
 				})
 			}
 			else {
-				this.carRequestDTO.carRequestStatusId = CarRequestStatusEnum.InProgress;
+				this.carRequestDTO.carRequestStatusId = CarRequestStatusEnum.UnderReview;
 				this.carRequestService.add(this.carRequestDTO).subscribe(res => {
 					this.toasterService.success("success");
 					this.isDisabled = true;
-					// this.carRequestDTO = new CarRequestDTO();
-					frm.resetForm();
-					// this.cancel();
+					if(this.isCarRequestFromOut === false){
+						this.cancel();
+					}
+					else{
+						this.back();
+					}					
 				})
 			}
 		}

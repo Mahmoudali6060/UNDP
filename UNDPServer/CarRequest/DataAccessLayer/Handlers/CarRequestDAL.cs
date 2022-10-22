@@ -50,7 +50,7 @@ namespace FleetManagement.DataAccessLayer
         {
             _appDbContext.Entry(entity).State = EntityState.Modified;
             await _appDbContext.SaveChangesAsync();
-            if(entity.CarRequestStatusId == CarRequestStatusEnum.Approved || entity.CarRequestStatusId == CarRequestStatusEnum.Closed)
+            if(entity.CarRequestStatusId == CarRequestStatusEnum.Assigned || entity.CarRequestStatusId == CarRequestStatusEnum.Closed)
             {
             var message = new MessageDTO(new string[] { entity.RequesterEmail }, "UNDP.", $"Dear {entity.RequesterName}\r\n Your request number {entity.SequenceNumber} has been {Enum.GetName(typeof(CarRequestStatusEnum), entity.CarRequestStatusId)}");
             _emailSender.SendEmail(message);

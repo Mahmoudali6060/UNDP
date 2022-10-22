@@ -54,9 +54,10 @@
                                                     |translate}}</a></label>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <button [disabled]="loginForm.invalid" class=" btn btn-outline-primary ml-1 col-md-12"
-                                             type="submit" translate>
+                                    <div class="row space-around">
+                                        <button class=" btn btn-outline-primary col-md-5" (click)="back()" type="button" translate>
+                                            General.back</button>
+                                        <button [disabled]="loginForm.invalid" class=" btn btn-outline-primary col-md-5" type="submit" translate>
                                             Authentication.LogIn</button>
                                     </div>
                                 </form>

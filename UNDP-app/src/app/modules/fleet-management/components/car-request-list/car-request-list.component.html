@@ -143,12 +143,16 @@
                         <td>{{item.sequenceNumber}}</td>
                         <!-- <td (click)="getAllAvailableDrivers(item)"><a class="link">{{item.sequenceNumber}}</a> </td> -->
                         <td>
-                            <span *ngIf="item.carRequestStatusId==carRequestStatusEnum.InProgress" class="status-in-progress">
-                                {{'CarRequestStatusEnum.InProgress'|translate}}</span>
-                            <span *ngIf="item.carRequestStatusId==carRequestStatusEnum.Approved" class="status-approved">
-                                {{'CarRequestStatusEnum.Approved'|translate}}</span>
+                            <span *ngIf="item.carRequestStatusId==carRequestStatusEnum.UnderReview" class="status-in-progress">
+                                {{'CarRequestStatusEnum.UnderReview'|translate}}</span>
+                            <span *ngIf="item.carRequestStatusId==carRequestStatusEnum.Assigned" class="status-approved">
+                                {{'CarRequestStatusEnum.Assigned'|translate}}</span>
                             <span *ngIf="item.carRequestStatusId==carRequestStatusEnum.Closed" class="status-completed">
                                 {{'CarRequestStatusEnum.Closed'|translate}}</span>
+                            <span *ngIf="item.carRequestStatusId==carRequestStatusEnum.NotAvailable" class="status-in-progress">
+                                {{'CarRequestStatusEnum.NotAvailable'|translate}}</span>
+                            <span *ngIf="item.carRequestStatusId==carRequestStatusEnum.Reserved" class="status-reserved">
+                                {{'CarRequestStatusEnum.Reserved'|translate}}</span>
                         </td>
                         <td>{{item.dateFrom}}</td>
                         <td>{{item.dateTo}}</td>
@@ -157,17 +161,19 @@
                         <td (click)="getDriverInfo(item)" class="desc">{{item.driverName === null ? '': item.driverName}}</td>
                         <!--Test-->
                         <td *ngIf="isCarRequestsLandingPage == false ">
-                            <div class="table-data-feature" *ngIf="item.carRequestStatusId != carRequestStatusEnum.Closed">
-                                <button *ngIf="selectedCarRequestPageType==careRequestPageType.Index" class="item" data-toggle="tooltip" data-placement="top" title="{{'FleetManagement.AssignToMe'|translate}}" data-original-title="Send" (click)="assignToMe(item)">
+                            <div class="table-data-feature" >
+                                <button *ngIf="selectedCarRequestPageType==careRequestPageType.Index" [disabled]="item.carRequestStatusId === carRequestStatusEnum.Closed || item.carRequestStatusId === carRequestStatusEnum.Reserved || item.carRequestStatusId === carRequestStatusEnum.Assigned" class="item" data-toggle="tooltip" data-placement="top" title="{{'FleetManagement.AssignToMe'|translate}}" data-original-title="Send" (click)="assignToMe(item)">
                                     <i class="zmdi zmdi-mail-send"></i>
                                 </button>
-                                <button *ngIf="selectedCarRequestPageType==careRequestPageType.MyIndex" class="item" data-toggle="tooltip" data-placement="top" title="{{'FleetManagement.AvailableDrivers'|translate}}" data-original-title="Send" (click)="getAllAvailableDrivers(item)">
+                                <button *ngIf="selectedCarRequestPageType==careRequestPageType.MyIndex" [disabled]="item.carRequestStatusId == carRequestStatusEnum.Closed || item.carRequestStatusId === carRequestStatusEnum.Assigned" class="item" data-toggle="tooltip" data-placement="top" title="{{'FleetManagement.AvailableDrivers'|translate}}" data-original-title="Send" (click)="getAllAvailableDrivers(item)">
                                     <i class="fas fa-users"></i>
                                 </button>
-                                <button *ngIf="selectedCarRequestPageType==careRequestPageType.Index" class="item" data-toggle="tooltip" data-placement="top" title="{{'FleetManagement.CloseRequest'|translate}}" title="" data-original-title="Edit" (click)="closeRequest(item)">
+                                <button *ngIf="selectedCarRequestPageType==careRequestPageType.MyIndex" [disabled]="item.carRequestStatusId == carRequestStatusEnum.Closed" class="item" data-toggle="tooltip" data-placement="top" title="{{'FleetManagement.CloseRequest'|translate}}" title="" data-original-title="Edit" (click)="closeRequest(item)">
                                     <i class="fas fa-ban"></i>
                                 </button>
-
+                                <button *ngIf="selectedCarRequestPageType==careRequestPageType.MyIndex" [disabled]="item.carRequestStatusId === carRequestStatusEnum.Closed ||  item.carRequestStatusId === carRequestStatusEnum.Assigned" class="item" data-toggle="tooltip" data-placement="top" title="{{'FleetManagement.NotAvailable'|translate}}" title="" data-original-title="Edit" (click)="makeNotAvailable(item)">
+                                    <i class="fa fa-user-times" aria-hidden="true"></i>
+                                </button>
                                 <!-- <button class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" (click)="openConfirmationDialog(item)">
                                     <i class="zmdi zmdi-delete"></i>
                                 </button>

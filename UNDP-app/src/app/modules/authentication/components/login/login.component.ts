@@ -49,4 +49,7 @@ export class LoginComponent {
       }
     });
   }
+  back(){
+    this.router.navigate(['/home']);
+  }
 }

@@ -55,7 +55,8 @@
         "UnitedNationsDevelopmentProgramme": "برنامج الأمم المتحدة الإنمائي",
         "PleaseLetUsKnowIfYouWantToRequestACar": "من فضلك أخبرنا إذا كنت تريد أن تطلب طلب سيارة",
         "Ok": "موافق",
-        "close":"إغلاق"
+        "close":"إغلاق",
+        "back":"رجوع"
     },
     "dashboard":{
         "overview":"نظرة عامة",
@@ -190,7 +191,9 @@
         "CarRequestCompleted": "طلبات السيارات المغلقة",
         "CloseRequest": "غلق طلب السيارة",
         "CarRequestList": "قائمة طلبات السيارة",
-        "SelectRequestStatus": "أختر حالة الطلب"
+        "SelectRequestStatus": "أختر حالة الطلب",
+        "submit":"حفظ",
+        "NotAvailable":"غير متاح"
     },
     "Trip":{
         "Trips":"الرحلات",
@@ -212,9 +215,11 @@
         "Completed" : "اكتملت"
     },
     "CarRequestStatusEnum": {
-        "InProgress": "قيد الموافقة",
+        "UnderReview": "قيد الموافقة",
         "Approved": "موافق عليه",
-        "Closed": "مغلق"
+        "Closed": "مغلق",
+        "NotAvailable":"غير متاح",
+        "Reserved":"محجوز"
     },
     "ClosingReasonEnum": {
         "NoAvailableDrivers": "لا يوجد سائقون متاحون",

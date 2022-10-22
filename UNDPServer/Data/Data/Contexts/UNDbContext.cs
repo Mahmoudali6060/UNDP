@@ -25,6 +25,7 @@ namespace Data.Contexts
         public DbSet<Trip> Trips { get; set; }
         public DbSet<UserDevice> UserDevices { get; set; }
 
+        public DbSet<Car> Cars { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -46,6 +47,10 @@ namespace Data.Contexts
                 .WithOne(b => b.CarRequest)
                 .HasForeignKey<Trip>(b => b.CarRequestId);
 
+            modelBuilder.Entity<Car>()
+                .HasOne(a => a.Trip)
+                .WithOne(b => b.Car)
+                .HasForeignKey<Trip>(b => b.CarId);
 
             #endregion
 

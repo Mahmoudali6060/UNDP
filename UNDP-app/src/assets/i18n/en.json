@@ -41,7 +41,8 @@
         "UnitedNationsDevelopmentProgramme": "United Nations Development Programme",
         "PleaseLetUsKnowIfYouWantToRequestACar": "Please Let Us Know If You Want To Request A Car",
         "Ok": "Ok",
-        "close":"Close"
+        "close":"Close",
+        "back":"Back"
     },
     "dashboard":{
         "overview":"Overview",
@@ -196,7 +197,9 @@
         "CarRequestCompleted": "Car Request (Completed)",
         "CloseRequest": "Close request",
         "CarRequestList": "Car Request List",
-        "SelectRequestStatus": "Select request status"
+        "SelectRequestStatus": "Select request status",
+        "submit":"Submit",
+        "NotAvailable":"Not Available"
 
     },
     "Trip":{
@@ -219,9 +222,11 @@
         "Completed" : "Completed"
     },
     "CarRequestStatusEnum": {
-        "InProgress": "In Progress",
-        "Approved": "Approved",
-        "Closed": "Closed"
+        "UnderReview": "Under Review",
+        "Assigned": "Assigned",
+        "Closed": "Closed",
+        "NotAvailable":"Not Available",
+        "Reserved":"Reserved"
     },
     "ClosingReasonEnum": {
         "NoAvailableDrivers": "No Available Drivers",

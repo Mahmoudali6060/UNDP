@@ -1,0 +1,94 @@
+<div class="row">
+    <div class="col-md-12">
+        <!-- DATA TABLE -->
+        <h3 class="title-5 m-b-35">
+            <span>{{'Trip.Trips'|translate}}</span>
+        </h3>
+        <div class="table-data__tool">
+            <div class="table-data__tool-left">
+                <button class="au-btn-filter" (click)="toggleFilter()">
+                    <i class="zmdi zmdi-filter-list"></i>{{'General.Filter'|translate}}</button>
+            </div>
+        </div>
+
+        <!--Filters-->
+        <div class="row" *ngIf="showFilterControls">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">{{'General.Filters'|translate}}</div>
+                    <div class="card-body">
+                        <div class="col-lg-12">
+                            <div class="row">
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label for="cardBrand"
+                                            class="form-control-label">{{'Trip.RequestID'|translate}}</label>
+                                        <input [(ngModel)]="carSearchCrieria.cardBrand" type="text" id="cardBrand"
+                                            class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label for="carModel"
+                                            class=" form-control-label">{{'Trip.ActualEndTime'|translate}}</label>
+                                        <input [(ngModel)]="carSearchCrieria.carModel" type="text" id="carModel"
+                                            class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label for="cardNumber"
+                                            class=" form-control-label">{{'Trip.ActualStartTime'|translate}}</label>
+                                        <input [(ngModel)]="carSearchCrieria.cardNumber" type="text" id="cardNumber"
+                                            class="form-control">
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-lg-12">
+                            <button (click)="search()" class="au-btn au-btn-icon au-btn--blue au-btn--small btn-search">
+                                <i class="zmdi zmdi-search"></i>{{'General.Search'|translate}}
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--End Filters-->
+
+        <!--DATA TABLE -->
+        <div class="table-responsive table-responsive-data2">
+            <table class="table table-data2">
+                <thead class="table-header-bc">
+                    <tr>
+                        <th class="table-header-fc">
+
+                        </th>
+                        <th class="table-header-fc">{{'Trip.RequestID' |translate}}</th>
+                        <th class="table-header-fc">{{'Trip.ActualStartTime' |translate}}</th>
+                        <th class="table-header-fc">{{'Trip.ActualEndTime' |translate}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="tr-shadow" *ngFor="let item of carList">
+                        <td>
+                        </td>
+                        <td>{{item.cardBrand}}</td>
+                        <td>{{item.cardNumber}}</td>
+                        <td>{{item.carModel}}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <app-pagination (pageChange)="onPageChange($event)" [totalRecordsCount]="total"
+                [recordsPerPage]="carSearchCrieria.pageSize" *ngIf="carList">
+            </app-pagination>
+
+        </div>
+        <!-- END DATA TABLE -->
+    </div>
+</div>

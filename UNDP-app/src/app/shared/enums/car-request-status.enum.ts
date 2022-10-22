@@ -1,5 +1,7 @@
 export enum CarRequestStatusEnum {
-    InProgress = 1,
-    Approved = 2,
-    Closed = 3
+    UnderReview = 1,
+    Assigned = 2,
+    Closed = 3,
+    NotAvailable = 4,
+    Reserved = 5
 }

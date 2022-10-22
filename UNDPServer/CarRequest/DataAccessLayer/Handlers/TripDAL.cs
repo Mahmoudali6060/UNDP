@@ -28,7 +28,7 @@ namespace FleetManagement.DataAccessLayer.Handlers
         public async Task<long> Add(Trip entity)
         {
             var request = _appDbContext.CarRequests.Where(c => c.Id == entity.CarRequestId).FirstOrDefault();
-            if (request.CarRequestStatusId != Shared.Enums.CarRequestStatusEnum.Closed || request.CarRequestStatusId != Shared.Enums.CarRequestStatusEnum.InProgress)
+            if (request.CarRequestStatusId != Shared.Enums.CarRequestStatusEnum.Closed || request.CarRequestStatusId != Shared.Enums.CarRequestStatusEnum.UnderReview)
             {
                 using (var ts = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
                 {
