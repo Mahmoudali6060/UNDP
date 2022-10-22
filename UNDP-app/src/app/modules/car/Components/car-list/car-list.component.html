@@ -2,12 +2,18 @@
     <div class="col-md-12">
         <!-- DATA TABLE -->
         <h3 class="title-5 m-b-35">
-            <span>{{'Trip.Trips'|translate}}</span>
+            <span>{{'Cars.Cars'|translate}}</span>
         </h3>
+        
         <div class="table-data__tool">
             <div class="table-data__tool-left">
                 <button class="au-btn-filter" (click)="toggleFilter()">
                     <i class="zmdi zmdi-filter-list"></i>{{'General.Filter'|translate}}</button>
+            </div>
+            <div class="table-data__tool-right">
+                <button   [routerLink]="['/car/car-form']"  class="au-btn au-btn-icon au-btn--green au-btn--small">
+                    <i class="zmdi zmdi-plus"></i> {{'Cars.NewCar'|translate}}
+                </button>
             </div>
         </div>
 
@@ -19,27 +25,27 @@
                     <div class="card-body">
                         <div class="col-lg-12">
                             <div class="row">
-                                <div class="col-lg-3">
+                                <div class="col-lg-4">
                                     <div class="form-group">
                                         <label for="cardBrand"
-                                            class="form-control-label">{{'Trip.RequestID'|translate}}</label>
-                                        <input [(ngModel)]="carSearchCrieria.cardBrand" type="text" id="cardBrand"
+                                            class="form-control-label">{{'Cars.carBrand'|translate}}</label>
+                                        <input [(ngModel)]="carSearchCrieria.carBrand" type="text" id="carBrand"
                                             class="form-control">
                                     </div>
                                 </div>
-                                <div class="col-lg-3">
+                                <div class="col-lg-4">
                                     <div class="form-group">
                                         <label for="carModel"
-                                            class=" form-control-label">{{'Trip.ActualEndTime'|translate}}</label>
+                                            class=" form-control-label">{{'Cars.carModel'|translate}}</label>
                                         <input [(ngModel)]="carSearchCrieria.carModel" type="text" id="carModel"
                                             class="form-control">
                                     </div>
                                 </div>
-                                <div class="col-lg-3">
+                                <div class="col-lg-4">
                                     <div class="form-group">
-                                        <label for="cardNumber"
-                                            class=" form-control-label">{{'Trip.ActualStartTime'|translate}}</label>
-                                        <input [(ngModel)]="carSearchCrieria.cardNumber" type="text" id="cardNumber"
+                                        <label for="carNumber"
+                                            class=" form-control-label">{{'Cars.carNumber'|translate}}</label>
+                                        <input [(ngModel)]="carSearchCrieria.carNumber" type="text" id="carNumber"
                                             class="form-control">
                                     </div>
                                 </div>
@@ -68,17 +74,17 @@
                         <th class="table-header-fc">
 
                         </th>
-                        <th class="table-header-fc">{{'Trip.RequestID' |translate}}</th>
-                        <th class="table-header-fc">{{'Trip.ActualStartTime' |translate}}</th>
-                        <th class="table-header-fc">{{'Trip.ActualEndTime' |translate}}</th>
+                        <th class="table-header-fc">{{'Cars.carBrand' |translate}}</th>
+                        <th class="table-header-fc">{{'Cars.carModel' |translate}}</th>
+                        <th class="table-header-fc">{{'Cars.carNumber' |translate}}</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr class="tr-shadow" *ngFor="let item of carList">
                         <td>
                         </td>
-                        <td>{{item.cardBrand}}</td>
-                        <td>{{item.cardNumber}}</td>
+                        <td>{{item.carBrand}}</td>
+                        <td>{{item.carNumber}}</td>
                         <td>{{item.carModel}}</td>
                     </tr>
                 </tbody>

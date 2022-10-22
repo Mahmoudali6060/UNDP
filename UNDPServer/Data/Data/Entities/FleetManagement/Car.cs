@@ -7,8 +7,8 @@ namespace Data.Entities.FleetManagement
 {
     public class Car :  BaseEntity
     {
-        public string CardBrand { get; set; }
-        public string CardNumber { get; set; }
+        public string CarBrand { get; set; }
+        public string CarNumber { get; set; }
         public string CarModel { get; set; }
         public virtual Trip Trip { get; set; }
 

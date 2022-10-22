@@ -1,1 +1,51 @@
-<p>car-form works!</p>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <form #frm="ngForm" (ngSubmit)="save(frm)">
+                <div class="card-header">
+                    <strong>{{'Cars.NewCar'|translate}} </strong>
+                </div>
+                <div class="card-body card-block">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label for="carBrand" class=" form-control-label">{{'Cars.carBrand'|translate}}</label>
+                                        <input [(ngModel)]="carDTO.carBrand" [ngModelOptions]="{standalone: true}" type="text" class="form-control" #carBrand="ngModel" [class.is-invalid]="carBrand.invalid && carBrand.touched" [class.is-valid]="carBrand.valid"
+                                            required minlength="3" name="carBrand" id="carBrand" class="form-control" aria-describedby="helpId">
+                                        <small [hidden]="carBrand.valid || carBrand.untouched" id="helpId" class="text-muted" [translate]="'Errors.invalidcarBrand'"></small>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label for="carModel" class=" form-control-label">{{'Cars.carModel'|translate}}</label>
+                                        <input [(ngModel)]="carDTO.carModel" [ngModelOptions]="{standalone: true}" type="email" class="form-control" #carModel="ngModel" [class.is-invalid]="carModel.invalid && carModel.touched" [class.is-valid]="carModel.valid"
+                                            required minlength="3" name="carModel" id="carModel" class="form-control" aria-describedby="helpId">
+                                        <small [hidden]="carModel.valid || carModel.untouched" id="helpId" class="text-muted" [translate]="'Errors.invalidcarModel'"></small>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label for="carNumber" class=" form-control-label">{{'Cars.carNumber'|translate}}</label>
+                                        <input [(ngModel)]="carDTO.carNumber" [ngModelOptions]="{standalone: true}" type="email" class="form-control" #carNumber="ngModel" [class.is-invalid]="carNumber.invalid && carNumber.touched" [class.is-valid]="carNumber.valid"
+                                            required minlength="3" name="carNumber" id="carNumber" class="form-control" aria-describedby="helpId">
+                                        <small [hidden]="carNumber.valid || carNumber.untouched" id="helpId" class="text-muted" [translate]="'Errors.invalidcarNumber'"></small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex-container p-3">
+                    <button  type="reset" class="btn btn-danger" (click)="cancel()">
+                        <i class="fa fa-ban"></i>{{'User.Cancel' |translate}}
+                    </button>
+                    <button type="submit" class="btn btn-outline-primary" [disabled]="isDisabled">
+                        <i class="fa fa-dot-circle-o"></i>{{'Cars.submit' |translate}}
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

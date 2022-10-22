@@ -57,6 +57,10 @@ namespace App.Helper
             services.AddTransient<ITripDSL, TripDSL>();
             #endregion
 
+            #region Cars
+            services.AddTransient<ICarDAL, CarDAL>();
+            services.AddTransient<ICarDSL, CarDSL>();
+            #endregion
 
         }
     }

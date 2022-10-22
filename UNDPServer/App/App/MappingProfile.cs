@@ -50,8 +50,7 @@ namespace App
             #region Trip
             CreateMap<Trip, TripDTO>()
                  .ForMember(trip => trip.SequenceNumber, opt => opt.MapFrom(src => src.CarRequest.SequenceNumber))
-                 .ForMember (trip=>trip.CarBrand ,opt=>opt.MapFrom(src=>src.Car.CardBrand))
-                 .ForMember(trip => trip.CarBrand, opt => opt.MapFrom(src => src.Car.CardNumber))
+                 .ForMember (trip=>trip.CarBrand ,opt=>opt.MapFrom(src=>src.Car.CarBrand + src.Car.CarNumber ))
                  .ForMember(trip => trip.DriverId, opt => opt.MapFrom(src => src.CarRequest.DriverId))
                  .ForMember(trip => trip.DriverName, opt => opt.MapFrom(src => src.CarRequest.Driver.FirstName + " "+ src.CarRequest.Driver.LastName));
             CreateMap<TripDTO, Trip>();

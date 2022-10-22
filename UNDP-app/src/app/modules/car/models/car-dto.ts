@@ -1,6 +1,6 @@
 export class CarDTO{
     id : number;
-    cardBrand :string
-    cardNumber :string
+    carBrand :string
+    carNumber :string
     carModel :string
 }

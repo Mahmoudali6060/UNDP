@@ -98,7 +98,9 @@
         "FleetManagement": "Fleet Management",
         "CarRequestInbox": "Car Request (Inbox)",
         "CarRequestMyInbox": "Car Request (My Inbox)",
-        "CarRequestCompleted": "Car Request (Completed)"
+        "CarRequestCompleted": "Car Request (Completed)",
+        "Cars":"Cars",
+        "CarsList":"Cars List"
     },
     "Errors": {
         "InvalidUsernameOrPassword": "Invalid Username Or Password",
@@ -138,7 +140,10 @@
         "NonExistRole": "Role Not Exist Please Add Role First",
         "InvalidData":"Invalid Data",
         "InvlidOldPassword": "Invlid Old Password",
-        "Passwordsmustmatch": "Passwords Must Match"
+        "Passwordsmustmatch": "Passwords Must Match",
+        "invalidcarBrand":"Invalid Car Brand",
+        "invalidcarModel":"Invalid Car Model",
+        "invalidcarNumber":"Invalid Car Number"
 
         
     },
@@ -241,5 +246,13 @@
         "Admin": "Admin",
         "Supervisor": "Supervisor",
         "Driver": "Driver"
+    },
+    "Cars":{
+       "Cars":"Cars",
+       "carBrand":"Car Brand",
+       "carModel":"Car Model",
+       "carNumber":"Car Number",
+       "NewCar":"New Car",
+       "submit":"Submit"
     }
 }

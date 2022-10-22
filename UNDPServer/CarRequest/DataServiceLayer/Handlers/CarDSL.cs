@@ -86,7 +86,7 @@ namespace FleetManagement.DataServiceLayer.Handlers
 
             if (!string.IsNullOrWhiteSpace(searchCrieria.CardBrand))
             {
-                carList = carList.Where(x => x.CardBrand.Contains(searchCrieria.CardBrand));
+                carList = carList.Where(x => x.CarBrand.Contains(searchCrieria.CardBrand));
             }
 
             if (!string.IsNullOrWhiteSpace(searchCrieria.CarModel))
@@ -95,7 +95,7 @@ namespace FleetManagement.DataServiceLayer.Handlers
             }
             if (!string.IsNullOrWhiteSpace(searchCrieria.CardNumber))
             {
-                carList = carList.Where(x => x.CardNumber.Contains(searchCrieria.CardNumber));
+                carList = carList.Where(x => x.CarNumber.Contains(searchCrieria.CardNumber));
             }
 
             return carList;

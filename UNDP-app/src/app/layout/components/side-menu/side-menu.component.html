@@ -68,6 +68,21 @@
                     </ul>
                 </li>
 
+
+                <li routerLinkActive="active" class=" has-sub">
+                    <a class="js-arrow" href="#">
+                        <i class="fas fa-users"></i> <span translate>SideMenu.Cars</span>
+                        <span class="arrow">
+                            <i class="fas fa-angle-down"></i>
+                        </span>
+                    </a>
+                    <ul class="list-unstyled navbar__sub-list js-sub-list">
+                        <li routerLinkActive="active">
+                            <a [routerLink]="['/car/car-list']">
+                                <i class="fa fa-car"></i><span translate>SideMenu.CarsList</span></a>
+                        </li>
+                    </ul>
+                </li>
                 <!-- <li>
                     <a [routerLink]="['/landingPage']">
                         <i class="fas fa-shopping-basket"></i>LandingPage</a>

@@ -21,7 +21,6 @@ export class CarListComponent implements OnInit {
     private translate: TranslateService) { }
   ngOnInit(): void {
     this.search();
-
   }
   search() {
     this.carService.getAll(this.carSearchCrieria).subscribe((res: any) => {

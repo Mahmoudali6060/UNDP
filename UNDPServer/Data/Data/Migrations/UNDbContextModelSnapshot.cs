@@ -26,13 +26,13 @@ namespace Data.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("CarBrand")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("CarModel")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("CardBrand")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CardNumber")
+                    b.Property<string>("CarNumber")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("Created")

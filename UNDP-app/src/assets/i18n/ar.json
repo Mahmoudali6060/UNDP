@@ -105,7 +105,9 @@
         "FleetManagement": "إدارة السيارات",
         "CarRequestInbox": "صندوق الوارد لطلبات السيارت",
         "CarRequestMyInbox": "طلبات السيارة الخاصة بي",
-        "CarRequestCompleted": "طلبات السيارات المغلقة"
+        "CarRequestCompleted": "طلبات السيارات المغلقة",
+        "Cars":"السيارت",
+        "CarsList":"قائمة السيارات"
     },
     "Errors": {
         "InvalidUsernameOrPassword": "من فضلك تأكد من اسم المستخدم او كلمة المرور",
@@ -139,7 +141,10 @@
         "EmailExist": " البريد الالكتروني موجود مسبقا من فضلك ادخل بريد الكتروني آخر",
         "NonExistRole": "فئة الصلاحية غير موجوده من فضلك قم بإضافتها أولا",
         "InvlidOldPassword":"الرقم السري الحالي غير صحيح",
-        "Passwordsmustmatch":"يجب أن تتطابق كلمات المرور"
+        "Passwordsmustmatch":"يجب أن تتطابق كلمات المرور",
+        "invalidcarBrand":"نوع السيارة غير صحيح",
+        "invalidcarModel":"طراز السيارة غير صحيح",
+        "invalidcarNumber":"رقم السيارة غير صحيح"
     },
     "Warning": {
         "NoDriversAvialable": "لا يوجد سائق متاح في هذه الفترة",
@@ -234,5 +239,13 @@
         "Admin": "مسؤول",
         "Supervisor": "مشرف",
         "Driver": "سائق"
+    },
+    "Cars":{
+       "Cars":"السيارت",
+       "carBrand":"نوع السيارة",
+       "carModel":"طراز السيارة",
+       "carNumber":"رقم السيارة",
+       "NewCar":"إضافة سيارة",
+       "submit":"حفظ"
     }
 }

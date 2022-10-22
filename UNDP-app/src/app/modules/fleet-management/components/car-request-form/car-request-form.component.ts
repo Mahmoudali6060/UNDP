@@ -7,8 +7,6 @@ import { CarRequestService } from '../../services/car-request.service';
 import { Location } from '@angular/common';
 import { CarRequestStatusEnum } from '../../../../shared/enums/car-request-status.enum';
 import { NgForm } from '@angular/forms';
-import { from } from 'rxjs';
-declare var jQuery: any;
 
 @Component({
 	selector: 'app-car-request-form',
