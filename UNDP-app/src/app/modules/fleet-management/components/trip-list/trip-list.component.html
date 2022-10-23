@@ -9,6 +9,11 @@
                 <button class="au-btn-filter" (click)="toggleFilter()" >
                     <i class="zmdi zmdi-filter-list"></i>{{'General.Filter'|translate}}</button>
             </div>
+            <div class="table-data__tool-right">
+                <button  (click)="exportexcel()" class="au-btn au-btn-icon au-btn--green au-btn--small">
+                    <i class="zmdi zmdi-plus"></i> Exportexcel
+                </button>
+            </div>
         </div>
 
         <!--Filters-->
@@ -108,7 +113,7 @@
 
         <!--DATA TABLE -->
         <div class="table-responsive table-responsive-data2">
-            <table class="table table-data2">
+            <table class="table table-data2"  id="excel-table">
                 <thead class="table-header-bc">
                     <tr>
                         <th class="table-header-fc">

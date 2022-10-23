@@ -10,6 +10,7 @@ import { TripStatusEnum } from 'src/app/shared/enums/trip-status-enum';
 import { TripDTO } from '../../models/trip-dto';
 import { TripSerachCriteria } from '../../models/trip-search-criteria.dto';
 import { CarRequestService } from '../../services/car-request.service';
+import * as XLSX from 'xlsx';
 
 @Component({
 	selector: 'app-trip-list',
@@ -30,7 +31,7 @@ export class TripListComponent implements OnInit {
 	@Input() istripsLandingPage: boolean = false;
 	@ViewChild(PaginationComponent) paginationComponent: PaginationComponent;
 	driversList: UserProfileDTO[] = [];
-
+	fileName= 'Trip.xlsx';
 	constructor(private carRequestService: CarRequestService,
 		private translate: TranslateService,
 		private authService: AuthService,
@@ -56,6 +57,20 @@ export class TripListComponent implements OnInit {
 				this.paginationComponent.setPagination(this.tripSearchCrieria.page);
 			}
 		});
+	}
+	exportexcel(): void
+	{
+	  /* pass here the table id */
+	  let element = document.getElementById('excel-table');
+	  const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(element);
+   
+	  /* generate workbook and add the worksheet */
+	  const wb: XLSX.WorkBook = XLSX.utils.book_new();
+	  XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+   
+	  /* save to file */  
+	  XLSX.writeFile(wb, this.fileName);
+   
 	}
 	//#region    Drivers
 	getAllDrivers() {
