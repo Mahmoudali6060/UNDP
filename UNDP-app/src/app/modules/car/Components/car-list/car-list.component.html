@@ -77,6 +77,7 @@
                         <th class="table-header-fc">{{'Cars.carBrand' |translate}}</th>
                         <th class="table-header-fc">{{'Cars.carModel' |translate}}</th>
                         <th class="table-header-fc">{{'Cars.carNumber' |translate}}</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -86,6 +87,16 @@
                         <td>{{item.carBrand}}</td>
                         <td>{{item.carNumber}}</td>
                         <td>{{item.carModel}}</td>
+                        <td>
+                            <div class="table-data-feature" >
+                                <button  class="item" data-toggle="tooltip" data-placement="top" title="{{'FleetManagement.AssignToMe'|translate}}" data-original-title="Send" >
+                                    <i class="fa fa-pencil-square-o"></i>
+                                </button>
+                                <button  class="item" data-toggle="tooltip" data-placement="top" title="{{'FleetManagement.AssignToMe'|translate}}" data-original-title="Send" >
+                                    <i class="fa fa-trash-o"></i>
+                                </button>
+                            </div>
+                        </td>
                     </tr>
                 </tbody>
             </table>
