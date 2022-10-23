@@ -206,17 +206,24 @@
         "submit":"Submit",
         "NotAvailable":"Not Available"
 
+
+
     },
     "Trip":{
         "Trips":"Trips",
         "RequestID":"Request Id",
-        "ActualStartTime":"Actual Start Time",
-        "ActualEndTime":"Actual End Time",
-        "PreviousKiloMeterCounter":"Previous Km Counter",
-        "CurrentKiloMeterCounter":"Current Km Counter",
+        "ActualStartTime":"Start Date",
+        "ActualEndTime":"End Date",
+        "PreviousKiloMeterCounter":"Previous Km",
+        "CurrentKiloMeterCounter":"Current Km",
         "TripStatus":"Trip Status",
         "TripClosingReason":"Trip Closing Reason",
-        "Driver":"Driver"
+        "Driver":"Driver",
+        "carBrand":"Car Brand/Number",
+        "email":"Email",
+        "car":"Car",
+        "PickUp":"Pick Up",
+        "Destination":"Destination"
     },
     "TripStatusEnum":{
         "Completed" : "Completed",
@@ -253,6 +260,8 @@
        "carModel":"Car Model",
        "carNumber":"Car Number",
        "NewCar":"New Car",
-       "submit":"Submit"
+       "submit":"Submit",
+       "EditCar":"Edit Car"
+
     }
 }

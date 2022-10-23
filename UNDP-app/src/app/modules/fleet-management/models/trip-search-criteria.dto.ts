@@ -9,4 +9,7 @@ export class TripSerachCriteria extends DataSourceModel{
       tripClosingReasonId :number
       sequenceNumber :string
       driverId : number
+      email: string;
+      carId: number
+      carBrand: string
 }

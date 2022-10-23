@@ -12,4 +12,10 @@ export class TripDTO{
       sequenceNumber :  number;
       driverId :  number;
       driverName : string
+      email: string;
+      carId: number
+      carBrand: string
+      carNumber: string
+      pickUp: string
+      destination: string
 }

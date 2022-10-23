@@ -32,14 +32,8 @@
                                 </div>
                                 <div class="col-lg-3">
                                     <div class="form-group">
-                                        <label for="actualStartTime" class=" form-control-label">{{'Trip.ActualStartTime'|translate}}</label>
-                                        <input [(ngModel)]="tripSearchCrieria.actualStartTime" type="datetime-local" id="actualStartTime" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="form-group">
-                                        <label for="actualEndTime" class=" form-control-label">{{'Trip.ActualEndTime'|translate}}</label>
-                                        <input [(ngModel)]="tripSearchCrieria.actualEndTime" type="datetime-local" id="actualEndTime" class="form-control">
+                                        <label for="email" class="form-control-label">{{'Trip.email'|translate}}</label>
+                                        <input [(ngModel)]="tripSearchCrieria.email" type="text" id="email" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-lg-3">
@@ -55,6 +49,37 @@
                                         </select>
                                     </div>
                                 </div>
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label for="carBrand" class="form-control-label">{{'Trip.carBrand'|translate}}</label>
+                                        <input [(ngModel)]="tripSearchCrieria.carBrand" type="text" id="carBrand" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label for="email" class="form-control-label">{{'Trip.PickUp'|translate}}</label>
+                                        <input [(ngModel)]="tripSearchCrieria.email" type="text" id="email" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label for="email" class="form-control-label">{{'Trip.Destination'|translate}}</label>
+                                        <input [(ngModel)]="tripSearchCrieria.email" type="text" id="email" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label for="actualStartTime" class=" form-control-label">{{'Trip.ActualStartTime'|translate}}</label>
+                                        <input [(ngModel)]="tripSearchCrieria.actualStartTime" type="datetime-local" id="actualStartTime" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label for="actualEndTime" class=" form-control-label">{{'Trip.ActualEndTime'|translate}}</label>
+                                        <input [(ngModel)]="tripSearchCrieria.actualEndTime" type="datetime-local" id="actualEndTime" class="form-control">
+                                    </div>
+                                </div>
+
                                 <div class="col-lg-3">
                                     <div class="form-group">
                                         <label for="previousKiloMeterCounter" class=" form-control-label">{{'Trip.PreviousKiloMeterCounter'|translate}}</label>
@@ -81,7 +106,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-lg-3">
+                                <!-- <div class="col-lg-3">
                                     <div class="form-group">
                                         <label for="drivers" class="form-control-label">{{'Trip.TripClosingReason'
                                             |translate}}</label>
@@ -94,7 +119,7 @@
                                             </option>
                                         </select>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
 
                         </div>
@@ -120,13 +145,16 @@
 
                         </th>
                         <th class="table-header-fc">{{'Trip.RequestID' |translate}}</th>
+                        <th class="table-header-fc">{{'Trip.email' |translate}}</th>
+                        <th class="table-header-fc">{{'Trip.Driver' |translate}}</th>
+                        <th class="table-header-fc">{{'Trip.carBrand' |translate}}</th>
+                        <th class="table-header-fc">{{'Trip.PickUp' |translate}}</th>
+                        <th class="table-header-fc">{{'Trip.Destination' |translate}}</th>
                         <th class="table-header-fc">{{'Trip.ActualStartTime' |translate}}</th>
                         <th class="table-header-fc">{{'Trip.ActualEndTime' |translate}}</th>
-                        <th class="table-header-fc">{{'Trip.Driver' |translate}}</th>
                         <th class="table-header-fc">{{'Trip.PreviousKiloMeterCounter' |translate}}</th>
                         <th class="table-header-fc">{{'Trip.CurrentKiloMeterCounter' |translate}}</th>
                         <th class="table-header-fc">{{'Trip.TripStatus' |translate}}</th>
-                        <th class="table-header-fc">{{'Trip.TripClosingReason' |translate}}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -134,9 +162,13 @@
                         <td>
                         </td>
                         <td>{{item.sequenceNumber}}</td>
+                        <td>{{item.email}}</td>
+                        <td>{{item.driverName}}</td>
+                        <td>{{item.carBrand}}</td>
+                        <td>{{item.pickUp}}</td>
+                        <td>{{item.destination}}</td>
                         <td>{{item.actualStartTime | date: 'dd/MM/yyyy h:mm a'}}</td>
                         <td>{{item.actualEndTime | date: 'dd/MM/yyyy h:mm a'}}</td>
-                        <td>{{item.driverName}}</td>
                         <td>{{item.previousKiloMeterCounter}}</td>
                         <td>{{item.currentKiloMeterCounter}}</td>
                         <td>
@@ -144,12 +176,6 @@
                                 {{'TripStatusEnum.Completed'|translate}}</span>
                             <span *ngIf="item.tripStatusId==tripStatusEnum.Canceled" class="status-canceled">
                                 {{'TripStatusEnum.Canceled'|translate}}</span> 
-                        </td>
-                        <td>
-                            <span *ngIf="item.tripClosingReasonId==tripClosingReasonEnum.Completed" class="status-completed">
-                                {{'TripClosingReasonEnum.Completed'|translate}}</span>
-                            <span *ngIf="item.tripClosingReasonId==tripClosingReasonEnum.Canceled" class="status-canceled">
-                                {{'TripClosingReasonEnum.Canceled'|translate}}</span> 
                         </td>
                     </tr>
                 </tbody>

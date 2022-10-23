@@ -84,18 +84,18 @@ namespace FleetManagement.DataServiceLayer.Handlers
         {
             //Filter by UserProfileId
 
-            if (!string.IsNullOrWhiteSpace(searchCrieria.CardBrand))
+            if (!string.IsNullOrWhiteSpace(searchCrieria.CarBrand))
             {
-                carList = carList.Where(x => x.CarBrand.Contains(searchCrieria.CardBrand));
+                carList = carList.Where(x => x.CarBrand.Contains(searchCrieria.CarBrand));
             }
 
             if (!string.IsNullOrWhiteSpace(searchCrieria.CarModel))
             {
                 carList = carList.Where(x => x.CarModel.Contains(searchCrieria.CarModel));
             }
-            if (!string.IsNullOrWhiteSpace(searchCrieria.CardNumber))
+            if (!string.IsNullOrWhiteSpace(searchCrieria.CarNumber))
             {
-                carList = carList.Where(x => x.CarNumber.Contains(searchCrieria.CardNumber));
+                carList = carList.Where(x => x.CarNumber.Contains(searchCrieria.CarNumber));
             }
 
             return carList;

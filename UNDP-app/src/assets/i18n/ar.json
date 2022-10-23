@@ -206,13 +206,18 @@
     "Trip":{
         "Trips":"الرحلات",
         "RequestID":"رقم الطلب",
-        "ActualStartTime":"وقت البدء الفعلي",
-        "ActualEndTime":"وقت الإنتهاء الفعلي",
+        "ActualStartTime":"تاريخ البدء",
+        "ActualEndTime":"تاريخ الإنتهاء",
         "PreviousKiloMeterCounter":"عدد الكيلومترات السابقة",
         "CurrentKiloMeterCounter":"عدد الكيلومترات الحالية",
         "TripStatus":"حالة الرحلة",
         "TripClosingReason":"سبب إغلاق الرحلة",
-        "Driver":"السائق"
+        "Driver":"السائق",
+        "carBrand":"نوع/رقم السيارة",
+        "email":"البريد الالكتروني",
+        "car":"السيارة",
+        "PickUp":"نقطة الإلتقاء",
+        "Destination":"الوجهة"
     },
     "TripStatusEnum":{
         "Completed" :"اكتملت",
@@ -249,6 +254,7 @@
        "carModel":"طراز السيارة",
        "carNumber":"رقم السيارة",
        "NewCar":"إضافة سيارة",
-       "submit":"حفظ"
+       "submit":"حفظ",
+       "EditCar":"تعديل سيارة"
     }
 }

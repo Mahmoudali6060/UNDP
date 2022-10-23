@@ -7,8 +7,8 @@ namespace FleetManagement.Entities
 {
     public class CarSearchCriteriaDTO : DataSource
     {
-        public string CardBrand { get; set; }
-        public string CardNumber { get; set; }
+        public string CarBrand { get; set; }
+        public string CarNumber { get; set; }
         public string CarModel { get; set; }
     }
 }

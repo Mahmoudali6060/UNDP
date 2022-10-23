@@ -86,6 +86,14 @@ namespace FleetManagement.DataServiceLayer.Handlers
             {
                 tripList = tripList.Where(x => x.CarRequest.SequenceNumber == searchCrieria.SequenceNumber);
             }
+            if (!string.IsNullOrWhiteSpace(searchCrieria.Email))
+            {
+                tripList = tripList.Where(x => x.CarRequest.RequesterEmail == searchCrieria.Email);
+            }
+            if (!string.IsNullOrWhiteSpace(searchCrieria.CarBrand))
+            {
+                tripList = tripList.Where(x => x.Car.CarBrand.Contains(searchCrieria.CarBrand )|| x.Car.CarNumber.Contains(searchCrieria.CarBrand));
+            }
             if (searchCrieria.DriverId > 0)
             {
                 tripList = tripList.Where(x => x.CarRequest.DriverId == searchCrieria.DriverId);

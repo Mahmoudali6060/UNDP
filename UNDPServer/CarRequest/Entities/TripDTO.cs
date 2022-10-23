@@ -17,10 +17,14 @@ namespace FleetManagement.Entities
         public long CarRequestId { get; set; }
         public long DriverId { get; set; }
         public string DriverName { get; set; }
+        public string Email { get; set; }
         public string SequenceNumber { get; set; }
         public long CarId { get; set; }
         public string CarBrand { get; set; }
         public string CarNumber { get; set; }
+        public string PickUp { get; set; }
+        public string Destination { get; set; }
+
 
     }
 }
