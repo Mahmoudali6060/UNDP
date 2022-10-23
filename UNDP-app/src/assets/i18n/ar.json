@@ -56,7 +56,8 @@
         "PleaseLetUsKnowIfYouWantToRequestACar": "من فضلك أخبرنا إذا كنت تريد أن تطلب طلب سيارة",
         "Ok": "موافق",
         "close":"إغلاق",
-        "back":"رجوع"
+        "back":"رجوع",
+        "Export":"تصدير"
     },
     "dashboard":{
         "overview":"نظرة عامة",
@@ -198,7 +199,9 @@
         "CarRequestList": "قائمة طلبات السيارة",
         "SelectRequestStatus": "أختر حالة الطلب",
         "submit":"حفظ",
-        "NotAvailable":"غير متاح"
+        "NotAvailable":"غير متاح",
+        "CarRequestInbox": "صندوق الوارد لطلبات السيارت",
+        "CarRequestMyInbox": "طلبات السيارة الخاصة بي"
     },
     "Trip":{
         "Trips":"الرحلات",
